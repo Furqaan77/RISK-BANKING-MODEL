@@ -1,0 +1,16 @@
+bank,type,total_assets_aed_bn,retail_loans_aed_bn,pl_min_salary_stl,pl_min_salary_nonstl,pl_max_nat_aed,pl_max_exp_aed,pl_rate_min,pl_rate_max,pl_tenor_m,age_min,age_max_nat,age_max_exp,card_min_salary,card_rate_month,card_min_pay_pct,home_min_salary_nat,home_min_salary_exp,home_ltv_nat,home_ltv_exp,home_fixed_rate,auto_min_salary,auto_max_aed,auto_rate_flat,auto_down_pct,deposit_advance_pct,nonstl_offered,confidence,key_source_url
+Commercial Bank of Dubai,conventional,167.9,,8000,10000,2500000,750000,5.50,18.00,48,21,65,60,5000,3.85,5,12000,12000,85,80,,8000,500000,2.18,20,90,Y,M,https://www.cbd.ae/docs/default-source/default-document-library/kfs_conventional_personal-loan_en.pdf
+Sharjah Islamic Bank,islamic,99.7,,5000,,2500000,2500000,5.33,,48,21,65,60,5000,3.49,5,10000,12000,85,80,3.75,5000,2500000,2.49,20,90,P,M,https://m.sib.ae/en/PF-KFS
+Ajman Bank,islamic,35.8,,5000,,5000000,1500000,5.75,,48,21,60,60,5000,3.50,5,12000,15000,85,80,,5000,1500000,,20,,Y,H,https://www.ajmanbank.ae/site/murabaha.html
+Al Hilal Bank,islamic,,,5000,10000,4000000,4000000,5.85,10.63,48,18,,,,3.69,5,,,,,3.99,,,2.50,20,,Y,H/L,https://www.alhilalbank.ae/en/Images/ahb-personal-finance-key-facts-statement-bilingual_tcm50-589817.pdf
+National Bank of Fujairah,conventional,71.2,,5000,,3000000,1000000,5.50,15.00,48,21,,,5000,2.99,5,,,85,80,5.25,,1000000,2.25,20,,P,H,https://nbf.ae/wp-content/uploads/2025/06/KFS_Personal_Loan.pdf
+National Bank of Umm Al Qaiwain,conventional,25.1,,7000,,5000000,1000000,6.80,11.25,48,21,70,60,8000,2.49,5,20000,20000,,,3.95,8000,750000,,20,,P,M,https://nbq.ae/docs/default-source/kfs/01-kfs-pl-ne-21102024-e.pdf
+Bank of Sharjah,conventional,54.9,,,,,,10.00,15.00,48,,,,,,100,,,,,,,,,20,,,H/M,https://www.bankofsharjah.com/Live/public/uploads/contents/Personal-Loan-Key-Facts-V2.pdf
+United Arab Bank,conventional,28.0,,7500,,2000000,2000000,4.89,11.99,48,,,,5000,3.79,5,,,85,80,3.99,6000,500000,2.99,20,,Y,H,https://www.uab.ae/-/media/project/uab/pdf/kfs/conventional/2026/kfs_personal-loan_en_con.pdf
+Invest Bank,conventional,16.1,,,,,,5.35,,48,,,,5000,3.49,5,,,,,,,,,20,,N,M,https://investbank.ae/dist/pdf/Key_Fact_Statement-PL-FEB2025-EN.pdf
+Commercial Bank International,conventional,23.0,,15000,,2000000,1000000,6.50,9.25,48,21,65,65,8000,3.45,4.5,10000,10000,,,5.00,15000,,3.75,20,90,P,H,https://www.cbiuae.com/media/0i5lxz4e/cbi-personal-loan-key-facts-statement-april-2026.pdf
+Al Masraf,conventional,26.7,,15000,,,,6.49,14.49,48,21,65,60,5000,3.69,5,15000,15000,,80,4.99,15000,650000,2.49,20,,P,H/L,https://almasraf.ae/pdf/kfs-personal-loan.pdf
+Wio Bank,digital,61.0,,10000,10000,1000000,1000000,4.75,18.00,48,21,,,7000,3.25,5,,,,,,,1000000,2.99,20,80,Y,H,https://wio.io/loans
+Ruya,digital islamic,,,5000,,,,5.90,9.99,48,21,,,5000,3.50,5,,,,,,,,,,,N,H,https://www.ruyabank.ae/en/personal-banking/personal-finance
+Al Maryah Community Bank (Mbank),digital,,0.68,10000,,,,,,48,21,65,60,,3.15,5,,,,,,,,,,,N,H,https://www.mbank.ae/personal-loans/
+Reem Community Bank,digital,,,7500,7500,,,,,,21,,,5000,3.50,,,,,,,,,,,,Y,M,https://www.reembank.ae/en/products/personal/credit-card

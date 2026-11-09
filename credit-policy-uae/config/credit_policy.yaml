@@ -1,0 +1,249 @@
+# =====================================================================================
+# AI Risk Score Card (UAE Islamic edition) - Layer 3: CREDIT POLICY (products)
+# Tenant: demo_islamic_bank   |   Version 0.1 (draft)   |   Effective 2026-11-09
+# Source of truth: credit-policy-uae/03-parameter-sheet.md (recommended values)
+# Tags: [U] user criterion  [C] CBUAE rule  [M] top-five median  [P] proposed
+#       [A] adjusted from user criterion (NEEDS USER SIGN-OFF)
+# Rates are reducing-balance unless marked flat. Fees exclude 5% VAT unless vat_included: true.
+# CBUAE values are references; config/regulators/cbuae.yaml is the authority (tighten-only).
+# =====================================================================================
+
+meta:
+  tenant: demo_islamic_bank
+  layer: credit_policy
+  version: "0.1"
+  status: draft
+  effective_date: "2026-11-09"
+  currency: AED
+  vat_pct: 5
+
+# -------------------------------------------------------------------------------------
+# Grades, decision bands and risk-based pricing add-ons (§9)
+# -------------------------------------------------------------------------------------
+grades:
+  pd_bands_pct:                                      # upper bounds, 12-month PD
+    1: 0.25
+    2: 0.5
+    3: 1.0
+    4: 2.0
+    5: 3.5
+    6: 5.0
+    7: 8.0
+    8: 12.0
+    9: 20.0
+    10: 100.0
+  decision:
+    approve: [1, 2, 3, 4, 5, 6]
+    refer: [7, 8]                                    # model escalation; deviation authority
+    decline: [9, 10]
+  pricing_add_on_over_floor_pct:                     # personal finance; applied within product ceiling
+    "1-3": [0.00, 1.00]
+    "4-6": [1.00, 5.00]
+    "7-8": [5.00, 10.00]
+    "9-10": null
+
+# -------------------------------------------------------------------------------------
+# Products
+# -------------------------------------------------------------------------------------
+products:
+
+  personal_finance_salary_assigned:                  # P-12..P-20
+    structure: commodity_murabaha_tawarruq
+    track: salary_assigned
+    min_monthly_gross_income_aed: 5000               # P-12 [U]
+    max_finance_amount:                              # P-13 [C+M]  lower of all applicable caps
+      income_multiple: 20                            # [C] CBUAE 20x monthly income
+      cap_aed: {uae_national: 4000000, expat: 2000000}   # [M]
+      cap_aed_employer_cat_d: 500000                 # [M]
+    max_tenor_months: 48                             # P-14 [C]
+    max_tenor_months_mod_af: 60                      # P-14 [C] only where CBUAE exemption applies - VERIFY
+    pricing:                                         # P-15 [M]
+      profit_rate_floor_pct: {uae_national: 5.49, expat: 5.99}
+      profit_rate_ceiling_pct: 19.99
+      risk_based: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}     # P-16 [C/M]
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, method: ibra_rebate_of_unearned_profit}   # P-17 [C/M]
+      late_payment_charity_undertaking_aed: 175      # P-18 [M] net of actual costs, Sharia approved
+    security:                                        # P-19 [U]
+      employer_salary_transfer_letter: required
+      irrevocable_eos_undertaking: required
+      wps_salary_credit_verified: required
+      undated_security_cheque: per_legal_advice      # [M]
+      salary_not_credited_step_up: {months: 3, profit_rate_step_up_pct_pa: 2.0}   # [P]
+    first_instalment_grace_days_uae_national: 120    # P-20 [M]
+    min_service_months: 3                            # P-04 [U]
+
+  personal_finance_unsecured:                        # P-21..P-23 (no salary transfer)
+    structure: commodity_murabaha_tawarruq
+    track: unsecured_non_stl
+    min_monthly_gross_income_aed: 5000               # P-21 [A] user: 5,000 kept ONLY with compensating controls below
+    compensating_controls_at_5000:                   # P-21 [A]
+      min_aecb_score: 600
+      employer_categories_allowed: [A, B, C]
+      min_service_months: 6
+      bank_statements_months: 12
+      regular_salary_credits_required: true
+    min_monthly_gross_income_aed_cat_d_or_aecb_541_599: 10000   # P-21 [M]
+    max_finance_amount:                              # P-22 [M]
+      uae_national: {income_multiple: 20, cap_aed: 500000}
+      expat: {income_multiple: 10, cap_aed: 200000}
+    max_tenor_months: 48                             # P-23 [C]
+    pricing:                                         # P-23 [M]
+      profit_rate_floor_pct: 9.99
+      profit_rate_ceiling_pct: 21.99
+      risk_based: true
+    repayment_mechanism: uae_direct_debit_uaedds     # P-23 [M]
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, method: ibra_rebate_of_unearned_profit}
+      late_payment_charity_undertaking_aed: 175
+
+  buyout:                                            # P-24 [U/P/M]
+    applies_to: [personal_finance_salary_assigned]
+    required_security: [employer_salary_transfer_letter, irrevocable_eos_undertaking]   # [U]
+    liability_letter_max_age_days: 15                # [P]
+    pay_other_bank_directly_within_days: 30          # [M]
+    residual_release_requires_clearance_letter: true # [M]
+    combined_limits: {income_multiple_max: 20, tenor_months_max: 48}   # [C]
+    processing_fee_on_pure_buyout: 0                 # [M]
+
+  top_up:                                            # P-25 [C/M]
+    min_clean_repayment_months: 12                   # [C] CBUAE Art 6(g)
+    fresh_dbr_and_aecb_required: true
+    max_top_ups_per_12_months: 1                     # [M]
+    processing_fee_on_increment_only: true           # [M]
+
+  rescheduling:                                      # P-26 [C]
+    beyond_48_months_only_if: "dbr > 50 and no new money"
+
+  credit_card:                                       # P-27..P-30
+    structure: ujrah_or_tawarruq_islamic_card
+    tiers:                                           # P-27 [M]
+      classic_entry: {min_monthly_gross_income_aed: 5000, annual_fee_aed: 0}
+      gold:          {min_monthly_gross_income_aed: 12000}
+      platinum:      {min_monthly_gross_income_aed: 20000}
+    limit_rule:                                      # P-28 [P]
+      income_multiple: {salary_assigned: 3, unsecured_non_stl: 2}
+      dbr_obligation_pct_of_limit: 5
+      tier_caps_apply: true
+    pricing:                                         # P-29 [M]
+      monthly_profit_rate_pct: {standard: 3.59, premium: 3.25}
+      min_payment: {pct_of_balance: 5, min_aed: 100}
+      late_payment_charity_undertaking_aed: 200
+    self_employed:                                   # P-30 [M]
+      min_avg_balance_3m_aed: 50000
+      alternative: deposit_backed_card
+
+  home_finance:                                      # P-31..P-42
+    structure:
+      ready_property: ijarah_muntahia_bittamleek
+      off_plan: istisna_plus_forward_ijarah
+    min_monthly_gross_income_aed:                    # P-31 [A] user: 5,000 (well below market)
+      uae_national: 10000
+      uae_national_government_housing_scheme: 8000
+      expat: 15000
+    ltv_max_pct:                                     # P-32 [C]
+      first_home_value_le_5m: {uae_national: 85, expat: 80}
+      first_home_value_gt_5m: {uae_national: 75, expat: 70}
+      second_or_more_home:    {uae_national: 65, expat: 60}
+      off_plan: 50
+      value_band_threshold_aed: 5000000
+    off_plan_conditions:                             # P-38 [C/M]
+      min_project_completion_pct: 35
+      min_customer_paid_pct: 50
+      approved_developer_list_required: true
+    max_tenor_years: 25                              # P-33 [C]
+    max_tenor_years_cbuae_rate_relief_exception: 30  # P-33 [C] nationals, income < AED 40k, rate-relief only
+    max_finance_amount_aed: 20000000                 # P-34 [M]
+    pricing:                                         # P-35 [M]
+      fixed_3y_pct: {salary_assigned: 4.24, non_stl: 4.49}
+      fixed_5y_pct: {salary_assigned: 4.44, non_stl: 4.69}
+      variable: {benchmark: 3M_EIBOR, margin_pct: 1.59}
+      reversion: {benchmark: 3M_EIBOR, margin_pct: 1.79}
+      floor_pct: 2.99
+      self_employed_add_on_pct: 0.25
+    fees:                                            # P-36 [M]
+      processing: {pct: 1.0, min_aed: 5000, max_aed: 50000, vat_included: false}
+      valuation_aed: 2500
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, method: ibra_rebate_of_unearned_profit}
+      free_partial_prepayment_pct_per_year: 25
+      buyout: {processing_fee: 0, valuation_refunded: true}
+    affordability:                                   # P-37
+      dbr_max_pct: 50                                # [C]
+      dbr_max_pct_government_housing_programme: 60   # [C] P-41
+      stress_rate_rule: "max(initial_profit_rate, current_3M_EIBOR + reversion_margin)"   # [P]
+    service:                                         # P-39 [A]
+      salaried_min_service_months: 6
+      probation_completed: true
+      self_employed_min_business_years: 3            # [M]
+      self_employed_audited_financials_years: 2      # [M]
+    takaful:                                         # P-40 [M]
+      life_takaful: mandatory
+      property_takaful: mandatory
+      bank_beneficiary: true
+    government_schemes: [szhp, mbrhe, adha_top_up, sharjah_housing]   # P-41 subject to Board decision [P]
+    non_resident: excluded_v1                        # P-42 [P]
+
+  auto_finance:                                      # P-43..P-50
+    structure: murabaha
+    min_monthly_gross_income_aed: 5000               # P-43 [U]
+    min_down_payment_pct: 20                         # P-44 [C]
+    max_tenor_months: 60                             # P-44 [C]
+    max_finance_amount_aed: 1500000                  # P-45 [M]
+    pricing:                                         # P-46 [M] flat rates; APR disclosed in KFS
+      new_vehicle_flat_pct: {uae_national: 2.49, expat: 2.69}
+      used_vehicle_flat_pct: 3.19
+      electric_vehicle_flat_pct: 1.99
+      apr_shown_in_kfs: true
+    max_vehicle_age_at_maturity_years: 10            # P-47 [M]
+    seller: [dealer, private_sale_with_bank_approved_valuation]   # P-48 [M]
+    self_employed:                                   # P-49 [M]
+      min_trade_licence_years: 2
+      min_avg_balance_aed: 15000
+    security:                                        # P-50 [M]
+      vehicle_mortgage_rta_in_bank_favour: required
+      comprehensive_motor_takaful: required
+      takaful_financeable: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {rule: "lower of 1% (max AED 10,000) or unearned profit", method: ibra_rebate_of_unearned_profit}
+      late_payment_charity_undertaking_aed: 175
+
+  deposit_backed:                                    # P-51 [U/M]
+    structure: murabaha_with_lien_on_wakala_or_term_deposit
+    max_advance_pct_of_deposit: 90                   # [U] matches market median
+    max_finance_amount_aed: 10000000                 # [M]
+    max_tenor_months: 48                             # [M]
+    pricing: {basis: deposit_profit_rate, margin_pct: 2.0}   # [M]
+    min_monthly_gross_income_aed: null               # no minimum salary [M]
+
+  gold_backed:                                       # P-52 [A] user: 90% (only top-five lender: EI at 50%)
+    structure: murabaha_with_rahn_of_allocated_gold_or_gold_certificates
+    max_ltv_pct: 70                                  # [A] user criterion was 90
+    margin_call_ltv_pct: 80                          # [P]
+    sale_ltv_pct: 85                                 # [P]
+    revaluation_frequency: daily                     # [P]
+    max_tenor_months: 24                             # [P]
+    sharia_board_approval_required: true             # [P]
+
+  eosb_backed:                                       # P-53 [A] user: 90% (no top-five bank lends against EOSB alone)
+    structure: additional_security_within_salary_assigned_finance
+    standalone_allowed: false                        # [A]
+    max_advance_pct_of_accrued_eosb: 80              # [A] user criterion was 90
+    min_service_years: 3                             # [P]
+    irrevocable_employer_undertaking_required: true  # [U]
+    eosb_recalculated: annually                      # [P]
+    overall_limits: {income_multiple_max: 20, tenor_months_max: 48}   # [C]
+    eosb_formula: "UAE Labour Law: 21 days' basic per year for first 5 years, 30 days per year thereafter; total capped at 2 years' wages"
+
+  salary_advance:                                    # P-54 [M/P]
+    structure: tawarruq
+    track: salary_assigned
+    min_monthly_gross_income_aed: 5000               # [U]
+    max_pct_of_net_monthly_salary: 50                # [M]
+    max_amount_aed: 25000                            # [P]
+    repayment: next_salary_within_days_35            # [M]
+    fixed_profit_aed_by_band: [100, 250]             # [M/P]
+    max_advances_per_year: 6                         # [P]
+    blocked_if_any_dpd: true                         # [P]

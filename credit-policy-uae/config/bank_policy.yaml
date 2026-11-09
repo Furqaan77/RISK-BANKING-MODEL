@@ -1,0 +1,231 @@
+# =====================================================================================
+# AI Risk Score Card (UAE Islamic edition) - Layer 2: BANK POLICY
+# Tenant: demo_islamic_bank   |   Policy version: 0.1 (draft)   |   Effective: 2026-11-09
+# Source of truth: credit-policy-uae/03-parameter-sheet.md (recommended values)
+# Tags:
+#   U = user criterion kept
+#   C = CBUAE rule (reference only; the CBUAE layer is the authority)
+#   M = top-five market median
+#   P = proposed (no clear market figure)
+#   A = adjusted from the user criterion to match the top five (NEEDS USER SIGN-OFF)
+# Tighten-only: nothing here may be looser than config/regulators/cbuae.yaml (AD-3).
+# Vocabulary: finance_amount, profit_rate, finance_application, obligor (AD-12; no "loan"/"interest").
+# =====================================================================================
+
+meta:
+  tenant: demo_islamic_bank
+  layer: bank_policy
+  version: "0.1"
+  status: draft
+  effective_date: "2026-11-09"
+  currency: AED
+  parameter_sheet: credit-policy-uae/03-parameter-sheet.md
+  benchmark_set: [emirates_nbd_incl_emirates_islamic, adib, fab_incl_fab_islamic, dib, adcb_incl_adcb_islamic]
+  benchmark_reference_only: [mashreq, rakbank]
+  maker_checker_required: true
+
+# -------------------------------------------------------------------------------------
+# 1. Eligibility
+# -------------------------------------------------------------------------------------
+eligibility:
+  customer_groups:                                   # P-01 [U]
+    uae_national: eligible
+    expat_resident: eligible
+    non_resident: excluded_v1                        # P-01 / P-42 [P]
+  nationality_exclusions: none                       # P-09 [P] sanctions screening only
+  sanctions_screening_required: true                 # P-09 [P]
+
+  age:                                               # P-02, P-03
+    min_age_years: 21                                # P-02 [M] (user: "CBUAE limit" - CBUAE sets none)
+    max_age_at_maturity:                             # P-03 [M] (user: "CBUAE limit" - none exists; mortgage cap abolished 2019)
+      personal_finance:   {uae_national: 65, expat: 60}
+      credit_card:        {uae_national: 65, expat: 60}
+      auto_finance:       {uae_national: 65, expat: 60}
+      salary_advance:     {uae_national: 65, expat: 60}
+      eosb_backed:        {uae_national: 65, expat: 60}
+      home_finance:       {uae_national: 70, expat_salaried: 65, self_employed: 70}
+      retiree_pension_finance: {uae_national: 70}
+      deposit_backed:     {uae_national: 70, expat: 70}   # P [P] secured by cash lien
+      gold_backed:        {uae_national: 70, expat: 70}   # P [P] secured by gold rahn
+
+  minimum_service_months:                            # P-04
+    salary_assigned: 3                               # [U]
+    unsecured_non_stl: 6                             # [A] user: 3 months
+    home_finance: 6                                  # [A] user: 3 months; also probation must be completed
+    home_finance_probation_completed: true           # [A]
+    auto_finance: 3                                  # [U]
+    credit_card: 3                                   # [U]
+    salary_advance: 3                                # [U]
+    eosb_backed_min_service_years: 3                 # P-53 [A]
+
+  minimum_monthly_gross_income_aed:                  # P-12, P-21, P-27, P-31, P-43, P-54 (product minimums live in credit_policy.yaml)
+    default: 5000                                    # [U]
+
+# -------------------------------------------------------------------------------------
+# 2. Repayment tracks (P-05)
+# -------------------------------------------------------------------------------------
+tracks:
+  salary_assigned:                                   # secured / quasi-secured track [U]
+    description: "Employer salary transfer letter (bank format) + irrevocable end-of-service (EOS) undertaking; salary credited via WPS."
+    required_security:
+      - employer_salary_transfer_letter_bank_format  # P-19 [U]
+      - irrevocable_eos_undertaking                  # P-19 [U]
+      - wps_salary_credit_verified                   # P-19 [U]
+      - undated_security_cheque_subject_to_legal_advice   # P-19 [M] optional per legal
+    salary_not_credited_rate_step_up:                # P-19 [P] (RAKBANK practice)
+      consecutive_months_without_salary: 3
+      profit_rate_step_up_pct_pa: 2.0
+  unsecured_non_stl:                                 # no salary transfer [U]
+    description: "No salary transfer; repayment by UAE direct debit (UAEDDS) from the salary account at another bank."
+    repayment_mechanism: uae_direct_debit_uaedds     # P-23 [M]
+    statements_months_required: 12                   # P-10 [U]
+    min_service_months: 6                            # P-04 [A]
+
+# -------------------------------------------------------------------------------------
+# 3. Employer categories (P-06) - all accepted [U], tiered [A]
+# -------------------------------------------------------------------------------------
+employer_categories:
+  A:
+    label: "Government, semi-government, Ministry of Defence (MoD), Armed Forces (AF)"
+    accepted: true
+  B:
+    label: "Listed large private employers (bank approved list, large corporates / blue-chip)"
+    accepted: true
+  C:
+    label: "Other listed private employers (bank approved list)"
+    accepted: true
+  D:
+    label: "Non-listed / unrated employers"
+    accepted: true                                   # [U] all employers accepted
+    personal_finance_salary_assigned_max_aed: 500000 # P-13 [M]
+    unsecured_non_stl_min_income_aed: 10000          # P-21 [M]
+  starter_list_owner: credit_risk                    # bank maintains lists; unknown employers default to D
+
+# -------------------------------------------------------------------------------------
+# 4. Credit bureau (AECB) floors and knock-outs (P-08) [P]
+# -------------------------------------------------------------------------------------
+aecb:
+  score_range: [300, 900]
+  min_score:
+    personal_finance_salary_assigned: {uae_national: 500, expat: 541}
+    personal_finance_unsecured: 600
+    personal_finance_unsecured_cat_d_or_low_score_band: 541   # with min income 10,000 (P-21)
+    credit_card: 541
+    home_finance: 541
+    auto_finance: 541
+    salary_advance: 541
+    eosb_backed: 541
+    deposit_backed: null                             # no floor; refer if < 541
+    deposit_backed_refer_below: 541
+    gold_backed: 541
+  knock_outs:
+    current_dpd_ge: 30                               # any facility currently 30+ days past due
+    dpd_90_plus_in_last_months: 24
+    writeoff_or_settlement_in_last_months: 24
+  refer_triggers:
+    aecb_enquiries_in_30_days_gt: 6
+  consent_required: true
+
+# -------------------------------------------------------------------------------------
+# 5. Sector watch-list (P-09) [P] - lower caps, never blanket bans
+# -------------------------------------------------------------------------------------
+sector_watch_list:
+  mechanism: "Credit Risk maintains a list of employer sectors under stress (e.g. hospitality, travel, real estate in a downturn). Listed sectors get lower caps and Refer, not exclusion."
+  default_cap_reduction_pct: 25
+  severity: refer
+  sharia_board_guidance_on_prohibited_activity_employers: required
+  sectors: []                                        # populated by Credit Risk via maker-checker
+
+# -------------------------------------------------------------------------------------
+# 6. Documents and verification (P-10, P-11)
+# -------------------------------------------------------------------------------------
+documents:
+  common: [emirates_id, passport_and_residence_visa, aecb_consent, signed_application_and_kfs_acknowledgement]
+  salary_assigned:
+    - salary_certificate_or_stl_bank_format
+    - irrevocable_eos_undertaking
+    - bank_statements_3_months_or_uaefts_consent    # [A] market practice; user asked 12 months generally
+  unsecured_non_stl:
+    - salary_certificate
+    - bank_statements_12_months                     # [U]
+    - uaedds_direct_debit_mandate
+  self_employed:
+    - trade_licence
+    - memorandum_of_association
+    - bank_statements_12_months                     # [U]
+    - audited_financials_2_years_for_home_finance   # [M]
+    - financials_if_available_other_products        # [U]
+  home_finance_additional: [title_deed_or_spa, valuation_report, takaful_enrolment]
+  auto_finance_additional: [dealer_quotation_or_approved_valuation, motor_takaful]
+
+self_employed:                                       # P-11
+  min_trade_licence_years:
+    personal_finance: 2                              # [M]
+    auto_finance: 2                                  # [M]
+    credit_card: 2                                   # [M]
+    home_finance: 3                                  # [M]
+  min_average_monthly_balance_aed:
+    personal_finance: 20000                          # [M]
+    auto_finance: 15000                              # [M]
+    credit_card_3m_average: 50000                    # P-30 [M]
+  income_basis: "12 months credit turnover adjusted for business margin, and audited accounts where available"   # [U/M]
+  personal_finance_max_aed: 500000                   # [P]
+  home_finance_audited_financials_years: 2           # [M]
+
+# -------------------------------------------------------------------------------------
+# 7. Affordability (reference to CBUAE layer; P-07)
+# -------------------------------------------------------------------------------------
+affordability:
+  dbr_income_basis: gross_salary_plus_regular_income # [C] (replaces earlier demo assumption of basic + housing)
+  dbr_max_pct: 50                                    # [C] reference = cbuae.retail.dbr.max_pct_gross_income
+  dbr_max_pct_retiree: 30                            # [C]
+  dbr_max_pct_government_housing_programme: 60       # [C] P-41
+  card_obligation_pct_of_limit: 5                    # [P] market convention
+  basic_plus_housing_dbr_reported_as_indicator: true # [P] risk indicator only, not a gate
+
+# -------------------------------------------------------------------------------------
+# 8. Delegation of authority (P-10 §10) [P]
+# -------------------------------------------------------------------------------------
+delegation_of_authority:
+  - authority: credit_officer
+    unsecured_total_max_aed: 250000
+    home_finance_max_aed: 3000000
+    max_grade: 6
+    deviations: none
+  - authority: senior_credit_officer
+    unsecured_total_max_aed: 1000000
+    home_finance_max_aed: 7500000
+    max_grade: 6
+    deviations: {scope: bank_policy_items, max_grade: 4}
+  - authority: head_of_retail_credit
+    unsecured_total_max_aed: 4000000
+    home_finance_max_aed: 15000000
+    max_grade: 6
+    deviations: {scope: bank_policy_items, max_grade: 6}
+  - authority: chief_risk_officer
+    unsecured_total_max_aed: null                    # above Head of Retail Credit limits
+    home_finance_max_aed: 20000000
+    max_grade: 8
+    deviations: {scope: grade_7_8_cases, max_grade: 8}
+  - authority: credit_committee
+    unsecured_total_max_aed: null
+    home_finance_max_aed: null                       # above AED 20m and policy exceptions
+    max_grade: 8
+    deviations: {scope: policy_exceptions, max_grade: 8}
+
+deviation_rules:
+  cbuae_rules_deviable: false                        # CBUAE can never be deviated
+  grades_9_10_approvable: false
+  by_grade:
+    "1-3": {deviation_possible: true,  min_authority: senior_credit_officer}
+    "4":   {deviation_possible: true,  min_authority: senior_credit_officer}
+    "5-6": {deviation_possible: true,  min_authority: head_of_retail_credit}
+    "7-8": {deviation_possible: true,  min_authority: chief_risk_officer}
+    "9-10": {deviation_possible: false, min_authority: null}
+  record_reason_and_approver: true
+
+decision_bands:                                      # §9 (model escalation; policy always wins)
+  approve_grades: [1, 2, 3, 4, 5, 6]
+  refer_grades: [7, 8]
+  decline_grades: [9, 10]
+  never_auto_decline: true

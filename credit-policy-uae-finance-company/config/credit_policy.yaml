@@ -1,0 +1,303 @@
+# =====================================================================================
+# AI Risk Score Card - PILOT FINANCE COMPANY (conventional) - Layer 3: CREDIT POLICY (products)
+# Tenant: demo_finance_company   |   Version 0.1 (draft)   |   Effective 2026-11-09
+# Source of truth: credit-policy-uae-finance-company/03-parameter-sheet.md and
+#                  05-retail-credit-policy.md (sections 8 and 9)
+# Tags: [B] bank criterion  [C] CBUAE  [R] FCR  [A] adjusted (sign-off)  [P] proposal (sign-off)
+# Rates are reducing-balance unless marked flat. Fees exclude 5% VAT unless vat_included: true.
+# Regulatory values are references; rules.yaml regulatory_baseline is the Layer 1 authority (tighten-only).
+#
+# cbuae_nol_received: every product line needs a CBUAE no-objection letter before launch (F-01 [R]).
+# All are false until the letter is on file; rule REG.FCR.002 declines any product without it.
+# Change to true per product only through maker-checker, with the letter reference.
+# =====================================================================================
+
+meta:
+  tenant: demo_finance_company
+  layer: credit_policy
+  version: "0.1"
+  status: draft
+  effective_date: "2026-11-09"
+  currency: AED
+  vat_pct: 5
+  vocabulary_profile: conventional
+
+# -------------------------------------------------------------------------------------
+# Grades and decision bands (section 9.1) [B]
+# -------------------------------------------------------------------------------------
+grades:
+  pd_bands_pct:                                   # upper bounds, 12-month PD
+    1: 0.25
+    2: 0.5
+    3: 1.0
+    4: 2.0
+    5: 3.5
+    6: 5.0
+    7: 8.0
+    8: 12.0
+    9: 20.0
+    10: 100.0
+  decision:
+    approve: [1, 2, 3, 4, 5, 6]
+    refer: [7, 8]                                 # model escalation; CRO authority
+    decline: [9, 10]
+  pricing_grid_source: bank_policy.yaml#pricing_grid
+
+# -------------------------------------------------------------------------------------
+# Shared fee definitions (section 9.2) - all + VAT
+# -------------------------------------------------------------------------------------
+fee_definitions:
+  processing_loans: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false, pure_buyout_aed: 0}   # F-24 [C]
+  early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, basis: amount_settled}   # F-25 [C]
+  late_payment_instalment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false, compounded: false}   # F-26 / F-48 [C] [B]
+  late_payment_card_aed: 230                      # F-39 [B]
+  deferment_aed: 100                              # F-36 [C]
+  max_deferrals_per_year: 2                       # F-36 [C]
+  rescheduling_aed: 250                           # F-36 [C]
+
+# -------------------------------------------------------------------------------------
+# Products
+# -------------------------------------------------------------------------------------
+products:
+
+  personal_loan_employer_assigned:                # F-20..F-29
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: conventional_personal_loan
+    track: employer_assigned
+    min_monthly_gross_income_aed: 5000            # F-20 [B]
+    max_loan_amount:                              # F-21 [A] lower of all caps
+      income_multiple: 20                         # [C]
+      cap_aed: 300000
+      cap_aed_employer_cat_d: 150000
+    max_tenor_months: 48                          # F-22 [C]
+    pricing:                                      # F-23 [A]
+      interest_rate_floor_pct: 12.99
+      interest_rate_ceiling_pct: 24.99
+      grid: personal_loan_employer_assigned_pct
+      risk_based: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}   # F-24 [C]
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false}         # F-25 [C]
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false}   # F-26
+    security:                                     # F-27 [A] [R]
+      salary_assignment_letter: required
+      irrevocable_eos_undertaking: required
+      uaedds_mandate: required
+      security_cheque: {max_pct_of_loan: 120, blank_allowed: false}
+    insurance:
+      credit_life_insurance: mandatory            # F-28 [B] company beneficiary, premium in APR
+    first_instalment_grace_days_uae_national_max: 60   # F-29 [A]
+    min_service_months: 3                         # F-12 [B]
+
+  personal_loan_non_assigned:                     # F-30..F-33
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: conventional_personal_loan
+    track: non_assigned
+    min_monthly_gross_income_aed: 5000            # F-30 [A] only with all compensating controls
+    compensating_controls_at_5000:
+      min_aecb_score: 600
+      employer_categories_allowed: [A, B, C]
+      min_salary_credit_months: 6
+    min_monthly_gross_income_aed_otherwise: 7000  # F-30 [A] AECB 560-599 or category D
+    min_aecb_score: 560                           # F-16 [A]
+    max_loan_amount:                              # F-31 [A]
+      uae_national: {income_multiple: 20, cap_aed: 250000}
+      expat: {income_multiple: 10, cap_aed: 150000}
+      self_employed_cap_aed: 250000               # F-18 [A]
+    max_tenor_months: 48                          # [C]
+    pricing:                                      # F-32 [A]
+      interest_rate_floor_pct: 15.99
+      interest_rate_ceiling_pct: 29.99
+      grid: personal_loan_non_assigned_pct
+      risk_based: true
+    repayment: {uaedds_mandate: required, security_cheque: {max_pct_of_loan: 120, blank_allowed: false}}   # F-33 [R]
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false}
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false}
+    insurance:
+      credit_life_insurance: mandatory
+    min_service_months: 6
+
+  buyout:                                         # F-34 [B] [C] overlay on personal loans (transaction: buyout)
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: overlay
+    applies_to: [personal_loan_employer_assigned, personal_loan_non_assigned]
+    employer_assigned_required_above_aed: 100000
+    liability_letter_max_age_days: 15
+    pay_other_lender_directly: true
+    residual_release_requires_clearance_letter: true
+    written_cost_comparison_signed: true          # [C] incl. "cheaper at your bank if you move salary"
+    combined_limits: {income_multiple_max: 20, tenor_months_max: 48, product_cap_applies: true}   # [C]
+    processing_fee_on_pure_buyout_aed: 0
+
+  top_up:                                         # F-35 [C] [B] overlay (transaction: top_up)
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: overlay
+    applies_to: [personal_loan_employer_assigned, personal_loan_non_assigned]
+    min_clean_repayment_months: 12                # [C]
+    fresh_dbr_and_aecb_required: true
+    max_top_ups_per_12_months: 1
+    processing_fee_on_increment_only: true
+
+  rescheduling:                                   # F-36 [C] collections overlay
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: overlay
+    beyond_48_months_only_if: "dbr > 50 and no new money"
+    max_deferrals_per_year: 2
+    deferment_fee_aed: 100
+    rescheduling_fee_aed: 250
+
+  credit_card:                                    # F-37..F-40
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: conventional_credit_card
+    tiers:                                        # F-37 [B] [C]; F-38 [P] tier caps
+      classic: {min_monthly_gross_income_aed: 5000, limit_cap_aed: 25000, annual_fee_aed: 0}
+      gold:    {min_monthly_gross_income_aed: 12000, limit_cap_aed: 60000}
+      platinum: {min_monthly_gross_income_aed: 20000, limit_cap_aed: 100000}
+    cbuae_min_annual_income_aed: 60000            # [C] reference; classic 5,000 x 12 = 60,000
+    limit_rule:                                   # F-38 lower of income multiple, tier cap, DBR headroom
+      income_multiple: {employer_assigned: 3, non_assigned: 2}
+      dbr_obligation_pct_of_limit: 5
+      tier_caps_apply: true
+    pricing:                                      # F-39 [B]
+      monthly_interest_rate_pct: {classic: 3.59, gold: 3.59, platinum: 3.25}
+      min_payment: {pct_of_balance: 5, min_aed: 100}
+      late_payment_fee_aed: 230
+      late_payment_fee_vat_included: false
+      over_limit_fee: opt_in_only
+    self_employed: {min_avg_balance_3m_aed: 50000, deposit_backed_card_alternative: false}   # F-40 [A] [R]
+    limit_increase: {express_consent_required: true, fresh_affordability_check: true}
+
+  auto_loan:                                      # F-41..F-48
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: conventional_auto_loan
+    min_monthly_gross_income_aed: 5000            # F-41 [B]
+    min_down_payment_pct: 20                      # F-42 [C] from own funds
+    max_tenor_months: 60                          # F-42 [C]
+    max_loan_amount_aed: 500000                   # F-43 [A]
+    pricing:                                      # F-44 [A] flat; APR in KFS
+      new_vehicle_flat_pct: {floor: 3.49, ceiling: 4.99}
+      used_vehicle_flat_pct: {floor: 4.49, ceiling: 5.99}
+      grids: [auto_new_flat_pct, auto_used_flat_pct]
+      apr_shown_in_kfs: true
+    max_vehicle_age_at_maturity_years: 10         # F-45 [B]
+    seller: [dealer, private_sale_with_company_approved_valuation]   # F-46 [B]
+    self_employed: {min_trade_licence_years: 2, min_avg_balance_aed: 15000}   # F-47 [B]
+    security:                                     # F-48 [B]
+      rta_vehicle_mortgage_in_company_favour: required
+      comprehensive_motor_insurance: required
+      company_first_beneficiary: true
+      insurance_financeable: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false}
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false}   # below the AED 500 auto cap
+
+  gold_backed:                                    # F-49, F-50 [A]
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: loan_against_pledged_gold_in_company_custody
+    collateral: [jewellery, bars, coins, company_approved_gold_certificates]
+    max_ltv_pct: 70
+    margin_call_ltv_pct: 80
+    sale_ltv_pct: 85
+    revaluation_frequency: daily
+    min_loan_amount_aed: 5000
+    max_loan_amount_aed: 250000
+    max_tenor_months: 24
+    pricing: {interest_rate_pct: 14.99}
+    min_monthly_gross_income_aed: null            # no minimum; income verified and DBR applies
+    aecb_refer_below: 541
+    surplus_on_sale_returned: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false}
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false}
+
+  eosb_backed:                                    # F-51 [B] additional security only
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: additional_security_within_personal_loan_employer_assigned
+    standalone_allowed: false
+    max_advance_pct_of_accrued_eosb: 80
+    min_service_years: 3
+    irrevocable_employer_undertaking_required: true
+    legal_opinion_required: true                  # [A] enforceability in favour of a finance company
+    eosb_recalculated: annually
+    overall_limits: {income_multiple_max: 20, tenor_months_max: 48, product_cap_applies: true}   # [C]
+
+  salary_advance:                                 # F-52 [A] [R] short-term credit
+    offered_in_pilot: true
+    phase: 1
+    cbuae_nol_received: false
+    structure: conventional_salary_advance
+    min_net_monthly_salary_aed: 3000
+    wps_salary_required: true
+    min_service_months: 6
+    max_pct_of_net_monthly_salary: 50
+    max_amount_aed: 5000
+    max_term_days: 35
+    repayment: [uaedds_on_wps_salary_account, employer_deduction_under_agreement]
+    interest: none
+    fee_bands_aed:                                # flat + VAT; split into rules CRED.SA.005a-c
+      up_to_1000: 30
+      from_1001_to_2500: 60
+      from_2501_to_5000: 120
+    late_fee_aed_once: 50
+    total_fees_max_pct_of_advance: 30             # [R] legal cap, applied per case
+    max_advances_per_year: 6
+    max_outstanding_at_once: 1
+    rollover_allowed: false
+
+  bnpl:                                           # F-53 [A] [R] PHASE 2 - disabled
+    offered_in_pilot: false
+    phase: 2
+    cbuae_nol_received: false
+    structure: interest_free_instalment_plan
+    max_amount_aed: 10000
+    max_multiple_of_net_monthly_income: 1
+    max_tenor_months: 6
+    interest: none
+    late_fee_per_missed_instalment_max_aed: 50
+    total_fees_max_pct: 10
+    max_active_plans: 3
+    aecb_report_every_plan: true
+    merchant_partners: written_agreement_required
+
+  home_loan:                                      # F-55 [A] NOT OFFERED in the pilot (phase 2 reference only)
+    offered_in_pilot: false
+    phase: 2
+    cbuae_nol_received: false
+    mortgage_finance_licence_required: true
+    structure: conventional_mortgage
+    phase_2_reference:
+      max_loan_amount_aed: 3000000
+      criteria: bank_home_loan_criteria           # credit-policy-uae-conventional P-31..P-42
+      ltv_max_pct: {first_le_5m: {uae_national: 85, expat: 80}, first_gt_5m: {uae_national: 75, expat: 70}, second_home: {uae_national: 65, expat: 60}, off_plan: 50}
+      max_tenor_years: 25
+      dbr_at_stressed_rate_max_pct: 50
+      section_4_2_limits_apply: true
+
+  deposit_backed:                                 # F-54 [R] NOT OFFERED: no individual deposits
+    offered_in_pilot: false
+    phase: null
+    cbuae_nol_received: false
+    structure: not_permitted_for_finance_company
+    reason: "FCR: a finance company cannot take deposits from, or hold accounts for, individuals."

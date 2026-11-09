@@ -1,0 +1,730 @@
+# =====================================================================================
+# AI Risk Score Card (UAE Islamic edition) - executable rules (AD-3 format)
+# Tenant: demo_islamic_bank   |   Version 0.1 (draft)   |   Effective 2026-11-09
+#
+# Each rule: id, layer, applies_to, condition (PASS when true; safe-DSL: comparisons,
+# arithmetic, and/or/not, `in`, min(), max()), severity (knockout | refer | warn),
+# message, source (parameter-sheet ID + tag), confidence, and, for numeric limits,
+# direction (max | min) + limit.
+#
+# Severity:
+#   knockout = Decline
+#   refer    = at most Refer
+#   warn     = note only
+#
+# Source tags:
+#   U = user criterion
+#   C = CBUAE
+#   M = top-five median
+#   P = proposed
+#   A = adjusted from user criterion (NEEDS USER SIGN-OFF)
+#
+# CBUAE limits are REFERENCED (cbuae_references) and enforced by the CBUAE layer.
+# Bank rules here only add or tighten.
+# =====================================================================================
+
+meta:
+  tenant: demo_islamic_bank
+  version: "0.1"
+  effective_date: "2026-11-09"
+  parameter_sheet: credit-policy-uae/03-parameter-sheet.md
+  condition_semantics: pass_when_true
+
+# CBUAE layer references (authority: config/regulators/cbuae.yaml; docs/regulatory/cbuae-rules.md)
+cbuae_references:
+  - {ref: CBUAE.RET.PF.MULTIPLE,    value: 20,       direction: max, unit: x_monthly_income, source: "Reg 29/2011 Art 2(b)", confidence: H, used_by: [CRED.PF.002, CRED.PFU.002, CRED.EOS.003]}
+  - {ref: CBUAE.RET.PF.TENOR,       value: 48,       direction: max, unit: months, source: "Reg 29/2011 Art 2(c)", confidence: H, used_by: [CRED.PF.003, CRED.PFU.004]}
+  - {ref: CBUAE.RET.DBR,            value: 50,       direction: max, unit: pct_gross_income, source: "Reg 29/2011 Art 7(a)", confidence: H, used_by: [BANK.RET.020]}
+  - {ref: CBUAE.RET.DBR.RETIREE,    value: 30,       direction: max, unit: pct_pension, source: "Reg 29/2011 Art 7(b)", confidence: H, used_by: [BANK.RET.020]}
+  - {ref: CBUAE.RET.DBR.GOV_HOUSING, value: 60,      direction: max, unit: pct_gross_income, source: "Mortgage Reg Art 5; SZHP notice 2022", confidence: H, used_by: [CRED.HF.006]}
+  - {ref: CBUAE.RET.TOPUP.CLEAN,    value: 12,       direction: min, unit: months, source: "Reg 29/2011 Art 6(g)", confidence: H, used_by: [CRED.TU.001]}
+  - {ref: CBUAE.RET.ES.FEE,         value: {pct: 1, max_aed: 10000}, direction: max, source: "Res. 96/2019", confidence: M, used_by: [CRED.FEE.001]}
+  - {ref: CBUAE.AUTO.LTV,           value: 80,       direction: max, unit: pct_vehicle_value, source: "Reg 29/2011 Art 3(b)", confidence: H, used_by: [CRED.AF.002]}
+  - {ref: CBUAE.AUTO.TENOR,         value: 60,       direction: max, unit: months, source: "Reg 29/2011 Art 3(c)", confidence: H, used_by: [CRED.AF.003]}
+  - {ref: CBUAE.MORT.LTV.FIRST_LE5M, value: {uae_national: 85, expat: 80}, direction: max, source: "Res. 31/2/2020", confidence: M, used_by: [CRED.HF.002a, CRED.HF.002b]}
+  - {ref: CBUAE.MORT.LTV.FIRST_GT5M, value: {uae_national: 75, expat: 70}, direction: max, source: "Circ. 31/2013 as amended", confidence: M, used_by: [CRED.HF.002c, CRED.HF.002d]}
+  - {ref: CBUAE.MORT.LTV.SECOND,    value: {uae_national: 65, expat: 60}, direction: max, source: "Art 3", confidence: M, used_by: [CRED.HF.002e, CRED.HF.002f]}
+  - {ref: CBUAE.MORT.LTV.OFFPLAN,   value: 50,       direction: max, source: "Art 3", confidence: H, used_by: [CRED.HF.003]}
+  - {ref: CBUAE.MORT.TENOR,         value: 25,       direction: max, unit: years, source: "Art 3", confidence: H, used_by: [CRED.HF.004]}
+  - {ref: CBUAE.MORT.DBR,           value: 50,       direction: max, unit: pct_gross_income, source: "Art 3", confidence: H, used_by: [CRED.HF.006]}
+  - {ref: CBUAE.MORT.EOSB_SOURCE,   value: false,    source: "Mortgage Reg Art 3", confidence: M, used_by: [CRED.HF.010]}
+
+rules:
+
+  # ---------------- Layer 2: bank policy (all retail products) ----------------
+  - id: BANK.RET.001
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "nationality_group in ['uae_national', 'expat'] and residency_status == 'resident'"
+    severity: knockout
+    message: "Only UAE nationals and UAE-resident expats are eligible (non-residents out of scope v1)."
+    source: "P-01 [U]/P-42 [P]"
+    confidence: H
+
+  - id: BANK.RET.002
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "sanctions_hit == False"
+    severity: knockout
+    message: "Sanctions screening hit."
+    source: "P-09 [P]"
+    confidence: H
+
+  - id: BANK.RET.003
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "age_at_application >= 21"
+    severity: knockout
+    direction: min
+    limit: 21
+    message: "Minimum age 21."
+    source: "P-02 [M]"
+    confidence: M
+
+  - id: BANK.RET.004
+    layer: bank_policy
+    applies_to: {products: [personal_finance_salary_assigned, personal_finance_unsecured, credit_card, auto_finance, salary_advance, eosb_backed]}
+    condition: "age_at_maturity <= (65 if nationality_group == 'uae_national' else 60)"
+    severity: knockout
+    direction: max
+    limit: {uae_national: 65, expat: 60}
+    message: "Age at end of finance above 65 (nationals) / 60 (expats)."
+    source: "P-03 [M]"
+    confidence: M
+
+  - id: BANK.RET.005
+    layer: bank_policy
+    applies_to: {products: [home_finance]}
+    condition: "age_at_maturity <= (70 if (nationality_group == 'uae_national' or employment_type == 'self_employed') else 65)"
+    severity: knockout
+    direction: max
+    limit: {uae_national: 70, self_employed: 70, expat_salaried: 65}
+    message: "Home finance age at maturity above 70 (nationals, self-employed) / 65 (salaried expats)."
+    source: "P-03 [M]"
+    confidence: M
+
+  - id: BANK.RET.006
+    layer: bank_policy
+    applies_to: {products: [personal_finance_salary_assigned, auto_finance, credit_card, salary_advance], employment_type: salaried}
+    condition: "service_months >= 3"
+    severity: knockout
+    direction: min
+    limit: 3
+    message: "Minimum 3 months' service."
+    source: "P-04 [U]"
+    confidence: H
+
+  - id: BANK.RET.007
+    layer: bank_policy
+    applies_to: {products: [personal_finance_unsecured], employment_type: salaried}
+    condition: "service_months >= 6"
+    severity: knockout
+    direction: min
+    limit: 6
+    message: "Unsecured (no salary transfer): minimum 6 months' service."
+    source: "P-04 [A] (user: 3 months)"
+    confidence: M
+
+  - id: BANK.RET.008
+    layer: bank_policy
+    applies_to: {products: [home_finance], employment_type: salaried}
+    condition: "service_months >= 6 and probation_completed == True"
+    severity: knockout
+    direction: min
+    limit: 6
+    message: "Home finance: minimum 6 months' service and probation completed."
+    source: "P-04 / P-39 [A] (user: 3 months)"
+    confidence: M
+
+  - id: BANK.RET.010
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "current_dpd < 30"
+    severity: knockout
+    message: "A facility is currently 30+ days past due."
+    source: "P-08 [P]"
+    confidence: M
+
+  - id: BANK.RET.011
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "dpd90_last_24m == False and writeoff_or_settlement_last_24m == False"
+    severity: knockout
+    message: "90+ days past due, write-off or settlement in the last 24 months."
+    source: "P-08 [P]"
+    confidence: M
+
+  - id: BANK.RET.012
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "aecb_enquiries_30d <= 6"
+    severity: refer
+    direction: max
+    limit: 6
+    message: "More than 6 AECB enquiries in 30 days."
+    source: "P-08 [P]"
+    confidence: L
+
+  - id: BANK.RET.013
+    layer: bank_policy
+    applies_to: {products: [personal_finance_salary_assigned]}
+    condition: "aecb_score >= (500 if nationality_group == 'uae_national' else 541)"
+    severity: knockout
+    direction: min
+    limit: {uae_national: 500, expat: 541}
+    message: "AECB score below the salary-assigned floor."
+    source: "P-08 [P] (market: RAKBANK 541 / 300)"
+    confidence: L
+
+  - id: BANK.RET.014
+    layer: bank_policy
+    applies_to: {products: [credit_card, home_finance, auto_finance, salary_advance, eosb_backed, gold_backed]}
+    condition: "aecb_score >= 541"
+    severity: knockout
+    direction: min
+    limit: 541
+    message: "AECB score below 541."
+    source: "P-08 [P]"
+    confidence: L
+
+  - id: BANK.RET.015
+    layer: bank_policy
+    applies_to: {products: [deposit_backed]}
+    condition: "aecb_score >= 541"
+    severity: refer
+    direction: min
+    limit: 541
+    message: "Deposit-backed finance with AECB below 541: refer."
+    source: "P-08 [P]"
+    confidence: L
+
+  - id: BANK.RET.016
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "employer_sector not in sector_watch_list"
+    severity: refer
+    message: "Employer sector on the watch-list: refer with reduced cap (25%)."
+    source: "P-09 [P]"
+    confidence: L
+
+  - id: BANK.RET.020
+    layer: bank_policy
+    applies_to: {products: all}
+    condition: "dbr_after <= (30 if is_retiree else 50)"
+    severity: knockout
+    direction: max
+    limit: {default: 50, retiree: 30}
+    message: "Debt burden ratio above the CBUAE limit (reference)."
+    source: "P-07 [C] -> CBUAE.RET.DBR / CBUAE.RET.DBR.RETIREE"
+    confidence: H
+
+  - id: BANK.RET.030
+    layer: bank_policy
+    applies_to: {products: [personal_finance_unsecured], employment_type: salaried}
+    condition: "statements_months >= 12"
+    severity: knockout
+    direction: min
+    limit: 12
+    message: "12 months' bank statements required (no salary transfer)."
+    source: "P-10 [U]"
+    confidence: H
+
+  - id: BANK.RET.031
+    layer: bank_policy
+    applies_to: {employment_type: self_employed, products: all}
+    condition: "statements_months >= 12"
+    severity: knockout
+    direction: min
+    limit: 12
+    message: "Self-employed: 12 months' bank statements required."
+    source: "P-10 [U]"
+    confidence: H
+
+  - id: BANK.RET.032
+    layer: bank_policy
+    applies_to: {employment_type: self_employed, products: [personal_finance_unsecured, auto_finance, credit_card]}
+    condition: "trade_licence_years >= 2"
+    severity: knockout
+    direction: min
+    limit: 2
+    message: "Self-employed: trade licence at least 2 years."
+    source: "P-11 [M]"
+    confidence: M
+
+  - id: BANK.RET.033
+    layer: bank_policy
+    applies_to: {employment_type: self_employed, products: [home_finance]}
+    condition: "trade_licence_years >= 3 and audited_financials_years >= 2"
+    severity: knockout
+    direction: min
+    limit: {trade_licence_years: 3, audited_financials_years: 2}
+    message: "Self-employed home finance: business 3 years and 2 years' audited financials."
+    source: "P-11 / P-39 [M]"
+    confidence: M
+
+  - id: BANK.RET.034
+    layer: bank_policy
+    applies_to: {employment_type: self_employed, products: [personal_finance_unsecured]}
+    condition: "avg_monthly_balance >= 20000 and finance_amount <= 500000"
+    severity: knockout
+    message: "Self-employed personal finance: average balance >= AED 20,000; max AED 500,000."
+    source: "P-11 [M/P]"
+    confidence: M
+
+  # ---------------- Layer 3: personal finance, salary-assigned ----------------
+  - id: CRED.PF.001
+    layer: credit_policy
+    applies_to: {products: [personal_finance_salary_assigned]}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Minimum monthly income AED 5,000."
+    source: "P-12 [U]"
+    confidence: H
+
+  - id: CRED.PF.002
+    layer: credit_policy
+    applies_to: {products: [personal_finance_salary_assigned]}
+    condition: "finance_amount <= min(20 * monthly_gross_income, (4000000 if nationality_group == 'uae_national' else 2000000), (500000 if employer_category == 'D' else 4000000))"
+    severity: knockout
+    direction: max
+    limit: {income_multiple: 20, cap_aed: {uae_national: 4000000, expat: 2000000}, cap_aed_employer_cat_d: 500000}
+    message: "Finance amount above 20x income or the bank cap."
+    source: "P-13 [C+M] -> CBUAE.RET.PF.MULTIPLE"
+    confidence: H
+
+  - id: CRED.PF.003
+    layer: credit_policy
+    applies_to: {products: [personal_finance_salary_assigned]}
+    condition: "tenor_months <= (60 if (employer_category == 'A' and employer_is_mod_af) else 48)"
+    severity: knockout
+    direction: max
+    limit: {default: 48, mod_af: 60}
+    message: "Tenor above 48 months (60 for MoD/AF only under CBUAE exemption - verify)."
+    source: "P-14 [C] -> CBUAE.RET.PF.TENOR"
+    confidence: M
+
+  - id: CRED.PF.004
+    layer: credit_policy
+    applies_to: {products: [personal_finance_salary_assigned, buyout]}
+    condition: "stl_received == True and eos_undertaking_received == True and wps_salary_verified == True"
+    severity: knockout
+    message: "Salary transfer letter, EOS undertaking and WPS salary credit are required."
+    source: "P-19 / P-24 [U]"
+    confidence: H
+
+  # ---------------- Layer 3: personal finance, unsecured (no salary transfer) ----------------
+  - id: CRED.PFU.001
+    layer: credit_policy
+    applies_to: {products: [personal_finance_unsecured]}
+    condition: "(monthly_gross_income >= 5000 and aecb_score >= 600 and employer_category in ['A', 'B', 'C'] and salary_credits_regular == True) or (monthly_gross_income >= 10000 and aecb_score >= 541)"
+    severity: knockout
+    message: "Unsecured: AED 5,000 only with AECB >= 600, employer A-C and regular salary credits; otherwise AED 10,000 and AECB >= 541."
+    source: "P-21 [A] (user: AED 5,000 without conditions)"
+    confidence: M
+
+  - id: CRED.PFU.002
+    layer: credit_policy
+    applies_to: {products: [personal_finance_unsecured]}
+    condition: "finance_amount <= (min(20 * monthly_gross_income, 500000) if nationality_group == 'uae_national' else min(10 * monthly_gross_income, 200000))"
+    severity: knockout
+    direction: max
+    limit: {uae_national: {income_multiple: 20, cap_aed: 500000}, expat: {income_multiple: 10, cap_aed: 200000}}
+    message: "Unsecured finance amount above the cap."
+    source: "P-22 [M]"
+    confidence: M
+
+  - id: CRED.PFU.003
+    layer: credit_policy
+    applies_to: {products: [personal_finance_unsecured]}
+    condition: "uaedds_mandate_signed == True"
+    severity: knockout
+    message: "UAE direct debit (UAEDDS) mandate required."
+    source: "P-23 [M]"
+    confidence: H
+
+  - id: CRED.PFU.004
+    layer: credit_policy
+    applies_to: {products: [personal_finance_unsecured]}
+    condition: "tenor_months <= 48"
+    severity: knockout
+    direction: max
+    limit: 48
+    message: "Tenor above 48 months."
+    source: "P-23 [C] -> CBUAE.RET.PF.TENOR"
+    confidence: H
+
+  # ---------------- Buyout and top-up ----------------
+  - id: CRED.BO.001
+    layer: credit_policy
+    applies_to: {products: [buyout]}
+    condition: "liability_letter_age_days <= 15"
+    severity: refer
+    direction: max
+    limit: 15
+    message: "Liability letter older than 15 days."
+    source: "P-24 [P]"
+    confidence: L
+
+  - id: CRED.BO.002
+    layer: credit_policy
+    applies_to: {products: [buyout]}
+    condition: "residual_release_requested == False or clearance_letter_received == True"
+    severity: knockout
+    message: "Residual funds released only after the other bank's clearance letter."
+    source: "P-24 [M]"
+    confidence: M
+
+  - id: CRED.TU.001
+    layer: credit_policy
+    applies_to: {products: [top_up]}
+    condition: "clean_repayment_months >= 12 and top_ups_last_12m < 1"
+    severity: knockout
+    direction: min
+    limit: {clean_repayment_months: 12, max_top_ups_per_12m: 1}
+    message: "Top-up needs 12 months' clean repayment; max one per 12 months."
+    source: "P-25 [C/M] -> CBUAE.RET.TOPUP.CLEAN"
+    confidence: H
+
+  # ---------------- Credit cards ----------------
+  - id: CRED.CC.001a
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: classic_entry}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Classic (entry) card: minimum monthly income AED 5,000."
+    source: "P-27 [M]"
+    confidence: M
+
+  - id: CRED.CC.001b
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: gold}
+    condition: "monthly_gross_income >= 12000"
+    severity: knockout
+    direction: min
+    limit: 12000
+    message: "Gold card: minimum monthly income AED 12,000."
+    source: "P-27 [M]"
+    confidence: M
+
+  - id: CRED.CC.001c
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: platinum}
+    condition: "monthly_gross_income >= 20000"
+    severity: knockout
+    direction: min
+    limit: 20000
+    message: "Platinum card: minimum monthly income AED 20,000."
+    source: "P-27 [M]"
+    confidence: M
+
+  - id: CRED.CC.002
+    layer: credit_policy
+    applies_to: {products: [credit_card]}
+    condition: "card_limit <= (3 if track == 'salary_assigned' else 2) * monthly_gross_income"
+    severity: knockout
+    direction: max
+    limit: {salary_assigned: 3, unsecured_non_stl: 2}
+    message: "Card limit above 3x (salary-assigned) / 2x (non-STL) monthly income."
+    source: "P-28 [P]"
+    confidence: L
+
+  - id: CRED.CC.003
+    layer: credit_policy
+    applies_to: {products: [credit_card], employment_type: self_employed}
+    condition: "avg_balance_3m >= 50000 or card_is_deposit_backed == True"
+    severity: knockout
+    message: "Self-employed card: 3-month average balance >= AED 50,000 or deposit-backed card."
+    source: "P-30 [M]"
+    confidence: M
+
+  # ---------------- Home finance ----------------
+  - id: CRED.HF.001
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "monthly_gross_income >= (15000 if nationality_group == 'expat' else (8000 if government_housing_scheme else 10000))"
+    severity: knockout
+    direction: min
+    limit: {uae_national: 10000, uae_national_government_scheme: 8000, expat: 15000}
+    message: "Home finance minimum income: AED 10,000 nationals (8,000 government scheme) / 15,000 expats."
+    source: "P-31 [A] (user: AED 5,000)"
+    confidence: M
+
+  - id: CRED.HF.002a
+    layer: credit_policy
+    applies_to: {products: [home_finance], nationality_group: uae_national, property: first_home_value_le_5m}
+    condition: "ltv <= 85"
+    severity: knockout
+    direction: max
+    limit: 85
+    message: "National, first home up to AED 5m: finance-to-value above 85%."
+    source: "P-32 [C] -> CBUAE.MORT.LTV.FIRST_LE5M"
+    confidence: H
+
+  - id: CRED.HF.002b
+    layer: credit_policy
+    applies_to: {products: [home_finance], nationality_group: expat, property: first_home_value_le_5m}
+    condition: "ltv <= 80"
+    severity: knockout
+    direction: max
+    limit: 80
+    message: "Expat, first home up to AED 5m: finance-to-value above 80%."
+    source: "P-32 [C] -> CBUAE.MORT.LTV.FIRST_LE5M"
+    confidence: M
+
+  - id: CRED.HF.002c
+    layer: credit_policy
+    applies_to: {products: [home_finance], nationality_group: uae_national, property: first_home_value_gt_5m}
+    condition: "ltv <= 75"
+    severity: knockout
+    direction: max
+    limit: 75
+    message: "National, first home above AED 5m: finance-to-value above 75%."
+    source: "P-32 [C] -> CBUAE.MORT.LTV.FIRST_GT5M"
+    confidence: M
+
+  - id: CRED.HF.002d
+    layer: credit_policy
+    applies_to: {products: [home_finance], nationality_group: expat, property: first_home_value_gt_5m}
+    condition: "ltv <= 70"
+    severity: knockout
+    direction: max
+    limit: 70
+    message: "Expat, first home above AED 5m: finance-to-value above 70%."
+    source: "P-32 [C] -> CBUAE.MORT.LTV.FIRST_GT5M"
+    confidence: M
+
+  - id: CRED.HF.002e
+    layer: credit_policy
+    applies_to: {products: [home_finance], nationality_group: uae_national, property: second_or_more_home}
+    condition: "ltv <= 65"
+    severity: knockout
+    direction: max
+    limit: 65
+    message: "National, second or further home: finance-to-value above 65%."
+    source: "P-32 [C] -> CBUAE.MORT.LTV.SECOND"
+    confidence: M
+
+  - id: CRED.HF.002f
+    layer: credit_policy
+    applies_to: {products: [home_finance], nationality_group: expat, property: second_or_more_home}
+    condition: "ltv <= 60"
+    severity: knockout
+    direction: max
+    limit: 60
+    message: "Expat, second or further home: finance-to-value above 60%."
+    source: "P-32 [C] -> CBUAE.MORT.LTV.SECOND"
+    confidence: M
+
+  - id: CRED.HF.003
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "not is_off_plan or (ltv <= 50 and project_completion_pct >= 35 and customer_paid_pct >= 50 and developer_approved == True)"
+    severity: knockout
+    message: "Off-plan: max 50%, project >= 35% complete, customer paid >= 50%, approved developer."
+    source: "P-38 [C/M] -> CBUAE.MORT.LTV.OFFPLAN"
+    confidence: H
+
+  - id: CRED.HF.004
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "tenor_years <= (30 if cbuae_rate_relief_eligible else 25)"
+    severity: knockout
+    direction: max
+    limit: {default: 25, cbuae_rate_relief_exception: 30}
+    message: "Tenor above 25 years (30 only under CBUAE rate-relief exception)."
+    source: "P-33 [C] -> CBUAE.MORT.TENOR"
+    confidence: H
+
+  - id: CRED.HF.005
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "finance_amount <= 20000000"
+    severity: knockout
+    direction: max
+    limit: 20000000
+    message: "Home finance above AED 20m."
+    source: "P-34 [M]"
+    confidence: M
+
+  - id: CRED.HF.006
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "dbr_after_at_stress_rate <= (60 if government_housing_scheme else 50)"
+    severity: knockout
+    direction: max
+    limit: {default: 50, government_housing: 60}
+    message: "DBR at the stress rate (max of initial and reversion rate) above limit."
+    source: "P-37 [C/P] -> CBUAE.MORT.DBR"
+    confidence: M
+
+  - id: CRED.HF.007
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "life_takaful == True and property_takaful == True"
+    severity: knockout
+    message: "Life and property takaful mandatory."
+    source: "P-40 [M]"
+    confidence: M
+
+  - id: CRED.HF.010
+    layer: credit_policy
+    applies_to: {products: [home_finance]}
+    condition: "eosb_used_as_repayment_source == False"
+    severity: knockout
+    message: "EOSB is not an allowed repayment source for home finance."
+    source: "CBUAE reference -> CBUAE.MORT.EOSB_SOURCE"
+    confidence: M
+
+  # ---------------- Auto finance ----------------
+  - id: CRED.AF.001
+    layer: credit_policy
+    applies_to: {products: [auto_finance]}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Auto finance minimum income AED 5,000."
+    source: "P-43 [U]"
+    confidence: H
+
+  - id: CRED.AF.002
+    layer: credit_policy
+    applies_to: {products: [auto_finance]}
+    condition: "down_payment_pct >= 20 and finance_amount <= 1500000"
+    severity: knockout
+    message: "Down payment below 20% or amount above AED 1.5m."
+    source: "P-44 [C] / P-45 [M] -> CBUAE.AUTO.LTV"
+    confidence: H
+
+  - id: CRED.AF.003
+    layer: credit_policy
+    applies_to: {products: [auto_finance]}
+    condition: "tenor_months <= 60 and vehicle_age_at_maturity <= 10"
+    severity: knockout
+    message: "Tenor above 60 months or vehicle older than 10 years at end of finance."
+    source: "P-44 [C] / P-47 [M] -> CBUAE.AUTO.TENOR"
+    confidence: H
+
+  - id: CRED.AF.004
+    layer: credit_policy
+    applies_to: {products: [auto_finance]}
+    condition: "seller_type == 'dealer' or valuation_by_approved_dealer == True"
+    severity: knockout
+    message: "Private sale needs a bank-approved valuation."
+    source: "P-48 [M]"
+    confidence: M
+
+  - id: CRED.AF.005
+    layer: credit_policy
+    applies_to: {products: [auto_finance], employment_type: self_employed}
+    condition: "trade_licence_years >= 2 and avg_monthly_balance >= 15000"
+    severity: knockout
+    message: "Self-employed auto: licence >= 2 years and average balance >= AED 15,000."
+    source: "P-49 [M]"
+    confidence: M
+
+  # ---------------- Secured: deposit, gold, EOSB; salary advance ----------------
+  - id: CRED.DEP.001
+    layer: credit_policy
+    applies_to: {products: [deposit_backed]}
+    condition: "finance_amount <= 0.90 * lien_deposit_value and finance_amount <= 10000000"
+    severity: knockout
+    direction: max
+    limit: {pct_of_deposit: 90, cap_aed: 10000000}
+    message: "Deposit-backed finance above 90% of the lien deposit or AED 10m."
+    source: "P-51 [U/M]"
+    confidence: H
+
+  - id: CRED.GOLD.001
+    layer: credit_policy
+    applies_to: {products: [gold_backed]}
+    condition: "gold_ltv <= 70"
+    severity: knockout
+    direction: max
+    limit: 70
+    message: "Gold-backed finance above 70% of gold value."
+    source: "P-52 [A] (user: 90%; market: EI 50%)"
+    confidence: M
+
+  - id: CRED.GOLD.002
+    layer: credit_policy
+    applies_to: {products: [gold_backed]}
+    condition: "gold_ltv < 80"
+    severity: warn
+    direction: max
+    limit: 80
+    message: "Margin call: gold LTV at or above 80%; customer to top up. Sale at 85%."
+    source: "P-52 [P]"
+    confidence: L
+
+  - id: CRED.EOS.001
+    layer: credit_policy
+    applies_to: {products: [eosb_backed]}
+    condition: "track == 'salary_assigned' and eos_undertaking_received == True"
+    severity: knockout
+    message: "EOSB-backed finance only inside salary-assigned finance with an irrevocable employer undertaking."
+    source: "P-53 [A]"
+    confidence: M
+
+  - id: CRED.EOS.002
+    layer: credit_policy
+    applies_to: {products: [eosb_backed]}
+    condition: "eosb_service_years >= 3 and finance_amount_against_eosb <= 0.80 * eosb_accrued"
+    severity: knockout
+    direction: max
+    limit: {pct_of_accrued_eosb: 80, min_service_years: 3}
+    message: "EOSB-backed portion above 80% of accrued EOSB or service below 3 years."
+    source: "P-53 [A] (user: 90%; no top-five bank lends against EOSB alone)"
+    confidence: L
+
+  - id: CRED.EOS.003
+    layer: credit_policy
+    applies_to: {products: [eosb_backed]}
+    condition: "total_personal_finance <= 20 * monthly_gross_income and tenor_months <= 48"
+    severity: knockout
+    message: "Total including EOSB-backed portion must stay within 20x income and 48 months."
+    source: "P-53 [C] -> CBUAE.RET.PF.MULTIPLE"
+    confidence: H
+
+  - id: CRED.SA.001
+    layer: credit_policy
+    applies_to: {products: [salary_advance]}
+    condition: "track == 'salary_assigned' and monthly_gross_income >= 5000 and advance_amount <= min(0.50 * net_monthly_salary, 25000) and advances_last_12m < 6 and current_dpd == 0"
+    severity: knockout
+    message: "Salary advance: salary-assigned, min AED 5,000, <= 50% of net salary (max 25,000), max 6 per year, no arrears."
+    source: "P-54 [U/M/P]"
+    confidence: M
+
+  # ---------------- Fees and grade decision ----------------
+  - id: CRED.FEE.001
+    layer: credit_policy
+    applies_to: {products: all}
+    condition: "early_settlement_fee_aed <= min(0.01 * outstanding_principal, 10000)"
+    severity: knockout
+    direction: max
+    limit: {pct: 1, max_aed: 10000}
+    message: "Early-settlement fee above the CBUAE cap (reference)."
+    source: "P-17 [C] -> CBUAE.RET.ES.FEE"
+    confidence: M
+
+  - id: CRED.GRD.001
+    layer: credit_policy
+    applies_to: {products: all}
+    condition: "grade <= 6"
+    severity: refer
+    message: "Model escalation: grade 7-8 refer (policy passed)."
+    source: "§9 grade bands [P]"
+    confidence: H
+
+  - id: CRED.GRD.002
+    layer: credit_policy
+    applies_to: {products: all}
+    condition: "grade <= 8"
+    severity: knockout
+    message: "Grade 9-10: decline."
+    source: "§9 grade bands [P]"
+    confidence: H

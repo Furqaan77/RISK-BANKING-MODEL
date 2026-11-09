@@ -1,0 +1,17 @@
+key,measure,unit,better,policy,n,friendlier,same,less_friendly,rank,median,policy_pct,verdict
+pl_min_salary_stl,Personal loan: minimum salary (with salary transfer),AED,low,5000.0,24,3,10,11,4,5000.0,66.7,Ahead of most
+pl_min_salary_nonstl,Personal loan without salary transfer: minimum salary,AED,low,5000.0,8,0,2,6,1,10000.0,87.5,Joint best
+pl_max_nat_aed,Personal loan: maximum amount for UAE nationals,AED,high,4000000.0,18,4,4,10,5,3000000.0,66.7,Ahead of most
+pl_max_exp_aed,Personal loan: maximum amount for expats,AED,high,2000000.0,18,5,5,8,6,2000000.0,58.3,Market middle
+pl_rate_min,Personal loan: lowest rate (reducing),%,low,5.49,25,9,0,16,10,5.85,64.0,Market middle
+card_min_salary,Credit card: entry minimum salary,AED,low,5000.0,24,0,20,4,1,5000.0,58.3,Joint best
+card_rate_month,Credit card: monthly rate,%,low,3.59,28,14,1,13,15,3.545,48.2,Market middle
+home_min_salary_nat,Home loan: minimum salary for UAE nationals,AED,low,10000.0,20,2,6,12,3,13500.0,75.0,Ahead of most
+home_min_salary_exp,Home loan: minimum salary for expats,AED,low,15000.0,20,6,8,6,7,15000.0,50.0,Market middle
+home_ltv_nat,"Home loan: max loan-to-value, first home (nationals)",%,high,85.0,18,0,12,6,1,85.0,66.7,Joint best
+home_ltv_exp,"Home loan: max loan-to-value, first home (expats)",%,high,80.0,20,0,17,3,1,80.0,57.5,Joint best
+home_fixed_rate,Home loan: headline fixed rate,%,low,4.24,20,14,0,6,15,3.99,30.0,Behind most
+auto_min_salary,Auto loan: minimum salary,AED,low,5000.0,16,2,6,8,3,5500.0,68.8,Ahead of most
+auto_max_aed,Auto loan: maximum amount,AED,high,1500000.0,17,2,4,11,3,1000000.0,76.5,Ahead of most
+auto_rate_flat,Auto loan: headline flat rate (new car),%,low,2.49,17,6,3,8,7,2.49,55.9,Market middle
+deposit_advance_pct,Lending against deposits: advance %,%,high,90.0,12,3,7,2,4,90.0,45.8,Market middle

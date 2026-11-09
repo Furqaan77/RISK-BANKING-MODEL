@@ -1,0 +1,1476 @@
+# =====================================================================================
+# AI Risk Score Card - PILOT FINANCE COMPANY (conventional) - executable rules (AD-3 format)
+# Tenant: demo_finance_company   |   Version 0.1 (draft)   |   Effective 2026-11-09
+#
+# Each rule: id, layer, applies_to, condition (PASS when true; safe DSL: comparisons,
+# arithmetic, and/or/not, `in` with a literal list, min(), max(), conditional expressions;
+# no inline lookup tables), severity, message, source (parameter-sheet ID + tag), confidence,
+# and, for numeric limits, direction (max | min) + limit.
+#
+# Three blocks:
+#   regulatory_baseline  Layer 1 values (CBUAE consumer rules + FCR). Tighten-only anchor.
+#   prudential_rules     Company-level checks on a balance-sheet / portfolio snapshot:
+#                          PRU.FCR.* = Layer 1 (FCR)   PRU.CO.* and PORT.* = Layer 2 (company)
+#                          scope pre_approval   -> run on every application with the snapshot
+#                          scope portfolio_*    -> run daily / monthly on the book
+#   rules                Customer-level checks on each application:
+#                          REG.*    = Layer 1 (CBUAE / FCR)
+#                          CO.RET.* = Layer 2 (company policy)
+#                          CRED.*   = Layer 3 (credit policy, per product)
+#
+# Severity (customer level): knockout = Decline; refer = at most Refer; warn = note only.
+# Severity (portfolio scope): knockout = HOLD new disbursements of the products in applies_to
+#   (affected applications cannot be approved); refer = management action by the named owner
+#   (does not change individual decisions); warn = report only.
+#
+# Source tags: B bank criterion | C CBUAE | R FCR | A adjusted (sign-off) | P proposal (sign-off)
+# In the product, Layer 1 lives in config/regulators/ (cbuae.yaml + fcr.yaml); it is repeated
+# here so the demo pack is self-contained and validate_config.py can prove tighten-only.
+# =====================================================================================
+
+meta:
+  tenant: demo_finance_company
+  version: "0.1"
+  effective_date: "2026-11-09"
+  parameter_sheet: credit-policy-uae-finance-company/03-parameter-sheet.md
+  condition_semantics: pass_when_true
+  vocabulary_profile: conventional
+
+# -------------------------------------------------------------------------------------
+# Layer 1 baseline: CBUAE + FCR values (confidence M where read from search extracts)
+# -------------------------------------------------------------------------------------
+regulatory_baseline:
+  cbuae:
+    personal_loan_income_multiple_max: 20         # Reg 29/2011 Art 2(b)
+    personal_loan_tenor_months_max: 48            # Reg 29/2011 Art 2(c)
+    dbr_max_pct: 50                               # Reg 29/2011 Art 7(a)
+    dbr_retiree_max_pct: 30                       # Reg 29/2011 Art 7(b)
+    auto_ltv_max_pct: 80                          # Reg 29/2011 Art 3(b)
+    auto_tenor_months_max: 60                     # Reg 29/2011 Art 3(c)
+    top_up_clean_repayment_months_min: 12         # Reg 29/2011 Art 6(g)
+    credit_card_min_annual_income_aed: 60000      # Reg 29/2011
+    early_settlement_fee: {pct: 1.0, max_aed: 10000}   # Res. 96/2019
+    processing_fee: {pct: 1.0, min_aed: 500, max_aed: 2500}
+    late_fee_max_aed: {personal: 200, auto: 500, card: 230, home: 700}
+    deferment_fee_max_aed: 100
+    rescheduling_fee_max_aed: 250
+    security_cheque_max_pct_of_loan: 120          # Consumer Protection Standards
+    cooling_off_business_days_min: 5
+    disbursement_business_days_max: 10
+    rescheduling_beyond_48_months: "only if dbr > 50 and no new money"
+  fcr:
+    capital_min_aed: 150000000                    # FCR C 3/2023
+    leverage_max_pct_of_capital_funds_years_0_2: 100
+    liquid_assets_min_pct_of_liabilities: 10
+    single_borrower_max_pct: 10
+    connected_group_max_pct: 15
+    large_exposure_threshold_pct: 7
+    principal_shareholder_single_max_pct: 10
+    principal_shareholder_aggregate_max_pct: 20
+    board_member_lending_allowed: false
+    individual_deposits_allowed: false
+    islamic_window_allowed: false
+    product_line_no_objection_letter_required: true
+    aecb_report_before_every_credit: true
+    short_term_credit:                            # FCR Part II caps; policy applies them to salary advance and BNPL
+      max_amount_aed: 20000
+      max_multiple_of_net_monthly_income: 3
+      max_tenor_months: 12
+      interest_allowed: false
+      total_fees_max_pct: 30
+      bureau_check_required_from_aed: 5000
+
+cbuae_references:
+  - {ref: CBUAE.RET.PF.MULTIPLE, value: 20, direction: max, unit: x_monthly_income, source: "Reg 29/2011 Art 2(b)", confidence: H, used_by: [CRED.PEA.002, CRED.PNA.002, CRED.EOS.003]}
+  - {ref: CBUAE.RET.PF.TENOR, value: 48, direction: max, unit: months, source: "Reg 29/2011 Art 2(c)", confidence: H, used_by: [CRED.PEA.003, CRED.PNA.003, CRED.EOS.003, CRED.RS.001]}
+  - {ref: CBUAE.RET.DBR, value: 50, direction: max, unit: pct_gross_income, source: "Reg 29/2011 Art 7(a)", confidence: H, used_by: [REG.CB.001]}
+  - {ref: CBUAE.RET.DBR.RETIREE, value: 30, direction: max, unit: pct_pension, source: "Reg 29/2011 Art 7(b)", confidence: H, used_by: [REG.CB.001]}
+  - {ref: CBUAE.RET.TOPUP.CLEAN, value: 12, direction: min, unit: months, source: "Reg 29/2011 Art 6(g)", confidence: H, used_by: [CRED.TU.001]}
+  - {ref: CBUAE.AUTO.LTV, value: 80, direction: max, unit: pct_vehicle_value, source: "Reg 29/2011 Art 3(b)", confidence: H, used_by: [CRED.AL.002]}
+  - {ref: CBUAE.AUTO.TENOR, value: 60, direction: max, unit: months, source: "Reg 29/2011 Art 3(c)", confidence: H, used_by: [CRED.AL.003]}
+  - {ref: CBUAE.CC.MIN_INCOME, value: 60000, direction: min, unit: aed_per_year, source: "Reg 29/2011", confidence: M, used_by: [REG.CB.002]}
+  - {ref: CBUAE.FEES, value: "Res. 96/2019 caps", direction: max, source: "Res. 96/2019 / Appendix 2", confidence: M, used_by: [REG.CB.003, REG.CB.004, REG.CB.005, REG.CB.006, REG.CB.007, REG.CB.008, REG.CB.009]}
+  - {ref: FCR.STC, value: "AED 20k / 3x net / 12m / no interest / fees 30%", direction: max, source: "FCR C 3/2023 Part II", confidence: M, used_by: [REG.STC.001, REG.STC.002, REG.STC.003, REG.STC.004, REG.STC.005]}
+
+# =====================================================================================
+# PRUDENTIAL AND PORTFOLIO RULES (company-level snapshot)
+# Snapshot variables: capital_funds, total_liabilities, liquid_assets, gross_retail_loans,
+# borrower_total_exposure, connected_group_exposure, customer_total_exposure,
+# related_party_single_exposure, related_party_aggregate_exposure, individual_deposit_accounts,
+# share_* ratios (in %). Application variables used here: loan_amount, is_board_member,
+# is_principal_shareholder_or_affiliate, is_related_party.
+# =====================================================================================
+prudential_rules:
+
+  # ---------------- Layer 1: FCR ----------------
+  - id: PRU.FCR.001
+    layer: regulatory
+    scope: portfolio_daily
+    applies_to: {products: all}
+    condition: "capital_funds >= 150000000"
+    severity: knockout
+    direction: min
+    limit: 150000000
+    message: "Capital funds below the FCR minimum of AED 150m: hold all new lending."
+    source: "F-02 [R]"
+    confidence: M
+
+  - id: PRU.FCR.002
+    layer: regulatory
+    scope: portfolio_daily
+    applies_to: {products: all}
+    condition: "total_liabilities <= 1.00 * capital_funds"
+    severity: knockout
+    direction: max
+    limit: 100
+    message: "Leverage: liabilities above 100% of capital funds (licence years 0-2): hold new disbursements."
+    source: "F-02 [R]"
+    confidence: M
+
+  - id: PRU.FCR.003
+    layer: regulatory
+    scope: portfolio_daily
+    applies_to: {products: all}
+    condition: "liquid_assets >= 0.10 * total_liabilities"
+    severity: knockout
+    direction: min
+    limit: 10
+    message: "Liquid assets below 10% of liabilities (FCR): hold new disbursements."
+    source: "F-06 [R]"
+    confidence: M
+
+  - id: PRU.FCR.004
+    layer: regulatory
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "borrower_total_exposure + loan_amount <= 0.10 * capital_funds"
+    severity: knockout
+    direction: max
+    limit: 10
+    message: "Single-borrower exposure would exceed 10% of capital funds (AED 15m)."
+    source: "F-03 [R]"
+    confidence: M
+
+  - id: PRU.FCR.005
+    layer: regulatory
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "connected_group_exposure + loan_amount <= 0.15 * capital_funds"
+    severity: knockout
+    direction: max
+    limit: 15
+    message: "Connected-group exposure would exceed 15% of capital funds (AED 22.5m)."
+    source: "F-03 [R]"
+    confidence: M
+
+  - id: PRU.FCR.006
+    layer: regulatory
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "borrower_total_exposure + loan_amount < 0.07 * capital_funds"
+    severity: warn
+    direction: max
+    limit: 7
+    message: "Large exposure (>= 7% of capital funds, AED 10.5m): report as a large exposure."
+    source: "F-03 [R]"
+    confidence: M
+
+  - id: PRU.FCR.007
+    layer: regulatory
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "is_board_member == False"
+    severity: knockout
+    message: "No lending to board members (FCR)."
+    source: "F-04 [R]"
+    confidence: H
+
+  - id: PRU.FCR.008
+    layer: regulatory
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "is_principal_shareholder_or_affiliate == False or related_party_single_exposure + loan_amount <= 0.10 * capital_funds"
+    severity: knockout
+    direction: max
+    limit: 10
+    message: "Principal shareholder / affiliate exposure would exceed 10% of capital funds."
+    source: "F-04 [R]"
+    confidence: M
+
+  - id: PRU.FCR.009
+    layer: regulatory
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "is_principal_shareholder_or_affiliate == False or related_party_aggregate_exposure + loan_amount <= 0.20 * capital_funds"
+    severity: knockout
+    direction: max
+    limit: 20
+    message: "Aggregate principal shareholder / affiliate exposure would exceed 20% of capital funds."
+    source: "F-04 [R]"
+    confidence: M
+
+  - id: PRU.FCR.010
+    layer: regulatory
+    scope: portfolio_daily
+    applies_to: {products: all}
+    condition: "individual_deposit_accounts == 0"
+    severity: knockout
+    message: "Deposits or accounts held for individuals: not permitted for a finance company."
+    source: "F-05 [R]"
+    confidence: H
+
+  # ---------------- Layer 2: company prudential ----------------
+  - id: PRU.CO.001
+    layer: company_policy
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "gross_retail_loans + loan_amount <= 250000000"
+    severity: knockout
+    direction: max
+    limit: 250000000
+    message: "Pilot book cap: gross retail loans would exceed AED 250m (years 0-2). Renewals only; Board review."
+    source: "F-02 [P]"
+    confidence: M
+
+  - id: PRU.CO.002
+    layer: company_policy
+    scope: portfolio_daily
+    applies_to: {products: all}
+    condition: "total_liabilities < 0.85 * capital_funds"
+    severity: refer
+    direction: max
+    limit: 85
+    message: "Leverage early warning: liabilities at 85% of the legal limit. Treasury and Head of Credit slow disbursements; report to Board."
+    source: "F-02 [P]"
+    confidence: M
+
+  - id: PRU.CO.003
+    layer: company_policy
+    scope: portfolio_daily
+    applies_to: {products: all}
+    condition: "liquid_assets >= 0.12 * total_liabilities"
+    severity: knockout
+    direction: min
+    limit: 12
+    message: "Liquid assets below the 12% internal trigger: hold new disbursements."
+    source: "F-06 [P]"
+    confidence: M
+
+  - id: PRU.CO.004
+    layer: company_policy
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "customer_total_exposure + loan_amount <= 1000000"
+    severity: refer
+    direction: max
+    limit: 1000000
+    message: "Internal cap per individual (all products) AED 1m exceeded: Board Credit Committee exception only."
+    source: "F-03 [P]"
+    confidence: M
+
+  - id: PRU.CO.005
+    layer: company_policy
+    scope: pre_approval
+    applies_to: {products: all}
+    condition: "is_related_party == False"
+    severity: refer
+    message: "Related-party applicant: Board Credit Committee approval required."
+    source: "F-04 [R] / policy 4.2"
+    confidence: H
+
+  # ---------------- Layer 2: portfolio limits (section 15) ----------------
+  - id: PORT.001
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: [personal_loan_non_assigned]}
+    condition: "share_non_assigned_of_pl_book_pct <= 35"
+    severity: refer
+    direction: max
+    limit: 35
+    action: "Raise the non-assigned AECB floor to 600."
+    owner: chief_risk_officer
+    message: "Non-assigned loans above 35% of the personal-loan book."
+    source: "F-58 [P]"
+    confidence: L
+
+  - id: PORT.002
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned]}
+    condition: "share_category_d_of_pl_book_pct <= 25"
+    severity: refer
+    direction: max
+    limit: 25
+    action: "Cap new category D approvals."
+    owner: chief_risk_officer
+    message: "Category D employer exposure above 25% of the personal-loan book."
+    source: "F-58 [P]"
+    confidence: L
+
+  - id: PORT.003
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: [personal_loan_employer_assigned]}
+    condition: "share_max_single_employer_of_assigned_book_pct <= 5"
+    severity: refer
+    direction: max
+    limit: 5
+    action: "Credit Committee review of the employer."
+    owner: board_credit_committee
+    message: "One employer above 5% of the employer-assigned book."
+    source: "F-58 [P]"
+    confidence: L
+
+  - id: PORT.004
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: [gold_backed]}
+    condition: "share_gold_of_retail_book_pct <= 5"
+    severity: knockout
+    direction: max
+    limit: 5
+    action: "Stop new gold lending."
+    owner: head_of_credit
+    message: "Gold-backed loans above 5% of the retail book: new gold lending held."
+    source: "F-58 [P]"
+    confidence: L
+
+  - id: PORT.005
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: [salary_advance, bnpl]}
+    condition: "share_salary_advance_bnpl_of_retail_book_pct <= 2"
+    severity: knockout
+    direction: max
+    limit: 2
+    action: "Pause new salary advances and BNPL plans."
+    owner: head_of_credit
+    message: "Salary advance + BNPL above 2% of the retail book: new advances and plans held."
+    source: "F-58 [P]"
+    confidence: L
+
+  - id: PORT.006
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: all}
+    condition: "share_aecb_541_599_of_monthly_approvals_pct <= 25"
+    severity: refer
+    direction: max
+    limit: 25
+    action: "Raise AECB floors by 20 points."
+    owner: chief_risk_officer
+    message: "Approvals with AECB 541-599 above 25% of monthly approvals."
+    source: "F-58 [P]"
+    confidence: L
+
+  - id: PORT.007
+    layer: company_policy
+    scope: portfolio_monthly
+    applies_to: {products: all}
+    condition: "share_deviations_of_monthly_approvals_pct <= 5"
+    severity: refer
+    direction: max
+    limit: 5
+    action: "CRO review of deviations."
+    owner: chief_risk_officer
+    message: "Approvals with deviations above 5% a month."
+    source: "F-58 [P]"
+    confidence: L
+
+# =====================================================================================
+# CUSTOMER-LEVEL RULES
+# =====================================================================================
+rules:
+
+  # ---------------- Layer 1: CBUAE consumer rules ----------------
+  - id: REG.CB.001
+    layer: regulatory
+    applies_to: {products: all}
+    condition: "dbr_after <= (30 if is_retiree else 50)"
+    severity: knockout
+    direction: max
+    limit: {default: 50, retiree: 30}
+    message: "Debt burden ratio above the CBUAE limit (50%; 30% past retirement age). Cards at 5% of limit and BNPL instalments counted."
+    source: "F-15 [C] [R] -> CBUAE.RET.DBR"
+    confidence: H
+
+  - id: REG.CB.002
+    layer: regulatory
+    applies_to: {products: [credit_card]}
+    condition: "12 * monthly_gross_income >= 60000"
+    severity: knockout
+    direction: min
+    limit: 60000
+    message: "Credit card: annual income below the CBUAE minimum of AED 60,000."
+    source: "F-37 [C] -> CBUAE.CC.MIN_INCOME"
+    confidence: M
+
+  - id: REG.CB.003
+    layer: regulatory
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned, auto_loan, gold_backed]}
+    condition: "early_settlement_fee_aed <= min(0.01 * amount_settled, 10000)"
+    severity: knockout
+    direction: max
+    limit: {pct: 1, max_aed: 10000}
+    message: "Early-settlement fee above 1% of the amount settled (max AED 10,000)."
+    source: "F-25 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.004
+    layer: regulatory
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned, auto_loan, gold_backed]}
+    condition: "processing_fee_aed <= min(max(0.01 * loan_amount, 500), 2500)"
+    severity: knockout
+    direction: max
+    limit: {pct: 1, min_aed: 500, max_aed: 2500}
+    message: "Processing fee above 1% (min AED 500, max AED 2,500)."
+    source: "F-24 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.005
+    layer: regulatory
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned, gold_backed]}
+    condition: "late_payment_fee_aed <= 200"
+    severity: knockout
+    direction: max
+    limit: 200
+    message: "Personal-loan late fee above the CBUAE cap of AED 200."
+    source: "F-26 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.006
+    layer: regulatory
+    applies_to: {products: [auto_loan]}
+    condition: "late_payment_fee_aed <= 500"
+    severity: knockout
+    direction: max
+    limit: 500
+    message: "Auto-loan late fee above the CBUAE cap of AED 500."
+    source: "F-48 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.007
+    layer: regulatory
+    applies_to: {products: [credit_card]}
+    condition: "late_payment_fee_aed <= 230"
+    severity: knockout
+    direction: max
+    limit: 230
+    message: "Card late fee above the CBUAE cap of AED 230."
+    source: "F-39 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.008
+    layer: regulatory
+    applies_to: {products: [rescheduling]}
+    condition: "deferment_fee_aed <= 100"
+    severity: knockout
+    direction: max
+    limit: 100
+    message: "Deferment fee above AED 100."
+    source: "F-36 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.009
+    layer: regulatory
+    applies_to: {products: [rescheduling]}
+    condition: "rescheduling_fee_aed <= 250"
+    severity: knockout
+    direction: max
+    limit: 250
+    message: "Rescheduling fee above AED 250."
+    source: "F-36 [C] -> CBUAE.FEES"
+    confidence: M
+
+  - id: REG.CB.010
+    layer: regulatory
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned, auto_loan]}
+    condition: "security_cheque_blank == False and security_cheque_pct_of_loan <= 120"
+    severity: knockout
+    direction: max
+    limit: 120
+    message: "Security cheque above 120% of the loan, or blank."
+    source: "F-27 / F-33 / F-59 [C] [R]"
+    confidence: H
+
+  - id: REG.CB.011
+    layer: regulatory
+    applies_to: {products: all}
+    condition: "kfs_signed_before_contract == True and (cooling_off_business_days >= 5 or cooling_off_waived_in_writing == True)"
+    severity: knockout
+    message: "KFS (with APR) must be signed before the contract; 5-business-day cooling-off unless waived in writing."
+    source: "F-59 [C]"
+    confidence: H
+
+  - id: REG.CB.012
+    layer: regulatory
+    applies_to: {products: all}
+    condition: "affordability_summary_signed == True"
+    severity: knockout
+    message: "Signed affordability summary required in every file."
+    source: "F-15 [C]"
+    confidence: H
+
+  # ---------------- Layer 1: FCR (customer level) ----------------
+  - id: REG.FCR.001
+    layer: regulatory
+    applies_to: {products: all}
+    condition: "aecb_report_pulled == True"
+    severity: knockout
+    message: "AECB report (with consent) required before every retail credit, any amount."
+    source: "F-08 [R]"
+    confidence: H
+
+  - id: REG.FCR.002
+    layer: regulatory
+    applies_to: {products: all}
+    condition: "product_cbuae_nol_received == True"
+    severity: knockout
+    message: "Product line has no CBUAE no-objection letter on file."
+    source: "F-01 [R]"
+    confidence: H
+
+  - id: REG.FCR.003
+    layer: regulatory
+    applies_to: {products: all}
+    condition: "facility_type != 'overdraft' and secured_by_customer_deposit == False and contract_structure != 'islamic'"
+    severity: knockout
+    message: "Not permitted for a finance company: overdrafts, deposit-backed lending, Islamic-window contracts."
+    source: "F-01 / F-05 / F-54 [R]"
+    confidence: H
+
+  # ---------------- Layer 1: FCR short-term credit caps (salary advance, BNPL) ----------------
+  - id: REG.STC.001
+    layer: regulatory
+    applies_to: {products: [salary_advance, bnpl]}
+    condition: "loan_amount <= min(20000, 3 * net_monthly_income)"
+    severity: knockout
+    direction: max
+    limit: {max_aed: 20000, net_income_multiple: 3}
+    message: "Short-term credit above the lower of AED 20,000 or 3 months' net income."
+    source: "F-52 / F-53 [R] -> FCR.STC"
+    confidence: M
+
+  - id: REG.STC.002
+    layer: regulatory
+    applies_to: {products: [salary_advance, bnpl]}
+    condition: "term_days <= 365"
+    severity: knockout
+    direction: max
+    limit: 12
+    message: "Short-term credit longer than 12 months."
+    source: "F-52 / F-53 [R] -> FCR.STC"
+    confidence: M
+
+  - id: REG.STC.003
+    layer: regulatory
+    applies_to: {products: [salary_advance, bnpl]}
+    condition: "interest_rate_pct == 0"
+    severity: knockout
+    message: "Short-term credit may not charge interest."
+    source: "F-52 / F-53 [R] -> FCR.STC"
+    confidence: M
+
+  - id: REG.STC.004
+    layer: regulatory
+    applies_to: {products: [salary_advance, bnpl]}
+    condition: "total_fees_aed <= 0.30 * loan_amount"
+    severity: knockout
+    direction: max
+    limit: 30
+    message: "Short-term credit: total fees (including late fees) above 30% of the credit."
+    source: "F-52 / F-53 [R] -> FCR.STC"
+    confidence: M
+
+  - id: REG.STC.005
+    layer: regulatory
+    applies_to: {products: [salary_advance, bnpl]}
+    condition: "loan_amount < 5000 or aecb_report_pulled == True"
+    severity: knockout
+    message: "Short-term credit of AED 5,000 or more needs a bureau check (the Company checks every credit: REG.FCR.001)."
+    source: "F-53 [R] -> FCR.STC"
+    confidence: M
+
+  # ---------------- Layer 2: company policy (all products) ----------------
+  - id: CO.RET.000
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "product_offered_in_pilot == True"
+    severity: knockout
+    message: "Product not offered in the pilot (BNPL and home finance are phase 2; deposit-backed lending is not permitted)."
+    source: "F-01 / F-53 / F-54 / F-55 [A] [R]"
+    confidence: H
+
+  - id: CO.RET.001
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "nationality_group in ['uae_national', 'expat'] and residency_status == 'resident'"
+    severity: knockout
+    message: "Only UAE nationals and UAE-resident expats are eligible (non-residents out of scope)."
+    source: "F-09 [B]"
+    confidence: H
+
+  - id: CO.RET.002
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "sanctions_hit == False"
+    severity: knockout
+    message: "Sanctions screening hit."
+    source: "F-19 [B]"
+    confidence: H
+
+  - id: CO.RET.003
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "age_at_application >= 21"
+    severity: knockout
+    direction: min
+    limit: 21
+    message: "Minimum age 21."
+    source: "F-10 [B]"
+    confidence: M
+
+  - id: CO.RET.004
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "age_at_maturity <= ((70 if is_retiree else 65) if nationality_group == 'uae_national' else 60)"
+    severity: knockout
+    direction: max
+    limit: {uae_national: 65, uae_national_pension: 70, expat: 60}
+    message: "Age at end of loan above 65 (nationals; 70 pension-based) / 60 (expats)."
+    source: "F-11 [B]"
+    confidence: M
+
+  - id: CO.RET.005
+    layer: company_policy
+    applies_to: {products: [personal_loan_employer_assigned, credit_card, auto_loan], track: employer_assigned, employment_type: salaried}
+    condition: "service_months >= 3"
+    severity: knockout
+    direction: min
+    limit: 3
+    message: "Employer-assigned: minimum 3 months' service."
+    source: "F-12 [B]"
+    confidence: H
+
+  - id: CO.RET.006
+    layer: company_policy
+    applies_to: {products: [personal_loan_non_assigned, credit_card, auto_loan], track: non_assigned, employment_type: salaried}
+    condition: "service_months >= 6"
+    severity: knockout
+    direction: min
+    limit: 6
+    message: "Non-assigned: minimum 6 months' service."
+    source: "F-12 [B]"
+    confidence: M
+
+  - id: CO.RET.007
+    layer: company_policy
+    applies_to: {products: [salary_advance]}
+    condition: "service_months >= 6"
+    severity: knockout
+    direction: min
+    limit: 6
+    message: "Salary advance: minimum 6 months' service."
+    source: "F-52 [A] / policy 7.1"
+    confidence: M
+
+  - id: CO.RET.008
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "income_verified == True"
+    severity: knockout
+    message: "Income must be verified (salary certificate, WPS, statements or UAEFTS); self-declared income is never used alone."
+    source: "Policy section 5 [B]"
+    confidence: H
+
+  - id: CO.RET.010
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "current_dpd < 30"
+    severity: knockout
+    message: "A facility is currently 30+ days past due."
+    source: "F-16 [A]"
+    confidence: M
+
+  - id: CO.RET.011
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "dpd90_last_24m == False and writeoff_or_settlement_last_24m == False"
+    severity: knockout
+    message: "90+ days past due, write-off or settlement for less than the full amount in the last 24 months."
+    source: "F-16 [A]"
+    confidence: M
+
+  - id: CO.RET.012
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "court_or_police_case_unpaid_debt == False"
+    severity: knockout
+    message: "Court or police case for unpaid debt."
+    source: "F-16 [A]"
+    confidence: M
+
+  - id: CO.RET.013
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "aecb_enquiries_30d <= 6"
+    severity: refer
+    direction: max
+    limit: 6
+    message: "More than 6 AECB enquiries in 30 days."
+    source: "F-16 [A]"
+    confidence: L
+
+  - id: CO.RET.014
+    layer: company_policy
+    applies_to: {products: [personal_loan_employer_assigned, credit_card, auto_loan]}
+    condition: "aecb_score >= (500 if nationality_group == 'uae_national' else 541)"
+    severity: knockout
+    direction: min
+    limit: {uae_national: 500, expat: 541}
+    message: "AECB score below the floor for employer-assigned loans, cards and auto (541; nationals 500)."
+    source: "F-16 [A] / policy 7.2"
+    confidence: L
+
+  - id: CO.RET.015
+    layer: company_policy
+    applies_to: {products: [personal_loan_non_assigned]}
+    condition: "aecb_score >= 560"
+    severity: knockout
+    direction: min
+    limit: 560
+    message: "Non-assigned personal loan: AECB score below 560."
+    source: "F-16 [A]"
+    confidence: L
+
+  - id: CO.RET.016
+    layer: company_policy
+    applies_to: {products: [gold_backed]}
+    condition: "aecb_score >= 541"
+    severity: refer
+    direction: min
+    limit: 541
+    message: "Gold-backed loan with AECB below 541: refer."
+    source: "F-16 [A] / policy 7.2"
+    confidence: L
+
+  - id: CO.RET.017
+    layer: company_policy
+    applies_to: {products: [salary_advance]}
+    condition: "(aecb_thin_file == False and aecb_score >= 541) or (aecb_thin_file == True and loan_amount <= 1000 and wps_credit_months >= 6)"
+    severity: knockout
+    message: "Salary advance: AECB 541+, or a thin file only up to AED 1,000 with 6 months of WPS credits."
+    source: "F-16 / F-52 [A]"
+    confidence: L
+
+  - id: CO.RET.018
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "employer_sector_watch_listed == False"
+    severity: refer
+    message: "Employer sector on the watch-list: refer with a lower maximum amount and grade cap."
+    source: "F-19 [B] / policy 7.5 [P]"
+    confidence: L
+
+  - id: CO.RET.019
+    layer: company_policy
+    applies_to: {products: all}
+    condition: "monthly_gross_income >= 8000 or essential_expenses_reviewed == True"
+    severity: warn
+    message: "Income below AED 8,000: review essential expenses and dependants before lending near the DBR maximum."
+    source: "Policy 7.3 [C]"
+    confidence: M
+
+  - id: CO.RET.020
+    layer: company_policy
+    applies_to: {products: [personal_loan_employer_assigned], employment_type: salaried}
+    condition: "statements_months >= 3 or uaefts_consent == True"
+    severity: knockout
+    direction: min
+    limit: 3
+    message: "Employer-assigned: 3 months' statements or UAEFTS consent."
+    source: "F-17 [A]"
+    confidence: H
+
+  - id: CO.RET.021
+    layer: company_policy
+    applies_to: {products: [personal_loan_non_assigned], employment_type: salaried}
+    condition: "statements_months >= 6"
+    severity: knockout
+    direction: min
+    limit: 6
+    message: "Non-assigned: 6 months' statements (12 where available)."
+    source: "F-17 [A]"
+    confidence: H
+
+  - id: CO.RET.022
+    layer: company_policy
+    applies_to: {products: [credit_card, auto_loan], employment_type: salaried}
+    condition: "statements_months >= 3"
+    severity: knockout
+    direction: min
+    limit: 3
+    message: "Cards and auto: 3 months' statements."
+    source: "Annex C"
+    confidence: M
+
+  - id: CO.RET.023
+    layer: company_policy
+    applies_to: {products: [gold_backed], employment_type: salaried}
+    condition: "statements_months >= 6"
+    severity: knockout
+    direction: min
+    limit: 6
+    message: "Gold-backed: 6 months' statements."
+    source: "Annex C"
+    confidence: M
+
+  - id: CO.RET.024
+    layer: company_policy
+    applies_to: {products: [salary_advance]}
+    condition: "wps_credit_months >= 3"
+    severity: knockout
+    direction: min
+    limit: 3
+    message: "Salary advance: 3 months of WPS salary credits."
+    source: "Annex C"
+    confidence: M
+
+  - id: CO.RET.030
+    layer: company_policy
+    applies_to: {products: all, employment_type: self_employed}
+    condition: "statements_months >= 12 and trade_licence_years >= 2"
+    severity: knockout
+    message: "Self-employed: 12 months' personal and business statements and a trade licence of at least 2 years."
+    source: "F-17 / F-18 [A]"
+    confidence: M
+
+  - id: CO.RET.031
+    layer: company_policy
+    applies_to: {products: [personal_loan_non_assigned], employment_type: self_employed}
+    condition: "avg_monthly_balance >= 20000 and loan_amount <= 250000"
+    severity: knockout
+    message: "Self-employed personal loan: average balance at least AED 20,000; maximum AED 250,000."
+    source: "F-18 [A]"
+    confidence: M
+
+  # ---------------- Layer 3: personal loan, employer-assigned ----------------
+  - id: CRED.PEA.001
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned]}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Employer-assigned: minimum monthly income AED 5,000."
+    source: "F-20 [B]"
+    confidence: H
+
+  - id: CRED.PEA.002
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned]}
+    condition: "loan_amount <= min(20 * monthly_gross_income, 300000, (150000 if employer_category == 'D' else 300000))"
+    severity: knockout
+    direction: max
+    limit: {income_multiple: 20, cap_aed: 300000, cap_aed_employer_cat_d: 150000}
+    message: "Employer-assigned: amount above 20x income, AED 300,000, or AED 150,000 for category D."
+    source: "F-21 [A] -> CBUAE.RET.PF.MULTIPLE"
+    confidence: H
+
+  - id: CRED.PEA.003
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned]}
+    condition: "tenor_months <= 48"
+    severity: knockout
+    direction: max
+    limit: 48
+    message: "Tenor above 48 months."
+    source: "F-22 [C] -> CBUAE.RET.PF.TENOR"
+    confidence: H
+
+  - id: CRED.PEA.004
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned]}
+    condition: "assignment_letter_received == True and eos_undertaking_received == True and uaedds_mandate_signed == True"
+    severity: knockout
+    message: "Employer-assigned: salary-assignment letter, irrevocable EOS undertaking and UAEDDS mandate required."
+    source: "F-13 / F-27 [A]"
+    confidence: H
+
+  - id: CRED.PEA.005
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned]}
+    condition: "interest_rate_pct >= 12.99 and interest_rate_pct <= 24.99"
+    severity: knockout
+    message: "Employer-assigned rate outside the 12.99%-24.99% grid range."
+    source: "F-23 [A]"
+    confidence: M
+
+  - id: CRED.PEA.006
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned], nationality_group: uae_national}
+    condition: "first_instalment_grace_days <= 60"
+    severity: knockout
+    direction: max
+    limit: 60
+    message: "First-instalment grace above 60 days."
+    source: "F-29 [A]"
+    confidence: L
+
+  - id: CRED.PEA.007
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned]}
+    condition: "credit_life_insurance == True"
+    severity: knockout
+    message: "Credit life insurance is mandatory for personal loans (Company as beneficiary)."
+    source: "F-28 [B]"
+    confidence: M
+
+  # ---------------- Layer 3: personal loan, non-assigned ----------------
+  - id: CRED.PNA.001
+    layer: credit_policy
+    applies_to: {products: [personal_loan_non_assigned], employment_type: salaried}
+    condition: "(monthly_gross_income >= 5000 and aecb_score >= 600 and employer_category in ['A', 'B', 'C'] and salary_credit_months >= 6) or (monthly_gross_income >= 7000 and aecb_score >= 560)"
+    severity: knockout
+    message: "Non-assigned: AED 5,000 only with AECB 600+, employer A-C and 6 months of salary credits; otherwise AED 7,000."
+    source: "F-30 [A]"
+    confidence: M
+
+  - id: CRED.PNA.001s
+    layer: credit_policy
+    applies_to: {products: [personal_loan_non_assigned], employment_type: self_employed}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Self-employed non-assigned: minimum verified monthly income AED 5,000."
+    source: "Policy 7.1 default [B]"
+    confidence: M
+
+  - id: CRED.PNA.002
+    layer: credit_policy
+    applies_to: {products: [personal_loan_non_assigned]}
+    condition: "loan_amount <= (min(20 * monthly_gross_income, 250000) if nationality_group == 'uae_national' else min(10 * monthly_gross_income, 150000))"
+    severity: knockout
+    direction: max
+    limit: {uae_national: {income_multiple: 20, cap_aed: 250000}, expat: {income_multiple: 10, cap_aed: 150000}}
+    message: "Non-assigned amount above the cap (nationals 20x up to 250k; expats 10x up to 150k)."
+    source: "F-31 [A] -> CBUAE.RET.PF.MULTIPLE"
+    confidence: M
+
+  - id: CRED.PNA.003
+    layer: credit_policy
+    applies_to: {products: [personal_loan_non_assigned]}
+    condition: "tenor_months <= 48"
+    severity: knockout
+    direction: max
+    limit: 48
+    message: "Tenor above 48 months."
+    source: "[C] -> CBUAE.RET.PF.TENOR"
+    confidence: H
+
+  - id: CRED.PNA.004
+    layer: credit_policy
+    applies_to: {products: [personal_loan_non_assigned]}
+    condition: "uaedds_mandate_signed == True and security_cheque_received == True"
+    severity: knockout
+    message: "Non-assigned: UAEDDS mandate on the salary account and a security cheque required."
+    source: "F-33 [R]"
+    confidence: H
+
+  - id: CRED.PNA.005
+    layer: credit_policy
+    applies_to: {products: [personal_loan_non_assigned]}
+    condition: "interest_rate_pct >= 15.99 and interest_rate_pct <= 29.99"
+    severity: knockout
+    message: "Non-assigned rate outside the 15.99%-29.99% grid range."
+    source: "F-32 [A]"
+    confidence: M
+
+  # ---------------- Buyout, top-up, rescheduling (overlays) ----------------
+  - id: CRED.BO.001
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned], transaction: buyout}
+    condition: "loan_amount <= 100000 or track == 'employer_assigned'"
+    severity: knockout
+    message: "Buyouts above AED 100,000 must be on the employer-assigned track."
+    source: "F-34 [B]"
+    confidence: M
+
+  - id: CRED.BO.002
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned], transaction: buyout}
+    condition: "liability_letter_age_days <= 15"
+    severity: refer
+    direction: max
+    limit: 15
+    message: "Liability letter older than 15 days."
+    source: "F-34 [B]"
+    confidence: L
+
+  - id: CRED.BO.003
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned], transaction: buyout}
+    condition: "pays_other_lender_directly == True and (residual_release_requested == False or clearance_letter_received == True)"
+    severity: knockout
+    message: "Pay the other lender directly; release residual funds only after its clearance letter."
+    source: "F-34 [B]"
+    confidence: M
+
+  - id: CRED.BO.004
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned], transaction: buyout}
+    condition: "cost_comparison_signed == True"
+    severity: knockout
+    message: "Written cost comparison of the old and new loans must be signed by the customer."
+    source: "F-34 [C]"
+    confidence: H
+
+  - id: CRED.BO.005
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned], transaction: buyout}
+    condition: "pure_buyout == False or processing_fee_aed == 0"
+    severity: knockout
+    message: "No processing fee on a pure buyout."
+    source: "F-34 [B]"
+    confidence: M
+
+  - id: CRED.TU.001
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned], transaction: top_up}
+    condition: "clean_repayment_months >= 12 and top_ups_last_12m < 1 and fresh_aecb_and_dbr_done == True"
+    severity: knockout
+    message: "Top-up: 12 months' clean repayment, max one per 12 months, fresh AECB and DBR."
+    source: "F-35 [C] [B] -> CBUAE.RET.TOPUP.CLEAN"
+    confidence: H
+
+  - id: CRED.RS.001
+    layer: credit_policy
+    applies_to: {products: [rescheduling]}
+    condition: "tenor_months <= 48 or (dbr_before_rescheduling > 50 and new_money_aed == 0)"
+    severity: knockout
+    message: "Rescheduling beyond 48 months only when DBR is above 50% and with no new money."
+    source: "F-36 [C] -> CBUAE.RET.PF.TENOR"
+    confidence: H
+
+  - id: CRED.RS.002
+    layer: credit_policy
+    applies_to: {products: [rescheduling]}
+    condition: "deferrals_last_12m < 2"
+    severity: knockout
+    direction: max
+    limit: 2
+    message: "Maximum 2 deferrals a year."
+    source: "F-36 [C]"
+    confidence: M
+
+  # ---------------- Credit cards ----------------
+  - id: CRED.CC.001a
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: classic}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Classic card: minimum monthly income AED 5,000."
+    source: "F-37 [B] [C]"
+    confidence: M
+
+  - id: CRED.CC.001b
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: gold}
+    condition: "monthly_gross_income >= 12000"
+    severity: knockout
+    direction: min
+    limit: 12000
+    message: "Gold card: minimum monthly income AED 12,000."
+    source: "F-37 [B]"
+    confidence: M
+
+  - id: CRED.CC.001c
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: platinum}
+    condition: "monthly_gross_income >= 20000"
+    severity: knockout
+    direction: min
+    limit: 20000
+    message: "Platinum card: minimum monthly income AED 20,000."
+    source: "F-37 [B]"
+    confidence: M
+
+  - id: CRED.CC.002
+    layer: credit_policy
+    applies_to: {products: [credit_card]}
+    condition: "card_limit <= (3 if track == 'employer_assigned' else 2) * monthly_gross_income"
+    severity: knockout
+    direction: max
+    limit: {employer_assigned: 3, non_assigned: 2}
+    message: "Card limit above 3x (employer-assigned) / 2x (non-assigned) monthly income."
+    source: "F-38 [B] [P]"
+    confidence: L
+
+  - id: CRED.CC.003a
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: classic}
+    condition: "card_limit <= 25000"
+    severity: knockout
+    direction: max
+    limit: 25000
+    message: "Classic card limit above AED 25,000."
+    source: "F-38 [P]"
+    confidence: L
+
+  - id: CRED.CC.003b
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: gold}
+    condition: "card_limit <= 60000"
+    severity: knockout
+    direction: max
+    limit: 60000
+    message: "Gold card limit above AED 60,000."
+    source: "F-38 [P]"
+    confidence: L
+
+  - id: CRED.CC.003c
+    layer: credit_policy
+    applies_to: {products: [credit_card], card_tier: platinum}
+    condition: "card_limit <= 100000"
+    severity: knockout
+    direction: max
+    limit: 100000
+    message: "Platinum card limit above AED 100,000."
+    source: "F-38 [P]"
+    confidence: L
+
+  - id: CRED.CC.004
+    layer: credit_policy
+    applies_to: {products: [credit_card], employment_type: self_employed}
+    condition: "avg_balance_3m >= 50000"
+    severity: knockout
+    direction: min
+    limit: 50000
+    message: "Self-employed card: 3-month average balance at least AED 50,000 (no deposit-backed card)."
+    source: "F-40 [A] [R]"
+    confidence: M
+
+  - id: CRED.CC.005
+    layer: credit_policy
+    applies_to: {products: [credit_card]}
+    condition: "card_monthly_rate_pct <= (3.25 if card_tier == 'platinum' else 3.59)"
+    severity: knockout
+    message: "Card rate above 3.59% a month (Platinum 3.25%)."
+    source: "F-39 [B]"
+    confidence: M
+
+  - id: CRED.CC.006
+    layer: credit_policy
+    applies_to: {products: [credit_card], transaction: limit_increase}
+    condition: "customer_express_consent == True and fresh_affordability_check == True"
+    severity: knockout
+    message: "Limit increases only with express consent and a fresh affordability check."
+    source: "Policy 8.4 [C]"
+    confidence: H
+
+  # ---------------- Auto loans ----------------
+  - id: CRED.AL.001
+    layer: credit_policy
+    applies_to: {products: [auto_loan]}
+    condition: "monthly_gross_income >= 5000"
+    severity: knockout
+    direction: min
+    limit: 5000
+    message: "Auto loan: minimum monthly income AED 5,000."
+    source: "F-41 [B]"
+    confidence: H
+
+  - id: CRED.AL.002
+    layer: credit_policy
+    applies_to: {products: [auto_loan]}
+    condition: "down_payment_pct >= 20 and loan_amount <= 500000"
+    severity: knockout
+    message: "Down payment below 20% or amount above AED 500,000."
+    source: "F-42 [C] / F-43 [A] -> CBUAE.AUTO.LTV"
+    confidence: H
+
+  - id: CRED.AL.003
+    layer: credit_policy
+    applies_to: {products: [auto_loan]}
+    condition: "tenor_months <= 60 and vehicle_age_at_maturity <= 10"
+    severity: knockout
+    message: "Tenor above 60 months or vehicle older than 10 years at the end of the loan."
+    source: "F-42 [C] / F-45 [B] -> CBUAE.AUTO.TENOR"
+    confidence: H
+
+  - id: CRED.AL.004
+    layer: credit_policy
+    applies_to: {products: [auto_loan]}
+    condition: "seller_type == 'dealer' or approved_valuation == True"
+    severity: knockout
+    message: "Private sale needs a Company-approved valuation."
+    source: "F-46 [B]"
+    confidence: M
+
+  - id: CRED.AL.005
+    layer: credit_policy
+    applies_to: {products: [auto_loan], employment_type: self_employed}
+    condition: "trade_licence_years >= 2 and avg_monthly_balance >= 15000"
+    severity: knockout
+    message: "Self-employed auto: licence at least 2 years and average balance at least AED 15,000."
+    source: "F-47 [B]"
+    confidence: M
+
+  - id: CRED.AL.006
+    layer: credit_policy
+    applies_to: {products: [auto_loan]}
+    condition: "rta_mortgage_registered == True and comprehensive_motor_insurance == True and company_first_beneficiary == True"
+    severity: knockout
+    message: "RTA vehicle mortgage and comprehensive insurance with the Company as first beneficiary are mandatory."
+    source: "F-48 [B]"
+    confidence: M
+
+  - id: CRED.AL.007
+    layer: credit_policy
+    applies_to: {products: [auto_loan]}
+    condition: "auto_flat_rate_pct >= (3.49 if vehicle_condition == 'new' else 4.49) and auto_flat_rate_pct <= (4.99 if vehicle_condition == 'new' else 5.99)"
+    severity: knockout
+    message: "Auto flat rate outside the grid (new 3.49%-4.99%; used 4.49%-5.99%)."
+    source: "F-44 [A]"
+    confidence: M
+
+  # ---------------- Gold-backed ----------------
+  - id: CRED.GOLD.001
+    layer: credit_policy
+    applies_to: {products: [gold_backed]}
+    condition: "gold_ltv <= 70"
+    severity: knockout
+    direction: max
+    limit: 70
+    message: "Gold-backed loan above 70% of the gold's market value."
+    source: "F-49 [A]"
+    confidence: M
+
+  - id: CRED.GOLD.002
+    layer: credit_policy
+    applies_to: {products: [gold_backed]}
+    condition: "gold_ltv < 80"
+    severity: warn
+    direction: max
+    limit: 80
+    message: "Top-up call: gold LTV at or above 80%. Sale only at 85% after written notice and the cure period."
+    source: "F-49 [A]"
+    confidence: L
+
+  - id: CRED.GOLD.003
+    layer: credit_policy
+    applies_to: {products: [gold_backed]}
+    condition: "loan_amount >= 5000 and loan_amount <= 250000 and tenor_months <= 24"
+    severity: knockout
+    message: "Gold-backed amount outside AED 5,000-250,000 or tenor above 24 months."
+    source: "F-49 / F-50 [A]"
+    confidence: M
+
+  - id: CRED.GOLD.004
+    layer: credit_policy
+    applies_to: {products: [gold_backed]}
+    condition: "gold_assayed_in_company_custody == True"
+    severity: knockout
+    message: "Gold must be assayed and held in the Company's approved custody (or approved certificates)."
+    source: "Policy 8.6 [A]"
+    confidence: M
+
+  # ---------------- EOSB as additional security (inside employer-assigned loans) ----------------
+  - id: CRED.EOS.001
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned], uses_eosb_security: true}
+    condition: "track == 'employer_assigned' and eos_undertaking_received == True and eos_legal_opinion_ok == True"
+    severity: knockout
+    message: "EOSB security only inside an employer-assigned loan with an irrevocable undertaking and a legal opinion."
+    source: "F-51 [B] / policy 8.7 [A]"
+    confidence: M
+
+  - id: CRED.EOS.002
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned], uses_eosb_security: true}
+    condition: "eosb_service_years >= 3 and loan_amount_against_eosb <= 0.80 * eosb_accrued"
+    severity: knockout
+    message: "EOSB-backed portion above 80% of accrued EOSB, or service below 3 years."
+    source: "F-51 [B]"
+    confidence: L
+
+  - id: CRED.EOS.003
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned], uses_eosb_security: true}
+    condition: "total_personal_loans <= 20 * monthly_gross_income and tenor_months <= 48"
+    severity: knockout
+    message: "Total personal lending including the EOSB-backed portion must stay within 20x income and 48 months."
+    source: "F-51 [C] -> CBUAE.RET.PF.MULTIPLE"
+    confidence: H
+
+  # ---------------- Salary advance (short-term credit) ----------------
+  - id: CRED.SA.001
+    layer: credit_policy
+    applies_to: {products: [salary_advance]}
+    condition: "net_monthly_income >= 3000 and wps_salary == True"
+    severity: knockout
+    message: "Salary advance: net salary at least AED 3,000 paid through WPS."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.002
+    layer: credit_policy
+    applies_to: {products: [salary_advance]}
+    condition: "loan_amount <= min(0.50 * net_monthly_income, 5000)"
+    severity: knockout
+    direction: max
+    limit: {pct_of_net_salary: 50, max_aed: 5000}
+    message: "Salary advance above 50% of net salary or AED 5,000."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.003
+    layer: credit_policy
+    applies_to: {products: [salary_advance]}
+    condition: "term_days <= 35"
+    severity: knockout
+    direction: max
+    limit: 35
+    message: "Salary advance repaid in one payment within 35 days."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.004
+    layer: credit_policy
+    applies_to: {products: [salary_advance]}
+    condition: "advances_last_12m < 6 and advances_outstanding == 0 and current_dpd == 0"
+    severity: knockout
+    message: "Salary advance: max 6 a year, one at a time (no rollover), no arrears."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.005a
+    layer: credit_policy
+    applies_to: {products: [salary_advance], advance_band: up_to_1000}
+    condition: "advance_fee_aed <= 30"
+    severity: knockout
+    direction: max
+    limit: 30
+    message: "Salary advance up to AED 1,000: flat fee above AED 30."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.005b
+    layer: credit_policy
+    applies_to: {products: [salary_advance], advance_band: from_1001_to_2500}
+    condition: "advance_fee_aed <= 60"
+    severity: knockout
+    direction: max
+    limit: 60
+    message: "Salary advance AED 1,001-2,500: flat fee above AED 60."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.005c
+    layer: credit_policy
+    applies_to: {products: [salary_advance], advance_band: from_2501_to_5000}
+    condition: "advance_fee_aed <= 120"
+    severity: knockout
+    direction: max
+    limit: 120
+    message: "Salary advance AED 2,501-5,000: flat fee above AED 120."
+    source: "F-52 [A]"
+    confidence: M
+
+  - id: CRED.SA.006
+    layer: credit_policy
+    applies_to: {products: [salary_advance]}
+    condition: "late_payment_fee_aed <= 50"
+    severity: knockout
+    direction: max
+    limit: 50
+    message: "Salary advance: one late fee of at most AED 50."
+    source: "F-52 [A]"
+    confidence: M
+
+  # ---------------- BNPL (phase 2; product disabled until launch) ----------------
+  - id: CRED.BNPL.001
+    layer: credit_policy
+    applies_to: {products: [bnpl]}
+    condition: "loan_amount <= min(10000, net_monthly_income)"
+    severity: knockout
+    direction: max
+    limit: {max_aed: 10000, net_income_multiple: 1}
+    message: "BNPL above the lower of AED 10,000 or 1x net monthly income."
+    source: "F-53 [A]"
+    confidence: M
+
+  - id: CRED.BNPL.002
+    layer: credit_policy
+    applies_to: {products: [bnpl]}
+    condition: "tenor_months <= 6"
+    severity: knockout
+    direction: max
+    limit: 6
+    message: "BNPL longer than 6 months."
+    source: "F-53 [A]"
+    confidence: M
+
+  - id: CRED.BNPL.003
+    layer: credit_policy
+    applies_to: {products: [bnpl]}
+    condition: "late_fee_per_instalment_aed <= 50 and total_fees_aed <= 0.10 * loan_amount"
+    severity: knockout
+    message: "BNPL late fee above AED 50 per instalment or total fees above 10%."
+    source: "F-53 [A]"
+    confidence: M
+
+  - id: CRED.BNPL.004
+    layer: credit_policy
+    applies_to: {products: [bnpl]}
+    condition: "bnpl_active_plans < 3"
+    severity: knockout
+    direction: max
+    limit: 3
+    message: "Maximum 3 active BNPL plans."
+    source: "F-53 [A]"
+    confidence: M
+
+  # ---------------- Home finance (not offered; phase 2 gate) ----------------
+  - id: CRED.HL.001
+    layer: credit_policy
+    applies_to: {products: [home_loan]}
+    condition: "mortgage_finance_licence == True"
+    severity: knockout
+    message: "Home finance needs a mortgage-finance licence and a CBUAE no-objection letter (phase 2)."
+    source: "F-55 [A]"
+    confidence: H
+
+  # ---------------- Company fee tariff (tighter than CBUAE for auto) ----------------
+  - id: CRED.FEE.001
+    layer: credit_policy
+    applies_to: {products: [personal_loan_employer_assigned, personal_loan_non_assigned, auto_loan, gold_backed]}
+    condition: "late_payment_fee_aed <= min(max(0.02 * overdue_instalment, 50), 200)"
+    severity: knockout
+    direction: max
+    limit: {pct_of_overdue_instalment: 2, min_aed: 50, max_aed: 200}
+    message: "Late fee above 2% of the overdue instalment (min AED 50, max AED 200, + VAT)."
+    source: "F-26 / F-48 [C] [B]"
+    confidence: M
+
+  # ---------------- Grade decision (model escalation; policy always wins) ----------------
+  - id: CRED.GRD.001
+    layer: credit_policy
+    applies_to: {products: all}
+    condition: "grade <= 6"
+    severity: refer
+    message: "Model escalation: AI grade 7-8, refer to the Chief Risk Officer (policy passed)."
+    source: "F-56 [B]"
+    confidence: H
+
+  - id: CRED.GRD.002
+    layer: credit_policy
+    applies_to: {products: all}
+    condition: "grade <= 8"
+    severity: knockout
+    message: "AI grade 9-10: decline."
+    source: "F-56 [B]"
+    confidence: H

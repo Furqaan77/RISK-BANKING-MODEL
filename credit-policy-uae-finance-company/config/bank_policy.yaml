@@ -1,0 +1,331 @@
+# =====================================================================================
+# AI Risk Score Card - PILOT FINANCE COMPANY (conventional) - Layer 2: COMPANY POLICY
+# Tenant: demo_finance_company   |   Policy version: 0.1 (draft)   |   Effective: 2026-11-09
+# Source of truth: credit-policy-uae-finance-company/03-parameter-sheet.md (F-01..F-60)
+#                  and 05-retail-credit-policy.md (sections 4, 7, 9, 11, 14, 15)
+#
+# The file keeps the name bank_policy.yaml so the AI Risk Score Card loader finds it;
+# the layer is the COMPANY policy of a finance company licensed under the
+# Finance Companies Regulation (FCR, Circular C 3/2023), Part I, conventional only.
+#
+# Layers (tighten-only, AD-3):
+#   1 Regulatory  = CBUAE consumer rules + FCR prudential rules (rules.yaml: regulatory_baseline,
+#                   cbuae_references, REG.* rules and PRU.FCR.* prudential rules)
+#   2 Company     = this file (+ CO.RET.*, PRU.CO.* and PORT.* rules)
+#   3 Credit      = credit_policy.yaml (+ CRED.* rules)
+# Nothing in Layer 2 or 3 may be looser than Layer 1. Policy always wins over the AI grade.
+#
+# Tags (same as the parameter sheet):
+#   B = bank criterion carried over unchanged      C = CBUAE consumer rule
+#   R = Finance Companies Regulation rule          A = adjusted for the FC market/rules (sign-off)
+#   P = proposal, no published market figure (sign-off)
+# Vocabulary: conventional (loan, interest rate, borrower, pledge, insurance).
+# =====================================================================================
+
+meta:
+  tenant: demo_finance_company
+  layer: company_policy
+  institution_type: finance_company_fcr_part_i
+  version: "0.1"
+  status: draft
+  effective_date: "2026-11-09"
+  currency: AED
+  parameter_sheet: credit-policy-uae-finance-company/03-parameter-sheet.md
+  policy_document: credit-policy-uae-finance-company/05-retail-credit-policy.md
+  bank_source_policy: credit-policy-uae-conventional/03-parameter-sheet.md
+  benchmark_set: [finance_house, deem, al_ain_finance, aafaq, mawarid, siraj, al_futtaim_finance, botim_cashnow, e_and_easycredit, tamara, tabby, top5_conventional_banks]
+  maker_checker_required: true
+  vocabulary_profile: conventional
+
+# -------------------------------------------------------------------------------------
+# 1. Licence and product scope (F-01, F-05, F-53, F-54, F-55) [R]
+# -------------------------------------------------------------------------------------
+licence_scope:
+  licence: fcr_part_i_full_finance_company        # F-01 [R]
+  conventional_only: true
+  islamic_window_allowed: false                   # F-01 [R] a finance company may not run an Islamic window
+  individual_deposits_allowed: false              # F-05 [R] no deposits or accounts for individuals
+  overdrafts_allowed: false                       # F-05 [R] follows from no individual accounts
+  cbuae_no_objection_letter_per_product_line: true   # F-01 [R]
+  phase_1_products: [personal_loan_employer_assigned, personal_loan_non_assigned, credit_card, auto_loan, gold_backed, salary_advance]
+  phase_2_products: [bnpl, home_loan]             # F-53 / F-55 [A] each needs a CBUAE no-objection letter
+  not_offered: [deposit_backed, overdraft]        # F-54 [R]
+  agents_and_partners: written_agreement_applying_this_policy_kfs_and_telemarketing_rules
+
+# -------------------------------------------------------------------------------------
+# 2. Prudential limits (F-02, F-03, F-04, F-06) - section 4 of the policy
+#    Regulatory values are repeated in rules.yaml regulatory_baseline; values here may only be tighter.
+# -------------------------------------------------------------------------------------
+prudential:
+  capital_funds_aed: 150000000                    # F-02 [R] paid-up capital at the FCR minimum; updated quarterly
+  leverage:
+    max_liabilities_pct_of_capital_funds: 100     # F-02 [R] licence years 0-2
+    later_steps_with_cbuae_approval_pct: [200, 300, 500, 700]   # [R] reference only, not enabled
+    early_warning_pct_of_limit: 85                # F-02 [P] slow disbursements, report to Board
+  pilot_book_cap_gross_retail_loans_aed: 250000000   # F-02 [P] years 0-2
+  liquidity:
+    min_liquid_assets_pct_of_liabilities: 10      # F-06 [R]
+    internal_trigger_pct: 12                      # F-06 [P] hold new disbursements below this
+    max_liquid_assets_in_one_bank_pct: 25         # policy 4.3
+  large_exposures:
+    large_exposure_threshold_pct: 7               # [R] AED 10.5m at AED 150m
+    single_borrower_max_pct: 10                   # F-03 [R] AED 15m
+    connected_group_max_pct: 15                   # F-03 [R] AED 22.5m
+    principal_shareholder_affiliate_single_max_pct: 10   # F-04 [R]
+    principal_shareholder_affiliate_aggregate_max_pct: 20   # F-04 [R]
+  internal_cap_per_individual_all_products_aed: 1000000   # F-03 [P] above this: Board Credit Committee exception
+  board_member_lending_allowed: false             # F-04 [R]
+  related_party_screening_at_onboarding: true     # F-04 [R]
+  related_party_cases_to: board_credit_committee  # policy 4.2
+  funding:
+    legal_entity_deposits_min_term_days: 30       # F-05 [R]
+    single_depositor_max_pct: 20
+    foreign_funding_max_pct: 25
+    foreign_funding_hedged: true
+
+# -------------------------------------------------------------------------------------
+# 3. Eligibility (F-09..F-12, section 7.1)
+# -------------------------------------------------------------------------------------
+eligibility:
+  customer_groups:                                # F-09 [B]
+    uae_national: eligible
+    expat_resident: eligible
+    non_resident: excluded_v1
+  nationality_exclusions: none                    # F-19 [B] sanctions screening only
+  sanctions_screening_required: true
+  age:
+    min_age_years: 21                             # F-10 [B]
+    max_age_at_maturity:                          # F-11 [B]
+      default: {uae_national: 65, expat: 60}
+      retiree_pension_based: {uae_national: 70}
+  minimum_service_months:                         # F-12 [B] / policy 7.1
+    employer_assigned: 3
+    non_assigned: 6
+    salary_advance: 6
+  minimum_monthly_gross_income_aed:
+    default: 5000                                 # product minimums in credit_policy.yaml
+    salary_advance_net_wps: 3000                  # F-52 [A]
+  income_verification:
+    self_declared_income_alone_allowed: false
+    variable_pay: {average_months: 12, haircut_pct: 50}
+
+# -------------------------------------------------------------------------------------
+# 4. Repayment tracks (F-13, F-27, F-33) [A]
+# -------------------------------------------------------------------------------------
+tracks:
+  employer_assigned:
+    description: "Employer signs the Company's salary-assignment letter and an irrevocable EOS undertaking; repayment by UAEDDS direct debit from the customer's salary account at their bank. Replaces the bank salary transfer, because a finance company cannot hold salary accounts."
+    required_security: [salary_assignment_letter_company_format, irrevocable_eos_undertaking, uaedds_mandate_on_salary_account]
+    security_cheque: {max_pct_of_loan: 120, blank_allowed: false}      # F-27 [R]
+    salary_moved_without_clearance:                                   # F-27 [P] policy 8.1
+      contact_within_working_days: 5
+      new_uaedds_mandate_within_days: 30
+      otherwise: reprice_to_non_assigned_grid_same_grade
+  non_assigned:
+    description: "No employer letter; UAEDDS direct debit from the salary account plus a security cheque."
+    required_security: [uaedds_mandate_on_salary_account, security_cheque]
+    security_cheque: {max_pct_of_loan: 120, blank_allowed: false}      # F-33 [R]
+    min_service_months: 6
+
+# -------------------------------------------------------------------------------------
+# 5. Employer categories (F-14, Annex B) - all accepted, tiered [B]
+# -------------------------------------------------------------------------------------
+employer_categories:
+  A: {label: "Federal and local government, semi-government, MoD, Armed Forces, MoI", accepted: true}
+  B: {label: "Listed private: >= 3 years trading, >= 100 UAE staff on WPS, satisfactory financials", accepted: true}
+  C: {label: "Other listed private: >= 2 years trading, >= 25 UAE staff on WPS", accepted: true}
+  D:
+    label: "Non-listed employers"
+    accepted: true
+    employer_assigned_max_aed: 150000             # F-21 [A]
+    non_assigned_min_income_aed: 7000             # F-30 [A]
+  framework_agreement_required_for_employer_assigned: true
+  unknown_employer_default: D
+
+# -------------------------------------------------------------------------------------
+# 6. Credit bureau (F-08, F-16, section 7.2) [R] [A]
+# -------------------------------------------------------------------------------------
+aecb:
+  report_before_every_credit_any_amount: true     # F-08 [R]
+  monthly_data_submission: true
+  score_range: [300, 900]
+  min_score:                                      # F-16 [A]
+    employer_assigned_pl_cards_auto: {uae_national: 500, expat: 541}   # policy 7.2 groups cards and auto with this row
+    non_assigned_pl: 560
+    non_assigned_pl_aed_5000_entry: 600
+    gold_backed_refer_below: 541                  # no floor; refer below 541
+    salary_advance: 541
+    salary_advance_thin_file: {allowed: true, max_amount_aed: 1000, min_wps_credit_months: 6}
+    bnpl: null                                    # no score floor in 05; report for every plan + DBR + knock-outs
+  knock_outs:
+    current_dpd_ge: 30
+    dpd_90_plus_writeoff_or_partial_settlement_in_last_months: 24
+    court_or_police_case_for_unpaid_debt: true
+  refer_triggers:
+    aecb_enquiries_in_30_days_gt: 6
+  consent_required: true
+
+# -------------------------------------------------------------------------------------
+# 7. Sector watch-list (F-19, policy 7.5) [P]
+# -------------------------------------------------------------------------------------
+sector_watch_list:
+  mechanism: "Credit Risk keeps a list of employer sectors under stress. Listed sectors get lower maximum amounts and AI-grade caps (Refer), never blanket exclusion."
+  severity: refer
+  sectors: []                                     # populated by Credit Risk via maker-checker
+
+# -------------------------------------------------------------------------------------
+# 8. Documents and statements (F-17, F-18, Annex C)
+# -------------------------------------------------------------------------------------
+documents:
+  common: [emirates_id, passport_and_residence_visa, aecb_consent, signed_application, kfs_acknowledgement, signed_affordability_summary]
+  statements_months:                              # F-17 [A]
+    employer_assigned: 3                          # or UAEFTS consent
+    non_assigned: 6                               # 12 where available
+    self_employed: 12
+    credit_card: 3
+    auto_loan: 3
+    gold_backed: 6
+    salary_advance_wps_credits: 3
+  employer_assigned: [salary_assignment_letter, irrevocable_eos_undertaking, salary_certificate, uaedds_mandate]
+  non_assigned: [salary_certificate, uaedds_mandate, security_cheque]
+  self_employed: [trade_licence, memorandum_of_association, personal_and_company_statements_12_months]
+  auto_loan_additional: [vehicle_quotation_or_valuation, comprehensive_motor_insurance]
+  gold_backed_additional: [gold_assay_report, custody_receipt]
+
+self_employed:                                    # F-18 [A], F-40 [A], F-47 [B]
+  min_trade_licence_years: 2
+  statements_months: 12
+  min_average_monthly_balance_aed:
+    personal_loan: 20000
+    auto_loan: 15000
+    credit_card_3m_average: 50000
+  personal_loan_max_aed: 250000
+  deposit_backed_card_alternative: false          # cannot take deposits
+  sme_consumer_protection_regulation: C_2_2026
+
+# -------------------------------------------------------------------------------------
+# 9. Affordability (F-15, section 7.3) [C] [R]
+# -------------------------------------------------------------------------------------
+affordability:
+  dbr_income_basis: gross_monthly_income
+  dbr_max_pct: 50                                 # [C] reference = CBUAE.RET.DBR
+  dbr_max_pct_retiree: 30                         # [C]
+  card_obligation_pct_of_limit: 5
+  bnpl_instalments_counted_in_full: true          # F-08 / F-15 [R]
+  rate_rise_stress_test_variable_rate: true       # [C]
+  signed_affordability_summary_required: true     # [C]
+  essential_expenses_review_below_income_aed: 8000
+  balloon_or_tenor_stretch_to_pass_dbr: false
+
+# -------------------------------------------------------------------------------------
+# 10. Risk-based pricing grid by AI grade (F-23, F-32, F-44, F-56; section 9.1) [A]
+#     Rates in % a year. Personal loans reducing balance; auto flat (APR in the KFS).
+#     The pricing engine reads the rate for the grade from this grid; rules check floor/ceiling.
+# -------------------------------------------------------------------------------------
+pricing_grid:
+  personal_loan_employer_assigned_pct: {1: 12.99, 2: 13.99, 3: 14.99, 4: 16.49, 5: 17.99, 6: 19.99, 7: 22.49, 8: 24.99, 9: null, 10: null}
+  personal_loan_non_assigned_pct:      {1: 15.99, 2: 16.99, 3: 17.99, 4: 19.49, 5: 21.49, 6: 23.99, 7: 26.99, 8: 29.99, 9: null, 10: null}
+  auto_new_flat_pct:                   {1: 3.49, 2: 3.49, 3: 3.49, 4: 3.99, 5: 3.99, 6: 3.99, 7: 4.99, 8: 4.99, 9: null, 10: null}
+  auto_used_flat_pct:                  {1: 4.49, 2: 4.49, 3: 4.49, 4: 4.99, 5: 4.99, 6: 4.99, 7: 5.99, 8: 5.99, 9: null, 10: null}
+  credit_card_monthly_pct: {classic: 3.59, gold: 3.59, platinum: 3.25}   # F-39 [B]
+  gold_backed_pct: 14.99                          # F-50 [A]
+  salary_advance: flat_fee_only                   # F-52
+  bnpl: no_interest                               # F-53
+  salary_moved_without_clearance: reprice_to_non_assigned_same_grade   # F-27 [P]
+  floor_must_cover: [funding_cost, operating_cost, expected_loss, return_on_capital]   # F-56 [P]
+
+# -------------------------------------------------------------------------------------
+# 11. Credit approval matrix (F-57, section 11) [A] [R] - Board approves; review every 2 years
+# -------------------------------------------------------------------------------------
+delegation_of_authority:
+  - authority: credit_officer
+    unsecured_total_max_aed: 100000
+    secured_max_aed: 250000                       # auto, gold
+    max_grade: 6
+    deviations: none
+  - authority: senior_credit_officer
+    unsecured_total_max_aed: 300000
+    secured_max_aed: 500000
+    max_grade: 6
+    deviations: {scope: company_policy_items, max_grade: 4}
+  - authority: head_of_credit
+    unsecured_total_max_aed: 750000
+    secured_max_aed: 750000
+    max_grade: 6
+    deviations: {scope: company_policy_items, max_grade: 6}
+  - authority: chief_risk_officer
+    unsecured_total_max_aed: 1000000
+    secured_max_aed: 1000000
+    max_grade: 8
+    deviations: {scope: grade_7_8_cases, max_grade: 8}
+  - authority: board_credit_committee
+    unsecured_total_max_aed: null                 # above AED 1m (exceptions to the per-individual cap)
+    secured_max_aed: null
+    max_grade: 8
+    deviations: {scope: policy_exceptions_and_all_related_party_cases, max_grade: 8}
+
+approval_matrix_governance:
+  approved_by: board_of_directors                 # [R]
+  matrix_review_years: 2                          # [R]
+
+deviation_rules:
+  regulatory_rules_deviable: false                # CBUAE and FCR rules can never be deviated
+  grades_9_10_approvable: false
+  board_members_can_borrow: false
+  by_grade:
+    "1-4": {deviation_possible: true, min_authority: senior_credit_officer}
+    "5-6": {deviation_possible: true, min_authority: head_of_credit}
+    "7-8": {deviation_possible: true, min_authority: chief_risk_officer}
+    "9-10": {deviation_possible: false, min_authority: null}
+  record: [rule, reason, approver, ai_grade]
+  deviation_rate_reported: monthly
+
+decision_bands:                                   # F-56; policy section 10
+  approve_grades: [1, 2, 3, 4, 5, 6]
+  refer_grades: [7, 8]
+  decline_grades: [9, 10]
+  policy_always_wins: true
+  ai_never_approves_policy_reject: true
+  recommended_amount: lowest_of_all_caps_with_binding_constraint_shown
+
+# -------------------------------------------------------------------------------------
+# 12. Portfolio limits (F-58, section 15) [P] - checked before each approval and monthly
+# -------------------------------------------------------------------------------------
+portfolio_limits:
+  non_assigned_share_of_pl_book_max_pct: 35       # action: raise non-assigned AECB floor to 600
+  category_d_share_of_pl_book_max_pct: 25         # action: cap new category D approvals
+  single_employer_share_of_assigned_book_max_pct: 5   # action: Credit Committee review
+  gold_backed_share_of_retail_book_max_pct: 5     # action: stop new gold lending
+  salary_advance_plus_bnpl_share_of_retail_book_max_pct: 2   # action: pause new advances and plans
+  aecb_541_599_share_of_monthly_approvals_max_pct: 25   # action: raise floors by 20 points
+  deviation_share_of_monthly_approvals_max_pct: 5  # action: CRO review
+
+# -------------------------------------------------------------------------------------
+# 13. Monitoring and provisioning (F-60, section 14) [C] [R]
+# -------------------------------------------------------------------------------------
+monitoring:
+  rescore_book: nightly
+  early_warning_triggers:
+    - salary_not_credited_or_salary_account_changed_on_assigned_loan
+    - card_utilisation_gt_85_pct
+    - new_arrears_or_new_bnpl_elsewhere_aecb
+    - salary_advances_4_or_more_in_6_months
+    - returned_direct_debits
+  early_warning_review_working_days: 5
+provisioning:
+  ifrs9_stage_2_dpd_gt: 30
+  ifrs9_stage_3_dpd_gt: 90
+  write_off_by_dpd: 180                           # until the CBUAE maximum is confirmed [R]
+
+# -------------------------------------------------------------------------------------
+# 14. Consumer protection (F-59) [C]
+# -------------------------------------------------------------------------------------
+consumer_protection:
+  kfs_and_apr_before_contract: true
+  cooling_off_business_days: 5
+  security_cheque_max_pct_of_loan: 120
+  blank_cheques_allowed: false
+  disbursement_within_business_days: 10
+  telemarketing: {consent_required: true, hours: "09:00-18:00", agent_training_hours_min: 15}
+  written_cost_comparison_for_buyout_and_consolidation: true
+  automatic_limit_increases: false

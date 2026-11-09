@@ -1,0 +1,12 @@
+bank,type,total_assets_aed_bn,retail_loans_aed_bn,pl_min_salary_stl,pl_min_salary_nonstl,pl_max_nat_aed,pl_max_exp_aed,pl_rate_min,pl_rate_max,pl_tenor_m,age_min,age_max_nat,age_max_exp,card_min_salary,card_rate_month,card_min_pay_pct,home_min_salary_nat,home_min_salary_exp,home_ltv_nat,home_ltv_exp,home_fixed_rate,auto_min_salary,auto_max_aed,auto_rate_flat,auto_down_pct,deposit_advance_pct,nonstl_offered,confidence,key_source_url
+HSBC Bank Middle East (UAE),foreign,187.8,,7500,,,,7.00,15.25,48,21,65,65,5000,3.69,,15000,15000,80,75,4.05,,,,,,N,M,https://www.hsbc.ae/loans/products/personal/
+Standard Chartered UAE,foreign,69.9,9.8,,,,,7.55,17.00,48,21,65,65,8000,3.69,1,30000,30000,80,75,3.75,,,,,,N,M,https://av.sc.com/ae/content/docs/ae-scb-key-facts-statement.pdf
+Citibank N.A. UAE,foreign,50.1,5.3,,,,,15.00,,,,,,5000,3.69,2.74,,,,,,,,,,,Y,H,https://www.citibank.ae/content/dam/cgcpc/ae/prelogin/www-citibank-ae/doc/pdf/kfs-cards.pdf
+Arab Bank UAE,foreign,,,7500,,730000,730000,6.74,,48,,,,,3.59,,15000,20000,80,80,,5000,,,20,,N,M,https://www.arabbank.ae/mainmenu/home/Consumer-Banking/loans-credit-facilities/personal-loan
+Habib Bank AG Zurich UAE,foreign,14.7,,,,,,,,,,,,5000,1.99,5,,,80,80,2.99,,600000,3.50,20,100,Y,H,https://habibbank.com/ae/wp-content/uploads/sites/2/2026/09/KFS07CB_ACK_07SEP26.pdf
+Bank of Baroda UAE,foreign,,,4000,,,,,,,21,,,,,,10000,10000,,,5.10,,,,,,Y,L,http://yallacompare.com/uae/en/mortgages/bank-of-baroda-home-loan/
+United Bank Limited UAE,foreign,,,,,,,,,,,,,,,,20000,20000,,,,,,,,,Y,M,https://ubldigital.com/UAE-Home/Loans/Loan-Home
+Doha Bank UAE,foreign,,,,,,,,,,,,,,3.50,,,,,,,,,,,,,H,https://ae.dohabank.com/schedule-of-charges/charges-personal-customers/
+Banque Misr UAE,foreign,,,,,,,,,,,,,,,,,,,,,,,,,90,Y,M,https://www.banquemisr.ae/personal-banking/loan/
+Al Ahli Bank of Kuwait UAE,foreign,,,,,,,,,,,,,,,,,,,80,3.99,,,,,80,Y,H,https://abk.eahli.com/en/documents/843/Key_Facts_Statements_-_Mortgage_Loan2025.pdf
+National Bank of Kuwait UAE,foreign,,,,,,,,,,,,,,2.49,,18365,18365,65,65,,,,,,,,H,https://www.nbk.com/uae/personal/loans/Housing-Loan.html

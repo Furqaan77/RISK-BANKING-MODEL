@@ -1,0 +1,279 @@
+# =====================================================================================
+# AI Risk Score Card - CONVENTIONAL BANK - Layer 3: CREDIT POLICY (products)
+# Tenant: demo_conventional_bank   |   Version 0.1 (draft)   |   Effective 2026-11-09
+# Source of truth: credit-policy-uae-conventional/03-parameter-sheet.md
+# Tags:
+#   [I]  credit criterion carried over unchanged from the recommended Islamic policy
+#   [C]  CBUAE rule
+#   [M]  conventional top-five median
+#   [P]  proposed
+#   [CV] converted to conventional practice
+# Rates are reducing-balance unless marked flat. Fees exclude 5% VAT unless vat_included: true.
+# CBUAE values are references; config/regulators/cbuae.yaml is the authority (tighten-only).
+# Vocabulary note: needs the conventional tenant profile (UAE edition v1 is Islamic-vocabulary only).
+# =====================================================================================
+
+meta:
+  tenant: demo_conventional_bank
+  layer: credit_policy
+  version: "0.1"
+  status: draft
+  effective_date: "2026-11-09"
+  currency: AED
+  vat_pct: 5
+  vocabulary_profile: conventional
+
+# -------------------------------------------------------------------------------------
+# Grades, decision bands and risk-based pricing add-ons (§9) [I]
+# -------------------------------------------------------------------------------------
+grades:
+  pd_bands_pct:                                      # upper bounds, 12-month PD
+    1: 0.25
+    2: 0.5
+    3: 1.0
+    4: 2.0
+    5: 3.5
+    6: 5.0
+    7: 8.0
+    8: 12.0
+    9: 20.0
+    10: 100.0
+  decision:
+    approve: [1, 2, 3, 4, 5, 6]
+    refer: [7, 8]                                    # model escalation; deviation authority
+    decline: [9, 10]
+  pricing_add_on_over_floor_pct:                     # personal loans; applied within product ceiling
+    "1-3": [0.00, 1.00]
+    "4-6": [1.00, 5.00]
+    "7-8": [5.00, 10.00]
+    "9-10": null
+
+# Shared conventional fee definitions [CV]
+fee_definitions:
+  late_payment_fee_instalment:                       # P-18 / P-50 [CV, M] personal and auto loans
+    pct_of_overdue_instalment: 2.0
+    min_aed: 50
+    max_aed: 200
+    vat_included: false
+    retained_as_income: true
+  early_settlement_standard:                         # P-17 [C/CV]
+    pct: 1.0
+    max_aed: 10000
+    vat_included: false
+    basis: outstanding_principal
+
+# -------------------------------------------------------------------------------------
+# Products
+# -------------------------------------------------------------------------------------
+products:
+
+  personal_loan_salary_assigned:                     # P-12..P-20a
+    structure: conventional_personal_loan
+    track: salary_assigned
+    min_monthly_gross_income_aed: 5000               # P-12 [I]
+    max_loan_amount:                                 # P-13 [C+I]  lower of all applicable caps
+      income_multiple: 20                            # [C] CBUAE 20x monthly income
+      cap_aed: {uae_national: 4000000, expat: 2000000}
+      cap_aed_employer_cat_d: 500000
+    max_tenor_months: 48                             # P-14 [C]
+    max_tenor_months_mod_af: 60                      # P-14 [C] only where CBUAE exemption applies - VERIFY
+    pricing:                                         # P-15 [I]
+      interest_rate_floor_pct: {uae_national: 5.49, expat: 5.99}
+      interest_rate_ceiling_pct: 19.99
+      risk_based: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}     # P-16 [C]
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, basis: outstanding_principal}   # P-17 [C/CV]
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false, retained_as_income: true}   # P-18 [CV, M]
+    security:                                        # P-19 [I]
+      employer_salary_transfer_letter: required
+      irrevocable_eos_undertaking: required
+      wps_salary_credit_verified: required
+      undated_security_cheque: per_legal_advice
+      salary_not_credited_step_up: {months: 3, interest_rate_step_up_pct_pa: 2.0}
+    insurance:                                       # P-20a [CV]
+      credit_life_insurance: mandatory
+      premium: per_tariff_or_bank_paid
+    first_instalment_grace_days_uae_national: 120    # P-20 [I]
+    min_service_months: 3                            # P-04 [I]
+
+  personal_loan_unsecured:                           # P-21..P-23 (no salary transfer)
+    structure: conventional_personal_loan
+    track: unsecured_non_stl
+    min_monthly_gross_income_aed: 5000               # P-21 [I] only with the compensating controls below
+    compensating_controls_at_5000:                   # P-21 [I]
+      min_aecb_score: 600
+      employer_categories_allowed: [A, B, C]
+      min_service_months: 6
+      bank_statements_months: 12
+      regular_salary_credits_required: true
+    min_monthly_gross_income_aed_cat_d_or_aecb_541_599: 10000   # P-21 [I]
+    max_loan_amount:                                 # P-22 [I]
+      uae_national: {income_multiple: 20, cap_aed: 500000}
+      expat: {income_multiple: 10, cap_aed: 200000}
+    max_tenor_months: 48                             # P-23 [C]
+    pricing:                                         # P-23 [I]
+      interest_rate_floor_pct: 9.99
+      interest_rate_ceiling_pct: 21.99
+      risk_based: true
+    repayment_mechanism: uae_direct_debit_uaedds     # P-23 [I]
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, basis: outstanding_principal}
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false, retained_as_income: true}
+    insurance:                                       # P-20a [CV]
+      credit_life_insurance: mandatory
+      premium: per_tariff_or_bank_paid
+
+  buyout:                                            # P-24 [I]
+    applies_to: [personal_loan_salary_assigned]
+    required_security: [employer_salary_transfer_letter, irrevocable_eos_undertaking]
+    liability_letter_max_age_days: 15
+    pay_other_bank_directly_within_days: 30
+    residual_release_requires_clearance_letter: true
+    combined_limits: {income_multiple_max: 20, tenor_months_max: 48}   # [C]
+    processing_fee_on_pure_buyout: 0
+
+  top_up:                                            # P-25 [C/I]
+    min_clean_repayment_months: 12                   # [C] CBUAE Art 6(g)
+    fresh_dbr_and_aecb_required: true
+    max_top_ups_per_12_months: 1
+    processing_fee_on_increment_only: true
+
+  rescheduling:                                      # P-26 [C]
+    beyond_48_months_only_if: "dbr > 50 and no new money"
+
+  credit_card:                                       # P-27..P-30
+    structure: conventional_credit_card
+    tiers:                                           # P-27 [I]
+      classic_entry: {min_monthly_gross_income_aed: 5000, annual_fee_aed: 0}
+      gold:          {min_monthly_gross_income_aed: 12000}
+      platinum:      {min_monthly_gross_income_aed: 20000}
+    limit_rule:                                      # P-28 [P]
+      income_multiple: {salary_assigned: 3, unsecured_non_stl: 2}
+      dbr_obligation_pct_of_limit: 5
+      tier_caps_apply: true
+    pricing:                                         # P-29 [I, CV]
+      monthly_interest_rate_pct: {standard: 3.59, premium: 3.25}
+      min_payment: {pct_of_balance: 5, min_aed: 100}
+      late_payment_fee_aed: 230                      # [CV, M] + VAT = 241.50 market standard
+      late_payment_fee_vat_included: false
+      late_payment_fee_retained_as_income: true
+    self_employed:                                   # P-30 [I]
+      min_avg_balance_3m_aed: 50000
+      alternative: deposit_backed_card
+
+  home_loan:                                         # P-31..P-42
+    structure: conventional_mortgage                 # [CV] first-degree registered mortgage
+    min_monthly_gross_income_aed:                    # P-31 [I]
+      uae_national: 10000
+      uae_national_government_housing_scheme: 8000
+      expat: 15000
+    ltv_max_pct:                                     # P-32 [C]
+      first_home_value_le_5m: {uae_national: 85, expat: 80}
+      first_home_value_gt_5m: {uae_national: 75, expat: 70}
+      second_or_more_home:    {uae_national: 65, expat: 60}
+      off_plan: 50
+      value_band_threshold_aed: 5000000
+    off_plan_conditions:                             # P-38 [C/I]
+      min_project_completion_pct: 35
+      min_customer_paid_pct: 50
+      approved_developer_list_required: true
+    max_tenor_years: 25                              # P-33 [C]
+    max_tenor_years_cbuae_rate_relief_exception: 30  # P-33 [C] nationals, income < AED 40k, rate-relief only
+    max_loan_amount_aed: 20000000                    # P-34 [I]
+    pricing:                                         # P-35 [I]
+      fixed_3y_pct: {salary_assigned: 4.24, non_stl: 4.49}
+      fixed_5y_pct: {salary_assigned: 4.44, non_stl: 4.69}
+      variable: {benchmark: 3M_EIBOR, margin_pct: 1.59}
+      reversion: {benchmark: 3M_EIBOR, margin_pct: 1.79}
+      floor_pct: 2.99
+      self_employed_add_on_pct: 0.25
+    fees:                                            # P-36 [I]
+      processing: {pct: 1.0, min_aed: 5000, max_aed: 50000, vat_included: false}
+      valuation_aed: 2500
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, basis: outstanding_principal}
+      free_partial_prepayment_pct_per_year: 25
+      buyout: {processing_fee: 0, valuation_refunded: true}
+    affordability:                                   # P-37
+      dbr_max_pct: 50                                # [C]
+      dbr_max_pct_government_housing_programme: 60   # [C] P-41
+      stress_rate_rule: "max(initial_interest_rate, current_3M_EIBOR + reversion_margin)"   # [P]
+    service:                                         # P-39 [I]
+      salaried_min_service_months: 6
+      probation_completed: true
+      self_employed_min_business_years: 3
+      self_employed_audited_financials_years: 2
+    insurance:                                       # P-40 [CV]
+      life_insurance: mandatory
+      property_insurance: mandatory
+      bank_beneficiary: true
+    government_schemes: [szhp, mbrhe, adha_top_up, sharjah_housing]   # P-41 subject to Board decision
+    non_resident: excluded_v1                        # P-42 [I]
+
+  auto_loan:                                         # P-43..P-50
+    structure: conventional_auto_loan
+    min_monthly_gross_income_aed: 5000               # P-43 [I] (conventional median 7,000: lenient edge)
+    min_down_payment_pct: 20                         # P-44 [C]
+    max_tenor_months: 60                             # P-44 [C]
+    max_loan_amount_aed: 1500000                     # P-45 [I]
+    pricing:                                         # P-46 [I] flat rates; APR disclosed in KFS
+      new_vehicle_flat_pct: {uae_national: 2.49, expat: 2.69}
+      used_vehicle_flat_pct: 3.19
+      electric_vehicle_flat_pct: 1.99
+      apr_shown_in_kfs: true
+    max_vehicle_age_at_maturity_years: 10            # P-47 [I]
+    seller: [dealer, private_sale_with_bank_approved_valuation]   # P-48 [I]
+    self_employed:                                   # P-49 [I]
+      min_trade_licence_years: 2
+      min_avg_balance_aed: 15000
+    security:                                        # P-50 [CV]
+      vehicle_mortgage_rta_in_bank_favour: required
+      comprehensive_motor_insurance: required
+      bank_first_beneficiary: true
+      insurance_financeable: true
+    fees:
+      processing: {pct: 1.0, min_aed: 500, max_aed: 2500, vat_included: false}
+      early_settlement: {pct: 1.0, max_aed: 10000, vat_included: false, basis: outstanding_principal}
+      late_payment: {pct_of_overdue_instalment: 2.0, min_aed: 50, max_aed: 200, vat_included: false, retained_as_income: true}
+
+  deposit_backed:                                    # P-51 [I, CV]
+    structure: loan_or_overdraft_against_fixed_deposit_lien
+    facility_types: [term_loan, overdraft]
+    max_advance_pct_of_deposit: 90
+    max_loan_amount_aed: 10000000
+    max_tenor_months: 48                             # term loan
+    overdraft_tenor_months: 12                       # [CV] renewable annually
+    overdraft_renewable: true
+    pricing: {basis: deposit_interest_rate, margin_pct: 2.0}
+    min_monthly_gross_income_aed: null               # no minimum salary
+
+  gold_backed:                                       # P-52 [I] (no conventional top-five peer)
+    structure: loan_against_pledged_allocated_gold_or_gold_certificates
+    max_ltv_pct: 70
+    margin_call_ltv_pct: 80
+    sale_ltv_pct: 85
+    revaluation_frequency: daily
+    max_tenor_months: 24
+    product_approval_committee_required: true        # [CV] new product approval
+
+  eosb_backed:                                       # P-53 [I] (no conventional peer lends against EOSB alone)
+    structure: additional_security_within_salary_assigned_personal_loan
+    standalone_allowed: false
+    max_advance_pct_of_accrued_eosb: 80
+    min_service_years: 3
+    irrevocable_employer_undertaking_required: true
+    eosb_recalculated: annually
+    overall_limits: {income_multiple_max: 20, tenor_months_max: 48}   # [C]
+    eosb_formula: "UAE Labour Law: 21 days' basic per year for first 5 years, 30 days per year thereafter; total capped at 2 years' wages"
+
+  salary_advance:                                    # P-54 [I] (no published conventional peer)
+    structure: conventional_salary_advance_loan
+    track: salary_assigned
+    min_monthly_gross_income_aed: 5000
+    max_pct_of_net_monthly_salary: 50
+    max_amount_aed: 25000
+    repayment: next_salary_within_days_35
+    fixed_fee_aed_by_band: [100, 250]                # [CV] fixed fee (conventional)
+    max_advances_per_year: 6
+    blocked_if_any_dpd: true
