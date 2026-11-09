@@ -1,0 +1,1692 @@
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+@page { size: A4; margin: 12mm 10mm; }
+@media print {
+  html, body { background: #ffffff !important; }
+  .tip { display: none !important; }
+  .stepcard, .card, .note, .signal, .layer, .q, details, figure, svg, .grades, .readout,
+  .mistake, .role, .team, .tiles, .jflow, .person, .verdict, .control, .math, tr { break-inside: avoid; }
+  .chapter, h2, h3 { break-after: avoid; }
+  section { display: block !important; }
+  section > * + * { margin-top: 16px; }
+  .steps { display: block !important; }
+  .steps > li { margin: 0 0 12px; }
+  .stepcard { display: block !important; }
+  .stepcard > * + * { margin-top: 10px; }
+  a { color: inherit; text-decoration: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+<script>
+function openAll(){ document.querySelectorAll('details').forEach(function(d){ d.open = true; }); }
+document.addEventListener('DOMContentLoaded', openAll);
+window.addEventListener('load', openAll);
+</script></head><body><title>Inside AI Risk Score Card Global</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (max 1000px) following two customers, Maria in New York and Tom in London, chapter by chapter. Indigo for structure, amber for "look here". */
+:root{
+  --bg:#f4f5fa; --surface:#ffffff; --surface-2:#eaecf5; --line:#d3d7e6;
+  --ink:#141a33; --ink-2:#454c68; --ink-3:#6c7290;
+  --accent:#383fa6; --accent-ink:#ffffff; --accent-soft:#e1e3f7;
+  --amber:#a8630b; --amber-soft:#fbecd2;
+  --ny:#2a78d6; --ldn:#eb6834;
+  --s1:#2a78d6; --s2:#eb6834; --muted-mark:#bfc4d8;
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4; --c6:#008300;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --bad:#d03b3b;
+  --f-display:"Manrope", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1220; --surface:#171a2c; --surface-2:#1f2338; --line:#2e3350;
+    --ink:#eceefa; --ink-2:#b9bdd6; --ink-3:#8e93b0;
+    --accent:#9196f2; --accent-ink:#10132a; --accent-soft:#252a52;
+    --amber:#e9ad4c; --amber-soft:#3a2c14;
+    --ny:#3987e5; --ldn:#d95926;
+    --s1:#3987e5; --s2:#d95926; --muted-mark:#3a3f5c;
+    --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1220; --surface:#171a2c; --surface-2:#1f2338; --line:#2e3350;
+  --ink:#eceefa; --ink-2:#b9bdd6; --ink-3:#8e93b0;
+  --accent:#9196f2; --accent-ink:#10132a; --accent-soft:#252a52;
+  --amber:#e9ad4c; --amber-soft:#3a2c14;
+  --ny:#3987e5; --ldn:#d95926;
+  --s1:#3987e5; --s2:#d95926; --muted-mark:#3a3f5c;
+    --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:32px 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;color:var(--ink);margin:0}
+h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3.2vw,1.95rem);line-height:1.2;font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.06rem;font-weight:700}
+p{margin:0;max-width:68ch}
+.lede{font-size:1.15rem;color:var(--ink-2);max-width:64ch}
+.kicker{font:700 .74rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--ink-3)}
+.small{font-size:.9rem}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+section{display:grid;gap:18px;padding-block:44px;border-top:1px solid var(--line)}
+.chapter{display:flex;gap:14px;align-items:baseline}
+.chapter .n{font:600 .9rem/1 var(--f-mono);color:var(--amber);min-width:2.2em}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.stack{display:grid;gap:12px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:780px){.grid2,.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid2>*,.grid3>*,.grid4>*{min-width:0}
+.tag{display:inline-block;font:600 .72rem/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px}
+.tag.ny{background:var(--ny);color:#fff}
+.tag.ldn{background:var(--ldn);color:#fff}
+.tag.ill{background:var(--amber-soft);color:var(--amber)}
+
+/* hero */
+.hero{display:grid;gap:22px;padding-block:24px 40px}
+.principle{background:var(--accent);color:var(--accent-ink);border-radius:var(--r);padding:16px 20px;font:700 1.04rem/1.45 var(--f-display)}
+.principle span{display:block;font:500 .9rem/1.4 var(--f-body);opacity:.9;margin-top:4px}
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font:600 .85rem/1 var(--f-body);color:var(--ink-2);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:8px 12px;border-radius:999px}
+.toc a:hover,.toc a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+
+/* two markets */
+.markets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.markets>div{padding:18px 20px;display:grid;gap:10px;align-content:start;min-width:0}
+.markets>div+div{border-left:1px solid var(--line)}
+.markets ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.95rem}
+.markets .band{height:6px;border-radius:3px}
+@media (max-width:640px){.markets{grid-template-columns:1fr}.markets>div+div{border-left:0;border-top:1px solid var(--line)}}
+
+/* modes */
+.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mode{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:6px;align-content:start}
+.mode .step{font:600 .78rem/1 var(--f-mono);color:var(--accent)}
+.mode b{font-family:var(--f-display)}
+.mode span{font-size:.9rem;color:var(--ink-2)}
+.mode:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:8px;height:8px;border-top:2px solid var(--ink-3);border-right:2px solid var(--ink-3);transform:translateY(-50%) rotate(45deg)}
+@media (max-width:700px){.modes{grid-template-columns:1fr}.mode:not(:last-child)::after{right:50%;top:auto;bottom:-9px;transform:translateX(50%) rotate(135deg)}}
+
+/* person & facts */
+.person{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.avatar{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font:800 1.35rem/1 var(--f-display);color:#fff}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0}
+.facts div{background:var(--surface-2);border-radius:8px;padding:10px 12px;min-width:0}
+.facts dt{font-size:.72rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em}
+.facts dd{margin:2px 0 0;font:500 1.02rem/1.3 var(--f-mono);font-variant-numeric:tabular-nums}
+@media (max-width:780px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.versus{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.versus>div{border-radius:var(--r);padding:16px;display:grid;gap:6px;border:1px solid var(--line);background:var(--surface)}
+.versus .old{border-left:5px solid var(--muted-mark)}
+.versus .new{border-left:5px solid var(--accent)}
+.versus b.big{font:800 1.3rem/1.2 var(--f-display)}
+@media (max-width:560px){.versus{grid-template-columns:1fr}}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 .82rem/1 var(--f-body);padding:5px 10px;border-radius:999px;white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%}
+.chip.ok::before{background:var(--good)} .chip.no::before{background:var(--bad)} .chip.mid::before{background:var(--warn)}
+.chip.ok::after{content:"✓";color:var(--good)} .chip.no::after{content:"✕";color:var(--bad)} .chip.mid::after{content:"!";color:var(--serious)}
+
+/* charts */
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart text{fill:var(--ink-2);font:12px var(--f-body)}
+.chart .lbl-strong{fill:var(--ink);font-weight:700}
+.chart .val{fill:var(--ink);font:500 12px var(--f-mono)}
+.chart .axis{stroke:var(--line);stroke-width:1}
+.chart .grid{stroke:var(--line);stroke-width:1;stroke-dasharray:2 4}
+.chart .cap{stroke:var(--bad);stroke-width:2;stroke-dasharray:6 4}
+.chart .appetite{stroke:var(--amber);stroke-width:2;stroke-dasharray:6 4}
+.chart .bar-muted{fill:var(--muted-mark)} .chart .bar-s1{fill:var(--s1)} .chart .bar-s2{fill:var(--s2)} .chart .bar-accent{fill:var(--accent)} .chart .bar-good{fill:var(--good)} .chart .bar-bad{fill:var(--bad)}
+.chart .line-s1{fill:none;stroke:var(--s1);stroke-width:2}
+.chart .dot-s1{fill:var(--s1);stroke:var(--surface);stroke-width:2}
+.chart .dot-s2{fill:var(--s2);stroke:var(--surface);stroke-width:2}
+.chart .dot-muted{fill:var(--ink-3);stroke:var(--surface);stroke-width:2}
+.chart .dot-amber{fill:var(--amber);stroke:var(--surface);stroke-width:2}
+.chart .hit{fill:transparent;cursor:crosshair}
+.chart .xhair{stroke:var(--ink-3);stroke-width:1}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.88rem;color:var(--ink-2)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+.legend i.line{height:3px;width:16px;vertical-align:3px}
+.legend i.dot{border-radius:50%}
+
+/* readouts & controls */
+.control{display:grid;gap:6px}
+.control label{font-weight:600}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.readout{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0}
+.readout div{background:var(--surface-2);border-radius:8px;padding:12px;min-width:0}
+.readout dt{font-size:.72rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em}
+.readout dd{margin:4px 0 0;font:500 1.12rem/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.readout .delta{display:block;font:400 .76rem/1.3 var(--f-mono);color:var(--ink-3);margin-top:3px}
+@media (max-width:780px){.readout{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.verdict{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:600}
+.btn{font:600 .86rem/1 var(--f-body);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.btn:hover,.btn:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+
+/* grade scale */
+.gscale{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.gcell{border-radius:5px;padding:8px 2px 6px;text-align:center;position:relative}
+.gcell b{display:block;font:800 .92rem/1 var(--f-display)}
+.gcell span{display:block;font:500 .56rem/1.2 var(--f-mono);margin-top:3px}
+.gcell.mark{outline:3px solid var(--amber);outline-offset:2px}
+.gnotes{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px;font-size:.8rem;color:var(--ink-2);margin-top:8px}
+.gnotes .auto{grid-column:1 / 13;border-top:3px solid var(--good);padding-top:4px;text-align:center}
+.gnotes .human{grid-column:13 / 21;border-top:3px solid var(--serious);padding-top:4px;text-align:center}
+@media (max-width:700px){.gscale,.gnotes{grid-template-columns:repeat(10,minmax(0,1fr))}.gnotes .auto{grid-column:1 / 11}.gnotes .human{grid-column:1 / 11}.gcell span{font-size:.6rem}}
+
+/* lists, cards */
+.signals{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.signal{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.signal b{font-family:var(--f-display)}
+.signal span{font-size:.9rem;color:var(--ink-2)}
+.loop{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.loop div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:4px;align-content:start}
+.loop b{font-family:var(--f-display);font-size:.95rem}
+.loop span{font-size:.86rem;color:var(--ink-2)}
+.loop .stop{border-color:var(--serious)}
+@media (max-width:780px){.loop{grid-template-columns:1fr}}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:10px}
+.note .lang{font:600 .72rem/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.check{display:grid;gap:8px;font-size:.92rem}
+.check div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tiles div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:4px}
+.tiles b{font-family:var(--f-display)}
+.tiles span{font-size:.9rem;color:var(--ink-2)}
+@media (max-width:780px){.tiles{grid-template-columns:1fr}}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .74rem/1.2 var(--f-body);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+td.r,th.r{text-align:right}
+dl.gloss{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:8px 18px;margin:0}
+dl.gloss dt{font-weight:700}
+dl.gloss dd{margin:0;color:var(--ink-2)}
+@media (max-width:560px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:8px}}
+.tip{position:fixed;pointer-events:none;z-index:20;background:var(--ink);color:var(--bg);font:500 .82rem/1.35 var(--f-body);padding:7px 10px;border-radius:6px;max-width:250px}
+footer{font-size:.84rem;color:var(--ink-3);padding-top:28px;border-top:1px solid var(--line);display:grid;gap:6px}
+
+/* new-joiner guide */
+.guide{background:var(--amber-soft);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:10px}
+.guide h2{font-size:1.2rem}
+.guide ul{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.95rem}
+.guide .meta{display:flex;flex-wrap:wrap;gap:8px}
+.guide .meta span{font:600 .8rem/1 var(--f-body);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--ink-2)}
+
+/* journey flowchart */
+.jflow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 6px;align-items:center}
+.jflow li{display:flex;align-items:center;gap:6px;font:600 .8rem/1.2 var(--f-body);color:var(--ink-2)}
+.jflow a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+.jflow a:hover,.jflow a:focus-visible{border-color:var(--accent);outline:none}
+.jflow a i{font:600 .72rem/1 var(--f-mono);font-style:normal;color:var(--accent)}
+.jflow a.person{border-color:var(--amber);background:var(--amber-soft)}
+.jflow li:not(:last-child)::after{content:"→";color:var(--ink-3);font-weight:400}
+
+/* step cards */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:none}
+.stepcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px;min-width:0;scroll-margin-top:16px}
+.stepcard.person{border-left:5px solid var(--amber)}
+.stepcard.system{border-left:5px solid var(--accent)}
+.stephead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.stephead .no{font:700 .85rem/1 var(--f-mono);color:var(--accent);min-width:2.4em}
+.stephead h3{flex:1 1 220px}
+.who{font:600 .72rem/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:5px 9px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.who.person{background:var(--amber-soft);color:var(--amber)}
+.stepgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.stepgrid>div{min-width:0}
+.stepgrid dt{font:600 .72rem/1.2 var(--f-body);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+.stepgrid dd{margin:3px 0 0;font-size:.93rem}
+.stepgrid .rule{display:block;font:500 .74rem/1.4 var(--f-mono);color:var(--ink-3);margin-top:3px}
+.stepgrid .wide{grid-column:1 / -1}
+.math{font:500 .86rem/1.5 var(--f-mono);background:var(--surface-2);border-radius:6px;padding:8px 10px;display:block;margin-top:4px;overflow-x:auto;white-space:nowrap}
+@media (max-width:640px){.stepgrid{grid-template-columns:1fr}}
+
+/* day in the life */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.role{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
+.role .team{font:600 .72rem/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}
+.role ol{margin:0;padding-left:20px;display:grid;gap:5px;font-size:.92rem}
+
+/* timeline after approval */
+.tline{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.tline li{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.tline li:last-child{border-bottom:0}
+.tline .when{font:600 .82rem/1.3 var(--f-mono);color:var(--accent)}
+.tline .what{font-size:.94rem;min-width:0}
+.tline .what b{font-family:var(--f-display)}
+@media (max-width:520px){.tline li{grid-template-columns:1fr;gap:4px}}
+
+/* mistakes */
+.mistakes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.mistake{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:8px;padding:12px 14px;display:grid;gap:6px;min-width:0}
+.mistake b{font-family:var(--f-display)}
+.mistake .wrong{font-size:.9rem;color:var(--ink-2)}
+.mistake .right{font-size:.9rem}
+.mistake .right::before{content:"Instead: ";font-weight:700;color:var(--good)}
+
+/* quiz */
+.quiz{display:grid;gap:10px}
+.quiz details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0}
+.quiz summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style-position:outside;margin-left:18px}
+.quiz summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r)}
+.quiz details[open] summary{border-bottom:1px solid var(--line)}
+.quiz .ans{padding:12px 18px 16px;font-size:.94rem;color:var(--ink-2);display:grid;gap:6px}
+.quiz .ans b{color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.readout dd{transition:color .2s ease}}
+
+/* income segments */
+.segtoggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:3px;gap:3px}
+.segtoggle button{font:700 .86rem/1 var(--f-body);border:0;border-radius:999px;padding:8px 14px;background:transparent;color:var(--ink-2);cursor:pointer}
+.segtoggle button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.segtoggle button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.segbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.segcards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.segcard{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--line);border-radius:8px;padding:10px 10px 12px;display:grid;gap:4px;align-content:start;min-width:0}
+.segcard b{font:800 .98rem/1.15 var(--f-display)}
+.segcard .band{font:500 .78rem/1.35 var(--f-mono);color:var(--ink)}
+.segcard span{font-size:.8rem;color:var(--ink-2);line-height:1.35}
+@media (max-width:900px){.segcards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.segcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.seglegend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.86rem;color:var(--ink-2)}
+.seglegend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+.chart .pie-slice{stroke:var(--surface);stroke-width:2}
+.chart .pie-center{fill:var(--ink);font:800 15px var(--f-display)}
+.chart .pie-sub{fill:var(--ink-3);font:500 11px var(--f-body)}
+.chart .leader{stroke:var(--ink-3);stroke-width:1;fill:none}
+.heat{border-collapse:separate;border-spacing:4px;width:100%;font-size:.92rem}
+.heat th{font:600 .74rem/1.2 var(--f-body);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);text-align:center;padding:6px 4px;border:0}
+.heat th.rowh{text-align:left;color:var(--ink);text-transform:none;letter-spacing:0;font-size:.9rem;white-space:nowrap}
+.heat td{text-align:center;border-radius:6px;padding:12px 4px;font:600 .9rem/1 var(--f-mono);border:0;min-width:56px}
+.otags{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.otag{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.otag code,.tagcode{font:600 .76rem/1 var(--f-mono);color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:5px 9px;justify-self:start;white-space:nowrap}
+.otag span{font-size:.9rem;color:var(--ink-2)}
+.fair{background:var(--accent-soft);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px}
+.fair ul{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.94rem}
+.form2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 14px}
+@media (max-width:700px){.form2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.form2>div{display:grid;gap:4px;min-width:0}
+.form2 label{font:600 .8rem/1.2 var(--f-body);color:var(--ink-2)}
+.inp{width:100%;font:500 .95rem/1.2 var(--f-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.inp:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.segpill{display:inline-flex;align-items:center;gap:8px;font:800 .98rem/1.2 var(--f-display)}
+.segpill i{width:14px;height:14px;border-radius:4px;display:inline-block;flex:none}
+.matrix th[scope="row"]{min-width:170px;text-transform:none;letter-spacing:0;font:700 .86rem/1.3 var(--f-body);color:var(--ink)}
+.matrix td{min-width:120px;font-size:.86rem}
+.segsteps{margin:0;padding-left:20px;display:grid;gap:6px}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">A plain-language walkthrough · New York and London</div>
+    <h1>How a large bank can lend to more good people, safely, with AI Risk Score Card Global</h1>
+    <p class="lede">We follow two customers: Maria in New York and Tom in London. Step by step, with pictures and numbers you can try, you'll see how the system checks the rules, scores the risk, finds missed opportunities and warns about the next crisis. All customers and figures are illustrative.</p>
+    <div class="principle" role="note">AI recommends; the bank sets where automation is allowed; people stay accountable.<span>And one rule never changes: the system never turns anyone down on its own. Every "no" is looked at by a person.</span></div>
+    <aside class="guide" aria-labelledby="guideTitle">
+      <h2 id="guideTitle">New to the risk team? Start here</h2>
+      <div class="meta"><span>About 25 minutes</span><span>No credit-risk knowledge needed</span><span>Two worked customers</span><span>Quiz at the end</span></div>
+      <p class="small">This page is written for new joiners and interns in a bank's risk department. Read it top to bottom once. After that, use the chapter links to jump back to a topic.</p>
+      <ul>
+        <li>How a credit application moves through the system, <b>step by step</b>, for one customer in New York and one in London.</li>
+        <li>What the system checks at each step, which team is involved, and what you would see on screen.</li>
+        <li>The difference between <b>risk</b> (will they pay?) and <b>affordability</b> (can they pay without hardship?).</li>
+        <li>What happens after a loan is approved, what each team does day to day, and the mistakes new staff most often make.</li>
+      </ul>
+      <p class="small muted">Words in <b>bold</b> are explained in the glossary at the end. Small grey text in monospace (for example <span class="num">CONC 5.2A</span>) names the rule behind a step, so you can look it up later. All customers and numbers are illustrative.</p>
+    </aside>
+    <nav class="toc" aria-label="Chapters">
+      <a href="#why">1 · Why</a><a href="#markets">2 · Two markets</a><a href="#fit">3 · How it fits</a><a href="#maria">4 · Maria, New York</a>
+      <a href="#tom">5 · Tom, London</a><a href="#grades">6 · Grades</a><a href="#segments">7 · Income segments</a><a href="#after">8 · After approval</a>
+      <a href="#champion">9 · Beat the champion</a><a href="#frontier">10 · Risk vs opportunity</a><a href="#inclusion">11 · Gen Z &amp; blue-collar</a><a href="#crisis">12 · Next crisis</a>
+      <a href="#fair">13 · Fair &amp; checkable</a><a href="#writer">14 · The AI writer</a><a href="#safe">15 · Safety</a><a href="#day">16 · A day in the life</a>
+      <a href="#mistakes">17 · Common mistakes</a><a href="#quiz">18 · Check yourself</a><a href="#build">19 · How it gets built</a><a href="#glossary">Glossary</a>
+    </nav>
+  </header>
+
+  <!-- 1 -->
+  <section id="why">
+    <div class="chapter"><span class="n">01</span><h2>Why large banks need it</h2></div>
+    <p>Big banks already have credit scores. The problem is what those scores miss.</p>
+    <div class="tiles">
+      <div><b>Good people turned away</b><span>Gig workers, shift workers, graduates and newcomers often have thin credit files. Old-style scores treat "little history" as "high risk".</span></div>
+      <div><b>Risk without opportunity</b><span>Committees see how much they might lose, but rarely how many good customers and how much profit a policy gives up.</span></div>
+      <div><b>Shocks move faster than reviews</b><span>War, natural disasters, recession and redundancy hit customers months before a missed payment shows.</span></div>
+    </div>
+    <p class="small muted">And the data cannot leave the bank. So the whole system runs on the bank's own servers.</p>
+  </section>
+
+  <!-- 2 -->
+  <section id="markets">
+    <div class="chapter"><span class="n">02</span><h2>Two markets, one platform</h2></div>
+    <p>The same engine runs in New York and in London, but each place has its own laws. Each country gets its own rule pack, and its own separate installation: American data stays in America, British data stays in Britain.</p>
+    <div class="markets">
+      <div>
+        <div class="band" style="background:var(--ny)"></div>
+        <h3>New York (United States)</h3>
+        <ul>
+          <li>If the bank says no, or offers less, it must send a letter with the <b>main reasons</b> (up to four), usually within 30 days.</li>
+          <li>For credit cards, the bank must check the customer can afford at least the <b>minimum payment</b>.</li>
+          <li>Under-21s need their own income or an adult co-signer for a card.</li>
+          <li><b>Interest-rate caps</b> apply, for example for service members (36%) and under New York law.</li>
+          <li>Banned factors such as race, religion or sex can never be used. People aged 62+ can never be scored down for age.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="band" style="background:var(--ldn)"></div>
+        <h3>London (United Kingdom)</h3>
+        <ul>
+          <li><b>Affordability is its own legal test</b>, separate from risk. A good score cannot make an unaffordable loan acceptable.</li>
+          <li>Income must be <b>checked</b>, not just declared.</li>
+          <li>Under the <b>Consumer Duty</b>, the bank must show good outcomes for every group of customers, including vulnerable people.</li>
+          <li>If a computer decides, the customer can ask for a <b>person to review it</b> and can challenge the decision.</li>
+          <li>Mortgages are tested as if rates rise <b>at least 1 percentage point</b> over five years.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="fit">
+    <div class="chapter"><span class="n">03</span><h2>How it fits into a big bank</h2></div>
+    <p>Large banks already have decision systems. AI Risk Score Card Global starts beside them and earns trust step by step.</p>
+    <div class="modes" role="list">
+      <div class="mode" role="listitem"><span class="step">STEP 1 · CHALLENGER</span><b>Watch and compare</b><span>Runs in the shadow on the bank's past and live applications. Decides nothing. Proves it beats the bank's current model.</span></div>
+      <div class="mode" role="listitem"><span class="step">STEP 2 · ADD-ON</span><b>Feed a better score</b><span>The bank's own decision system calls it for a score, affordability check and reasons, in under a third of a second.</span></div>
+      <div class="mode" role="listitem"><span class="step">STEP 3 · FULL ENGINE</span><b>Run the decision</b><span>Where the bank chooses, it runs the whole decision and the approval queues.</span></div>
+    </div>
+    <div class="grid2">
+      <div class="card stack"><h3>Where can it decide automatically?</h3><p class="small">Only where the bank switches it on. In our demo: small starter cards and salary advances up to $/£1,000 for low-risk grades, and limit increases for good accounts after a fresh affordability check.</p></div>
+      <div class="card stack"><h3>Where is a person always involved?</h3><p class="small">Every decline. Every mortgage. Every business loan. Anything above the bank's automation line.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 MARIA -->
+  <section id="maria">
+    <div class="chapter"><span class="n">04</span><h2>Meet Maria in New York</h2></div>
+    <div class="card person">
+      <div class="avatar" aria-hidden="true" style="background:var(--ny)">M</div>
+      <div><span class="tag ny">New York</span><h3 style="margin-top:6px">Maria, 24, warehouse shift worker with weekend delivery work</h3><p class="small muted">She has only two accounts on her credit file. She applies for a credit card with a $5,000 limit.</p></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Income (12-month average)</dt><dd>$3,400 / mo</dd></div>
+      <div><dt>Rent</dt><dd>$1,450 / mo</dd></div>
+      <div><dt>Car + student loan</dt><dd>$490 / mo</dd></div>
+      <div><dt>Essential spending</dt><dd>$900 / mo</dd></div>
+      <div><dt>Credit score</dt><dd>640 (thin file)</dd></div>
+      <div><dt>Card asked for</dt><dd>$5,000 limit</dd></div>
+      <div><dt>Card interest rate</dt><dd>24% APR</dd></div>
+      <div><dt>Left after bills</dt><dd>$560 / mo</dd></div>
+    </dl>
+    <div class="versus">
+      <div class="old"><span class="muted small">The bank's current model ("champion")</span><b class="big">Decline</b><span class="small">Too little credit history. It never looks at how steady her wages and delivery income actually are.</span></div>
+      <div class="new"><span class="muted small">AI Risk Score Card Global ("challenger")</span><b class="big">Grade 13 · 3.1% risk</b><span class="small">Reads 12 months of her bank account: income is steady, rent is paid on time, spending stays below income.</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card stack">
+        <h3>Can she afford the minimum payment?</h3>
+        <svg id="chMariaPay" class="chart" viewBox="0 0 460 170" role="img" aria-label="Money left after bills 560 dollars a month compared with a minimum payment of 150 dollars at a 5,000 dollar limit."></svg>
+        <p class="small muted">Minimum payment at a full $5,000 balance: 1% of the balance plus one month's interest (24% ÷ 12) = $150.</p>
+      </div>
+      <div class="card stack">
+        <h3>How big a limit? The lowest wins</h3>
+        <svg id="chMariaLimit" class="chart" viewBox="0 0 460 170" role="img" aria-label="Limit checks: asked for 5,000 dollars; affordability alone would allow more; bank starter-card cap 1,500 dollars is the lowest."></svg>
+        <p class="small muted">Her budget could cover more, but the bank's starter-card limit for thin-file customers is $1,500.</p>
+      </div>
+    </div>
+    <div class="card stack">
+      <h3>Result: a $1,500 starter card, reviewed by a person</h3>
+      <p class="small">$1,500 is above the bank's $1,000 automation line, and grade 13 is outside the automatic zone, so an underwriter looks at it and approves. The limit is reviewed after 6 and 12 months of on-time payments. Because she received less than she asked for, the bank sends a letter with the main reasons:</p>
+      <div class="verdict"><span class="chip mid">Limited credit history</span><span class="chip mid">Income varies month to month</span></div>
+    </div>
+
+    <div class="card stack">
+      <h3>Try it: change the limit Maria asks for</h3>
+      <div class="control">
+        <label for="mLimit">Requested card limit: <span id="mLimitLbl" class="num">$5,000</span></label>
+        <input id="mLimit" type="range" min="300" max="5000" step="100" value="5000">
+      </div>
+      <dl class="readout">
+        <div><dt>Minimum payment</dt><dd id="mMin">–</dd></div>
+        <div><dt>Left after payment</dt><dd id="mLeft">–</dd></div>
+        <div><dt>Within starter cap?</dt><dd id="mCap">–</dd></div>
+        <div><dt>Automatic?</dt><dd id="mAuto">–</dd></div>
+      </dl>
+      <div class="verdict" aria-live="polite"><span id="mVerdict" class="chip ok">–</span><span id="mWhy" class="small"></span></div>
+    </div>
+
+    <div class="stack" id="maria-steps">
+      <h3>Step by step: how Maria's application is decided (US install)</h3>
+      <p class="small">Blue edge = the system does it. Amber edge = a person does it. Click a step in the map to jump to it.</p>
+      <ol class="jflow" aria-label="Maria's journey in 15 steps">
+        <li><a href="#m1"><i>1</i>Arrives</a></li><li><a href="#m2"><i>2</i>Tokens</a></li><li><a href="#m3"><i>3</i>Data</a></li>
+        <li><a href="#m4"><i>4</i>Quality</a></li><li><a href="#m5"><i>5</i>US rules</a></li><li><a href="#m6"><i>6</i>Bank policy</a></li>
+        <li><a href="#m7"><i>7</i>Can she pay?</a></li><li><a href="#m8"><i>8</i>Risk</a></li><li><a href="#m9"><i>9</i>Grade</a></li>
+        <li><a href="#m10"><i>10</i>Reasons</a></li><li><a href="#m11"><i>11</i>Limit</a></li><li><a href="#m12"><i>12</i>Automation?</a></li>
+        <li><a href="#m13" class="person"><i>13</i>Underwriter</a></li><li><a href="#m14"><i>14</i>Letter</a></li><li><a href="#m15"><i>15</i>Record</a></li>
+      </ol>
+      <ol class="steps">
+        <li class="stepcard system" id="m1">
+          <div class="stephead"><span class="no">01</span><h3>The application arrives</h3><span class="who">System · from the bank's decision engine</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Maria applies in the bank's app. The bank's own <b>decision engine</b> sends her application to AI Risk Score Card Global through a secure API call.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Owned by the bank's credit operations and IT teams.</dd></div>
+            <div><dt>What the system checks</dt><dd>That the message is complete, signed and comes from an allowed bank system.<span class="rule">Real-time API · answer within 0.3 seconds</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A new case in the queue: "Credit card · $5,000 requested · New York".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>The bank keeps its existing systems. Our system plugs in beside them, so nothing has to be replaced on day one.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m2">
+          <div class="stephead"><span class="no">02</span><h3>Consent and privacy codes</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Maria's name and Social Security number are swapped for a code (a <b>token</b>). Her consent to read her bank-account data is checked.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. The keys to the codes stay in the bank's own vault.</dd></div>
+            <div><dt>What the system checks</dt><dd>Is there valid consent for each data source, for this purpose, and not expired or withdrawn?<span class="rule">GLBA privacy · consent records</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>Her case number, not her name. Only staff with the "reveal" permission can see her name, and every look is logged.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Customer data stays protected even inside the bank. If Maria withdraws consent, her score is recalculated without that data.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m3">
+          <div class="stephead"><span class="no">03</span><h3>Data is gathered</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The system pulls her <b>credit bureau</b> file (score 640, only 2 accounts), 12 months of bank-account cash flow, and an income check.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, through bureau and data adapters the bank already contracts.</dd></div>
+            <div><dt>What the system checks</dt><dd>Each bureau pull has a legal reason recorded ("she applied for credit").<span class="rule">FCRA permissible purpose</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A data panel: bureau summary, monthly income chart (wages + delivery work), rent and loan payments found.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>The old model only looked at the bureau file, which is thin. Her bank account shows 12 months of steady income and on-time rent.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m4">
+          <div class="stephead"><span class="no">04</span><h3>Data quality check</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The system checks nothing is missing, out of date or inconsistent. Declared income ($3,400) is compared with verified income.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Problems go to the bank's fraud or operations team as flags.</dd></div>
+            <div><dt>What the system checks</dt><dd>Missing fields, data older than allowed, income that doesn't match, signs of a fake identity.<span class="rule">Income &amp; fraud consistency (flags only)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A green "Data complete" badge. Income difference: under 3%.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>A decision is only as good as its data. The system never fills a gap with a guess; it marks the case incomplete instead.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m5">
+          <div class="stephead"><span class="no">05</span><h3>US legal rules (the US rule pack)</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Every US rule that applies to a credit card is checked.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Rules are maintained by the US Pack team and approved by the bank's compliance team.</dd></div>
+            <div><dt>What the system checks</dt><dd>She is 24, so the under-21 rule doesn't apply. She is not a covered service member. The card rate is allowed for this bank's charter. No banned factor (race, religion, sex and others) is used.<span class="rule">CARD Act · MLA 36% · state rate caps · ECOA / Reg B</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A "Law" tab with every rule and a pass mark: all pass.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>The law comes first. A bank can make these rules stricter, but the system refuses any setting that is looser than the law.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m6">
+          <div class="stephead"><span class="no">06</span><h3>The bank's own policy</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The bank's credit policy is applied: minimum age 18, income from bank data accepted, and the thin-file starter-card rule.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. The policy is written by the bank's risk strategy team and changed only through maker-checker.</dd></div>
+            <div><dt>What the system checks</dt><dd>Customers with fewer than 3 accounts on file get a starter card, capped at $1,500.<span class="rule">Bank policy · starter card $300–$1,500</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A "Policy" tab: "Thin file → starter card, max $1,500".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>The bank stays in charge of its appetite. The system applies the bank's own rules the same way, every time.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m7">
+          <div class="stephead"><span class="no">07</span><h3>Can she afford the minimum payment?</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div class="wide"><dt>What happens</dt><dd>The system works out what is left each month after her bills, then compares it with the card's minimum payment if she used the whole $5,000.
+              <span class="math">Left: $3,400 − $1,450 rent − $490 loans − $900 essentials = $560</span>
+              <span class="math">Minimum payment: $5,000 × (1% + 24% ÷ 12) = $5,000 × 3% = $150</span></dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic.</dd></div>
+            <div><dt>What the system checks</dt><dd>$560 left is more than the $150 minimum payment, so she passes.<span class="rule">CARD Act ability-to-pay · 12 CFR 1026.51</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A pass mark with the arithmetic shown, as above.</dd></div>
+            <div><dt>Why it matters</dt><dd>In the US this check is the law for cards. It is separate from "how risky is she?".</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m8">
+          <div class="stephead"><span class="no">08</span><h3>How risky is she? (the risk score)</h3><span class="who">System · approved models only</span></div>
+          <dl class="stepgrid">
+            <div class="wide"><dt>What happens</dt><dd>The approved model estimates four numbers:
+              <span class="math">PD (chance of falling 90+ days behind in a year) = 3.1%</span>
+              <span class="math">EAD (amount owed if that happens, ≈75% of the $1,500 limit) ≈ $1,125</span>
+              <span class="math">LGD (share of that the bank would lose) = 75%</span>
+              <span class="math">Expected loss = 3.1% × 75% × $1,125 ≈ $26 a year</span></dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. The model was approved by the bank's model-risk team before use.</dd></div>
+            <div><dt>What the system checks</dt><dd>Only allowed inputs reach the model. Age is never used to score people 62+ down.<span class="rule">Bank MRM approval · SR 26-2 · Reg B 1002.6</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"PD 3.1% · expected loss $26/yr", plus the bank's current model result for comparison: "Champion: decline".</dd></div>
+            <div><dt>Why it matters</dt><dd>Expected loss is the average cost of the risk. The bank compares it with what the card earns.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m9">
+          <div class="stephead"><span class="no">09</span><h3>Her grade on the bank's scale</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>PD 3.1% falls between 2.4% and 3.4%, so she is <b>grade 13</b> of 20.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, using the bank's own <b>master scale</b>.</dd></div>
+            <div><dt>What the system checks</dt><dd>Which band her PD falls into.<span class="rule">Bank master scale (demo: 20 grades)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A grade badge "13" with the band "2.4–3.4%".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Grades let the whole bank talk about risk in one language: limits, pricing and who must approve all depend on the grade.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m10">
+          <div class="stephead"><span class="no">10</span><h3>Reasons are chosen by rules</h3><span class="who">System · never the AI writer</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The factors that pushed her score down most are turned into reason codes, ranked, up to four.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, from the model and the rules, using a fixed reason library.</dd></div>
+            <div><dt>What the system checks</dt><dd>Top reasons: "Limited credit history" and "Income varies month to month". Bureau "key factors" are kept as a separate list.<span class="rule">Reg B specific reasons (≤4) · FCRA key factors</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A ranked reasons list with each code and its plain wording.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>US law requires the real, specific reasons. That is why the AI writer may word the reasons but never choose them.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m11">
+          <div class="stephead"><span class="no">11</span><h3>The limit: lowest of the caps wins</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div class="wide"><dt>What happens</dt><dd>Each rule gives a maximum. The lowest one becomes the recommended limit.
+              <span class="math">Asked for $5,000 · budget would allow ≈ $18,600 · bank starter cap $1,500 → $1,500</span></dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic.</dd></div>
+            <div><dt>What the system checks</dt><dd>Which cap is binding: here the bank's starter-card cap.<span class="rule">Limit = min(request, affordability, policy caps)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Recommended: $1,500 (binding rule: starter-card cap)".</dd></div>
+            <div><dt>Why it matters</dt><dd>Staff can always see which rule set the number, so they can explain it to the customer.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m12">
+          <div class="stephead"><span class="no">12</span><h3>Can it be decided automatically?</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The bank's automation rule is checked: only starter cards up to $1,000 at grade 12 or better may be approved without a person.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. The rule itself is set by the bank.</dd></div>
+            <div><dt>What the system checks</dt><dd>$1,500 is above the $1,000 line, and grade 13 is outside the automatic zone. Result: send to a person.<span class="rule">Bank automation rule · never auto-decline</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Needs review" in the underwriter queue, with the reasons why.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>The system may say "yes" on its own only where the bank allows. It never says "no" on its own: every decline is reviewed by a person.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard person" id="m13">
+          <div class="stephead"><span class="no">13</span><h3>An underwriter reviews and approves</h3><span class="who person">Person · retail credit team</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>An underwriter opens the case, reads the recommendation, the arithmetic and the reasons, and approves the $1,500 starter card.</dd></div>
+            <div><dt>Who / what does it</dt><dd>An underwriter with authority for this amount and grade.</dd></div>
+            <div><dt>What the system checks</dt><dd>That the person has the right approval level, and records any change they make with a reason.<span class="rule">Delegated authority · override log</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>Approve / change / refer buttons, the drill-down, and a box for notes.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>People stay accountable. If the underwriter disagrees with the system, they can change the decision, but must say why. Those reasons help improve the model later.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m14">
+          <div class="stephead"><span class="no">14</span><h3>Letter content is prepared; the bank sends it</h3><span class="who">System + compliance-approved template</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>She received less than she asked for (a counteroffer), so the system prepares the letter content in English or Spanish. The bank's own letter system sends it.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Template approved by compliance. The AI writer may help word it; a person signs off.</dd></div>
+            <div><dt>What the system checks</dt><dd>A timer starts: the bank must notify her within 30 days of a complete application. If she doesn't accept the $1,500 offer, a full adverse-action notice with reasons is due within 90 days. Her credit score and bureau key factors are included.<span class="rule">Reg B 1002.9 · FCRA 615</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A letter preview, the due date, and a "sent" status once the bank's system confirms.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Missing a deadline or giving vague reasons breaks the law, even if the decision itself was right.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="m15">
+          <div class="stephead"><span class="no">15</span><h3>The decision record is saved</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Everything is saved in a locked record: the data used, rule and model versions, the result, the underwriter's action and the letter.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Records can't be edited, only added to.</dd></div>
+            <div><dt>What the system checks</dt><dd>That the record can be replayed to give exactly the same result later.<span class="rule">Decision record · US retention ≥ 25 months</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A "Replay" button that auditors and model validators can use.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>If a regulator, auditor or court asks "why did Maria get $1,500?" in two years, the bank can show exactly what happened.</dd></div>
+          </dl>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5 TOM -->
+  <section id="tom">
+    <div class="chapter"><span class="n">05</span><h2>Meet Tom in London</h2></div>
+    <div class="card person">
+      <div class="avatar" aria-hidden="true" style="background:var(--ldn)">T</div>
+      <div><span class="tag ldn">London</span><h3 style="margin-top:6px">Tom, 19, apprentice electrician</h3><p class="small muted">He has banked with the bank since he was 17. He applies for a £1,000 starter credit card.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="card stack">
+        <h3>His readiness record (from 17, no credit)</h3>
+        <p class="small">Before 18 nobody can lend to Tom, and the bank never markets credit to him. But with his junior account it could see good habits: 14 months in a row of saving something, never going overdrawn, and completed money lessons in the app. At 18 that helped the bank make him a safe first offer.</p>
+      </div>
+      <div class="card stack">
+        <h3>Two separate tests, both must pass</h3>
+        <p class="small"><span class="chip ok">Risk: grade 12, 2.2%</span></p>
+        <p class="small"><span class="chip ok">Affordability: pass</span></p>
+        <p class="small muted">In the UK a good risk score can never make up for a failed affordability test.</p>
+      </div>
+    </div>
+    <div class="card stack">
+      <h3>Tom's monthly budget (checked with his bank data)</h3>
+      <svg id="chTom" class="chart" viewBox="0 0 640 210" role="img" aria-label="Tom's budget: income 1,650 pounds; rent 500; essentials 620; phone 35; left 495; card repayment 42."></svg>
+      <p class="small muted">Repaying a full £1,000 balance over 36 months at 29.9% APR costs about £42 a month. Income was verified through Open Banking, not just declared.</p>
+    </div>
+    <div class="card stack">
+      <h3>Try it: change Tom's income or essential costs</h3>
+      <div class="grid2">
+        <div class="control"><label for="tInc">Monthly income: <span id="tIncLbl" class="num">£1,650</span></label><input id="tInc" type="range" min="900" max="2600" step="25" value="1650"></div>
+        <div class="control"><label for="tEss">Essential costs: <span id="tEssLbl" class="num">£620</span></label><input id="tEss" type="range" min="300" max="1300" step="10" value="620"></div>
+      </div>
+      <dl class="readout">
+        <div><dt>Left each month</dt><dd id="tLeft">–</dd></div>
+        <div><dt>Card repayment</dt><dd id="tPay">£42</dd></div>
+        <div><dt>Risk grade</dt><dd>12 (good)</dd></div>
+        <div><dt>Affordability</dt><dd id="tAff">–</dd></div>
+      </dl>
+      <div class="verdict" aria-live="polite"><span id="tVerdict" class="chip ok">–</span><span id="tWhy" class="small"></span></div>
+      <p class="small muted">Illustrative rule: after the repayment, at least £100 a month must be left as a safety cushion.</p>
+    </div>
+
+    <div class="stack" id="tom-steps">
+      <h3>Step by step: how Tom's application is decided (UK install)</h3>
+      <p class="small">Same building blocks as Maria's, but with UK rules. The biggest difference: in the UK, affordability is its own legal test, and a computer decision comes with the right to ask for a person.</p>
+      <ol class="jflow" aria-label="Tom's journey in 15 steps">
+        <li><a href="#t1"><i>1</i>Arrives</a></li><li><a href="#t2"><i>2</i>Tokens</a></li><li><a href="#t3"><i>3</i>Data</a></li>
+        <li><a href="#t4"><i>4</i>Quality</a></li><li><a href="#t5"><i>5</i>UK rules</a></li><li><a href="#t6"><i>6</i>Bank policy</a></li>
+        <li><a href="#t7"><i>7</i>Affordable?</a></li><li><a href="#t8"><i>8</i>Risk</a></li><li><a href="#t9"><i>9</i>Grade</a></li>
+        <li><a href="#t10"><i>10</i>Reasons</a></li><li><a href="#t11"><i>11</i>Limit</a></li><li><a href="#t12"><i>12</i>Automation?</a></li>
+        <li><a href="#t13" class="person"><i>13</i>Oversight</a></li><li><a href="#t14"><i>14</i>Notice</a></li><li><a href="#t15"><i>15</i>Record</a></li>
+      </ol>
+      <ol class="steps">
+        <li class="stepcard system" id="t1">
+          <div class="stephead"><span class="no">01</span><h3>The application arrives</h3><span class="who">System · from the bank's decision engine</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Tom applies for a £1,000 starter card in the app. The bank's decision engine sends it to the UK installation.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Credit operations and IT own the connection.</dd></div>
+            <div><dt>What the system checks</dt><dd>The message is complete and comes from an allowed system. UK data only ever goes to the UK install.<span class="rule">Separate US / UK installations</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A new case: "Starter card · £1,000 · London".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Keeping each country's data in its own installation keeps both regulators satisfied and stops data crossing borders.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t2">
+          <div class="stephead"><span class="no">02</span><h3>Consent and privacy codes</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Tom's name and National Insurance number become a code. His <b>Open Banking</b> consent is checked.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, through the bank's consent platform.</dd></div>
+            <div><dt>What the system checks</dt><dd>Consent is in date, covers credit assessment, and has not been withdrawn.<span class="rule">UK GDPR · purpose limitation</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>Case number and a consent badge: "Open Banking · valid until March".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Data used without valid consent cannot be used at all, however useful it is.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t3">
+          <div class="stephead"><span class="no">03</span><h3>Data is gathered</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The system reads his credit reference file (short, he is 19), 12 months of Open Banking transactions, and his readiness record from age 17.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, through the bank's credit reference agency and Open Banking adapters.</dd></div>
+            <div><dt>What the system checks</dt><dd>Which credit reference agency was used is recorded, so Tom can be told if he asks.<span class="rule">CCA s.157 · readiness record (ages 16–17, no credit)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>Income chart (£1,650 a month, steady), spending categories, and "readiness: 14 months saving, no overdraft".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Young customers have little credit history. Real account data and good habits give a fairer picture.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t4">
+          <div class="stephead"><span class="no">04</span><h3>Data quality and income check</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>His stated income is compared with the salary payments in his account. Essential spending is compared with national (ONS) norms for someone like him.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Mismatches are flagged to the fraud team.</dd></div>
+            <div><dt>What the system checks</dt><dd>UK rules say a customer's own word about income is not enough on its own; it must be checked.<span class="rule">CONC 5.2A.16 · CONC 5.2A.36</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Income verified (Open Banking)". "Essentials £620: within the normal range".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Checked income is the foundation of a fair affordability decision.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t5">
+          <div class="stephead"><span class="no">05</span><h3>UK legal rules (the UK rule pack)</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Every UK rule that applies to a credit card is checked.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Maintained by the UK Pack team and approved by the bank's compliance team.</dd></div>
+            <div><dt>What the system checks</dt><dd>He is 18 or over. No sign of vulnerability that needs a specialist. Both legal tests (credit risk and affordability) will be run separately. No banned characteristic is used.<span class="rule">CONC 5.2A two-limb test · Consumer Duty · Equality Act 2010</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A "Law" tab with each rule: all pass so far.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>If a vulnerability flag appears (for example illness or recent bereavement), the case goes to a trained person and is never declined automatically.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t6">
+          <div class="stephead"><span class="no">06</span><h3>The bank's own policy</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The bank's starter-card policy applies: limits from £250 to £1,000, reviewed after 6 and 12 months of on-time payments.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. Written by risk strategy and changed only through maker-checker.</dd></div>
+            <div><dt>What the system checks</dt><dd>£1,000 is within the starter range. Tom is not in persistent debt or financial difficulty.<span class="rule">Bank policy · starter card £250–£1,000</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Policy: starter card · max £1,000 · pass".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Starting small and growing with good behaviour protects both Tom and the bank.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t7">
+          <div class="stephead"><span class="no">07</span><h3>Is it affordable? (UK legal test)</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div class="wide"><dt>What happens</dt><dd>The system works out what Tom has left each month and what repaying a full £1,000 balance would cost.
+              <span class="math">Left: £1,650 − £500 rent − £620 essentials − £35 phone = £495</span>
+              <span class="math">Repayment: £1,000 over 36 months at 29.9% APR ≈ £42.40 a month</span>
+              <span class="math">After repayment: £495 − £42.40 ≈ £453, more than the £100 safety cushion → PASS</span></dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic.</dd></div>
+            <div><dt>What the system checks</dt><dd>Can he repay without hardship, over a reasonable time, allowing for foreseeable changes?<span class="rule">CONC 5.2A affordability</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Affordability: PASS" with the sums above.</dd></div>
+            <div><dt>Why it matters</dt><dd>In the UK, a great risk score can never make an unaffordable card acceptable.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t8">
+          <div class="stephead"><span class="no">08</span><h3>How risky is he? (the risk score)</h3><span class="who">System · approved models only</span></div>
+          <dl class="stepgrid">
+            <div class="wide"><dt>What happens</dt><dd>The approved model estimates:
+              <span class="math">PD (chance of falling 90+ days behind in a year) = 2.2%</span>
+              <span class="math">EAD (≈75% of the £1,000 limit) ≈ £750 · LGD = 75%</span>
+              <span class="math">Expected loss = 2.2% × 75% × £750 ≈ £12 a year</span></dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, with models approved by the bank's model-risk team.</dd></div>
+            <div><dt>What the system checks</dt><dd>Age only with a documented reason. Protected characteristics never reach the model.<span class="rule">PRA SS1/23 · Equality Act</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Credit risk: PD 2.2% · expected loss £12/yr".</dd></div>
+            <div><dt>Why it matters</dt><dd>This is the first of the two UK tests (credit risk). Step 7 was the second (affordability). Both must pass.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t9">
+          <div class="stephead"><span class="no">09</span><h3>His grade on the bank's scale</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>PD 2.2% falls between 1.65% and 2.4%, so Tom is <b>grade 12</b> of 20.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, using the bank's master scale.</dd></div>
+            <div><dt>What the system checks</dt><dd>Which band his PD falls into.<span class="rule">Bank master scale (demo: 20 grades)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>Grade badge "12", band "1.65–2.4%".</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Grade 12 is the last grade inside the bank's automatic zone for small starter products.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t10">
+          <div class="stephead"><span class="no">10</span><h3>Reasons are chosen by rules</h3><span class="who">System · never the AI writer</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The main factors behind the result are listed as reason codes.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic, from a fixed reason library.</dd></div>
+            <div><dt>What the system checks</dt><dd>Top reasons: "Steady verified income", "Regular saving", "No missed payments", "Short credit history" (the one factor holding the grade back).<span class="rule">Reason library · Art 22C information</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A ranked list, each reason with its code.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Tom has the right to understand a computer-made decision. Clear reasons also help if he complains to the Financial Ombudsman.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t11">
+          <div class="stephead"><span class="no">11</span><h3>The limit: lowest of the caps wins</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div class="wide"><dt>What happens</dt><dd>
+              <span class="math">Asked for £1,000 · affordability would allow ≈ £9,300 · starter cap £1,000 → £1,000</span></dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic.</dd></div>
+            <div><dt>What the system checks</dt><dd>His request and the starter cap are equal; affordability is not the limit here.<span class="rule">Limit = min(request, affordability, policy caps)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Recommended: £1,000 (binding: requested amount / starter cap)".</dd></div>
+            <div><dt>Why it matters</dt><dd>Tom gets what he asked for, and no more than the starter policy allows.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t12">
+          <div class="stephead"><span class="no">12</span><h3>Can it be decided automatically?</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>The bank's automation rule: starter cards up to £1,000 at grade 12 or better, with every rule passed, may be approved automatically.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. The bank set this rule and can switch it off.</dd></div>
+            <div><dt>What the system checks</dt><dd>£1,000 ✓ · grade 12 ✓ · affordability pass ✓ · all rules pass ✓ → <b>approved automatically</b>.<span class="rule">Bank automation rule · UK GDPR Art 22A–22D</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>"Auto-approved", visible in the review sample queue.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Had any check failed, the case would have gone to a person. The system never declines anyone on its own.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard person" id="t13">
+          <div class="stephead"><span class="no">13</span><h3>People still oversee automatic decisions</h3><span class="who person">Person · credit quality team</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>A sample of automatic approvals is checked by people every week. If Tom asks for a person to look at his decision, it goes into a review queue with a deadline.</dd></div>
+            <div><dt>Who / what does it</dt><dd>The credit quality team, plus a reviewer if Tom asks.</dd></div>
+            <div><dt>What the system checks</dt><dd>Review deadlines, and that reviewers have real authority to change the outcome.<span class="rule">Art 22C: human intervention &amp; contest</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A "sample review" list and a "customer requested review" queue with due dates.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Automation is only lawful with real human safeguards. A reviewer who just clicks "agree" every time doesn't count.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t14">
+          <div class="stephead"><span class="no">14</span><h3>Notice content is prepared; the bank sends it</h3><span class="who">System + compliance-approved template</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Tom is told his card is approved, that the decision was automated, why, and that he can ask for a person to review it or challenge it. English or Welsh.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Template approved by compliance. The bank's own systems send it.</dd></div>
+            <div><dt>What the system checks</dt><dd>The notice includes the information UK law requires for automated decisions.<span class="rule">UK GDPR Art 22C · Consumer Duty (consumer understanding)</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A notice preview and its sent status.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>Customers must understand what happened and what they can do about it.</dd></div>
+          </dl>
+        </li>
+        <li class="stepcard system" id="t15">
+          <div class="stephead"><span class="no">15</span><h3>The decision record is saved</h3><span class="who">System</span></div>
+          <dl class="stepgrid">
+            <div><dt>What happens</dt><dd>Inputs, rule and model versions, both test results, the automation rule used, and the notice are locked into a record.</dd></div>
+            <div><dt>Who / what does it</dt><dd>Automatic. The record can't be edited.</dd></div>
+            <div><dt>What the system checks</dt><dd>That it replays exactly. Kept for the life of the card plus 6 years.<span class="rule">CONC 5.2A.33 records · UK retention policy</span></dd></div>
+            <div><dt>What you see on screen</dt><dd>A "Replay" button for auditors and the Financial Ombudsman file export.</dd></div>
+            <div class="wide"><dt>Why it matters</dt><dd>UK complaints about lending can come years later. The bank must be able to prove its checks were reasonable.</dd></div>
+          </dl>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 GRADES -->
+  <section id="grades">
+    <div class="chapter"><span class="n">06</span><h2>The grade scale: from very safe to very risky</h2></div>
+    <p>Big banks use a "master scale" with many grades. Each grade stands for a range of chances that a customer will fall seriously behind within a year. The system uses the bank's own scale. This demo uses 20 grades.</p>
+    <div class="card stack">
+      <div class="gscale" id="gscale" role="list" aria-label="20-grade scale with upper chance of default"></div>
+      <div class="gnotes"><span class="auto">Grades 1–12: small starter products may be approved automatically</span><span class="human">Grades 13–20: a person always reviews</span></div>
+      <p class="small muted" style="margin-top:6px">Each box shows the upper limit of its range. Tom is in grade 12 (up to 2.4%). Maria is in grade 13 (2.4–3.4%). Out of 100 people like Maria, about 3 may fall seriously behind within a year.</p>
+    </div>
+  </section>
+
+  <!-- 7 SEGMENTS -->
+  <section id="segments">
+    <div class="chapter"><span class="n">07</span><h2>Customer segments by income</h2></div>
+    <p>A bank does not treat a part-time worker and a senior executive the same way. Their needs are different, the risks are different, and a fair limit for one would be unsafe or useless for the other. So the system first places every applicant in an <b>income segment</b>, then applies that segment's rules on top of the law and the bank's own policy. <span class="tag ill">Illustrative demo policy</span></p>
+    <div class="card stack">
+      <h3>How the segment is decided, step by step</h3>
+      <ol class="small segsteps">
+        <li><b>Verified income only.</b> Gross yearly income from payroll checks, bank-account data (Open Banking), tax data or credit-bureau income tools. A customer simply telling us their salary never sets the segment on its own.</li>
+        <li><b>Irregular income is smoothed.</b> Shift, gig, seasonal or self-employed income is averaged over 12 months of real bank credits, with a small penalty if it swings a lot.</li>
+        <li><b>Joint applicants are combined.</b> Two applicants on one loan add their verified incomes together.</li>
+        <li><b>Checked again every night.</b> A customer moves <b>up</b> after 2 months at the higher income and <b>down</b> only after 3 months at the lower income, so one bad month doesn't change their segment. A verified job loss moves them down at once.</li>
+        <li><b>Then the segment's rules apply</b>, always after the law (US or UK rules) and the bank's own policy. The final limit is still the lowest of all the caps.</li>
+      </ol>
+    </div>
+    <div class="segbar">
+      <h3>The six segments</h3>
+      <div class="segtoggle" role="group" aria-label="Choose the market for this chapter">
+        <button type="button" id="segUS" aria-pressed="true">New York (US $)</button>
+        <button type="button" id="segUK" aria-pressed="false">London (UK £)</button>
+      </div>
+    </div>
+    <div class="segcards" id="segCards" role="list" aria-label="Income segments"></div>
+
+    <div class="grid2">
+      <div class="card stack">
+        <h3>Share of customers by segment</h3>
+        <svg id="chSegCust" class="chart" viewBox="0 0 320 250" role="img" aria-label="Pie chart of customers by income segment"></svg>
+        <p class="small"><b>Most customers are in S2 and S3</b>, ordinary working incomes.</p>
+      </div>
+      <div class="card stack">
+        <h3>Share of money lent by segment</h3>
+        <svg id="chSegBal" class="chart" viewBox="0 0 320 250" role="img" aria-label="Pie chart of lending balances by income segment"></svg>
+        <p class="small"><b>Most of the money is lent to S3–S5</b>, because higher earners borrow larger amounts (mortgages, bigger limits).</p>
+      </div>
+    </div>
+    <div class="seglegend" id="segLegend"></div>
+    <p class="small muted">Demo bank: <span id="segBookSize">2 million</span> synthetic customers. Hover a slice for exact figures. <span class="tag ill">Illustrative</span></p>
+
+    <div class="card stack">
+      <h3>How often customers in each segment fall seriously behind</h3>
+      <svg id="chSegPd" class="chart" viewBox="0 0 600 240" role="img" aria-label="Bar chart of average 12-month default rate by segment"></svg>
+      <p class="small">Lower incomes default more often on average, because there is less room for a surprise bill or a lost shift. That is why lower segments get smaller starting limits and stronger affordability checks. It does <b>not</b> mean every low earner is risky: the model scores behaviour, so careful low earners still reach good grades.</p>
+    </div>
+
+    <div class="card stack">
+      <h3>Credit card limit range by segment</h3>
+      <svg id="chSegRange" class="chart" viewBox="0 0 600 270" role="img" aria-label="Range chart of card limits by segment"></svg>
+      <p class="small">Each bar runs from the smallest to the largest starting limit allowed in that segment. The final limit is still the lowest of the segment range, the product cap and what the customer can afford. S0 gets a deposit-backed (secured) card. S5 has no fixed top: it depends on affordability.</p>
+    </div>
+
+    <div class="card stack">
+      <h3>Approval rate by segment: bank's current model vs AI Risk Score Card Global (credit cards)</h3>
+      <svg id="chSegAppr" class="chart" viewBox="0 0 600 250" role="img" aria-label="Grouped bar chart of approval rates by segment, current model vs challenger"></svg>
+      <div class="legend"><span><i style="background:var(--muted-mark)"></i>Bank's current model</span><span><i style="background:var(--accent)"></i>AI Risk Score Card Global</span></div>
+      <p class="small">At the same expected loss, the gains are biggest in S1 and S2, where account behaviour, rent and cash-flow data reveal good customers that a credit-file-only model can't see. <span class="tag ill" id="segApprNote">Illustrative, simulated (US cards)</span></p>
+    </div>
+
+    <div class="card stack">
+      <h3>Which segments a crisis hits hardest (increase in expected losses)</h3>
+      <div class="tbl-wrap">
+        <table class="heat" aria-label="Increase in expected losses by segment and scenario">
+          <thead><tr><th scope="col"><span class="small muted">Scenario</span></th><th scope="col">S1</th><th scope="col">S2</th><th scope="col">S3</th><th scope="col">S4</th><th scope="col">S5</th></tr></thead>
+          <tbody id="segHeat"></tbody>
+        </table>
+      </div>
+      <p class="small">Darker means a bigger jump in losses. A <b>recession</b> hits lower incomes first (lost jobs and hours). A <b>rate shock</b> hits the middle segments with mortgages. A <b>market crash</b> hits high earners whose bonuses and investment income fall. <span class="tag ill">Illustrative</span></p>
+    </div>
+
+    <div class="card stack">
+      <h3>What each segment is allowed: the segment policy matrix</h3>
+      <div class="tbl-wrap">
+        <table class="matrix">
+          <thead><tr><th scope="col">Rule</th><th scope="col">S0 No verified income</th><th scope="col">S1 Entry</th><th scope="col">S2 Core / blue-collar</th><th scope="col">S3 Middle</th><th scope="col">S4 Upper-middle</th><th scope="col">S5 High</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Products</th><td>Secured card, credit-builder loan</td><td>+ starter card, salary advance, small loan</td><td>+ standard card, personal loan, auto loan</td><td>+ mortgage, rewards card, home equity (US) / second charge (UK)</td><td>+ large mortgages, premium card</td><td>+ private-bank and bespoke lending</td></tr>
+            <tr><th scope="row">Card limit (US)</th><td>$200–500 secured</td><td>$300–1,500</td><td>$1,500–5,000</td><td>$5,000–15,000</td><td>$15,000–30,000</td><td>$30,000+</td></tr>
+            <tr><th scope="row">Card limit (UK)</th><td>£200–500 secured</td><td>£250–1,000</td><td>£1,000–3,000</td><td>£3,000–8,000</td><td>£8,000–15,000</td><td>£15,000+</td></tr>
+            <tr><th scope="row">Personal loan cap (US / UK)</th><td>—</td><td>$5k / £3k</td><td>$15k / £10k</td><td>$40k / £25k</td><td>$75k / £50k</td><td>$100k / £75k</td></tr>
+            <tr><th scope="row">Max debt-to-income (US bank policy)</th><td>—</td><td>35%</td><td>40%</td><td>43%</td><td>45%</td><td>50%</td></tr>
+            <tr><th scope="row">Min money left each month after repayment: loans &amp; mortgages (US / UK)</th><td>—</td><td>$600 / £150</td><td>$800 / £200</td><td>$1,200 / £300</td><td>$2,000 / £500</td><td>$3,000 / £800</td></tr>
+            <tr><th scope="row">Min money left after minimum payment: cards &amp; salary advance</th><td>$300 / £100</td><td>$300 / £100</td><td>$300 / £100</td><td>$300 / £100</td><td>$300 / £100</td><td>$300 / £100</td></tr>
+            <tr><th scope="row">Salary advance cap (at most 50% of net pay)</th><td>—</td><td>$1,000 / £750</td><td>$2,000 / £1,500</td><td>$3,000 / £2,000</td><td>Not offered</td><td>Not offered</td></tr>
+            <tr><th scope="row">UK mortgage income multiple (max)</th><td>—</td><td>—</td><td>4.0×</td><td>4.5×</td><td>4.5× (5.0× professionals)</td><td>5.5× case by case</td></tr>
+            <tr><th scope="row">Automatic approval allowed</th><td>No</td><td>Starter products up to $/£1,000 at grade 12 or better</td><td>Starter products up to $/£1,000 at grade 12 or better</td><td>Cards up to $/£5,000 at grade 10 or better</td><td>Person only</td><td>Person only</td></tr>
+            <tr><th scope="row">Automatic decline</th><td colspan="6">Never, in any segment. Every "no" is reviewed by a person.</td></tr>
+            <tr><th scope="row">Limit growth reviews</th><td>At 6 months (move to unsecured)</td><td>6 and 12 months</td><td>6 and 12 months</td><td>12 months</td><td>12 months</td><td>On request</td></tr>
+            <tr><th scope="row">Main risks to watch</th><td>No income history</td><td>Income swings, payday lenders</td><td>Redundancy, sector layoffs</td><td>Over-borrowing, mortgage rate rises</td><td>Large exposures, spending above income</td><td>Complex income, bonus cuts, fraud referrals</td></tr>
+            <tr><th scope="row">Hardest stress test</th><td>—</td><td>Recession / job loss</td><td>Recession / sector layoffs</td><td>Rate shock (+3 points)</td><td>Rate shock + house prices</td><td>Market crash</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">The law always comes first (US CARD Act, Reg B, ability-to-repay; UK affordability rules and mortgage stress test). Every figure here is a demo default the bank can change, with two people approving each change.</p>
+    </div>
+
+    <div class="stack">
+      <h3>Overlay tags: extra labels that change <i>how</i> a customer is checked, not their segment</h3>
+      <div class="otags">
+        <div class="otag"><code>GENZ</code><span>Age 18–25. Credit-builder path, smart limits and starter products.</span></div>
+        <div class="otag"><code>THIN_FILE</code><span>Fewer than 3 credit accounts or under 12 months of history. Starter caps apply; bank-account behaviour counts more.</span></div>
+        <div class="otag"><code>GIG_SELF_EMPLOYED</code><span>30% or more of income from gig platforms or their own business. Income smoothed over 12 months; 2 years of evidence for mortgages.</span></div>
+        <div class="otag"><code>RETIREE</code><span>Pension is the main income. Only pension income counts, and future changes are checked.</span></div>
+        <div class="otag"><code>NEW_TO_COUNTRY</code><span>Under 24 months of local history. Treated like a thin file. Immigration status is never used without legal review.</span></div>
+        <div class="otag"><code>UNDER_18_READINESS</code><span>Age 16–17. No credit at all; only a readiness record of good money habits.</span></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card stack">
+        <div class="person"><div class="avatar" style="background:var(--ny)" aria-hidden="true">M</div><div><h3>Where Maria sits</h3><p class="small muted">New York · about $48,000 a year</p></div></div>
+        <p class="small"><b>S2 Core / blue-collar</b> + <span class="tagcode">THIN_FILE</span> <span class="tagcode">GIG_SELF_EMPLOYED</span></p>
+        <ul class="small segsteps">
+          <li>S2 allows a card of $1,500–5,000, but the thin-file starter cap of <b>$1,500</b> is lower, so it wins.</li>
+          <li>Money left after the card's minimum payment: <span class="num">$560 − $45 = $515</span>, above the $300 floor → pass.</li>
+          <li>$1,500 is above the $1,000 automatic line → <b>a person reviews it</b>.</li>
+        </ul>
+      </div>
+      <div class="card stack">
+        <div class="person"><div class="avatar" style="background:var(--ldn)" aria-hidden="true">T</div><div><h3>Where Tom sits</h3><p class="small muted">London · about £24,000 a year</p></div></div>
+        <p class="small"><b>S2 Core / blue-collar</b> + <span class="tagcode">GENZ</span> <span class="tagcode">THIN_FILE</span></p>
+        <ul class="small segsteps">
+          <li>£1,000 starter card, inside his starter range.</li>
+          <li>Money left after repayment: <span class="num">£495 − £42.40 = £453</span>, above the £100 floor → pass.</li>
+          <li>£1,000 at grade 12 → <b>approved automatically</b>, with his right to ask a person.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card stack">
+      <h3>A loan example: an S3 customer in New York <span class="tag ill">Illustrative</span></h3>
+      <p class="small">Earns $90,000 a year ($7,500 a month before tax, $5,600 after). Already pays $1,900 a month on other debts. Essential living costs are $1,800 a month. Asks for a <b>$30,000 loan over 60 months at 12% APR</b>.</p>
+      <span class="math">Monthly instalment = $30,000 × 1% ÷ (1 − 1.01^−60) ≈ $667</span>
+      <span class="math">Debt-to-income = ($1,900 + $667) ÷ $7,500 = 34% → within S3's 43% limit ✓</span>
+      <span class="math">Money left = $5,600 − $1,900 − $667 − $1,800 = $1,233 → above S3's $1,200 floor ✓ (only just)</span>
+      <p class="small">The rule that sets the limit (the <b>binding constraint</b>) is the minimum money left each month. A slightly bigger loan would fail it.</p>
+    </div>
+
+    <div class="card stack">
+      <h3>Try it: find the segment and check a loan</h3>
+      <p class="small muted">Uses the market chosen above. Illustrative demo policy, not real lending rules.</p>
+      <div class="control">
+        <label for="segInc">Verified yearly income before tax: <span class="num" id="segIncLbl">$90,000</span></label>
+        <input id="segInc" type="range" min="0" max="400000" step="1000" value="90000">
+      </div>
+      <dl class="readout">
+        <div><dt>Segment</dt><dd id="soSeg">–</dd></div>
+        <div><dt>Card limit range</dt><dd id="soCard">–</dd></div>
+        <div><dt>Personal loan cap</dt><dd id="soLoan">–</dd></div>
+        <div><dt>Max debt-to-income</dt><dd id="soDti">–</dd></div>
+        <div><dt>Min money left: loans</dt><dd id="soFloor">–</dd></div>
+        <div><dt>Min money left: cards</dt><dd id="soCardFloor">–</dd></div>
+        <div><dt>Salary advance cap</dt><dd id="soAdv">–</dd></div>
+        <div><dt>Automatic approval</dt><dd id="soAuto" style="font-size:.84rem;line-height:1.3">–</dd></div>
+      </dl>
+      <h3>Loan check</h3>
+      <div class="form2">
+        <div><label for="lnAmt">Loan amount</label><input class="inp" id="lnAmt" type="number" min="0" step="500" value="30000"></div>
+        <div><label for="lnMonths">Months</label><input class="inp" id="lnMonths" type="number" min="6" max="120" step="6" value="60"></div>
+        <div><label for="lnApr">APR %</label><input class="inp" id="lnApr" type="number" min="0" max="40" step="0.5" value="12"></div>
+        <div><label for="lnNet">Monthly income after tax</label><input class="inp" id="lnNet" type="number" min="0" step="50" value="5600"></div>
+        <div><label for="lnObl">Existing monthly debt payments</label><input class="inp" id="lnObl" type="number" min="0" step="50" value="1900"></div>
+        <div><label for="lnEss">Essential living costs a month</label><input class="inp" id="lnEss" type="number" min="0" step="50" value="1800"></div>
+      </div>
+      <dl class="readout">
+        <div><dt>Monthly instalment</dt><dd id="loInst">–</dd></div>
+        <div><dt>Debt-to-income</dt><dd id="loDti">–</dd></div>
+        <div><dt>Money left each month</dt><dd id="loLeft">–</dd></div>
+        <div><dt>Within loan cap?</dt><dd id="loCap" style="font-size:.9rem">–</dd></div>
+      </dl>
+      <div class="verdict" aria-live="polite"><span class="chip ok" id="loVerdict">–</span><span class="small" id="loWhy"></span></div>
+      <div><button type="button" class="btn" id="lnReset">Reset to the example</button></div>
+    </div>
+
+    <div class="fair">
+      <h3>Keeping segments fair</h3>
+      <ul>
+        <li>Income is not a protected characteristic, but income bands can act as a stand-in for race, sex, age or disability. So approval rates, limits, prices and decline reasons are <b>monitored by segment</b>, and any big difference must be justified.</li>
+        <li>No customer is declined just for their income, except that S0 customers can't get unsecured products yet. S0 always gets a path forward: a secured card or a credit-builder loan.</li>
+        <li>The model scores behaviour and affordability. A low earner who manages money well can reach a very good grade.</li>
+        <li>Offers and marketing follow segment rules, affordability comes first, and credit is never promoted to anyone under 18.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8 AFTER APPROVAL -->
+  <section id="after">
+    <div class="chapter"><span class="n">08</span><h2>What happens after approval</h2></div>
+    <p>Approval is not the end. From the next night onwards, every customer is re-checked automatically. Here is what happens to Maria's card over her first year, step by step.</p>
+    <div class="card">
+      <ol class="tline">
+        <li><span class="when">Every night</span><span class="what"><b>Re-score.</b> The whole book (up to 50 million accounts at a large bank) is re-scored overnight with the latest transactions and payments. Each customer gets two scores: the steady one used for decisions, and a "today" score adjusted for the economy.</span></li>
+        <li><span class="when">Every night</span><span class="what"><b>Look for early-warning signals.</b> Income shocks (salary stops or drops), credit stress (card use climbing, minimum payments only, new buy-now-pay-later debts), spending warnings (gambling, payday lenders, spending above income) and outside events (a flood near the home, the employer hit by sanctions).</span></li>
+        <li><span class="when">When signals add up</span><span class="what"><b>Watch-list.</b> A customer joins the watch-list if their grade worsens by 2 or more notches, or if two or more warning signals appear in the same month (demo rule; the bank sets its own).</span></li>
+        <li><span class="when">Next working day</span><span class="what"><b>The team acts.</b> The portfolio team reviews the watch-list. Typical actions: pause limit increases, offer a payment plan or budgeting help, or route to the collections team early, before any payment is missed. A person always decides.</span></li>
+        <li><span class="when">Month 6 and 12</span><span class="what"><b>Limit review.</b> For starter cards with on-time payments, a limit increase is considered, always with a fresh affordability (UK) or ability-to-pay (US) check.</span></li>
+        <li><span class="when">Monthly</span><span class="what"><b>Model health check.</b> Are today's customers still like the ones the model learned from? If the model drifts, a new version is trained and needs approval. If quality drops sharply, the model switches itself off and the bank's previous model takes over.</span></li>
+      </ol>
+    </div>
+    <div class="card stack">
+      <h3>Mini example: Maria, month 7 <span class="tag ill">Illustrative</span></h3>
+      <p class="small">Her delivery app income stops for 5 weeks (a <b>signal</b>: income shock). Her card use jumps from 20% to 85% of the limit (a second signal: credit stress). Two signals in one month put her on the <b>watch-list</b>, and her daily score moves from grade 13 to grade 15. The next morning a portfolio analyst sees the alert, pauses her planned 6-month limit increase, and the bank sends a message offering budgeting help and a short payment plan if needed. In month 9 her delivery income is back, card use falls, and she drops off the watch-list.</p>
+    </div>
+  </section>
+
+  <!-- 8 CHAMPION -->
+  <section id="champion">
+    <div class="chapter"><span class="n">09</span><h2>"Better than your champion model"</h2></div>
+    <p>Before any bank uses it, the system is tested on the bank's own past customers, next to the bank's current model. It must win on four things at once. <span class="tag ill">Illustrative, simulated results</span></p>
+    <div class="grid4" id="champGrid"></div>
+    <div class="legend"><span><i style="background:var(--muted-mark)"></i>Bank's current model</span><span><i style="background:var(--accent)"></i>AI Risk Score Card Global</span></div>
+  </section>
+
+  <!-- 8 FRONTIER -->
+  <section id="frontier">
+    <div class="chapter"><span class="n">10</span><h2>Risk versus opportunity</h2></div>
+    <p>Every lending policy is a trade: approve more people and you earn more, but you also lose a bit more to bad debts. The best policies sit on the curve below, the "frontier". The bank's current policy often sits under it, losing money and good customers it doesn't need to. This simulation uses 5,000 made-up card applicants.</p>
+    <div class="card stack">
+      <div class="control">
+        <label for="cut">Approve applicants with a risk of up to: <span id="cutLbl" class="num">7.0%</span></label>
+        <input id="cut" type="range" min="1" max="40" step="1" value="14">
+      </div>
+      <svg id="chFrontier" class="chart" viewBox="0 0 640 300" role="img" aria-label="Efficient frontier: expected loss percent against risk-adjusted profit; current bank policy sits below the curve."></svg>
+      <div class="legend"><span><i class="line" style="background:var(--s1)"></i>Frontier (challenger, all cut-offs)</span><span><i class="dot" style="background:var(--ink-3)"></i>Bank's current policy</span><span><i class="dot" style="background:var(--s1)"></i>Your selected cut-off</span><span><i class="dot" style="background:var(--amber)"></i>Recommended within risk appetite</span></div>
+      <dl class="readout">
+        <div><dt>Approved</dt><dd id="fA">–</dd><span class="delta" id="fAd"></span></div>
+        <div><dt>Expected loss</dt><dd id="fL">–</dd><span class="delta" id="fLd"></span></div>
+        <div><dt>Profit after losses</dt><dd id="fP">–</dd><span class="delta" id="fPd"></span></div>
+        <div><dt>Thin-file people newly served</dt><dd id="fT">–</dd><span class="delta">vs current policy</span></div>
+      </dl>
+      <p class="small muted">Simulated: 13% yearly margin on balances, 75% of the balance lost if a customer defaults, $55 yearly cost per account. Risk appetite: expected loss at most 2.0% of balances (dashed line). The bank's current model over-estimates risk for thin-file customers.</p>
+    </div>
+    <div class="card stack">
+      <h3>Opportunity-loss segments: good business the current policy turns away <span class="tag ill">Illustrative</span></h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Segment</th><th class="r">Declined today</th><th class="r">Actual risk</th><th class="r">Yearly profit missed</th></tr></thead>
+        <tbody>
+          <tr><td>Gig and shift workers with steady bank income</td><td class="r num">18,400</td><td class="r num">2.6%</td><td class="r num">$4.1m</td></tr>
+          <tr><td>Recent graduates in their first job</td><td class="r num">9,700</td><td class="r num">1.9%</td><td class="r num">$2.6m</td></tr>
+          <tr><td>New arrivals with thin credit files</td><td class="r num">6,200</td><td class="r num">2.8%</td><td class="r num">$1.3m</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 9 INCLUSION -->
+  <section id="inclusion">
+    <div class="chapter"><span class="n">11</span><h2>Gen Z and blue-collar customers</h2></div>
+    <p>Two groups big banks often miss: young people starting out, and people whose pay changes week to week. Each product is small at first and grows with good behaviour.</p>
+    <div class="tiles">
+      <div><b>Starter card</b><span>UK £250–£1,000, US $300–$1,500. Reviewed after 6 and 12 months of on-time payments, with a fresh affordability check each time. Customers can block categories such as gambling.</span></div>
+      <div><b>One-month salary advance</b><span>Up to half of next month's take-home pay, repaid automatically from the next salary. One at a time. Not offered to anyone already struggling with debt.</span></div>
+      <div><b>Credit builder</b><span>Small credit-builder loans and rent reporting from 18, so on-time payments start building a credit record.</span></div>
+      <div><b>Readiness from 16</b><span>No credit before 18 and no credit marketing to minors. With a junior account, good money habits are recorded to support a safe first offer at 18.</span></div>
+      <div><b>Loyalty without credit</b><span>Savings boosts, rewards for money lessons and goals, student discounts on a debit card, and a "graduation" path at 18.</span></div>
+      <div><b>Legal guardrails</b><span>UK law makes it an offence to invite under-18s to borrow. US rules ban gifts on campus to sign students up for cards, and under-21s need their own income or a co-signer.</span></div>
+    </div>
+  </section>
+
+  <!-- 10 CRISIS -->
+  <section id="crisis">
+    <div class="chapter"><span class="n">12</span><h2>See the next crisis first</h2></div>
+    <p>The system re-checks every customer every night and runs "what if" scenarios on the whole book. Risk scores are adjusted daily for the economy, while the stable score used for approvals stays steady.</p>
+    <div class="card stack">
+      <h3>Extra expected losses under each scenario <span class="tag ill">Illustrative</span></h3>
+      <svg id="chScen" class="chart" viewBox="0 0 640 290" role="img" aria-label="Increase in expected losses by scenario: recession 45 percent, pandemic 38 percent, war and sanctions 30 percent, sector layoffs 26 percent, oil shock 22 percent, regional hurricane or flood 18 percent, climate path 15 percent."></svg>
+    </div>
+    <div class="grid2">
+      <div class="card stack"><h3>Homes in harm's way</h3><p class="small">Every mortgaged home is checked against flood, wildfire, storm, subsidence and heat maps, over 1, 5 and 30 years. Homes likely to become hard to insure get an "insurance gap" flag.</p></div>
+      <div class="card stack"><h3>Jobs and sectors under pressure</h3><p class="small">Customers whose employer or industry faces layoffs, sanctions or supply shocks are flagged early, so the bank can offer help before payments are missed.</p></div>
+    </div>
+    <div class="signals">
+      <div class="signal"><b>Income shock</b><span>Salary stops or drops, a new job, benefits appear.</span></div>
+      <div class="signal"><b>Credit stress</b><span>Card use climbing, minimum payments only, new "buy now pay later" debts.</span></div>
+      <div class="signal"><b>Spending warning</b><span>Gambling, payday lenders, luxury spending above income.</span></div>
+      <div class="signal"><b>Outside event</b><span>A flood near the home, or the employer hit by sanctions or war.</span></div>
+    </div>
+  </section>
+
+  <!-- 11 FAIR -->
+  <section id="fair">
+    <div class="chapter"><span class="n">13</span><h2>Fair and checkable</h2></div>
+    <div class="grid2">
+      <div class="card stack"><h3>United States</h3><p class="small">Every model is tested for unfair impact on protected groups. The system also searches for a "less discriminatory alternative", a model that is just as accurate but fairer, and records the results for regulators.</p></div>
+      <div class="card stack"><h3>United Kingdom</h3><p class="small">Tests for indirect discrimination under the Equality Act. The sensitive data used for testing sits in a separate locked area that the models can never read.</p></div>
+    </div>
+    <div class="card stack"><h3>Validator in a box</h3><p class="small">Bank model-checking teams can use the same tools on the bank's own models: accuracy, stability, fairness, and side-by-side comparisons, in report formats US and UK supervisors expect.</p></div>
+    <div class="loop">
+      <div><b>1 · Learn</b><span>From 3–5 years of the bank's customers, including people it turned down.</span></div>
+      <div><b>2 · Bank approves</b><span>No model is used until the bank's model-risk team signs it off.</span></div>
+      <div><b>3 · Watch</b><span>Every night: are customers still like the ones it learned from?</span></div>
+      <div><b>4 · Retrain</b><span>If things drift, a new version is trained, and it still needs approval.</span></div>
+      <div class="stop"><b>5 · Safety switch</b><span>If quality drops, it switches off and the bank's previous model takes over.</span></div>
+    </div>
+  </section>
+
+  <!-- 12 WRITER -->
+  <section id="writer">
+    <div class="chapter"><span class="n">14</span><h2>The AI writer</h2></div>
+    <p>An AI language model, running inside the bank, turns decisions into plain words for staff and drafts letters for customers. The rules pick the reasons. The AI only words them, and a person approves every letter. The text below is a sample; banks use their own approved templates and translations.</p>
+    <div class="grid2">
+      <div class="note">
+        <span class="lang">Maria · English</span>
+        <p class="small">Approved for a starter card with a $1,500 limit (requested $5,000). Maria's income from warehouse and delivery work has been steady for 12 months. After rent and existing payments she has about $560 a month left, well above the $150 minimum payment. The bank's starter limit for a short credit history is $1,500, reviewed after 6 and 12 months of on-time payments.</p>
+        <span class="lang">Maria · Español</span>
+        <p class="small" lang="es">Aprobada para una tarjeta inicial con un límite de $1,500 (solicitó $5,000). Los ingresos de María por su trabajo en el almacén y de reparto han sido estables durante 12 meses. Después del alquiler y de sus pagos actuales le quedan unos $560 al mes, muy por encima del pago mínimo de $150. El límite inicial del banco para un historial de crédito corto es de $1,500 y se revisará después de 6 y 12 meses de pagos puntuales.</p>
+      </div>
+      <div class="note">
+        <span class="lang">Tom · English</span>
+        <p class="small">Approved for a starter card with a £1,000 limit. Tom's verified income is £1,650 a month. After rent, essential costs and his phone contract he has about £495 left. Repaying £1,000 over 36 months would cost about £42 a month, so the card is affordable. This decision was made automatically under the bank's rules; Tom can ask for a person to review it.</p>
+        <span class="lang">Tom · Cymraeg</span>
+        <p class="small" lang="cy">Cymeradwywyd cerdyn cychwynnol gyda therfyn o £1,000. Mae incwm Tom o £1,650 y mis wedi'i wirio. Ar ôl rhent, costau hanfodol a'i gontract ffôn mae ganddo tua £495 ar ôl. Byddai ad-dalu £1,000 dros 36 mis yn costio tua £42 y mis, felly mae'r cerdyn yn fforddiadwy. Gwnaed y penderfyniad hwn yn awtomatig o dan reolau'r banc; gall Tom ofyn i berson ei adolygu.</p>
+      </div>
+    </div>
+    <div class="card check">
+      <h3>Every number is checked before anyone sees it</h3>
+      <div><span class="chip ok">Found</span><span>$1,500, $560 and $150 match the calculation</span></div>
+      <div><span class="chip ok">Found</span><span>£495 and £42 match the calculation</span></div>
+      <div><span class="chip no">Not found</span><span>If the AI wrote "$2,000", its text is thrown away and the standard template is used instead</span></div>
+    </div>
+  </section>
+
+  <!-- 13 SAFE -->
+  <section id="safe">
+    <div class="chapter"><span class="n">15</span><h2>Safety and privacy</h2></div>
+    <div class="tiles">
+      <div><b>Separate installations</b><span>One in the US, one in the UK. No data crosses between them.</span></div>
+      <div><b>Codes instead of names</b><span>Names and ID numbers are replaced by codes. The keys stay in the bank's own vault.</span></div>
+      <div><b>Consent you can take back</b><span>Bank-account and rent data is used only with consent. If consent is withdrawn, scores are recalculated without it.</span></div>
+      <div><b>Works with no internet</b><span>Can run fully offline. Updates arrive as signed packages.</span></div>
+      <div><b>Regulators can check</b><span>Supervisors and auditors can inspect the system and every past decision, replayed exactly.</span></div>
+      <div><b>Independent proof</b><span>SOC 2 Type II and ISO 27001 security standards, yearly penetration tests, code held in escrow.</span></div>
+    </div>
+  </section>
+
+  <!-- 15 DAY IN THE LIFE -->
+  <section id="day">
+    <div class="chapter"><span class="n">16</span><h2>A day in the life: who does what in the tool</h2></div>
+    <p>Five roles you will meet in a risk department, and what a normal day looks like for each of them in AI Risk Score Card Global.</p>
+    <div class="roles">
+      <div class="role"><span class="team">Retail credit team</span><h3>Underwriter</h3>
+        <ol>
+          <li>Opens the review queue: cases the system could not approve on its own (like Maria).</li>
+          <li>For each case, reads the recommendation, the grade, the reasons and the affordability or ability-to-pay sums.</li>
+          <li>Checks anything unusual in the data panel, such as an income dip or a recent new loan.</li>
+          <li>Approves, changes the limit, or refers upwards. Any change needs a written reason.</li>
+          <li>Signs off letter content the bank will send, and watches the 30-day deadline on US cases.</li>
+        </ol></div>
+      <div class="role"><span class="team">Risk strategy &amp; policy</span><h3>Strategy analyst</h3>
+        <ol>
+          <li>Checks the risk-versus-opportunity frontier: is our policy on the curve or below it?</li>
+          <li>Looks at opportunity-loss segments, for example gig workers we decline but who repay well.</li>
+          <li>Tests a policy change in the simulator and runs the fairness tests on it.</li>
+          <li>Submits the change as a request; a second person (the checker) must approve it.</li>
+          <li>Writes up the impact for the credit committee.</li>
+        </ol></div>
+      <div class="role"><span class="team">Model risk &amp; validation</span><h3>Model validator</h3>
+        <ol>
+          <li>Reviews the overnight model health report: accuracy, stability and drift.</li>
+          <li>Compares the bank's current model with ours on the same customers (champion vs challenger).</li>
+          <li>Runs fairness tests: US adverse impact ratio and fairer-model search; UK Equality Act tests.</li>
+          <li>Replays a sample of past decisions to confirm they reproduce exactly.</li>
+          <li>Approves or rejects a new model version. Nothing goes live without this sign-off.</li>
+        </ol></div>
+      <div class="role"><span class="team">Collections &amp; recoveries</span><h3>Collections agent</h3>
+        <ol>
+          <li>Opens the list of customers behind on payments, ranked by who is likely to recover and who needs help.</li>
+          <li>Reads the suggested help option, for example a payment plan or a pause on interest.</li>
+          <li>Checks for vulnerability flags first; those go to a specialist.</li>
+          <li>Reviews AI-drafted messages for tone and accuracy before anything is sent.</li>
+          <li>Respects contact limits: how often, at what times and by which channel.</li>
+        </ol></div>
+      <div class="role"><span class="team">Leadership</span><h3>Chief Risk Officer (CRO)</h3>
+        <ol>
+          <li>Reads the board dashboard: losses, approvals, opportunity captured, fairness.</li>
+          <li>Checks the scenarios: what a recession, a war or a flood would do to losses.</li>
+          <li>Reviews the watch-list trend and climate exposure of mortgaged homes.</li>
+          <li>Decides on policy changes the strategy team proposes, within the bank's risk appetite.</li>
+          <li>Reports to the board and to regulators, using the system's evidence packs.</li>
+        </ol></div>
+    </div>
+  </section>
+
+  <!-- 16 MISTAKES -->
+  <section id="mistakes">
+    <div class="chapter"><span class="n">17</span><h2>Common mistakes new staff make</h2></div>
+    <p>Each of these has caught out experienced people too. Knowing them early saves real trouble with customers and regulators.</p>
+    <div class="mistakes">
+      <div class="mistake"><b>"The score is good, so it's affordable."</b><span class="wrong">Risk and affordability are different questions. In the UK they are two separate legal tests.</span><span class="right">Check both. A good grade never overrides a failed affordability check.</span></div>
+      <div class="mistake"><b>Letting the AI pick the reasons</b><span class="wrong">AI-written text can sound right but name the wrong reason. US law needs the real, specific reasons.</span><span class="right">Reasons always come from the rules and the model's reason codes. The AI only words them.</span></div>
+      <div class="mistake"><b>Thinking the system can say "no" by itself</b><span class="wrong">Automation only ever approves, and only where the bank switched it on.</span><span class="right">Every decline is reviewed by a person.</span></div>
+      <div class="mistake"><b>Mixing US and UK data</b><span class="wrong">Copying a UK customer's file into a US report, or comparing them in one spreadsheet.</span><span class="right">Each country's data stays in its own installation. Use the separate reports.</span></div>
+      <div class="mistake"><b>Using age, nationality or similar as a reason</b><span class="wrong">Some characteristics are banned outright; others (like postcode) can act as hidden stand-ins for them.</span><span class="right">Use only approved inputs. Report anything that looks like a stand-in to model risk.</span></div>
+      <div class="mistake"><b>Promoting credit to under-18s</b><span class="wrong">In the UK it is a criminal offence to invite a minor to borrow. US rules restrict card marketing to students.</span><span class="right">Under-18s only get non-credit products and loyalty. The first credit offer comes at 18, after a full check.</span></div>
+      <div class="mistake"><b>Treating the "today" score as the decision score</b><span class="wrong">The daily, economy-adjusted score moves around. Using it for approvals would swing decisions week to week.</span><span class="right">Decisions use the steady score. The daily score is for monitoring and stress tests.</span></div>
+      <div class="mistake"><b>Overriding without a reason</b><span class="wrong">Changing a recommendation and leaving the note empty.</span><span class="right">Always record why. Reasons are audited and help improve the model.</span></div>
+    </div>
+  </section>
+
+  <!-- 17 QUIZ -->
+  <section id="quiz">
+    <div class="chapter"><span class="n">18</span><h2>Check your understanding</h2></div>
+    <p>Try to answer each question in your head, then open it to check.</p>
+    <div class="quiz">
+      <details><summary>1. Maria's risk is fine and she can afford $5,000. Why does she get only $1,500?</summary>
+        <div class="ans"><p>Because the limit is the <b>lowest of all the caps</b>. The bank's starter-card policy caps thin-file customers at $1,500, which is lower than her request and her budget.</p></div></details>
+      <details><summary>2. Why was Tom approved automatically but Maria was not?</summary>
+        <div class="ans"><p>The bank allows automatic approval only for starter products up to $/£1,000 at <b>grade 12 or better</b>. Tom: £1,000, grade 12. Maria: $1,500 and grade 13, so a person reviewed it.</p></div></details>
+      <details><summary>3. In the UK, a customer has an excellent risk grade but fails the affordability test. What happens?</summary>
+        <div class="ans"><p>They cannot be approved as asked. <b>A good score never overrides failed affordability.</b> The case goes to a person, who may offer a smaller amount or help instead.</p></div></details>
+      <details><summary>4. Who chooses the reasons in a US adverse-action letter: the AI writer or the rules?</summary>
+        <div class="ans"><p><b>The rules and the model's reason codes.</b> The AI writer may only turn them into plain words, and a person approves the letter.</p></div></details>
+      <details><summary>5. What is expected loss, and what was it for Tom?</summary>
+        <div class="ans"><p>The average yearly cost of the risk: <b>PD × LGD × EAD</b>. For Tom: 2.2% × 75% × £750 ≈ <b>£12 a year</b>.</p></div></details>
+      <details><summary>6. Can the system decline an application on its own?</summary>
+        <div class="ans"><p><b>No.</b> Automation can only approve, and only where the bank allows it. Every decline is reviewed by a person.</p></div></details>
+      <details><summary>7. A 16-year-old has a junior account. What may the bank do?</summary>
+        <div class="ans"><p>Record good money habits for a <b>readiness record</b> and offer non-credit loyalty such as savings boosts. No credit, no credit marketing, and no marketing profiling until 18.</p></div></details>
+      <details><summary>8. Two warning signals appear for the same customer in one month. What happens next?</summary>
+        <div class="ans"><p>The customer joins the <b>watch-list</b>. The next working day a person reviews it and may pause limit increases or offer help before any payment is missed.</p></div></details>
+      <details><summary>9. Maria earns about $48,000 a year. Which income segment is she in, and why is her card limit not $5,000?</summary>
+        <div class="ans"><p>She is in <b>S2 Core / blue-collar</b> ($30,000–59,999). S2 allows cards of $1,500–5,000, but she also has the <b>thin-file</b> tag, and the thin-file starter cap of $1,500 is lower. The limit is always the <b>lowest of all the caps</b>.</p></div></details>
+      <details><summary>10. A customer's income drops for one month. Do they move down a segment straight away?</summary>
+        <div class="ans"><p><b>No.</b> Customers move down only after <b>3 months</b> at the lower income (or at once if a job loss is verified), and up after 2 months at a higher income. One bad month doesn't change the rules they are judged by.</p></div></details>
+    </div>
+  </section>
+
+  <!-- 18 BUILD -->
+  <section id="build">
+    <div class="chapter"><span class="n">19</span><h2>How it gets built</h2></div>
+    <p>Four releases are built by parallel teams. The product owner's target is everything within about 3 months with 14–18 people. That is ambitious and marked high-risk, so the releases are prioritised: if time runs short, the earliest releases are already complete.</p>
+    <div class="card stack">
+      <svg id="chPlan" class="chart" viewBox="0 0 640 260" role="img" aria-label="Target timeline in weeks: Release 1 weeks 1 to 6, Release 2 weeks 3 to 10, Release 3 weeks 5 to 12, Release 4 weeks 7 to 13, pilot from week 11 onward."></svg>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Build (target, high risk)</span><span><i style="background:var(--s2)"></i>Pilot at a bank</span></div>
+    </div>
+    <div class="grid2">
+      <div class="card stack"><h3>What each release brings</h3>
+        <p class="small"><b>R1 Challenger MVP:</b> cards, loans and salary advance in both countries; champion-vs-challenger report; first frontier; demo US and UK banks.</p>
+        <p class="small"><b>R2 Pilot-ready:</b> mortgages, small business and corporate, connections to the bank's systems, letters, logins and approval queues.</p>
+        <p class="small"><b>R3 Growth &amp; macro:</b> inclusion engine, Gen Z, product designer, offers, crisis scenarios, fairness search, validator in a box.</p>
+        <p class="small"><b>R4 Operations:</b> collections help, UK persistent-debt rules, car loans, overdrafts, buy-now-pay-later, document reading, policy copilot.</p>
+      </div>
+      <div class="card stack"><h3>The pilot path</h3>
+        <p class="small">1. Back-test on 3–5 years of the bank's history, including people it turned down.</p>
+        <p class="small">2. Six months in the shadow next to the bank's current model.</p>
+        <p class="small">3. Live on one product, with people reviewing.</p>
+        <p class="small muted">A large bank's own approval of a new supplier usually takes 12–24 months. That runs in parallel and does not get faster just because the build is fast.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="glossary">
+    <div class="chapter"><span class="n">··</span><h2>Words used on this page</h2></div>
+    <dl class="gloss">
+      <dt>PD (probability of default)</dt><dd>The chance a customer falls 90 or more days behind within the next 12 months. Maria: 3.1%. Tom: 2.2%.</dd>
+      <dt>LGD (loss given default)</dt><dd>If a customer does default, the share of the money owed that the bank expects to lose. 75% for cards in our examples.</dd>
+      <dt>EAD (exposure at default)</dt><dd>How much the customer is likely to owe at the moment they default. For a new card, part of the limit.</dd>
+      <dt>Expected loss</dt><dd>The average yearly cost of the risk: PD × LGD × EAD. Compared with what the product earns.</dd>
+      <dt>Grade / master scale</dt><dd>The bank's list of risk grades from safest to riskiest. Each grade is a band of PD. Our demo uses 20 grades.</dd>
+      <dt>Champion</dt><dd>The bank's current credit model.</dd>
+      <dt>Challenger</dt><dd>A new model tested next to the champion on the same customers, to see which does better.</dd>
+      <dt>Affordability</dt><dd>Whether someone can repay without hardship. In the UK it is a separate legal test from credit risk (CONC 5.2A).</dd>
+      <dt>Ability-to-pay</dt><dd>The US rule that a card issuer must check the customer can afford at least the minimum payment (CARD Act).</dd>
+      <dt>DTI / DBR</dt><dd>Debt-to-income or debt-burden ratio: the share of monthly income that goes on debt repayments.</dd>
+      <dt>Thin file</dt><dd>A credit record with very little history, common for young people, newcomers and gig workers.</dd>
+      <dt>Credit bureau / credit reference agency</dt><dd>A company (such as Equifax, Experian or TransUnion) that keeps records of how people have repaid credit.</dd>
+      <dt>Open Banking</dt><dd>Sharing your bank-account data with your consent, used to check income and spending.</dd>
+      <dt>Reason code</dt><dd>A fixed, numbered reason (for example "limited credit history") produced by the rules and model, never invented by AI.</dd>
+      <dt>Adverse action notice</dt><dd>The US letter a bank must send when it declines or offers less, with the specific main reasons, usually within 30 days.</dd>
+      <dt>Article 22C rights</dt><dd>UK rights when a computer makes a significant decision: to be told, to give your view, to ask for a person and to challenge it.</dd>
+      <dt>Consumer Duty</dt><dd>The UK rule that banks must deliver good outcomes for retail customers, including vulnerable people, and prove it.</dd>
+      <dt>Automation rule</dt><dd>A rule the bank sets that says which cases the system may approve without a person. It never covers declines.</dd>
+      <dt>Maker-checker</dt><dd>One person proposes a change, a different person approves it. Used for policies, models and limits.</dd>
+      <dt>Back-test</dt><dd>Running a model on past applications to see how it would have performed, using what actually happened.</dd>
+      <dt>Shadow run</dt><dd>Running the new model next to the old one on live applications without letting it decide, to compare results.</dd>
+      <dt>Drift</dt><dd>When today's customers start to look different from the ones a model learned from, so it may become less accurate.</dd>
+      <dt>Frontier</dt><dd>The best possible balance of profit and losses across lending policies. Policies below it give up profit or customers needlessly.</dd>
+      <dt>Stress scenario</dt><dd>A "what if" story, such as a recession or a flood, used to see how losses would change.</dd>
+      <dt>Fairness tests (AIR, LDA)</dt><dd>Checks that a model doesn't treat protected groups unfairly. AIR compares approval rates between groups; LDA is a search for an equally accurate but fairer model.</dd>
+      <dt>Tokenisation</dt><dd>Replacing names and ID numbers with codes, so personal data is protected even inside the bank.</dd>
+      <dt>Income segment</dt><dd>A band of verified yearly income (S0 to S5) that decides which products, limits and checks apply. Maria and Tom are both in S2.</dd>
+      <dt>Overlay tag</dt><dd>An extra label such as Gen Z, thin file or gig worker. It changes how a customer is checked, not which income segment they are in.</dd>
+      <dt>Residual income</dt><dd>The money left each month after tax, existing debts, the new repayment and essential living costs. Each segment has a minimum.</dd>
+      <dt>Watch-list</dt><dd>Customers showing early warning signs, reviewed by people before any payment is missed.</dd>
+    </dl>
+    <footer>
+      <span>AI Risk Score Card Global · walkthrough for new risk-department staff and a general audience · all customers, models and figures are illustrative.</span>
+      <span>Rules summarised from US federal, New York and UK regulation as researched in November 2026. Not legal advice.</span>
+    </footer>
+  </section>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const fmt=n=>Math.round(n).toLocaleString("en-US");
+  function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+  const tip=document.getElementById("tip");
+  function bindTip(node,text){
+    node.addEventListener("mousemove",e=>{tip.textContent=typeof text==="function"?text():text;tip.hidden=false;tip.style.left=Math.min(e.clientX+14,window.innerWidth-270)+"px";tip.style.top=(e.clientY+14)+"px"});
+    node.addEventListener("mouseleave",()=>{tip.hidden=true});
+  }
+  function hbar(g,x,y,w,h,cls){const r=Math.min(4,w/2,h/2);return el("path",{d:`M${x},${y} H${x+w-r} Q${x+w},${y} ${x+w},${y+r} V${y+h-r} Q${x+w},${y+h} ${x+w-r},${y+h} H${x} Z`,class:cls},g)}
+  function vbar(g,x,y,w,h,cls){const r=Math.min(4,w/2,h/2);return el("path",{d:`M${x},${y+h} V${y+r} Q${x},${y} ${x+r},${y} H${x+w-r} Q${x+w},${y} ${x+w},${y+r} V${y+h} Z`,class:cls},g)}
+  function clear(s){while(s.firstChild)s.removeChild(s.firstChild)}
+
+  // ---------- Maria ----------
+  const M_LEFT=3400-1450-490-900, APR_US=0.24, START_CAP=1500, AUTO_LINE=1000, M_GRADE=13;
+  const minPay=L=>L*(0.01+APR_US/12);
+  (function(){
+    const s=document.getElementById("chMariaPay");
+    const rows=[["Left after bills",M_LEFT,"bar-s1"],["Minimum payment",minPay(5000),"bar-s2"]];
+    const x0=130,x1=420,max=600,sc=v=>x0+(v/max)*(x1-x0);
+    [0,200,400,600].forEach(t=>{el("line",{x1:sc(t),y1:6,x2:sc(t),y2:124,class:"grid"},s);el("text",{x:sc(t),y:142,"text-anchor":"middle"},s,"$"+t)});
+    rows.forEach((r,i)=>{const y=16+i*52;el("text",{x:x0-10,y:y+20,"text-anchor":"end",class:"lbl-strong"},s,r[0]);const b=hbar(s,x0,y,sc(r[1])-x0,32,r[2]);el("text",{x:sc(r[1])+8,y:y+20,class:"val"},s,"$"+fmt(r[1]));bindTip(b,r[0]+": $"+fmt(r[1])+" a month")});
+    el("text",{x:x0,y:162},s,"Per month, at a full $5,000 balance");
+  })();
+  (function(){
+    const s=document.getElementById("chMariaLimit");
+    const afford=Math.floor(M_LEFT/(0.01+APR_US/12)/100)*100;
+    const rows=[["Asked for",5000,false],["Budget would allow",afford,false],["Bank starter cap",START_CAP,true]];
+    const x0=130,x1=420,max=20000,sc=v=>x0+(v/max)*(x1-x0);
+    [0,5000,10000,15000,20000].forEach(t=>{el("line",{x1:sc(t),y1:6,x2:sc(t),y2:130,class:"grid"},s);el("text",{x:sc(t),y:148,"text-anchor":"middle"},s,t?("$"+t/1000+"k"):"0")});
+    rows.forEach((r,i)=>{const y=12+i*40;el("text",{x:x0-10,y:y+18,"text-anchor":"end",class:r[2]?"lbl-strong":""},s,r[0]);const b=hbar(s,x0,y,sc(r[1])-x0,26,r[2]?"bar-accent":"bar-muted");el("text",{x:sc(r[1])+8,y:y+18,class:"val"},s,"$"+fmt(r[1])+(r[2]?"  ← lowest":""));bindTip(b,r[0]+": $"+fmt(r[1]))});
+    el("text",{x:x0,y:166},s,"Budget limit: the most whose minimum payment fits in $560");
+  })();
+  const mL=document.getElementById("mLimit");
+  function updM(){
+    const L=+mL.value, mp=minPay(L), left=M_LEFT-mp, capOk=L<=START_CAP, auto=L<=AUTO_LINE&&M_GRADE<=12;
+    document.getElementById("mLimitLbl").textContent="$"+fmt(L);
+    document.getElementById("mMin").textContent="$"+fmt(mp);
+    document.getElementById("mLeft").textContent="$"+fmt(left);
+    document.getElementById("mCap").textContent=capOk?"Yes":"No";
+    document.getElementById("mAuto").textContent=auto?"Yes":"No, a person";
+    const v=document.getElementById("mVerdict"),w=document.getElementById("mWhy");
+    if(left<0){v.className="chip no";v.textContent="Cannot afford";w.textContent="The minimum payment would be more than she has left.";}
+    else if(!capOk){v.className="chip mid";v.textContent="Offer $1,500 instead";w.textContent="She can afford it, but it is above the bank's $1,500 starter cap. A person reviews, and the bank sends a reasons letter.";}
+    else{v.className="chip ok";v.textContent="Can be approved";w.textContent="Within her budget and the starter cap. A person still reviews because grade 13 is outside the automatic zone.";}
+  }
+  mL.addEventListener("input",updM);updM();
+
+  // ---------- Tom ----------
+  const T_RENT=500,T_PHONE=35,T_APR=0.299,T_N=36,T_CUSH=100;
+  const tPay=1000*(T_APR/12)/(1-Math.pow(1+T_APR/12,-T_N));
+  (function(){
+    const s=document.getElementById("chTom");
+    const rows=[["Income",1650,"bar-s1"],["Rent",500,"bar-muted"],["Essentials",620,"bar-muted"],["Phone",35,"bar-muted"],["Left each month",495,"bar-accent"],["Card repayment",tPay,"bar-s2"]];
+    const x0=140,x1=590,max=1800,sc=v=>x0+(v/max)*(x1-x0);
+    [0,600,1200,1800].forEach(t=>{el("line",{x1:sc(t),y1:4,x2:sc(t),y2:186,class:"grid"},s);el("text",{x:sc(t),y:204,"text-anchor":"middle"},s,"£"+fmt(t))});
+    rows.forEach((r,i)=>{const y=6+i*30;el("text",{x:x0-10,y:y+15,"text-anchor":"end",class:i===4||i===5?"lbl-strong":""},s,r[0]);const b=hbar(s,x0,y,Math.max(2,sc(r[1])-x0),22,r[2]);el("text",{x:sc(r[1])+8,y:y+15,class:"val"},s,"£"+fmt(r[1]));bindTip(b,r[0]+": £"+fmt(r[1])+" a month")});
+  })();
+  const tI=document.getElementById("tInc"),tE=document.getElementById("tEss");
+  function updT(){
+    const inc=+tI.value,ess=+tE.value,left=inc-T_RENT-ess-T_PHONE,pass=left-tPay>=T_CUSH;
+    document.getElementById("tIncLbl").textContent="£"+fmt(inc);document.getElementById("tEssLbl").textContent="£"+fmt(ess);
+    document.getElementById("tLeft").textContent="£"+fmt(left);document.getElementById("tPay").textContent="£"+fmt(tPay);
+    document.getElementById("tAff").textContent=pass?"Pass":"Fail";
+    const v=document.getElementById("tVerdict"),w=document.getElementById("tWhy");
+    if(pass){v.className="chip ok";v.textContent="Approved automatically";w.textContent="Both tests pass, it is a starter card up to £1,000 and grade 12 is inside the automatic zone. Tom can still ask a person to review.";}
+    else{v.className="chip no";v.textContent="Affordability fails";w.textContent="His good grade does not change this. The case goes to a person, who can suggest a smaller limit or help.";}
+  }
+  tI.addEventListener("input",updT);tE.addEventListener("input",updT);updT();
+
+  // ---------- Grade scale ----------
+  (function(){
+    const ub=[0.03,0.05,0.08,0.12,0.18,0.26,0.38,0.55,0.8,1.15,1.65,2.4,3.4,4.9,7,10,14,20,30,100];
+    const a=[205,226,251],b=[13,54,107];
+    const g=document.getElementById("gscale");
+    ub.forEach((u,i)=>{
+      const t=i/19,c=a.map((v,k)=>Math.round(v+(b[k]-v)*t));
+      const d=document.createElement("div");d.className="gcell"+((i===11||i===12)?" mark":"");d.setAttribute("role","listitem");
+      d.style.background=`rgb(${c[0]},${c[1]},${c[2]})`;d.style.color=t<0.45?"#0d1b2a":"#ffffff";
+      const who=i===11?" (Tom)":i===12?" (Maria)":"";
+      d.innerHTML="<b>"+(i+1)+"</b><span>"+(u===100?"100%":u+"%")+"</span>";
+      d.setAttribute("aria-label","Grade "+(i+1)+", chance of default up to "+u+"%"+who);d.title="Grade "+(i+1)+": up to "+u+"%"+who;
+      g.appendChild(d);
+    });
+  })();
+
+  // ---------- Champion vs challenger (small multiples) ----------
+  (function(){
+    const box=document.getElementById("champGrid");
+    const m=[["Accuracy","Gini, higher is better",52,57,0,70,v=>v],["Approvals at the same loss","Index, current = 100",100,107,0,120,v=>v],["Fairness","Adverse impact ratio, closer to 1 is fairer",0.82,0.88,0,1,v=>v.toFixed(2)],["Reason stability","Share of reasons unchanged on re-test",0.80,0.92,0,1,v=>Math.round(v*100)+"%"]];
+    m.forEach(r=>{
+      const card=document.createElement("div");card.className="card stack";
+      card.innerHTML="<h3>"+r[0]+"</h3><span class='small muted'>"+r[1]+"</span>";
+      const s=document.createElementNS(NS,"svg");s.setAttribute("viewBox","0 0 200 150");s.setAttribute("class","chart");s.setAttribute("role","img");
+      s.setAttribute("aria-label",r[0]+": current model "+r[6](r[2])+", challenger "+r[6](r[3]));
+      const y0=120,y1=18,sy=v=>y0-(v-r[4])/(r[5]-r[4])*(y0-y1);
+      el("line",{x1:20,y1:y0,x2:180,y2:y0,class:"axis"},s);
+      [[r[2],"bar-muted","Current"],[r[3],"bar-accent","Challenger"]].forEach((b,i)=>{
+        const x=40+i*70,bar=vbar(s,x,sy(b[0]),50,y0-sy(b[0]),b[1]);
+        el("text",{x:x+25,y:sy(b[0])-6,"text-anchor":"middle",class:"val"},s,r[6](b[0]));
+        el("text",{x:x+25,y:y0+16,"text-anchor":"middle"},s,b[2]);
+        bindTip(bar,b[2]+": "+r[6](b[0]));
+      });
+      card.appendChild(s);box.appendChild(card);
+    });
+  })();
+
+  // ---------- Frontier simulation ----------
+  const pop=(function(){
+    let seed=1107;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+    const norm=()=>{let u=0,v=0;while(!u)u=rnd();while(!v)v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+    const out=[];
+    for(let i=0;i<5000;i++){
+      const thin=rnd()<0.25;
+      const pd=Math.min(0.45,Math.exp(Math.log(0.025)+0.95*norm()+(thin?0.1:0)));
+      const champPd=Math.min(0.6,pd*(thin?2.3:1.0)*Math.exp(0.35*norm()));
+      const bal=Math.max(300,Math.exp(Math.log(2600)+0.5*norm()));
+      out.push({thin,pd,champPd,bal});
+    }
+    return out;
+  })();
+  const MARGIN=0.13,LGD=0.75,OPEX=55,APPETITE=2.0;
+  function evalSet(pred){let n=0,b=0,el2=0,prof=0,thin=0;for(const c of pop){if(pred(c)){n++;b+=c.bal;el2+=c.pd*LGD*c.bal;prof+=c.bal*MARGIN-c.pd*LGD*c.bal-OPEX;if(c.thin)thin++}}return{n,elPct:b?el2/b*100:0,prof,thin}}
+  const current=evalSet(c=>c.champPd<=0.03);
+  const cuts=[];for(let k=1;k<=40;k++){const cut=k*0.005;cuts.push({cut,...evalSet(c=>c.pd<=cut)})}
+  let rec=null;cuts.forEach(c=>{if(c.elPct<=APPETITE&&(!rec||c.prof>rec.prof))rec=c});
+  const cutEl=document.getElementById("cut");
+  const money=v=>"$"+(v/1e6).toFixed(2)+"m";
+  function drawFrontier(sel){
+    const s=document.getElementById("chFrontier");clear(s);
+    const x0=70,x1=610,y0=250,y1=16,xmax=3,ymax=1.4e6,sx=v=>x0+(v/xmax)*(x1-x0),sy=v=>y0-(v/ymax)*(y0-y1);
+    [0,0.35e6,0.7e6,1.05e6,1.4e6].forEach(t=>{el("line",{x1:x0,y1:sy(t),x2:x1,y2:sy(t),class:"grid"},s);el("text",{x:x0-8,y:sy(t)+4,"text-anchor":"end"},s,"$"+(t/1e6).toFixed(2)+"m")});
+    [0,0.5,1,1.5,2,2.5,3].forEach(t=>el("text",{x:sx(t),y:y0+18,"text-anchor":"middle"},s,t+"%"));
+    el("text",{x:x1,y:y0+36,"text-anchor":"end"},s,"Expected loss (% of balances)");
+    el("text",{x:x0,y:10},s,"Profit after losses");
+    el("line",{x1:sx(APPETITE),y1:y1,x2:sx(APPETITE),y2:y0,class:"appetite"},s);
+    el("text",{x:sx(APPETITE)+6,y:y0-8,class:"lbl-strong"},s,"Risk appetite 2.0%");
+    el("path",{d:cuts.map((c,i)=>(i?"L":"M")+sx(c.elPct)+","+sy(c.prof)).join(" "),class:"line-s1"},s);
+    const cu=el("circle",{cx:sx(current.elPct),cy:sy(current.prof),r:7,class:"dot-muted"},s);
+    el("text",{x:sx(current.elPct)+10,y:sy(current.prof)+18,class:"lbl-strong"},s,"Current policy");
+    bindTip(cu,"Current policy: "+fmt(current.n)+" approved, loss "+current.elPct.toFixed(2)+"%, profit "+money(current.prof));
+    const rc=el("circle",{cx:sx(rec.elPct),cy:sy(rec.prof),r:7,class:"dot-amber"},s);
+    el("text",{x:sx(rec.elPct)-10,y:sy(rec.prof)-12,"text-anchor":"end",class:"lbl-strong"},s,"Recommended");
+    bindTip(rc,"Recommended: risk up to "+(rec.cut*100).toFixed(1)+"%, "+fmt(rec.n)+" approved, profit "+money(rec.prof));
+    const sc=el("circle",{cx:sx(sel.elPct),cy:sy(sel.prof),r:6,class:"dot-s1"},s);
+    bindTip(sc,"Selected: "+fmt(sel.n)+" approved, loss "+sel.elPct.toFixed(2)+"%, profit "+money(sel.prof));
+    cuts.forEach(c=>{const h=el("circle",{cx:sx(c.elPct),cy:sy(c.prof),r:9,class:"hit"},s);bindTip(h,"Risk up to "+(c.cut*100).toFixed(1)+"%: "+fmt(c.n)+" approved, loss "+c.elPct.toFixed(2)+"%, profit "+money(c.prof))});
+  }
+  const d=(v,b,f)=>{const x=v-b;return (x>=0?"+":"−")+f(Math.abs(x))+" vs current"};
+  function updF(){
+    const sel=cuts[+cutEl.value-1];
+    document.getElementById("cutLbl").textContent=(sel.cut*100).toFixed(1)+"%";
+    document.getElementById("fA").textContent=fmt(sel.n);document.getElementById("fAd").textContent=d(sel.n,current.n,fmt);
+    document.getElementById("fL").textContent=sel.elPct.toFixed(2)+"%";document.getElementById("fLd").textContent=d(sel.elPct,current.elPct,v=>v.toFixed(2)+" pts");
+    document.getElementById("fP").textContent=money(sel.prof);document.getElementById("fPd").textContent=d(sel.prof,current.prof,v=>"$"+(v/1e6).toFixed(2)+"m");
+    document.getElementById("fT").textContent=(sel.thin-current.thin>=0?"+":"−")+fmt(Math.abs(sel.thin-current.thin));
+    drawFrontier(sel);
+  }
+  cutEl.addEventListener("input",updF);updF();
+
+  // ---------- Scenarios ----------
+  (function(){
+    const s=document.getElementById("chScen");
+    const rows=[["Recession",45],["Pandemic",38],["War & sanctions",30],["Sector layoffs",26],["Oil price shock",22],["Regional hurricane / flood",18],["Climate path (5 yrs)",15]];
+    const x0=200,x1=580,max=50,sc=v=>x0+(v/max)*(x1-x0);
+    [0,10,20,30,40,50].forEach(t=>{el("line",{x1:sc(t),y1:4,x2:sc(t),y2:258,class:"grid"},s);el("text",{x:sc(t),y:276,"text-anchor":"middle"},s,"+"+t+"%")});
+    rows.forEach((r,i)=>{const y=8+i*36;el("text",{x:x0-10,y:y+17,"text-anchor":"end",class:"lbl-strong"},s,r[0]);const b=hbar(s,x0,y,sc(r[1])-x0,24,"bar-s2");el("text",{x:sc(r[1])+8,y:y+17,class:"val"},s,"+"+r[1]+"%");bindTip(b,r[0]+": expected losses up "+r[1]+"% vs today (illustrative)")});
+  })();
+
+  // ---------- Plan ----------
+  (function(){
+    const s=document.getElementById("chPlan");
+    const x0=170,x1=600,N=16,sx=w=>x0+(w/N)*(x1-x0);
+    for(let k=0;k<=N;k+=2){el("line",{x1:sx(k),y1:4,x2:sx(k),y2:212,class:"grid"},s);el("text",{x:sx(k),y:230,"text-anchor":"middle"},s,k)}
+    el("text",{x:x1,y:250,"text-anchor":"end"},s,"Weeks (target, high risk)");
+    const rows=[["R1 Challenger MVP",0,6,"bar-s1"],["R2 Pilot-ready",2,10,"bar-s1"],["R3 Growth & macro",4,12,"bar-s1"],["R4 Operations",6,13,"bar-s1"],["Pilot at a bank",10,16,"bar-s2"]];
+    rows.forEach((r,i)=>{const y=8+i*40;el("text",{x:x0-10,y:y+18,"text-anchor":"end",class:"lbl-strong"},s,r[0]);const b=hbar(s,sx(r[1])+1,y,sx(r[2])-sx(r[1])-2,26,r[3]);bindTip(b,r[0]+": weeks "+(r[1]+1)+"–"+r[2]+(i===4?" and continuing (back-test, 6-month shadow, limited live)":""))});
+    el("text",{x:sx(16)+4,y:8+4*40+18,"text-anchor":"start",class:"val"},s,"→");
+  })();
+
+  // ---------- Income segments ----------
+  (function(){
+    const C=["var(--c1)","var(--c2)","var(--c3)","var(--c4)","var(--c5)","var(--c6)"];
+    const NAMES=["S0 No verified income","S1 Entry","S2 Core / blue-collar","S3 Middle","S4 Upper-middle","S5 High"];
+    const SHORT=["S0","S1","S2","S3","S4","S5"];
+    const RLAB=["S0 Secured","S1 Entry","S2 Core","S3 Middle","S4 Upper-middle","S5 High"];
+    const D={
+      US:{cur:"$",cut:[30000,60000,120000,250000],book:"2 million",
+        bands:["No income verified yet","Under $30,000","$30,000–59,999","$60,000–119,999","$120,000–249,999","$250,000 and above"],
+        who:["Students, between jobs, new arrivals","Part-time, minimum wage, gig","Trades, warehouse, care, retail","Professionals, supervisors","Managers, specialists, dual income","Senior executives, bonus income"],
+        cust:[3,18,30,30,14,5],bal:[0.5,6,20,35,25,13.5],pd:[null,6.0,3.5,1.8,1.0,0.7],
+        card:[[200,500],[300,1500],[1500,5000],[5000,15000],[15000,30000],[30000,null]],cardMax:40000,ticks:[0,10000,20000,30000,40000],
+        loan:[null,5000,15000,40000,75000,100000],dti:[null,35,40,43,45,50],floor:[null,600,800,1200,2000,3000],cardFloor:300,
+        adv:[null,1000,2000,3000,null,null],incMax:400000,incStep:1000,
+        ex:{inc:90000,amt:30000,months:60,apr:12,net:5600,obl:1900,ess:1800}},
+      UK:{cur:"£",cut:[20000,35000,60000,100000],book:"1 million",
+        bands:["No income verified yet","Under £20,000","£20,000–34,999","£35,000–59,999","£60,000–99,999","£100,000 and above"],
+        who:["Students, between jobs, new arrivals","Part-time, minimum wage, gig","Trades, apprentices, care, retail","Professionals, supervisors","Managers, specialists, dual income","Senior executives, bonus income"],
+        cust:[3,20,32,28,12,5],bal:[0.5,7,22,34,23,13.5],pd:[null,5.5,3.2,1.7,1.0,0.8],
+        card:[[200,500],[250,1000],[1000,3000],[3000,8000],[8000,15000],[15000,null]],cardMax:20000,ticks:[0,5000,10000,15000,20000],
+        loan:[null,3000,10000,25000,50000,75000],dti:null,floor:[null,150,200,300,500,800],cardFloor:100,
+        adv:[null,750,1500,2000,null,null],incMax:200000,incStep:500,
+        ex:{inc:50000,amt:15000,months:48,apr:9,net:3200,obl:600,ess:1300}}
+    };
+    const APPR={champ:[38,55,74,86,91],chal:[47,63,77,87,91]};
+    const HEAT=[["Recession",[60,55,35,25,20]],["Rate shock +3 points",[20,25,40,45,20]],["Market crash",[10,10,15,30,55]]];
+    const RAMP=["#e3eefc","#b7d3f6","#86b6ef","#5598e7","#2a78d6","#1c5cab"];
+    const AUTO=["No: secured products are reviewed by a person","Starter products up to {c}1,000 at grade 12 or better","Starter products up to {c}1,000 at grade 12 or better","Cards up to {c}5,000 at grade 10 or better","No: a person decides","No: a person decides"];
+    let mk="US";
+    const money=(v,c)=>c+fmt(v);
+    const kfmt=(v,c)=>v>=1000?c+(v/1000).toLocaleString("en-US",{maximumFractionDigits:1})+"k":c+v;
+    const segOf=(inc,m)=>{if(!(inc>0))return 0;const k=D[m].cut;if(inc<k[0])return 1;if(inc<k[1])return 2;if(inc<k[2])return 3;if(inc<k[3])return 4;return 5};
+
+    function cards(){
+      const box=document.getElementById("segCards");box.innerHTML="";const d=D[mk];
+      for(let i=0;i<6;i++){const c=document.createElement("div");c.className="segcard";c.setAttribute("role","listitem");c.style.borderTopColor=C[i];
+        c.innerHTML="<b>"+NAMES[i]+"</b><span class='band'>"+d.bands[i]+"</span><span>"+d.who[i]+"</span>";box.appendChild(c)}
+    }
+    function pie(id,vals,title){
+      const s=document.getElementById(id);clear(s);
+      const cx=160,cy=118,R=88,r0=54;let a=-Math.PI/2;const tot=vals.reduce((p,q)=>p+q,0);
+      const pt=(ang,rr)=>[cx+rr*Math.cos(ang),cy+rr*Math.sin(ang)];
+      vals.forEach((v,i)=>{
+        const sweep=v/tot*2*Math.PI,a1=a+sweep,large=sweep>Math.PI?1:0;
+        const [x0,y0]=pt(a,R),[x1,y1]=pt(a1,R),[x2,y2]=pt(a1,r0),[x3,y3]=pt(a,r0);
+        const path=el("path",{d:`M${x0},${y0} A${R},${R} 0 ${large} 1 ${x1},${y1} L${x2},${y2} A${r0},${r0} 0 ${large} 0 ${x3},${y3} Z`,class:"pie-slice",style:"fill:"+C[i]},s);
+        bindTip(path,NAMES[i]+": "+v+"% of "+title.toLowerCase()+" (illustrative)");
+        if(v>=5){const mid=a+sweep/2,[lx,ly]=pt(mid,R+4),[tx,ty]=pt(mid,R+18),right=Math.cos(mid)>=0;
+          el("line",{x1:lx,y1:ly,x2:tx,y2:ty,class:"leader"},s);
+          el("text",{x:tx+(right?4:-4),y:ty+4,"text-anchor":right?"start":"end",class:"val"},s,SHORT[i]+" "+v+"%");}
+        a=a1;
+      });
+      el("text",{x:cx,y:cy-2,"text-anchor":"middle",class:"pie-center"},s,title);
+      el("text",{x:cx,y:cy+15,"text-anchor":"middle",class:"pie-sub"},s,mk==="US"?"New York demo":"London demo");
+    }
+    function legend(){
+      const box=document.getElementById("segLegend");box.innerHTML="";const d=D[mk];
+      for(let i=0;i<6;i++){const sp=document.createElement("span");sp.innerHTML="<i style='background:"+C[i]+"'></i>"+NAMES[i]+": "+d.cust[i]+"% of customers, "+d.bal[i]+"% of money lent";box.appendChild(sp)}
+      document.getElementById("segBookSize").textContent=d.book;
+    }
+    function pdChart(){
+      const s=document.getElementById("chSegPd");clear(s);const d=D[mk];
+      const x0=60,x1=580,y0=196,y1=14,max=7,sy=v=>y0-(v/max)*(y0-y1),bw=56,step=(x1-x0)/6;
+      [0,2,4,6].forEach(t=>{el("line",{x1:x0,y1:sy(t),x2:x1,y2:sy(t),class:"grid"},s);el("text",{x:x0-8,y:sy(t)+4,"text-anchor":"end"},s,t+"%")});
+      d.pd.forEach((v,i)=>{const cx=x0+step*i+step/2;el("text",{x:cx,y:y0+18,"text-anchor":"middle",class:"lbl-strong"},s,SHORT[i]);
+        if(v==null){el("text",{x:cx,y:y0-8,"text-anchor":"middle"},s,"secured only");return}
+        const b=vbar(s,cx-bw/2,sy(v),bw,y0-sy(v),"bar-s1");el("text",{x:cx,y:sy(v)-6,"text-anchor":"middle",class:"val"},s,v.toFixed(1)+"%");
+        bindTip(b,NAMES[i]+": about "+v.toFixed(1)+" in 100 customers fall 90+ days behind within a year (illustrative)")});
+      el("line",{x1:x0,y1:y0,x2:x1,y2:y0,class:"axis"},s);
+      el("text",{x:x1,y:y0+38,"text-anchor":"end"},s,"Average 12-month default rate (PD), demo bank");
+    }
+    function rangeChart(){
+      const s=document.getElementById("chSegRange");clear(s);const d=D[mk],c=d.cur;
+      const x0=150,x1=540,max=d.cardMax,sx=v=>x0+(v/max)*(x1-x0),bh=24;
+      d.ticks.forEach(t=>{el("line",{x1:sx(t),y1:4,x2:sx(t),y2:226,class:"grid"},s);el("text",{x:sx(t),y:244,"text-anchor":"middle"},s,t?kfmt(t,c):"0")});
+      el("text",{x:x1,y:262,"text-anchor":"end"},s,"Starting card limit");
+      d.card.forEach((rg,i)=>{const y=8+i*37,open=rg[1]==null;
+        el("text",{x:x0-10,y:y+16,"text-anchor":"end",class:"lbl-strong"},s,RLAB[i]);
+        const lo=sx(rg[0]),hi=open?x1:sx(rg[1]),w=Math.max(4,hi-lo);
+        const b=el("rect",{x:lo,y:y,width:w,height:bh,rx:4,style:"fill:"+C[i]},s);
+        const lab=open?kfmt(rg[0],c)+"+ (no fixed top)":kfmt(rg[0],c)+"–"+kfmt(rg[1],c);
+        if(open){el("text",{x:x1+4,y:y+17,class:"lbl-strong"},s,"→");el("text",{x:lo-6,y:y+16,"text-anchor":"end",class:"val"},s,lab)}
+        else el("text",{x:lo+w+8,y:y+16,class:"val"},s,lab);
+        bindTip(b,NAMES[i]+" card limits: "+lab+(i===0?" (deposit-backed secured card)":""))});
+    }
+    function apprChart(){
+      const s=document.getElementById("chSegAppr");clear(s);
+      const x0=50,x1=580,y0=200,y1=14,sy=v=>y0-(v/100)*(y0-y1),step=(x1-x0)/5,bw=34;
+      [0,25,50,75,100].forEach(t=>{el("line",{x1:x0,y1:sy(t),x2:x1,y2:sy(t),class:"grid"},s);el("text",{x:x0-8,y:sy(t)+4,"text-anchor":"end"},s,t+"%")});
+      for(let i=0;i<5;i++){const cx=x0+step*i+step/2,a=APPR.champ[i],b2=APPR.chal[i];
+        const r1=vbar(s,cx-bw-2,sy(a),bw,y0-sy(a),"bar-muted"),r2=vbar(s,cx+2,sy(b2),bw,y0-sy(b2),"bar-accent");
+        el("text",{x:cx-bw/2-2,y:sy(a)-6,"text-anchor":"middle",class:"val"},s,a);
+        el("text",{x:cx+bw/2+2,y:sy(b2)-6,"text-anchor":"middle",class:"val"},s,b2);
+        el("text",{x:cx,y:y0+18,"text-anchor":"middle",class:"lbl-strong"},s,SHORT[i+1]);
+        bindTip(r1,SHORT[i+1]+": bank's current model approves "+a+"%");
+        bindTip(r2,SHORT[i+1]+": AI Risk Score Card Global approves "+b2+"% at the same expected loss (+"+(b2-a)+" points)")}
+      el("line",{x1:x0,y1:y0,x2:x1,y2:y0,class:"axis"},s);
+      el("text",{x:x1,y:y0+40,"text-anchor":"end"},s,"Approval rate at equal expected loss (%)");
+      document.getElementById("segApprNote").textContent=mk==="US"?"Illustrative, simulated (US cards)":"Illustrative, same pattern as US";
+    }
+    function heat(){
+      const tb=document.getElementById("segHeat");tb.innerHTML="";
+      HEAT.forEach(([name,vals])=>{const tr=document.createElement("tr");const th=document.createElement("th");th.scope="row";th.className="rowh";th.textContent=name;tr.appendChild(th);
+        vals.forEach((v,i)=>{const td=document.createElement("td");const k=Math.min(5,Math.floor((v-1)/10));td.style.background=RAMP[k];td.style.color=k>=3?"#ffffff":"#0d1b2a";td.textContent="+"+v+"%";td.title=name+", "+SHORT[i+1]+": expected losses up "+v+"%";tr.appendChild(td)});
+        tb.appendChild(tr)});
+    }
+    const inc=document.getElementById("segInc");
+    function finder(){
+      const d=D[mk],c=d.cur,v=+inc.value,s=segOf(v,mk);
+      document.getElementById("segIncLbl").textContent=v>0?money(v,c):"none verified";
+      document.getElementById("soSeg").innerHTML="<span class='segpill'><i style='background:"+C[s]+"'></i>"+NAMES[s]+"</span>";
+      const rg=d.card[s];
+      document.getElementById("soCard").textContent=s===0?money(rg[0],c)+"–"+money(rg[1],c)+" secured":(rg[1]==null?money(rg[0],c)+"+":money(rg[0],c)+"–"+money(rg[1],c));
+      document.getElementById("soLoan").textContent=d.loan[s]?money(d.loan[s],c):"None (credit-builder only)";
+      document.getElementById("soDti").textContent=mk==="UK"?"No fixed limit (affordability test)":(d.dti[s]?d.dti[s]+"%":"—");
+      document.getElementById("soFloor").textContent=d.floor[s]?money(d.floor[s],c)+" a month":"—";
+      document.getElementById("soCardFloor").textContent=money(d.cardFloor,c)+" a month";
+      document.getElementById("soAdv").textContent=d.adv[s]?"up to "+money(d.adv[s],c):"Not offered";
+      document.getElementById("soAuto").textContent=AUTO[s].replace("{c}",c);
+      loan();
+    }
+    const ids=["lnAmt","lnMonths","lnApr","lnNet","lnObl","lnEss"];
+    function loanCalc(m,income,amt,n,apr,net,obl,ess){
+      const d=D[m],s=segOf(income,m),r=apr/1200;
+      const inst=n>0?(r>0?amt*r/(1-Math.pow(1+r,-n)):amt/n):0;
+      const gross=income/12,dti=gross>0?(obl+inst)/gross*100:Infinity,left=net-obl-inst-ess;
+      if(s===0)return{s,inst,dti,left,eligible:false};
+      const checks=[{name:"segment loan cap ("+kfmt(d.loan[s],d.cur)+")",ok:amt<=d.loan[s],head:(d.loan[s]-amt)/d.loan[s]}];
+      if(m==="US")checks.push({name:"maximum debt-to-income ("+d.dti[s]+"%)",ok:dti<=d.dti[s],head:(d.dti[s]-dti)/d.dti[s]});
+      checks.push({name:"minimum money left each month ("+money(d.floor[s],d.cur)+")",ok:left>=d.floor[s],head:(left-d.floor[s])/d.floor[s]});
+      const fail=checks.find(x=>!x.ok),bind=checks.reduce((a,b)=>b.head<a.head?b:a);
+      return{s,inst,dti,left,eligible:true,pass:!fail,fail,bind};
+    }
+    function loan(){
+      const d=D[mk],c=d.cur,[amt,n,apr,net,obl,ess]=ids.map(i=>Math.max(0,+document.getElementById(i).value||0));
+      const R=loanCalc(mk,+inc.value,amt,n,apr,net,obl,ess);
+      document.getElementById("loInst").textContent=money(R.inst,c);
+      document.getElementById("loDti").textContent=isFinite(R.dti)?R.dti.toFixed(0)+"%"+(mk==="UK"?" (for info)":""):"—";
+      document.getElementById("loLeft").textContent=(R.left<0?"−":"")+money(Math.abs(R.left),c);
+      const cap=d.loan[R.s];document.getElementById("loCap").textContent=cap?(amt<=cap?"Yes (cap "+kfmt(cap,c)+")":"No (cap "+kfmt(cap,c)+")"):"No loans in S0";
+      const v=document.getElementById("loVerdict"),w=document.getElementById("loWhy");
+      if(!R.eligible){v.className="chip no";v.textContent="Not eligible";w.textContent="S0 has no verified income yet. Offer a secured card or a credit-builder loan instead.";return}
+      if(R.fail){v.className="chip no";v.textContent="Fails";w.textContent="Fails the "+R.fail.name+". A person would look at a smaller amount or a longer term."}
+      else{v.className="chip ok";v.textContent="Passes";w.textContent="Binding rule (closest to its limit): "+R.bind.name+"."}
+    }
+    function resetLoan(){const e=D[mk].ex;inc.value=e.inc;document.getElementById("lnAmt").value=e.amt;document.getElementById("lnMonths").value=e.months;document.getElementById("lnApr").value=e.apr;document.getElementById("lnNet").value=e.net;document.getElementById("lnObl").value=e.obl;document.getElementById("lnEss").value=e.ess;finder()}
+    inc.addEventListener("input",finder);ids.forEach(i=>document.getElementById(i).addEventListener("input",loan));
+    document.getElementById("lnReset").addEventListener("click",resetLoan);
+    function renderAll(){const d=D[mk];cards();pie("chSegCust",d.cust,"Customers");pie("chSegBal",d.bal,"Money lent");legend();pdChart();rangeChart();apprChart();heat();inc.max=d.incMax;inc.step=d.incStep}
+    function setMk(m){mk=m;document.getElementById("segUS").setAttribute("aria-pressed",String(m==="US"));document.getElementById("segUK").setAttribute("aria-pressed",String(m==="UK"));renderAll();resetLoan()}
+    document.getElementById("segUS").addEventListener("click",()=>setMk("US"));
+    document.getElementById("segUK").addEventListener("click",()=>setMk("UK"));
+    renderAll();resetLoan();
+  })();
+})();
+</script>
+</body></html>

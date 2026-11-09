@@ -1,0 +1,437 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap">
+<style>
+@page { size: A4; margin: 16mm 14mm 16mm 14mm; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font: 10pt/1.5 "IBM Plex Sans", "Segoe UI", sans-serif; color: #14213d; }
+.band { background: #14213d; color: #fff; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; }
+.band small { color: #9fb4d9; letter-spacing: .1em; font-weight: 600; font-size: 8pt; }
+.band h1 { font: 800 18pt/1.2 "Plus Jakarta Sans", "Segoe UI", sans-serif; margin: 4px 0 0; color: #fff; }
+.band p { color: #c9d2e0; margin: 4px 0 0; font-size: 9pt; }
+h2 { font: 700 13pt/1.3 "Plus Jakarta Sans", sans-serif; margin: 18px 0 6px; color: #0f6e6a; border-bottom: 1px solid #d5dae1; padding-bottom: 3px; break-after: avoid; }
+table { border-collapse: collapse; width: 100%; font-size: 8.3pt; margin: 8px 0 12px; }
+tr { break-inside: avoid; }
+th { background: #14213d; color: #fff; text-align: left; padding: 5px 6px; font-weight: 600; }
+td { padding: 5px 6px; border-bottom: 1px solid #d5dae1; vertical-align: top; }
+tr:nth-child(even) td { background: #f4f6f9; }
+code { font-family: Consolas, monospace; font-size: 8.5pt; background: #eef2f6; padding: 0 3px; border-radius: 3px; }
+blockquote { border-left: 3px solid #0f6e6a; background: #e3f1f1; margin: 10px 0; padding: 8px 12px; }
+ul, ol { padding-left: 18px; margin: 4px 0 8px; } li { margin: 2px 0; }
+</style></head><body>
+<div class="band"><small>PART 3 &middot; TECHNICAL SPECIFICATION</small><h1>Income-Based Customer Segmentation (US + UK)</h1>
+<p>AI Risk Score Card Global &middot; income-segmentation-spec.md &middot; 7 Nov 2026</p></div>
+<p>All figures are <strong>demo-bank defaults</strong>: illustrative, configurable per bank, effective-dated, and maker-checker controlled. The regulator
+packs always take priority. Every limit below is the <em>most</em> the segment allows; the final limit is the <strong>lowest</strong> of segment cap,
+product cap, affordability / ability-to-pay result and any regulatory cap.</p>
+<h2>1. Segment definition</h2>
+<p><strong>Basis:</strong> applicant's <strong>annual gross income from verified sources</strong> (payroll/employer verification, Open Banking or account cash flow,
+tax data, bureau income tools).</p>
+<ul>
+<li><strong>Irregular income</strong> (shift, gig, seasonal, self-employed): smoothed 12-month average of verified credits, with a volatility penalty.</li>
+<li><strong>Joint applications:</strong> combined verified income.</li>
+<li><strong>Self-declared income alone never sets the segment.</strong> The UK requires independent evidence (CONC 5.2A.16). The US must consider income and assets (CARD Act).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>US gross income (USD/yr)</th>
+<th>UK gross income (GBP/yr)</th>
+<th>Monthly equivalent (US / UK)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S0 No verified income</strong></td>
+<td>none verified</td>
+<td>none verified</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td><strong>S1 Entry</strong></td>
+<td>&lt; 30,000</td>
+<td>&lt; 20,000</td>
+<td>&lt; $2,500 / &lt; £1,667</td>
+</tr>
+<tr>
+<td><strong>S2 Core / blue-collar</strong></td>
+<td>30,000 – 59,999</td>
+<td>20,000 – 34,999</td>
+<td>$2,500–5,000 / £1,667–2,917</td>
+</tr>
+<tr>
+<td><strong>S3 Middle</strong></td>
+<td>60,000 – 119,999</td>
+<td>35,000 – 59,999</td>
+<td>$5,000–10,000 / £2,917–5,000</td>
+</tr>
+<tr>
+<td><strong>S4 Upper-middle</strong></td>
+<td>120,000 – 249,999</td>
+<td>60,000 – 99,999</td>
+<td>$10,000–20,833 / £5,000–8,333</td>
+</tr>
+<tr>
+<td><strong>S5 High</strong></td>
+<td>≥ 250,000</td>
+<td>≥ 100,000</td>
+<td>≥ $20,833 / ≥ £8,333</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overlay tags</strong> change how the customer is assessed, not their segment:</p>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Applies when</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GENZ</code></td>
+<td>Age 18–25</td>
+<td>Credit-builder path, smart limits, starter products</td>
+</tr>
+<tr>
+<td><code>THIN_FILE</code></td>
+<td>&lt; 3 bureau tradelines or &lt; 12 months of history</td>
+<td>Starter caps; cash-flow/inclusion features weighted</td>
+</tr>
+<tr>
+<td><code>GIG_SELF_EMPLOYED</code></td>
+<td>≥ 30% of income from platforms or self-employment</td>
+<td>Smoothed income + volatility penalty; 2 years of evidence for mortgages</td>
+</tr>
+<tr>
+<td><code>RETIREE</code></td>
+<td>Pension is the main income</td>
+<td>Pension income only; UK foreseeable change; US ATR on assets</td>
+</tr>
+<tr>
+<td><code>NEW_TO_COUNTRY</code></td>
+<td>&lt; 24 months of local history</td>
+<td>Thin-file treatment; no immigration-status feature (NY 296-a) without legal review</td>
+</tr>
+<tr>
+<td><code>UNDER_18_READINESS</code></td>
+<td>Age 16–17</td>
+<td><strong>No credit</strong>; readiness record only (FR-39)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Re-segmentation:</strong> recalculated in the nightly run.</p>
+<ul>
+<li>Moving <strong>up</strong> takes effect after 2 consecutive verified months.</li>
+<li>Moving <strong>down</strong> takes effect after 3 consecutive months (avoids one-month shocks). An immediate drop applies only on verified job loss or redundancy.</li>
+<li>Every change is logged. Limit decreases follow the bank's notice rules (US Reg Z change-in-terms; UK CONC).</li>
+</ul>
+<h2>2. Segment policy matrix (demo defaults)</h2>
+<table>
+<thead>
+<tr>
+<th>Policy item</th>
+<th>S0</th>
+<th>S1</th>
+<th>S2</th>
+<th>S3</th>
+<th>S4</th>
+<th>S5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eligible products</td>
+<td>secured card; credit-builder loan</td>
+<td>+ starter card; salary advance; small personal loan</td>
+<td>+ standard card; personal loan; auto</td>
+<td>+ mortgage; rewards card; HELOC (US) / second charge (UK)</td>
+<td>+ large mortgages (US jumbo); premium card</td>
+<td>+ private-bank / Lombard; bespoke</td>
+</tr>
+<tr>
+<td>Card limit range US</td>
+<td>secured ($200–500, deposit-backed)</td>
+<td>$300–1,500</td>
+<td>$1,500–5,000</td>
+<td>$5,000–15,000</td>
+<td>$15,000–30,000</td>
+<td>$30,000+</td>
+</tr>
+<tr>
+<td>Card limit range UK</td>
+<td>secured (£200–500)</td>
+<td>£250–1,000</td>
+<td>£1,000–3,000</td>
+<td>£3,000–8,000</td>
+<td>£8,000–15,000</td>
+<td>£15,000+</td>
+</tr>
+<tr>
+<td>Personal loan max US / UK</td>
+<td>—</td>
+<td>$5k / £3k</td>
+<td>$15k / £10k</td>
+<td>$40k / £25k</td>
+<td>$75k / £50k</td>
+<td>$100k / £75k</td>
+</tr>
+<tr>
+<td>Max DTI (US bank policy)</td>
+<td>—</td>
+<td>35%</td>
+<td>40%</td>
+<td>43%</td>
+<td>45%</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>Min residual income / month after repayment: <strong>loans &amp; mortgages</strong> (US / UK)</td>
+<td>—</td>
+<td>$600 / £150</td>
+<td>$800 / £200</td>
+<td>$1,200 / £300</td>
+<td>$2,000 / £500</td>
+<td>$3,000 / £800</td>
+</tr>
+<tr>
+<td>Min residual income / month after minimum payment: <strong>cards &amp; salary advance</strong> (US / UK)</td>
+<td>$300 / £100</td>
+<td>$300 / £100</td>
+<td>$300 / £100</td>
+<td>$300 / £100</td>
+<td>$300 / £100</td>
+<td>$300 / £100</td>
+</tr>
+<tr>
+<td>Salary advance cap (≤ 50% net pay)</td>
+<td>—</td>
+<td>$1,000 / £750</td>
+<td>$2,000 / £1,500</td>
+<td>$3,000 / £2,000</td>
+<td>not offered</td>
+<td>not offered</td>
+</tr>
+<tr>
+<td>UK mortgage LTI max (bank policy, within FPC 4.5x flow monitoring)</td>
+<td>—</td>
+<td>—</td>
+<td>4.0x</td>
+<td>4.5x</td>
+<td>4.5x (5.0x professionals)</td>
+<td>5.5x (case-by-case)</td>
+</tr>
+<tr>
+<td>Automation allowed</td>
+<td>no</td>
+<td>starter products ≤ $/£1,000 &amp; grade ≤ 12</td>
+<td>starter products ≤ $/£1,000 &amp; grade ≤ 12</td>
+<td>cards ≤ $/£5,000 &amp; grade ≤ 10</td>
+<td>human only</td>
+<td>human only</td>
+</tr>
+<tr>
+<td>Never auto-decline</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>Limit growth reviews</td>
+<td>6 months (move to unsecured)</td>
+<td>6 &amp; 12 months</td>
+<td>6 &amp; 12 months</td>
+<td>12 months</td>
+<td>12 months</td>
+<td>on request</td>
+</tr>
+<tr>
+<td>Key risks</td>
+<td>no income history</td>
+<td>income volatility, payday reliance</td>
+<td>redundancy, sector layoffs</td>
+<td>over-borrowing, mortgage rate shock</td>
+<td>large exposures, lifestyle above income</td>
+<td>complex income, bonus cuts, fraud/AML referral</td>
+</tr>
+<tr>
+<td>Early-warning emphasis</td>
+<td>—</td>
+<td>salary delays, payday/BNPL stacking, gambling</td>
+<td>sector layoffs, overtime drop, utilisation</td>
+<td>rate resets, utilisation, BNPL</td>
+<td>spend &gt; income, luxury spikes</td>
+<td>bonus/investment drops, large transfers</td>
+</tr>
+<tr>
+<td>Hardest stress scenario</td>
+<td>—</td>
+<td>recession / job loss</td>
+<td>recession / sector layoffs</td>
+<td>rate shock (+3pp)</td>
+<td>rate shock + house prices</td>
+<td>market crash (−30% equities)</td>
+</tr>
+</tbody>
+</table>
+<h2>3. How segmentation is used in the decision (order of steps)</h2>
+<ol>
+<li>Verify income → compute gross annual and net monthly (smoothed where needed).</li>
+<li>Assign the segment and overlay tags.</li>
+<li>Apply the <strong>regulator pack</strong> (always first).</li>
+<li>Apply segment policy: eligible products, caps, DTI/residual-income minimums, automation rule.</li>
+<li>Run affordability (UK) / ability-to-pay (US) with the segment's minimum-residual requirement.</li>
+<li>Score risk (PD/LGD/EAD/EL). <strong>Income band is not a scoring penalty by itself.</strong> The model uses behaviour, affordability and stability features. Segment-level calibration checks that PD is accurate within each band.</li>
+<li>Limit = lowest of all caps; name the binding constraint.</li>
+<li>Automation check (segment rule + grade). Declines always go to a person.</li>
+</ol>
+<p><strong>Worked examples</strong></p>
+<ul>
+<li><strong>Maria (NY):</strong> smoothed net $3,400/month ≈ $48k gross → <strong>S2</strong> + <code>THIN_FILE</code> + <code>GIG_SELF_EMPLOYED</code>.</li>
+<li>S2 card range is $1,500–5,000, but the thin-file starter cap of <strong>$1,500</strong> is lower and binds.</li>
+<li>Card residual check: $560 − $45 minimum payment = $515 ≥ $300 floor → pass. CARD Act ability-to-pay also passes.</li>
+<li>The card is $1,500, above the $1,000 automation line, so it goes to an underwriter.</li>
+<li><strong>Tom (London):</strong> net £1,650/month ≈ £24k gross → <strong>S2</strong> + <code>GENZ</code> + <code>THIN_FILE</code>.</li>
+<li>Starter card £1,000 is within the S2 starter range.</li>
+<li>Residual after the £42.40 repayment is £453 ≥ £100 floor → pass.</li>
+<li>Auto-approved (≤ £1,000, grade 12) with Art 22C information.</li>
+<li><strong>Loan example (illustrative):</strong> a US S3 customer earning $90k gross ($5,600 net/month) with $1,900 of existing obligations asks for a $30,000 loan over 60 months at 12% APR.</li>
+<li>Instalment ≈ $667. DTI = (1,900 + 667) ÷ 7,500 gross monthly = 34% ≤ 43% → pass.</li>
+<li>Residual = 5,600 − 1,900 − 667 − essentials 1,800 = $1,233 ≥ $1,200 S3 floor → pass, just. The binding constraint is minimum residual income.</li>
+</ul>
+<h2>4. Fairness and conduct safeguards</h2>
+<ul>
+<li>
+<p>Income segment is <strong>not</strong> a protected characteristic, but it can act as a proxy. Fairness suites (FR-50/51) report approval rate,
+  average limit, APR and decline reasons <strong>by segment × protected-group proxy</strong>, and require a documented business justification for differences.</p>
+</li>
+<li>
+<p>UK Consumer Duty: outcome MI by segment, with a fair-value check that lower-income segments don't pay disproportionate fees.</p>
+</li>
+<li>No "income-only" knockouts other than S0 product eligibility and regulatory minimums. S0 customers get a path (secured card / credit-builder), not a dead end.</li>
+<li>Marketing and next-best-offer respect segment eligibility, affordability first, and never promote credit to minors.</li>
+</ul>
+<h2>5. Demo portfolio (synthetic, illustrative; used for charts)</h2>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>US customers % (2M)</th>
+<th>US balances %</th>
+<th>UK customers % (1M)</th>
+<th>UK balances %</th>
+<th>Avg 12m PD US</th>
+<th>Avg 12m PD UK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>3</td>
+<td>0.5</td>
+<td>3</td>
+<td>0.5</td>
+<td>— (secured)</td>
+<td>— (secured)</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>18</td>
+<td>6</td>
+<td>20</td>
+<td>7</td>
+<td>6.0%</td>
+<td>5.5%</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>30</td>
+<td>20</td>
+<td>32</td>
+<td>22</td>
+<td>3.5%</td>
+<td>3.2%</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>30</td>
+<td>35</td>
+<td>28</td>
+<td>34</td>
+<td>1.8%</td>
+<td>1.7%</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>14</td>
+<td>25</td>
+<td>12</td>
+<td>23</td>
+<td>1.0%</td>
+<td>1.0%</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>5</td>
+<td>13.5</td>
+<td>5</td>
+<td>13.5</td>
+<td>0.7%</td>
+<td>0.8%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Approval rate, champion vs challenger (illustrative, US cards):</strong></p>
+<ul>
+<li>S1: 38% → 47%</li>
+<li>S2: 55% → 63%</li>
+<li>S3: 74% → 77%</li>
+<li>S4: 86% → 87%</li>
+<li>S5: 91% → 91%</li>
+</ul>
+<p>The gains concentrate where inclusion features help.</p>
+<p><strong>Expected-loss uplift under stress (illustrative, % of segment EL; bigger number = harder hit):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>S1</th>
+<th>S2</th>
+<th>S3</th>
+<th>S4</th>
+<th>S5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recession</td>
+<td>+60%</td>
+<td>+55%</td>
+<td>+35%</td>
+<td>+25%</td>
+<td>+20%</td>
+</tr>
+<tr>
+<td>Rate shock +3pp</td>
+<td>+20%</td>
+<td>+25%</td>
+<td>+40%</td>
+<td>+45%</td>
+<td>+20%</td>
+</tr>
+<tr>
+<td>Market crash</td>
+<td>+10%</td>
+<td>+10%</td>
+<td>+15%</td>
+<td>+30%</td>
+<td>+55%</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Requirements added to the PRD</h2>
+<p>FR-79 to FR-86 (see <code>prd.md</code> §4.15).</p></body></html>
