@@ -1,5 +1,7 @@
 # CLAUDE.md: read this first (project context for Claude on any machine)
 
+New machine? Say "implement the shift prompt md" (see `SHIFT-PROMPT.md` and `context/`).
+
 This repo is the **AI Risk Score Card** project ("Risk Banking Model"). Read `HANDOFF.md` next for the full concept, decisions, status and open items. Read `README.md` for the folder map.
 
 ## One-paragraph concept

@@ -1,0 +1,4 @@
+- [Problem statement](project-problem-statement.md) — the agreed problem we solve: AI credit risk platform + cited compliance Q&A, on-prem, UAE Islamic and Global editions
+- [User preferences](user-preferences-risk-banking.md) — simple language, visuals, PDFs, separate build machine, "competitive but safe"
+- [Faisal's direction](project-faisal-direction.md) — next step: US/UK/UAE central-bank master rulebooks + tool comparing ~4 real banks per market
+- [Bank policies supplied later](project-bank-policies-supplied-later.md) — user will paste real bank policies; research only public rules, build intake slot
