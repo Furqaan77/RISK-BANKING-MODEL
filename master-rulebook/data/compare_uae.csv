@@ -1,0 +1,19 @@
+param_id,parameter,unit,kind,direction,reg_rule,reg_cap,Emirates NBD,FAB,ADCB,Mashreq,notes,confidence
+UAE-PL-01,Personal loan: minimum salary (salary transferred),AED/month,risk,lower,No CBUAE minimum (removal reported Nov 2025; verify),,5000,7000,5000,5000,Mashreq: Emiratis 10k,H/M
+UAE-PL-02,Personal loan: minimum salary (no salary transfer),AED/month,risk,lower,No CBUAE minimum,,10000,10000,Not published,5000,ENBD figure from aggregator (L); Mashreq = NEO Credit (max AED 150k),M/L
+UAE-PL-03,Personal loan: maximum amount (nationals),AED,risk,higher,Max 20x monthly salary (CBUAE Reg 29/2011),,4000000,5000000,4000000,3000000,Absolute cap; salary multiple applies on top,H/M
+UAE-PL-04,Personal loan: maximum amount (expats),AED,risk,higher,Max 20x monthly salary (CBUAE Reg 29/2011),,3000000,2000000,1500000,2000000,,H/M
+UAE-PL-05,Personal loan: maximum term,months,risk,higher,Max 48 months (CBUAE Reg 29/2011),48,48,48,48,48,All banks lend to the full regulatory term,H
+UAE-PL-06,Personal loan: lowest rate,% p.a. reducing,price,lower,No rate cap,,4.99,4.79,5.24,5.99,ADCB from search extract (M),H/M
+UAE-PL-07,Personal loan: highest rate,% p.a. reducing,price,lower,No rate cap,,19.99,13.99,Not published,31.99,A high top rate usually means the bank accepts riskier customers,H/M
+UAE-CC-01,Credit card: minimum salary,AED/month,risk,lower,No CBUAE minimum,,5000,5000,5000,5000,,H
+UAE-CC-02,Credit card: monthly rate,% per month,price,lower,No rate cap; late fee max AED 230 + VAT,,3.49,3.99,3.25,3.85,,H
+UAE-HL-01,Home loan: max LTV nationals (first home up to AED 5m),%,risk,higher,Max 85% (CBUAE mortgage regulation),85,85,85,85,85,All banks lend to the regulatory limit,H
+UAE-HL-02,Home loan: max LTV expats (first home up to AED 5m),%,risk,higher,Max 80% (CBUAE mortgage regulation),80,80,80,80,80,All banks lend to the regulatory limit,H
+UAE-HL-03,Home loan: minimum salary (nationals),AED/month,risk,lower,No CBUAE minimum,,10000,15000,8000,15000,FAB from aggregator (L),H/L
+UAE-HL-04,Home loan: fixed rate (headline),% p.a.,price,lower,No rate cap,,4.19,3.99,3.85,4.49,ENBD = 2-yr fixed with salary transfer (Oct 2026); ADCB = package rate,H/M
+UAE-AL-01,Auto loan: maximum amount,AED,risk,higher,No amount cap; max 80% LTV and 60 months (CBUAE Reg 29/2011),,2000000,1500000,1500000,500000,,H/M
+UAE-AL-02,Auto loan: lowest rate,% flat,price,lower,No rate cap,,1.89,2.15,1.75,3.19,ENBD rate for Emiratis; ADCB = KFS minimum,H/M
+UAE-AL-03,Auto loan: minimum down payment,%,risk,lower,Min 20% (max 80% LTV),20,20,20,20,Not published,,H
+UAE-DB-01,Loan against deposit: advance,% of deposit,risk,higher,No CBUAE cap found,,90,95,90,90,,H/M
+UAE-INFO-01,Retail loan book (group/segment),AED bn,info,higher,n/a,,184,94,75,36,Group or segment figures; NOT shares of the UAE market,M

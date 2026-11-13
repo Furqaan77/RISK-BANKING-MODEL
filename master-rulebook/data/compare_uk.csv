@@ -1,0 +1,16 @@
+param_id,parameter,unit,kind,direction,reg_rule,reg_cap,HSBC UK,Barclays,Lloyds Bank,NatWest,notes,confidence
+UK-HL-01,Mortgage: max LTV (standard),%,risk,higher,No LTV cap (capital risk weights only),,95,95,95,95,Lloyds ~98% (GBP5k Deposit) and 100% (Lend a Hand); Barclays 100% (Family Springboard),M/H
+UK-HL-02,Mortgage: max loan-to-income (mainstream),x income,risk,higher,Market-wide: max 15% of new mortgages at LTI >= 4.5x (FPC); per-lender cap removed 28 Oct 2026,,5.5,6,5.5,6.5,HSBC Premier up to 6.5x; NatWest 6.5x needs joint income GBP150k+ at <=75% LTV; Barclays 6x needs GBP75k+ at <=85% LTV,M
+UK-HL-03,Mortgage: household income needed for 5.5x,GBP/year,risk,lower,No rule,,55000,Not published,40000,40000,HSBC joint 55k (sole 35k); NatWest only at <=75% LTV; Lloyds at <=90% LTV,M
+UK-HL-04,Mortgage: max age at end of term,years,risk,higher,No maximum age in law (Equality Act allows age as a risk factor),,80,80,80,75,HSBC and Barclays 80 from third-party sources (verify),M
+UK-HL-05,Mortgage: max term,years,risk,higher,No maximum term,,40,40,40,40,,M
+UK-HL-06,Mortgage: buyers without permanent residence,text,info,higher,Nationality cannot be used (Equality Act); residency can,,Settled / pre-settled / acceptable visa,Not published on bank pages,Not found,Max 75% LTV; 6+ months on visa,,M
+UK-PL-01,Personal loan: maximum amount,GBP,risk,higher,No rule (affordability check CONC 5.2A),,30000,25000,50000,50000,Barclays aggregators say 50k (conflict); Lloyds from older page (verify); NatWest 50k existing customers / 35k new,M
+UK-PL-02,Personal loan: maximum term,months,risk,higher,No rule,,96,60,84,96,Barclays some sources say 96 (conflict),M
+UK-PL-03,Personal loan: representative APR,%,price,lower,No cap on mainstream loans (Consumer Duty fair value),,6.8,7.05,7.4,7.9,At headline amounts (about GBP7.5k-20k),H/M
+UK-CC-01,Credit card: representative APR,%,price,lower,No cap; minimum payment >= interest + fees + 1%,,25.9,24.9,24.9,24.9,,H
+UK-CC-02,Credit card: late fee,GBP,price,lower,Must not exceed reasonable cost,,12,12,12,12,,H
+UK-OD-01,Arranged overdraft EAR,%,price,lower,No cap,,39.9,35.0,29.9,39.49,Lloyds rate depends on credit score,H/M
+UK-AL-01,Car finance offered directly (HP/PCP),text,info,higher,No specific rule,,No (car loan only),No direct offer,Yes (HP 6.3% / PCP 7.6%),No (car loan only),,M
+UK-RK-01,Mortgage book: average LTV,%,outcome,higher,n/a,,55,55.2,45,Not published,Lloyds = whole Lloyds Banking Group,H
+UK-RK-02,Loans in default (Stage 3),%,info,higher,IFRS 9: default presumed at 90 days past due,,Not published,Not published,1.2,1.02,Not like-for-like: Lloyds = group mortgages; NatWest = all Retail Banking; Barclays mortgage 90-day arrears 0.1%,M

@@ -1,0 +1,20 @@
+# Bank policy layer for the fictional Demo Group (label: assumed). May only TIGHTEN the regulator layer.
+# Rule P9 of the answer sheet: BANK.UAE.DBR.900 is deliberately LOOSER than the regulator and must be caught by the tighten-only check.
+meta: {tenant: demo_group, version: "0.1", effective_date: "2026-11-13"}
+rules:
+  - {id: BANK.ALL.BUR.001, layer: bank_policy, applies_to: [retail], measure: bureau_score, direction: min, limit: 560,
+     condition: "bureau_score >= 560", severity: refer, message: "Bureau score below bank floor", source: "Demo Group policy", confidence: assumed}
+  - {id: BANK.UAE.DBR.001, layer: bank_policy, entity: UAE01, applies_to: [retail], measure: dbr_pct, direction: max, limit: 50,
+     condition: "dbr_pct <= 50", severity: knockout, message: "DBR above bank limit", source: "Demo Group policy", confidence: assumed}
+  - {id: BANK.UAE.DBR.900, layer: bank_policy, entity: UAE01, applies_to: [retail], measure: dbr_pct, direction: max, limit: 55,
+     condition: "dbr_pct <= 55", severity: warn, message: "PLANTED P9: looser than CBUAE 50% - must fail tighten-only", source: "Demo Group policy (planted error)", confidence: assumed}
+  - {id: BANK.UK.LTI.001, layer: bank_policy, entity: UK01, applies_to: [mortgage], measure: lti, direction: max, limit: 5.5,
+     condition: "lti <= 5.5", severity: knockout, message: "Mortgage loan-to-income above bank maximum 5.5x", source: "Demo Group policy", confidence: assumed}
+  - {id: BANK.US.DTI.001, layer: bank_policy, entity: US01, applies_to: [mortgage], measure: dti_pct, direction: max, limit: 45,
+     condition: "dti_pct <= 45", severity: knockout, message: "DTI above bank maximum 45%", source: "Demo Group policy", confidence: assumed}
+  - {id: BANK.ALL.AGE.001, layer: bank_policy, applies_to: [retail], measure: age, direction: min, limit: 21,
+     condition: "age >= 21", severity: knockout, message: "Bank minimum age 21", source: "Demo Group policy", confidence: assumed}
+  - {id: BANK.CORP.DSCR.001, layer: bank_policy, applies_to: [sme, corporate], measure: dscr, direction: min, limit: 1.2,
+     condition: "dscr >= 1.2", severity: refer, message: "Debt service cover below 1.2x", source: "Demo Group policy", confidence: assumed}
+  - {id: BANK.CORP.LEV.001, layer: bank_policy, applies_to: [corporate], measure: debt_to_ebitda, direction: max, limit: 4.5,
+     condition: "debt_to_ebitda <= 4.5", severity: refer, message: "Leverage above 4.5x EBITDA", source: "Demo Group policy", confidence: assumed}

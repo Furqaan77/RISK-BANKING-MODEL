@@ -1,0 +1,11 @@
+# Credit policy layer (product rules) for Demo Group (label: assumed). May only TIGHTEN bank policy and regulator layers.
+meta: {tenant: demo_group, version: "0.1", effective_date: "2026-11-13"}
+rules:
+  - {id: CRED.ALL.BUR.001, layer: credit_policy, applies_to: [retail, sme], measure: bureau_age_days, direction: max, limit: 90,
+     condition: "bureau_age_days <= 90", severity: knockout, message: "Credit bureau report older than 90 days - refresh before deciding", source: "Demo Group credit policy", confidence: assumed}
+  - {id: CRED.PL.001, layer: credit_policy, applies_to: [personal_loan], measure: term_months, direction: max, limit: 48,
+     condition: "term_months <= 48", severity: knockout, message: "Personal loan term above product maximum", source: "Demo Group credit policy", confidence: assumed}
+  - {id: CRED.HL.001, layer: credit_policy, applies_to: [mortgage], measure: ltv_pct, direction: max, limit: 80,
+     condition: "ltv_pct <= 80", severity: knockout, message: "Mortgage LTV above product maximum 80%", source: "Demo Group credit policy", confidence: assumed}
+  - {id: CRED.SME.001, layer: credit_policy, applies_to: [sme], measure: years_trading, direction: min, limit: 2,
+     condition: "years_trading >= 2", severity: refer, message: "SME trading history below 2 years", source: "Demo Group credit policy", confidence: assumed}

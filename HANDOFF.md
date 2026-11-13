@@ -1,6 +1,6 @@
 # HANDOFF: full project context
 
-Written 2026-11-09 so a fresh Claude (other machine / other account) can pick up without the original chat.
+Written 2026-11-09, updated 2026-11-13, so a fresh Claude (other machine / other account) can pick up without the original chat.
 
 ## 1. What the product is
 **AI Risk Score Card**: a credit risk model sold as a service per bank, run **privately on the bank's own machines**. It reads the bank's central-bank rules, bank policy and credit policy, and scores retail applicants.
@@ -19,6 +19,12 @@ How decisions work:
 4. **Retail credit policy, UAE conventional bank** (`credit-policy-uae-conventional/`): complete. Same criteria as Islamic, converted to conventional terms.
 5. **Market-position report** (`credit-policy-uae-conventional/market-position/`): the bank policy compared with 33 UAE banks, with charts and "how we stand out" scenarios.
 6. **Retail credit policy, UAE finance company** (`credit-policy-uae-finance-company/`): complete (pilot finance company, conventional).
+7. **Problem statement agreed** (13 Nov): banks decide credit on scattered, hard-to-verify information; staff can't get citable answers; assessment is slow and inconsistent. Answer: an on-prem AI Credit Risk Assessment Platform (grades 1–10, internal + external data via controlled APIs, regulator → bank → credit policy engine where policy beats AI, higher risk goes to a human, plain-English Q&A with citations). Indicative AI share: ~80–90% of routine retail work, ~60–70% corporate/SME; humans handle the last 10–30%.
+8. **Faisal's direction** (mentor meeting, `Research work/`): master rulebook of US/UK/UAE central-bank rules for retail, SME, corporate and finance houses, plus a comparison of ~4 real banks per market ("too rigid / too risky / missed opportunities"). Later: risk appetite (e.g. NPL 1% vs 2%), then legal/compliance/risk experts, then a business expert.
+9. **Master rulebook** (`master-rulebook/`): Excel tool with live labels (12 banks: ENBD, FAB, ADCB, Mashreq; HSBC UK, Barclays, Lloyds, NatWest; JPMorgan Chase, BofA, Wells Fargo, Citi), finance-house / SME / corporate rulebooks, 379 sources, and 12 one-page bank checks (PDF). Rebuild: `python tools/master-rulebook/build.py`.
+10. **BMAD research runs** (`_bmad-output/planning-artifacts/research/`): run 1 retail (complete, `research.md` written); run 2 finance houses / SME / corporate (digests complete, `research.md` synthesis **not yet written**).
+11. **Platform blueprint** (`_bmad-output/planning-artifacts/blueprint/`): six capabilities (Decide, Monitor, Stress, Benchmark, Explain, Govern), architecture rules AD-17..AD-22, demo spec, roadmap (Skeleton → Muscles → Organs → Nerves → Skin → Blood supply). PDF built by `tools/blueprint/build_blueprint_pdf.py`.
+12. **Working skeleton** (`risk-platform/`): Python, only needs PyYAML. A fictional "Demo Group" bank (UAE/UK/US) with 9 planted problems; all 9 detected, 6/6 tests pass. See `risk-platform/README.md`.
 
 Published walkthrough pages (claude.ai artifacts, owned by the original account, may not be visible on another login):
 - UAE: https://claude.ai/artifact/5cXyJktuz1fxfgfp7JXCcT
@@ -72,6 +78,9 @@ The FCR values came from search extracts because the CBUAE rulebook site blocked
 - **Data conflicts in market research:** Emirates Islamic minimum salary 7,500 vs 5,000; ADIB rate basis unclear; CBD, CBI and Wio figures disagree; Citi UAE does not sell retail; Tabby holds an SVF licence only. Some bank figures come from comparison sites (the CSVs carry a confidence column: H / M / L).
 - **CBUAE items marked "verify"** in the policy documents. The minimum-salary removal of Nov 2025 is press-reported only.
 
+- **Bank internal policies will be supplied by the user** (pasted in later). Only ~20% of what a credit decision needs is public (regulator rules ~100%, bank policy ~10–20%, credit policy ~20–30%; corporate and compliance ~5–10%). Do not research or invent internal bank policies.
+- **Master rulebook to verify:** US card late-fee safe harbor (disputed), SR 26-2 scope for AI models, HSBC/Barclays mortgage max age, UAE minimum-salary removal, UAE real-estate cap. Open the xlsx once in Excel to confirm the formula labels calculate.
+
 ## 7. Where things came from
 - User answers to about 100 discovery questions are in `_bmad-output/planning-artifacts/discovery-answers.md` (UAE) and `_bmad-output/large-bank/planning-artifacts/discovery-answers.md` (Global).
 - `research/research.txt` is the user's extra research document.
@@ -94,3 +103,4 @@ The FCR values came from search extracts because the CBUAE rulebook site blocked
 - **Building the real product:** run the BMAD build prompts (`BMAD-BUILD-PROMPT.md` for UAE Islamic, `BMAD-BUILD-PROMPT-GLOBAL.md` for Global) on the separate build machine. They were written to run there directly.
 - **New markets or products:** copy a credit-policy pack and follow the numbered pattern.
 - **When you change a value,** update the parameter sheet, policy document, config and gap report together. Rating counts in each parameter sheet must add up.
+- **Next agreed steps (13 Nov):** (1) build a policy intake template + converter into `risk-platform/packs/` YAML with the tighten-only check, ready for the bank policies the user will paste; (2) write the run-2 `research.md` synthesis; (3) light public-rules research for collections/recovery, trade finance, Islamic corporate and financial-crime screening.

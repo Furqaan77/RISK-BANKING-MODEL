@@ -1,0 +1,11 @@
+# Regulator layer: US (CFPB/Fed/OCC). Mostly principles; only checkable requirements are coded. Source: master-rulebook rulebook_us.csv (label: real).
+meta: {pack: us, version: "0.1", effective_date: "2026-11-12", source: master-rulebook/data/rulebook_us.csv}
+rules:
+  - {id: REG.US.ATR.001, layer: regulator, applies_to: [mortgage], measure: income_verified, direction: min, limit: 1,
+     condition: "income_verified == 1 and dti_pct > 0", severity: knockout, message: "Ability-to-repay: income and DTI must be verified and considered", source: "12 CFR 1026.43(c)", confidence: H}
+  - {id: REG.US.QM.001, layer: regulator, applies_to: [mortgage], measure: term_months, direction: max, limit: 360,
+     condition: "term_months <= 360", severity: refer, message: "Term above 30 years falls outside the Qualified Mortgage safe harbour", source: "12 CFR 1026.43(e)", confidence: H}
+  - {id: REG.US.CARD.001, layer: regulator, applies_to: [credit_card], measure: ability_to_pay, direction: min, limit: 1,
+     condition: "income_verified == 1", severity: knockout, message: "Card ability-to-pay: income or assets must be considered", source: "12 CFR 1026.51", confidence: H}
+  - {id: REG.US.AGE.001, layer: regulator, applies_to: [retail], measure: age, direction: min, limit: 18,
+     condition: "age >= 18", severity: knockout, message: "Applicant must have capacity to contract (18+)", source: "ECOA / state law", confidence: H}

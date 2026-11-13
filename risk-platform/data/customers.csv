@@ -1,0 +1,1804 @@
+customer_id,entity_id,name,sector,segment,ultimate_owner_id
+UAE01-R00000,UAE01,Retail customer UAE01-00000,household,retail,UAE01-R00000
+UAE01-R00001,UAE01,Retail customer UAE01-00001,household,retail,UAE01-R00001
+UAE01-R00002,UAE01,Retail customer UAE01-00002,household,retail,UAE01-R00002
+UAE01-R00003,UAE01,Retail customer UAE01-00003,household,retail,UAE01-R00003
+UAE01-R00004,UAE01,Retail customer UAE01-00004,household,retail,UAE01-R00004
+UAE01-R00005,UAE01,Retail customer UAE01-00005,household,retail,UAE01-R00005
+UAE01-R00006,UAE01,Retail customer UAE01-00006,household,retail,UAE01-R00006
+UAE01-R00007,UAE01,Retail customer UAE01-00007,household,retail,UAE01-R00007
+UAE01-R00008,UAE01,Retail customer UAE01-00008,household,retail,UAE01-R00008
+UAE01-R00009,UAE01,Retail customer UAE01-00009,household,retail,UAE01-R00009
+UAE01-R00010,UAE01,Retail customer UAE01-00010,household,retail,UAE01-R00010
+UAE01-R00011,UAE01,Retail customer UAE01-00011,household,retail,UAE01-R00011
+UAE01-R00012,UAE01,Retail customer UAE01-00012,household,retail,UAE01-R00012
+UAE01-R00013,UAE01,Retail customer UAE01-00013,household,retail,UAE01-R00013
+UAE01-R00014,UAE01,Retail customer UAE01-00014,household,retail,UAE01-R00014
+UAE01-R00015,UAE01,Retail customer UAE01-00015,household,retail,UAE01-R00015
+UAE01-R00016,UAE01,Retail customer UAE01-00016,household,retail,UAE01-R00016
+UAE01-R00017,UAE01,Retail customer UAE01-00017,household,retail,UAE01-R00017
+UAE01-R00018,UAE01,Retail customer UAE01-00018,household,retail,UAE01-R00018
+UAE01-R00019,UAE01,Retail customer UAE01-00019,household,retail,UAE01-R00019
+UAE01-R00020,UAE01,Retail customer UAE01-00020,household,retail,UAE01-R00020
+UAE01-R00021,UAE01,Retail customer UAE01-00021,household,retail,UAE01-R00021
+UAE01-R00022,UAE01,Retail customer UAE01-00022,household,retail,UAE01-R00022
+UAE01-R00023,UAE01,Retail customer UAE01-00023,household,retail,UAE01-R00023
+UAE01-R00024,UAE01,Retail customer UAE01-00024,household,retail,UAE01-R00024
+UAE01-R00025,UAE01,Retail customer UAE01-00025,household,retail,UAE01-R00025
+UAE01-R00026,UAE01,Retail customer UAE01-00026,household,retail,UAE01-R00026
+UAE01-R00027,UAE01,Retail customer UAE01-00027,household,retail,UAE01-R00027
+UAE01-R00028,UAE01,Retail customer UAE01-00028,household,retail,UAE01-R00028
+UAE01-R00029,UAE01,Retail customer UAE01-00029,household,retail,UAE01-R00029
+UAE01-R00030,UAE01,Retail customer UAE01-00030,household,retail,UAE01-R00030
+UAE01-R00031,UAE01,Retail customer UAE01-00031,household,retail,UAE01-R00031
+UAE01-R00032,UAE01,Retail customer UAE01-00032,household,retail,UAE01-R00032
+UAE01-R00033,UAE01,Retail customer UAE01-00033,household,retail,UAE01-R00033
+UAE01-R00034,UAE01,Retail customer UAE01-00034,household,retail,UAE01-R00034
+UAE01-R00035,UAE01,Retail customer UAE01-00035,household,retail,UAE01-R00035
+UAE01-R00036,UAE01,Retail customer UAE01-00036,household,retail,UAE01-R00036
+UAE01-R00037,UAE01,Retail customer UAE01-00037,household,retail,UAE01-R00037
+UAE01-R00038,UAE01,Retail customer UAE01-00038,household,retail,UAE01-R00038
+UAE01-R00039,UAE01,Retail customer UAE01-00039,household,retail,UAE01-R00039
+UAE01-R00040,UAE01,Retail customer UAE01-00040,household,retail,UAE01-R00040
+UAE01-R00041,UAE01,Retail customer UAE01-00041,household,retail,UAE01-R00041
+UAE01-R00042,UAE01,Retail customer UAE01-00042,household,retail,UAE01-R00042
+UAE01-R00043,UAE01,Retail customer UAE01-00043,household,retail,UAE01-R00043
+UAE01-R00044,UAE01,Retail customer UAE01-00044,household,retail,UAE01-R00044
+UAE01-R00045,UAE01,Retail customer UAE01-00045,household,retail,UAE01-R00045
+UAE01-R00046,UAE01,Retail customer UAE01-00046,household,retail,UAE01-R00046
+UAE01-R00047,UAE01,Retail customer UAE01-00047,household,retail,UAE01-R00047
+UAE01-R00048,UAE01,Retail customer UAE01-00048,household,retail,UAE01-R00048
+UAE01-R00049,UAE01,Retail customer UAE01-00049,household,retail,UAE01-R00049
+UAE01-R00050,UAE01,Retail customer UAE01-00050,household,retail,UAE01-R00050
+UAE01-R00051,UAE01,Retail customer UAE01-00051,household,retail,UAE01-R00051
+UAE01-R00052,UAE01,Retail customer UAE01-00052,household,retail,UAE01-R00052
+UAE01-R00053,UAE01,Retail customer UAE01-00053,household,retail,UAE01-R00053
+UAE01-R00054,UAE01,Retail customer UAE01-00054,household,retail,UAE01-R00054
+UAE01-R00055,UAE01,Retail customer UAE01-00055,household,retail,UAE01-R00055
+UAE01-R00056,UAE01,Retail customer UAE01-00056,household,retail,UAE01-R00056
+UAE01-R00057,UAE01,Retail customer UAE01-00057,household,retail,UAE01-R00057
+UAE01-R00058,UAE01,Retail customer UAE01-00058,household,retail,UAE01-R00058
+UAE01-R00059,UAE01,Retail customer UAE01-00059,household,retail,UAE01-R00059
+UAE01-R00060,UAE01,Retail customer UAE01-00060,household,retail,UAE01-R00060
+UAE01-R00061,UAE01,Retail customer UAE01-00061,household,retail,UAE01-R00061
+UAE01-R00062,UAE01,Retail customer UAE01-00062,household,retail,UAE01-R00062
+UAE01-R00063,UAE01,Retail customer UAE01-00063,household,retail,UAE01-R00063
+UAE01-R00064,UAE01,Retail customer UAE01-00064,household,retail,UAE01-R00064
+UAE01-R00065,UAE01,Retail customer UAE01-00065,household,retail,UAE01-R00065
+UAE01-R00066,UAE01,Retail customer UAE01-00066,household,retail,UAE01-R00066
+UAE01-R00067,UAE01,Retail customer UAE01-00067,household,retail,UAE01-R00067
+UAE01-R00068,UAE01,Retail customer UAE01-00068,household,retail,UAE01-R00068
+UAE01-R00069,UAE01,Retail customer UAE01-00069,household,retail,UAE01-R00069
+UAE01-R00070,UAE01,Retail customer UAE01-00070,household,retail,UAE01-R00070
+UAE01-R00071,UAE01,Retail customer UAE01-00071,household,retail,UAE01-R00071
+UAE01-R00072,UAE01,Retail customer UAE01-00072,household,retail,UAE01-R00072
+UAE01-R00073,UAE01,Retail customer UAE01-00073,household,retail,UAE01-R00073
+UAE01-R00074,UAE01,Retail customer UAE01-00074,household,retail,UAE01-R00074
+UAE01-R00075,UAE01,Retail customer UAE01-00075,household,retail,UAE01-R00075
+UAE01-R00076,UAE01,Retail customer UAE01-00076,household,retail,UAE01-R00076
+UAE01-R00077,UAE01,Retail customer UAE01-00077,household,retail,UAE01-R00077
+UAE01-R00078,UAE01,Retail customer UAE01-00078,household,retail,UAE01-R00078
+UAE01-R00079,UAE01,Retail customer UAE01-00079,household,retail,UAE01-R00079
+UAE01-R00080,UAE01,Retail customer UAE01-00080,household,retail,UAE01-R00080
+UAE01-R00081,UAE01,Retail customer UAE01-00081,household,retail,UAE01-R00081
+UAE01-R00082,UAE01,Retail customer UAE01-00082,household,retail,UAE01-R00082
+UAE01-R00083,UAE01,Retail customer UAE01-00083,household,retail,UAE01-R00083
+UAE01-R00084,UAE01,Retail customer UAE01-00084,household,retail,UAE01-R00084
+UAE01-R00085,UAE01,Retail customer UAE01-00085,household,retail,UAE01-R00085
+UAE01-R00086,UAE01,Retail customer UAE01-00086,household,retail,UAE01-R00086
+UAE01-R00087,UAE01,Retail customer UAE01-00087,household,retail,UAE01-R00087
+UAE01-R00088,UAE01,Retail customer UAE01-00088,household,retail,UAE01-R00088
+UAE01-R00089,UAE01,Retail customer UAE01-00089,household,retail,UAE01-R00089
+UAE01-R00090,UAE01,Retail customer UAE01-00090,household,retail,UAE01-R00090
+UAE01-R00091,UAE01,Retail customer UAE01-00091,household,retail,UAE01-R00091
+UAE01-R00092,UAE01,Retail customer UAE01-00092,household,retail,UAE01-R00092
+UAE01-R00093,UAE01,Retail customer UAE01-00093,household,retail,UAE01-R00093
+UAE01-R00094,UAE01,Retail customer UAE01-00094,household,retail,UAE01-R00094
+UAE01-R00095,UAE01,Retail customer UAE01-00095,household,retail,UAE01-R00095
+UAE01-R00096,UAE01,Retail customer UAE01-00096,household,retail,UAE01-R00096
+UAE01-R00097,UAE01,Retail customer UAE01-00097,household,retail,UAE01-R00097
+UAE01-R00098,UAE01,Retail customer UAE01-00098,household,retail,UAE01-R00098
+UAE01-R00099,UAE01,Retail customer UAE01-00099,household,retail,UAE01-R00099
+UAE01-R00100,UAE01,Retail customer UAE01-00100,household,retail,UAE01-R00100
+UAE01-R00101,UAE01,Retail customer UAE01-00101,household,retail,UAE01-R00101
+UAE01-R00102,UAE01,Retail customer UAE01-00102,household,retail,UAE01-R00102
+UAE01-R00103,UAE01,Retail customer UAE01-00103,household,retail,UAE01-R00103
+UAE01-R00104,UAE01,Retail customer UAE01-00104,household,retail,UAE01-R00104
+UAE01-R00105,UAE01,Retail customer UAE01-00105,household,retail,UAE01-R00105
+UAE01-R00106,UAE01,Retail customer UAE01-00106,household,retail,UAE01-R00106
+UAE01-R00107,UAE01,Retail customer UAE01-00107,household,retail,UAE01-R00107
+UAE01-R00108,UAE01,Retail customer UAE01-00108,household,retail,UAE01-R00108
+UAE01-R00109,UAE01,Retail customer UAE01-00109,household,retail,UAE01-R00109
+UAE01-R00110,UAE01,Retail customer UAE01-00110,household,retail,UAE01-R00110
+UAE01-R00111,UAE01,Retail customer UAE01-00111,household,retail,UAE01-R00111
+UAE01-R00112,UAE01,Retail customer UAE01-00112,household,retail,UAE01-R00112
+UAE01-R00113,UAE01,Retail customer UAE01-00113,household,retail,UAE01-R00113
+UAE01-R00114,UAE01,Retail customer UAE01-00114,household,retail,UAE01-R00114
+UAE01-R00115,UAE01,Retail customer UAE01-00115,household,retail,UAE01-R00115
+UAE01-R00116,UAE01,Retail customer UAE01-00116,household,retail,UAE01-R00116
+UAE01-R00117,UAE01,Retail customer UAE01-00117,household,retail,UAE01-R00117
+UAE01-R00118,UAE01,Retail customer UAE01-00118,household,retail,UAE01-R00118
+UAE01-R00119,UAE01,Retail customer UAE01-00119,household,retail,UAE01-R00119
+UAE01-R00120,UAE01,Retail customer UAE01-00120,household,retail,UAE01-R00120
+UAE01-R00121,UAE01,Retail customer UAE01-00121,household,retail,UAE01-R00121
+UAE01-R00122,UAE01,Retail customer UAE01-00122,household,retail,UAE01-R00122
+UAE01-R00123,UAE01,Retail customer UAE01-00123,household,retail,UAE01-R00123
+UAE01-R00124,UAE01,Retail customer UAE01-00124,household,retail,UAE01-R00124
+UAE01-R00125,UAE01,Retail customer UAE01-00125,household,retail,UAE01-R00125
+UAE01-R00126,UAE01,Retail customer UAE01-00126,household,retail,UAE01-R00126
+UAE01-R00127,UAE01,Retail customer UAE01-00127,household,retail,UAE01-R00127
+UAE01-R00128,UAE01,Retail customer UAE01-00128,household,retail,UAE01-R00128
+UAE01-R00129,UAE01,Retail customer UAE01-00129,household,retail,UAE01-R00129
+UAE01-R00130,UAE01,Retail customer UAE01-00130,household,retail,UAE01-R00130
+UAE01-R00131,UAE01,Retail customer UAE01-00131,household,retail,UAE01-R00131
+UAE01-R00132,UAE01,Retail customer UAE01-00132,household,retail,UAE01-R00132
+UAE01-R00133,UAE01,Retail customer UAE01-00133,household,retail,UAE01-R00133
+UAE01-R00134,UAE01,Retail customer UAE01-00134,household,retail,UAE01-R00134
+UAE01-R00135,UAE01,Retail customer UAE01-00135,household,retail,UAE01-R00135
+UAE01-R00136,UAE01,Retail customer UAE01-00136,household,retail,UAE01-R00136
+UAE01-R00137,UAE01,Retail customer UAE01-00137,household,retail,UAE01-R00137
+UAE01-R00138,UAE01,Retail customer UAE01-00138,household,retail,UAE01-R00138
+UAE01-R00139,UAE01,Retail customer UAE01-00139,household,retail,UAE01-R00139
+UAE01-R00140,UAE01,Retail customer UAE01-00140,household,retail,UAE01-R00140
+UAE01-R00141,UAE01,Retail customer UAE01-00141,household,retail,UAE01-R00141
+UAE01-R00142,UAE01,Retail customer UAE01-00142,household,retail,UAE01-R00142
+UAE01-R00143,UAE01,Retail customer UAE01-00143,household,retail,UAE01-R00143
+UAE01-R00144,UAE01,Retail customer UAE01-00144,household,retail,UAE01-R00144
+UAE01-R00145,UAE01,Retail customer UAE01-00145,household,retail,UAE01-R00145
+UAE01-R00146,UAE01,Retail customer UAE01-00146,household,retail,UAE01-R00146
+UAE01-R00147,UAE01,Retail customer UAE01-00147,household,retail,UAE01-R00147
+UAE01-R00148,UAE01,Retail customer UAE01-00148,household,retail,UAE01-R00148
+UAE01-R00149,UAE01,Retail customer UAE01-00149,household,retail,UAE01-R00149
+UAE01-R00150,UAE01,Retail customer UAE01-00150,household,retail,UAE01-R00150
+UAE01-R00151,UAE01,Retail customer UAE01-00151,household,retail,UAE01-R00151
+UAE01-R00152,UAE01,Retail customer UAE01-00152,household,retail,UAE01-R00152
+UAE01-R00153,UAE01,Retail customer UAE01-00153,household,retail,UAE01-R00153
+UAE01-R00154,UAE01,Retail customer UAE01-00154,household,retail,UAE01-R00154
+UAE01-R00155,UAE01,Retail customer UAE01-00155,household,retail,UAE01-R00155
+UAE01-R00156,UAE01,Retail customer UAE01-00156,household,retail,UAE01-R00156
+UAE01-R00157,UAE01,Retail customer UAE01-00157,household,retail,UAE01-R00157
+UAE01-R00158,UAE01,Retail customer UAE01-00158,household,retail,UAE01-R00158
+UAE01-R00159,UAE01,Retail customer UAE01-00159,household,retail,UAE01-R00159
+UAE01-R00160,UAE01,Retail customer UAE01-00160,household,retail,UAE01-R00160
+UAE01-R00161,UAE01,Retail customer UAE01-00161,household,retail,UAE01-R00161
+UAE01-R00162,UAE01,Retail customer UAE01-00162,household,retail,UAE01-R00162
+UAE01-R00163,UAE01,Retail customer UAE01-00163,household,retail,UAE01-R00163
+UAE01-R00164,UAE01,Retail customer UAE01-00164,household,retail,UAE01-R00164
+UAE01-R00165,UAE01,Retail customer UAE01-00165,household,retail,UAE01-R00165
+UAE01-R00166,UAE01,Retail customer UAE01-00166,household,retail,UAE01-R00166
+UAE01-R00167,UAE01,Retail customer UAE01-00167,household,retail,UAE01-R00167
+UAE01-R00168,UAE01,Retail customer UAE01-00168,household,retail,UAE01-R00168
+UAE01-R00169,UAE01,Retail customer UAE01-00169,household,retail,UAE01-R00169
+UAE01-R00170,UAE01,Retail customer UAE01-00170,household,retail,UAE01-R00170
+UAE01-R00171,UAE01,Retail customer UAE01-00171,household,retail,UAE01-R00171
+UAE01-R00172,UAE01,Retail customer UAE01-00172,household,retail,UAE01-R00172
+UAE01-R00173,UAE01,Retail customer UAE01-00173,household,retail,UAE01-R00173
+UAE01-R00174,UAE01,Retail customer UAE01-00174,household,retail,UAE01-R00174
+UAE01-R00175,UAE01,Retail customer UAE01-00175,household,retail,UAE01-R00175
+UAE01-R00176,UAE01,Retail customer UAE01-00176,household,retail,UAE01-R00176
+UAE01-R00177,UAE01,Retail customer UAE01-00177,household,retail,UAE01-R00177
+UAE01-R00178,UAE01,Retail customer UAE01-00178,household,retail,UAE01-R00178
+UAE01-R00179,UAE01,Retail customer UAE01-00179,household,retail,UAE01-R00179
+UAE01-R00180,UAE01,Retail customer UAE01-00180,household,retail,UAE01-R00180
+UAE01-R00181,UAE01,Retail customer UAE01-00181,household,retail,UAE01-R00181
+UAE01-R00182,UAE01,Retail customer UAE01-00182,household,retail,UAE01-R00182
+UAE01-R00183,UAE01,Retail customer UAE01-00183,household,retail,UAE01-R00183
+UAE01-R00184,UAE01,Retail customer UAE01-00184,household,retail,UAE01-R00184
+UAE01-R00185,UAE01,Retail customer UAE01-00185,household,retail,UAE01-R00185
+UAE01-R00186,UAE01,Retail customer UAE01-00186,household,retail,UAE01-R00186
+UAE01-R00187,UAE01,Retail customer UAE01-00187,household,retail,UAE01-R00187
+UAE01-R00188,UAE01,Retail customer UAE01-00188,household,retail,UAE01-R00188
+UAE01-R00189,UAE01,Retail customer UAE01-00189,household,retail,UAE01-R00189
+UAE01-R00190,UAE01,Retail customer UAE01-00190,household,retail,UAE01-R00190
+UAE01-R00191,UAE01,Retail customer UAE01-00191,household,retail,UAE01-R00191
+UAE01-R00192,UAE01,Retail customer UAE01-00192,household,retail,UAE01-R00192
+UAE01-R00193,UAE01,Retail customer UAE01-00193,household,retail,UAE01-R00193
+UAE01-R00194,UAE01,Retail customer UAE01-00194,household,retail,UAE01-R00194
+UAE01-R00195,UAE01,Retail customer UAE01-00195,household,retail,UAE01-R00195
+UAE01-R00196,UAE01,Retail customer UAE01-00196,household,retail,UAE01-R00196
+UAE01-R00197,UAE01,Retail customer UAE01-00197,household,retail,UAE01-R00197
+UAE01-R00198,UAE01,Retail customer UAE01-00198,household,retail,UAE01-R00198
+UAE01-R00199,UAE01,Retail customer UAE01-00199,household,retail,UAE01-R00199
+UAE01-R00200,UAE01,Retail customer UAE01-00200,household,retail,UAE01-R00200
+UAE01-R00201,UAE01,Retail customer UAE01-00201,household,retail,UAE01-R00201
+UAE01-R00202,UAE01,Retail customer UAE01-00202,household,retail,UAE01-R00202
+UAE01-R00203,UAE01,Retail customer UAE01-00203,household,retail,UAE01-R00203
+UAE01-R00204,UAE01,Retail customer UAE01-00204,household,retail,UAE01-R00204
+UAE01-R00205,UAE01,Retail customer UAE01-00205,household,retail,UAE01-R00205
+UAE01-R00206,UAE01,Retail customer UAE01-00206,household,retail,UAE01-R00206
+UAE01-R00207,UAE01,Retail customer UAE01-00207,household,retail,UAE01-R00207
+UAE01-R00208,UAE01,Retail customer UAE01-00208,household,retail,UAE01-R00208
+UAE01-R00209,UAE01,Retail customer UAE01-00209,household,retail,UAE01-R00209
+UAE01-R00210,UAE01,Retail customer UAE01-00210,household,retail,UAE01-R00210
+UAE01-R00211,UAE01,Retail customer UAE01-00211,household,retail,UAE01-R00211
+UAE01-R00212,UAE01,Retail customer UAE01-00212,household,retail,UAE01-R00212
+UAE01-R00213,UAE01,Retail customer UAE01-00213,household,retail,UAE01-R00213
+UAE01-R00214,UAE01,Retail customer UAE01-00214,household,retail,UAE01-R00214
+UAE01-R00215,UAE01,Retail customer UAE01-00215,household,retail,UAE01-R00215
+UAE01-R00216,UAE01,Retail customer UAE01-00216,household,retail,UAE01-R00216
+UAE01-R00217,UAE01,Retail customer UAE01-00217,household,retail,UAE01-R00217
+UAE01-R00218,UAE01,Retail customer UAE01-00218,household,retail,UAE01-R00218
+UAE01-R00219,UAE01,Retail customer UAE01-00219,household,retail,UAE01-R00219
+UAE01-R00220,UAE01,Retail customer UAE01-00220,household,retail,UAE01-R00220
+UAE01-R00221,UAE01,Retail customer UAE01-00221,household,retail,UAE01-R00221
+UAE01-R00222,UAE01,Retail customer UAE01-00222,household,retail,UAE01-R00222
+UAE01-R00223,UAE01,Retail customer UAE01-00223,household,retail,UAE01-R00223
+UAE01-R00224,UAE01,Retail customer UAE01-00224,household,retail,UAE01-R00224
+UAE01-R00225,UAE01,Retail customer UAE01-00225,household,retail,UAE01-R00225
+UAE01-R00226,UAE01,Retail customer UAE01-00226,household,retail,UAE01-R00226
+UAE01-R00227,UAE01,Retail customer UAE01-00227,household,retail,UAE01-R00227
+UAE01-R00228,UAE01,Retail customer UAE01-00228,household,retail,UAE01-R00228
+UAE01-R00229,UAE01,Retail customer UAE01-00229,household,retail,UAE01-R00229
+UAE01-R00230,UAE01,Retail customer UAE01-00230,household,retail,UAE01-R00230
+UAE01-R00231,UAE01,Retail customer UAE01-00231,household,retail,UAE01-R00231
+UAE01-R00232,UAE01,Retail customer UAE01-00232,household,retail,UAE01-R00232
+UAE01-R00233,UAE01,Retail customer UAE01-00233,household,retail,UAE01-R00233
+UAE01-R00234,UAE01,Retail customer UAE01-00234,household,retail,UAE01-R00234
+UAE01-R00235,UAE01,Retail customer UAE01-00235,household,retail,UAE01-R00235
+UAE01-R00236,UAE01,Retail customer UAE01-00236,household,retail,UAE01-R00236
+UAE01-R00237,UAE01,Retail customer UAE01-00237,household,retail,UAE01-R00237
+UAE01-R00238,UAE01,Retail customer UAE01-00238,household,retail,UAE01-R00238
+UAE01-R00239,UAE01,Retail customer UAE01-00239,household,retail,UAE01-R00239
+UAE01-R00240,UAE01,Retail customer UAE01-00240,household,retail,UAE01-R00240
+UAE01-R00241,UAE01,Retail customer UAE01-00241,household,retail,UAE01-R00241
+UAE01-R00242,UAE01,Retail customer UAE01-00242,household,retail,UAE01-R00242
+UAE01-R00243,UAE01,Retail customer UAE01-00243,household,retail,UAE01-R00243
+UAE01-R00244,UAE01,Retail customer UAE01-00244,household,retail,UAE01-R00244
+UAE01-R00245,UAE01,Retail customer UAE01-00245,household,retail,UAE01-R00245
+UAE01-R00246,UAE01,Retail customer UAE01-00246,household,retail,UAE01-R00246
+UAE01-R00247,UAE01,Retail customer UAE01-00247,household,retail,UAE01-R00247
+UAE01-R00248,UAE01,Retail customer UAE01-00248,household,retail,UAE01-R00248
+UAE01-R00249,UAE01,Retail customer UAE01-00249,household,retail,UAE01-R00249
+UAE01-R00250,UAE01,Retail customer UAE01-00250,household,retail,UAE01-R00250
+UAE01-R00251,UAE01,Retail customer UAE01-00251,household,retail,UAE01-R00251
+UAE01-R00252,UAE01,Retail customer UAE01-00252,household,retail,UAE01-R00252
+UAE01-R00253,UAE01,Retail customer UAE01-00253,household,retail,UAE01-R00253
+UAE01-R00254,UAE01,Retail customer UAE01-00254,household,retail,UAE01-R00254
+UAE01-R00255,UAE01,Retail customer UAE01-00255,household,retail,UAE01-R00255
+UAE01-R00256,UAE01,Retail customer UAE01-00256,household,retail,UAE01-R00256
+UAE01-R00257,UAE01,Retail customer UAE01-00257,household,retail,UAE01-R00257
+UAE01-R00258,UAE01,Retail customer UAE01-00258,household,retail,UAE01-R00258
+UAE01-R00259,UAE01,Retail customer UAE01-00259,household,retail,UAE01-R00259
+UAE01-R00260,UAE01,Retail customer UAE01-00260,household,retail,UAE01-R00260
+UAE01-R00261,UAE01,Retail customer UAE01-00261,household,retail,UAE01-R00261
+UAE01-R00262,UAE01,Retail customer UAE01-00262,household,retail,UAE01-R00262
+UAE01-R00263,UAE01,Retail customer UAE01-00263,household,retail,UAE01-R00263
+UAE01-R00264,UAE01,Retail customer UAE01-00264,household,retail,UAE01-R00264
+UAE01-R00265,UAE01,Retail customer UAE01-00265,household,retail,UAE01-R00265
+UAE01-R00266,UAE01,Retail customer UAE01-00266,household,retail,UAE01-R00266
+UAE01-R00267,UAE01,Retail customer UAE01-00267,household,retail,UAE01-R00267
+UAE01-R00268,UAE01,Retail customer UAE01-00268,household,retail,UAE01-R00268
+UAE01-R00269,UAE01,Retail customer UAE01-00269,household,retail,UAE01-R00269
+UAE01-R00270,UAE01,Retail customer UAE01-00270,household,retail,UAE01-R00270
+UAE01-R00271,UAE01,Retail customer UAE01-00271,household,retail,UAE01-R00271
+UAE01-R00272,UAE01,Retail customer UAE01-00272,household,retail,UAE01-R00272
+UAE01-R00273,UAE01,Retail customer UAE01-00273,household,retail,UAE01-R00273
+UAE01-R00274,UAE01,Retail customer UAE01-00274,household,retail,UAE01-R00274
+UAE01-R00275,UAE01,Retail customer UAE01-00275,household,retail,UAE01-R00275
+UAE01-R00276,UAE01,Retail customer UAE01-00276,household,retail,UAE01-R00276
+UAE01-R00277,UAE01,Retail customer UAE01-00277,household,retail,UAE01-R00277
+UAE01-R00278,UAE01,Retail customer UAE01-00278,household,retail,UAE01-R00278
+UAE01-R00279,UAE01,Retail customer UAE01-00279,household,retail,UAE01-R00279
+UAE01-R00280,UAE01,Retail customer UAE01-00280,household,retail,UAE01-R00280
+UAE01-R00281,UAE01,Retail customer UAE01-00281,household,retail,UAE01-R00281
+UAE01-R00282,UAE01,Retail customer UAE01-00282,household,retail,UAE01-R00282
+UAE01-R00283,UAE01,Retail customer UAE01-00283,household,retail,UAE01-R00283
+UAE01-R00284,UAE01,Retail customer UAE01-00284,household,retail,UAE01-R00284
+UAE01-R00285,UAE01,Retail customer UAE01-00285,household,retail,UAE01-R00285
+UAE01-R00286,UAE01,Retail customer UAE01-00286,household,retail,UAE01-R00286
+UAE01-R00287,UAE01,Retail customer UAE01-00287,household,retail,UAE01-R00287
+UAE01-R00288,UAE01,Retail customer UAE01-00288,household,retail,UAE01-R00288
+UAE01-R00289,UAE01,Retail customer UAE01-00289,household,retail,UAE01-R00289
+UAE01-R00290,UAE01,Retail customer UAE01-00290,household,retail,UAE01-R00290
+UAE01-R00291,UAE01,Retail customer UAE01-00291,household,retail,UAE01-R00291
+UAE01-R00292,UAE01,Retail customer UAE01-00292,household,retail,UAE01-R00292
+UAE01-R00293,UAE01,Retail customer UAE01-00293,household,retail,UAE01-R00293
+UAE01-R00294,UAE01,Retail customer UAE01-00294,household,retail,UAE01-R00294
+UAE01-R00295,UAE01,Retail customer UAE01-00295,household,retail,UAE01-R00295
+UAE01-R00296,UAE01,Retail customer UAE01-00296,household,retail,UAE01-R00296
+UAE01-R00297,UAE01,Retail customer UAE01-00297,household,retail,UAE01-R00297
+UAE01-R00298,UAE01,Retail customer UAE01-00298,household,retail,UAE01-R00298
+UAE01-R00299,UAE01,Retail customer UAE01-00299,household,retail,UAE01-R00299
+UAE01-R00300,UAE01,Retail customer UAE01-00300,household,retail,UAE01-R00300
+UAE01-R00301,UAE01,Retail customer UAE01-00301,household,retail,UAE01-R00301
+UAE01-R00302,UAE01,Retail customer UAE01-00302,household,retail,UAE01-R00302
+UAE01-R00303,UAE01,Retail customer UAE01-00303,household,retail,UAE01-R00303
+UAE01-R00304,UAE01,Retail customer UAE01-00304,household,retail,UAE01-R00304
+UAE01-R00305,UAE01,Retail customer UAE01-00305,household,retail,UAE01-R00305
+UAE01-R00306,UAE01,Retail customer UAE01-00306,household,retail,UAE01-R00306
+UAE01-R00307,UAE01,Retail customer UAE01-00307,household,retail,UAE01-R00307
+UAE01-R00308,UAE01,Retail customer UAE01-00308,household,retail,UAE01-R00308
+UAE01-R00309,UAE01,Retail customer UAE01-00309,household,retail,UAE01-R00309
+UAE01-R00310,UAE01,Retail customer UAE01-00310,household,retail,UAE01-R00310
+UAE01-R00311,UAE01,Retail customer UAE01-00311,household,retail,UAE01-R00311
+UAE01-R00312,UAE01,Retail customer UAE01-00312,household,retail,UAE01-R00312
+UAE01-R00313,UAE01,Retail customer UAE01-00313,household,retail,UAE01-R00313
+UAE01-R00314,UAE01,Retail customer UAE01-00314,household,retail,UAE01-R00314
+UAE01-R00315,UAE01,Retail customer UAE01-00315,household,retail,UAE01-R00315
+UAE01-R00316,UAE01,Retail customer UAE01-00316,household,retail,UAE01-R00316
+UAE01-R00317,UAE01,Retail customer UAE01-00317,household,retail,UAE01-R00317
+UAE01-R00318,UAE01,Retail customer UAE01-00318,household,retail,UAE01-R00318
+UAE01-R00319,UAE01,Retail customer UAE01-00319,household,retail,UAE01-R00319
+UAE01-R00320,UAE01,Retail customer UAE01-00320,household,retail,UAE01-R00320
+UAE01-R00321,UAE01,Retail customer UAE01-00321,household,retail,UAE01-R00321
+UAE01-R00322,UAE01,Retail customer UAE01-00322,household,retail,UAE01-R00322
+UAE01-R00323,UAE01,Retail customer UAE01-00323,household,retail,UAE01-R00323
+UAE01-R00324,UAE01,Retail customer UAE01-00324,household,retail,UAE01-R00324
+UAE01-R00325,UAE01,Retail customer UAE01-00325,household,retail,UAE01-R00325
+UAE01-R00326,UAE01,Retail customer UAE01-00326,household,retail,UAE01-R00326
+UAE01-R00327,UAE01,Retail customer UAE01-00327,household,retail,UAE01-R00327
+UAE01-R00328,UAE01,Retail customer UAE01-00328,household,retail,UAE01-R00328
+UAE01-R00329,UAE01,Retail customer UAE01-00329,household,retail,UAE01-R00329
+UAE01-R00330,UAE01,Retail customer UAE01-00330,household,retail,UAE01-R00330
+UAE01-R00331,UAE01,Retail customer UAE01-00331,household,retail,UAE01-R00331
+UAE01-R00332,UAE01,Retail customer UAE01-00332,household,retail,UAE01-R00332
+UAE01-R00333,UAE01,Retail customer UAE01-00333,household,retail,UAE01-R00333
+UAE01-R00334,UAE01,Retail customer UAE01-00334,household,retail,UAE01-R00334
+UAE01-R00335,UAE01,Retail customer UAE01-00335,household,retail,UAE01-R00335
+UAE01-R00336,UAE01,Retail customer UAE01-00336,household,retail,UAE01-R00336
+UAE01-R00337,UAE01,Retail customer UAE01-00337,household,retail,UAE01-R00337
+UAE01-R00338,UAE01,Retail customer UAE01-00338,household,retail,UAE01-R00338
+UAE01-R00339,UAE01,Retail customer UAE01-00339,household,retail,UAE01-R00339
+UAE01-R00340,UAE01,Retail customer UAE01-00340,household,retail,UAE01-R00340
+UAE01-R00341,UAE01,Retail customer UAE01-00341,household,retail,UAE01-R00341
+UAE01-R00342,UAE01,Retail customer UAE01-00342,household,retail,UAE01-R00342
+UAE01-R00343,UAE01,Retail customer UAE01-00343,household,retail,UAE01-R00343
+UAE01-R00344,UAE01,Retail customer UAE01-00344,household,retail,UAE01-R00344
+UAE01-R00345,UAE01,Retail customer UAE01-00345,household,retail,UAE01-R00345
+UAE01-R00346,UAE01,Retail customer UAE01-00346,household,retail,UAE01-R00346
+UAE01-R00347,UAE01,Retail customer UAE01-00347,household,retail,UAE01-R00347
+UAE01-R00348,UAE01,Retail customer UAE01-00348,household,retail,UAE01-R00348
+UAE01-R00349,UAE01,Retail customer UAE01-00349,household,retail,UAE01-R00349
+UAE01-R00350,UAE01,Retail customer UAE01-00350,household,retail,UAE01-R00350
+UAE01-R00351,UAE01,Retail customer UAE01-00351,household,retail,UAE01-R00351
+UAE01-R00352,UAE01,Retail customer UAE01-00352,household,retail,UAE01-R00352
+UAE01-R00353,UAE01,Retail customer UAE01-00353,household,retail,UAE01-R00353
+UAE01-R00354,UAE01,Retail customer UAE01-00354,household,retail,UAE01-R00354
+UAE01-R00355,UAE01,Retail customer UAE01-00355,household,retail,UAE01-R00355
+UAE01-R00356,UAE01,Retail customer UAE01-00356,household,retail,UAE01-R00356
+UAE01-R00357,UAE01,Retail customer UAE01-00357,household,retail,UAE01-R00357
+UAE01-R00358,UAE01,Retail customer UAE01-00358,household,retail,UAE01-R00358
+UAE01-R00359,UAE01,Retail customer UAE01-00359,household,retail,UAE01-R00359
+UAE01-R00360,UAE01,Retail customer UAE01-00360,household,retail,UAE01-R00360
+UAE01-R00361,UAE01,Retail customer UAE01-00361,household,retail,UAE01-R00361
+UAE01-R00362,UAE01,Retail customer UAE01-00362,household,retail,UAE01-R00362
+UAE01-R00363,UAE01,Retail customer UAE01-00363,household,retail,UAE01-R00363
+UAE01-R00364,UAE01,Retail customer UAE01-00364,household,retail,UAE01-R00364
+UAE01-R00365,UAE01,Retail customer UAE01-00365,household,retail,UAE01-R00365
+UAE01-R00366,UAE01,Retail customer UAE01-00366,household,retail,UAE01-R00366
+UAE01-R00367,UAE01,Retail customer UAE01-00367,household,retail,UAE01-R00367
+UAE01-R00368,UAE01,Retail customer UAE01-00368,household,retail,UAE01-R00368
+UAE01-R00369,UAE01,Retail customer UAE01-00369,household,retail,UAE01-R00369
+UAE01-R00370,UAE01,Retail customer UAE01-00370,household,retail,UAE01-R00370
+UAE01-R00371,UAE01,Retail customer UAE01-00371,household,retail,UAE01-R00371
+UAE01-R00372,UAE01,Retail customer UAE01-00372,household,retail,UAE01-R00372
+UAE01-R00373,UAE01,Retail customer UAE01-00373,household,retail,UAE01-R00373
+UAE01-R00374,UAE01,Retail customer UAE01-00374,household,retail,UAE01-R00374
+UAE01-R00375,UAE01,Retail customer UAE01-00375,household,retail,UAE01-R00375
+UAE01-R00376,UAE01,Retail customer UAE01-00376,household,retail,UAE01-R00376
+UAE01-R00377,UAE01,Retail customer UAE01-00377,household,retail,UAE01-R00377
+UAE01-R00378,UAE01,Retail customer UAE01-00378,household,retail,UAE01-R00378
+UAE01-R00379,UAE01,Retail customer UAE01-00379,household,retail,UAE01-R00379
+UAE01-R00380,UAE01,Retail customer UAE01-00380,household,retail,UAE01-R00380
+UAE01-R00381,UAE01,Retail customer UAE01-00381,household,retail,UAE01-R00381
+UAE01-R00382,UAE01,Retail customer UAE01-00382,household,retail,UAE01-R00382
+UAE01-R00383,UAE01,Retail customer UAE01-00383,household,retail,UAE01-R00383
+UAE01-R00384,UAE01,Retail customer UAE01-00384,household,retail,UAE01-R00384
+UAE01-R00385,UAE01,Retail customer UAE01-00385,household,retail,UAE01-R00385
+UAE01-R00386,UAE01,Retail customer UAE01-00386,household,retail,UAE01-R00386
+UAE01-R00387,UAE01,Retail customer UAE01-00387,household,retail,UAE01-R00387
+UAE01-R00388,UAE01,Retail customer UAE01-00388,household,retail,UAE01-R00388
+UAE01-R00389,UAE01,Retail customer UAE01-00389,household,retail,UAE01-R00389
+UAE01-R00390,UAE01,Retail customer UAE01-00390,household,retail,UAE01-R00390
+UAE01-R00391,UAE01,Retail customer UAE01-00391,household,retail,UAE01-R00391
+UAE01-R00392,UAE01,Retail customer UAE01-00392,household,retail,UAE01-R00392
+UAE01-R00393,UAE01,Retail customer UAE01-00393,household,retail,UAE01-R00393
+UAE01-R00394,UAE01,Retail customer UAE01-00394,household,retail,UAE01-R00394
+UAE01-R00395,UAE01,Retail customer UAE01-00395,household,retail,UAE01-R00395
+UAE01-R00396,UAE01,Retail customer UAE01-00396,household,retail,UAE01-R00396
+UAE01-R00397,UAE01,Retail customer UAE01-00397,household,retail,UAE01-R00397
+UAE01-R00398,UAE01,Retail customer UAE01-00398,household,retail,UAE01-R00398
+UAE01-R00399,UAE01,Retail customer UAE01-00399,household,retail,UAE01-R00399
+UAE01-R00400,UAE01,Retail customer UAE01-00400,household,retail,UAE01-R00400
+UAE01-R00401,UAE01,Retail customer UAE01-00401,household,retail,UAE01-R00401
+UAE01-R00402,UAE01,Retail customer UAE01-00402,household,retail,UAE01-R00402
+UAE01-R00403,UAE01,Retail customer UAE01-00403,household,retail,UAE01-R00403
+UAE01-R00404,UAE01,Retail customer UAE01-00404,household,retail,UAE01-R00404
+UAE01-R00405,UAE01,Retail customer UAE01-00405,household,retail,UAE01-R00405
+UAE01-R00406,UAE01,Retail customer UAE01-00406,household,retail,UAE01-R00406
+UAE01-R00407,UAE01,Retail customer UAE01-00407,household,retail,UAE01-R00407
+UAE01-R00408,UAE01,Retail customer UAE01-00408,household,retail,UAE01-R00408
+UAE01-R00409,UAE01,Retail customer UAE01-00409,household,retail,UAE01-R00409
+UAE01-R00410,UAE01,Retail customer UAE01-00410,household,retail,UAE01-R00410
+UAE01-R00411,UAE01,Retail customer UAE01-00411,household,retail,UAE01-R00411
+UAE01-R00412,UAE01,Retail customer UAE01-00412,household,retail,UAE01-R00412
+UAE01-R00413,UAE01,Retail customer UAE01-00413,household,retail,UAE01-R00413
+UAE01-R00414,UAE01,Retail customer UAE01-00414,household,retail,UAE01-R00414
+UAE01-R00415,UAE01,Retail customer UAE01-00415,household,retail,UAE01-R00415
+UAE01-R00416,UAE01,Retail customer UAE01-00416,household,retail,UAE01-R00416
+UAE01-R00417,UAE01,Retail customer UAE01-00417,household,retail,UAE01-R00417
+UAE01-R00418,UAE01,Retail customer UAE01-00418,household,retail,UAE01-R00418
+UAE01-R00419,UAE01,Retail customer UAE01-00419,household,retail,UAE01-R00419
+UAE01-R00420,UAE01,Retail customer UAE01-00420,household,retail,UAE01-R00420
+UAE01-R00421,UAE01,Retail customer UAE01-00421,household,retail,UAE01-R00421
+UAE01-R00422,UAE01,Retail customer UAE01-00422,household,retail,UAE01-R00422
+UAE01-R00423,UAE01,Retail customer UAE01-00423,household,retail,UAE01-R00423
+UAE01-R00424,UAE01,Retail customer UAE01-00424,household,retail,UAE01-R00424
+UAE01-R00425,UAE01,Retail customer UAE01-00425,household,retail,UAE01-R00425
+UAE01-R00426,UAE01,Retail customer UAE01-00426,household,retail,UAE01-R00426
+UAE01-R00427,UAE01,Retail customer UAE01-00427,household,retail,UAE01-R00427
+UAE01-R00428,UAE01,Retail customer UAE01-00428,household,retail,UAE01-R00428
+UAE01-R00429,UAE01,Retail customer UAE01-00429,household,retail,UAE01-R00429
+UAE01-R00430,UAE01,Retail customer UAE01-00430,household,retail,UAE01-R00430
+UAE01-R00431,UAE01,Retail customer UAE01-00431,household,retail,UAE01-R00431
+UAE01-R00432,UAE01,Retail customer UAE01-00432,household,retail,UAE01-R00432
+UAE01-R00433,UAE01,Retail customer UAE01-00433,household,retail,UAE01-R00433
+UAE01-R00434,UAE01,Retail customer UAE01-00434,household,retail,UAE01-R00434
+UAE01-R00435,UAE01,Retail customer UAE01-00435,household,retail,UAE01-R00435
+UAE01-R00436,UAE01,Retail customer UAE01-00436,household,retail,UAE01-R00436
+UAE01-R00437,UAE01,Retail customer UAE01-00437,household,retail,UAE01-R00437
+UAE01-R00438,UAE01,Retail customer UAE01-00438,household,retail,UAE01-R00438
+UAE01-R00439,UAE01,Retail customer UAE01-00439,household,retail,UAE01-R00439
+UAE01-R00440,UAE01,Retail customer UAE01-00440,household,retail,UAE01-R00440
+UAE01-R00441,UAE01,Retail customer UAE01-00441,household,retail,UAE01-R00441
+UAE01-R00442,UAE01,Retail customer UAE01-00442,household,retail,UAE01-R00442
+UAE01-R00443,UAE01,Retail customer UAE01-00443,household,retail,UAE01-R00443
+UAE01-R00444,UAE01,Retail customer UAE01-00444,household,retail,UAE01-R00444
+UAE01-R00445,UAE01,Retail customer UAE01-00445,household,retail,UAE01-R00445
+UAE01-R00446,UAE01,Retail customer UAE01-00446,household,retail,UAE01-R00446
+UAE01-R00447,UAE01,Retail customer UAE01-00447,household,retail,UAE01-R00447
+UAE01-R00448,UAE01,Retail customer UAE01-00448,household,retail,UAE01-R00448
+UAE01-R00449,UAE01,Retail customer UAE01-00449,household,retail,UAE01-R00449
+UAE01-C0016,UAE01,Corporate UAE01-C0016,real_estate,corporate,OWN-UAE01-C0016
+UAE01-C0015,UAE01,Corporate UAE01-C0015,real_estate,corporate,OWN-UAE01-C0015
+UAE01-C0019,UAE01,Corporate UAE01-C0019,real_estate,corporate,OWN-UAE01-C0019
+UAE01-C0027,UAE01,Corporate UAE01-C0027,real_estate,corporate,OWN-UAE01-C0027
+UAE01-C0001,UAE01,Corporate UAE01-C0001,manufacturing,corporate,OWN-UAE01-C0001
+UAE01-C0025,UAE01,Corporate UAE01-C0025,real_estate,corporate,OWN-UAE01-C0025
+UAE01-C0005,UAE01,Corporate UAE01-C0005,manufacturing,corporate,OWN-UAE01-C0005
+UAE01-C0020,UAE01,Corporate UAE01-C0020,hospitality,corporate,OWN-UAE01-C0020
+UAE01-C0023,UAE01,Corporate UAE01-C0023,real_estate,corporate,OWN-UAE01-C0023
+UAE01-C0022,UAE01,Corporate UAE01-C0022,trade,corporate,OWN-UAE01-C0022
+UAE01-C0008,UAE01,Corporate UAE01-C0008,healthcare,corporate,OWN-UAE01-C0008
+UAE01-C0004,UAE01,Corporate UAE01-C0004,manufacturing,corporate,OWN-UAE01-C0004
+UAE01-C0018,UAE01,Corporate UAE01-C0018,hospitality,corporate,OWN-UAE01-C0018
+UAE01-C0014,UAE01,Corporate UAE01-C0014,real_estate,corporate,OWN-UAE01-C0014
+UAE01-C0000,UAE01,Corporate UAE01-C0000,technology,corporate,OWN-UAE01-C0000
+UAE01-C0024,UAE01,Corporate UAE01-C0024,trade,corporate,OWN-UAE01-C0024
+UAE01-C0012,UAE01,Corporate UAE01-C0012,healthcare,corporate,OWN-UAE01-C0012
+UAE01-C0029,UAE01,Corporate UAE01-C0029,logistics,corporate,OWN-UAE01-C0029
+UAE01-C0006,UAE01,Corporate UAE01-C0006,manufacturing,corporate,OWN-UAE01-C0006
+UAE01-C0013,UAE01,Corporate UAE01-C0013,hospitality,corporate,OWN-UAE01-C0013
+UAE01-C0028,UAE01,Corporate UAE01-C0028,real_estate,corporate,OWN-UAE01-C0028
+UAE01-C0009,UAE01,Corporate UAE01-C0009,technology,corporate,OWN-UAE01-C0009
+UAE01-C0002,UAE01,Corporate UAE01-C0002,trade,corporate,OWN-UAE01-C0002
+UAE01-C0026,UAE01,Corporate UAE01-C0026,healthcare,corporate,OWN-UAE01-C0026
+UAE01-C0021,UAE01,Corporate UAE01-C0021,trade,corporate,OWN-UAE01-C0021
+UAE01-C0017,UAE01,Corporate UAE01-C0017,hospitality,corporate,OWN-UAE01-C0017
+UAE01-C0011,UAE01,Corporate UAE01-C0011,real_estate,corporate,OWN-UAE01-C0011
+UAE01-C0010,UAE01,Corporate UAE01-C0010,technology,corporate,OWN-UAE01-C0010
+UAE01-C0007,UAE01,Corporate UAE01-C0007,manufacturing,corporate,OWN-UAE01-C0007
+UAE01-C0003,UAE01,Corporate UAE01-C0003,logistics,corporate,OWN-UAE01-C0003
+UAE01-S0011,UAE01,SME UAE01-S0011,healthcare,sme,OWN-UAE01-S0011
+UAE01-S0052,UAE01,SME UAE01-S0052,healthcare,sme,OWN-UAE01-S0052
+UAE01-S0054,UAE01,SME UAE01-S0054,healthcare,sme,OWN-UAE01-S0054
+UAE01-S0065,UAE01,SME UAE01-S0065,trade,sme,OWN-UAE01-S0065
+UAE01-S0044,UAE01,SME UAE01-S0044,healthcare,sme,OWN-UAE01-S0044
+UAE01-S0060,UAE01,SME UAE01-S0060,construction,sme,OWN-UAE01-S0060
+UAE01-S0095,UAE01,SME UAE01-S0095,trade,sme,OWN-UAE01-S0095
+UAE01-S0075,UAE01,SME UAE01-S0075,healthcare,sme,OWN-UAE01-S0075
+UAE01-S0039,UAE01,SME UAE01-S0039,construction,sme,OWN-UAE01-S0039
+UAE01-S0078,UAE01,SME UAE01-S0078,trade,sme,OWN-UAE01-S0078
+UAE01-S0050,UAE01,SME UAE01-S0050,healthcare,sme,OWN-UAE01-S0050
+UAE01-S0017,UAE01,SME UAE01-S0017,construction,sme,OWN-UAE01-S0017
+UAE01-S0014,UAE01,SME UAE01-S0014,technology,sme,OWN-UAE01-S0014
+UAE01-S0029,UAE01,SME UAE01-S0029,trade,sme,OWN-UAE01-S0029
+UAE01-S0041,UAE01,SME UAE01-S0041,healthcare,sme,OWN-UAE01-S0041
+UAE01-S0030,UAE01,SME UAE01-S0030,construction,sme,OWN-UAE01-S0030
+UAE01-S0108,UAE01,SME UAE01-S0108,technology,sme,OWN-UAE01-S0108
+UAE01-S0114,UAE01,SME UAE01-S0114,trade,sme,OWN-UAE01-S0114
+UAE01-S0086,UAE01,SME UAE01-S0086,real_estate,sme,OWN-UAE01-S0086
+UAE01-S0068,UAE01,SME UAE01-S0068,hospitality,sme,OWN-UAE01-S0068
+UAE01-S0040,UAE01,SME UAE01-S0040,healthcare,sme,OWN-UAE01-S0040
+UAE01-S0119,UAE01,SME UAE01-S0119,construction,sme,OWN-UAE01-S0119
+UAE01-S0111,UAE01,SME UAE01-S0111,manufacturing,sme,OWN-UAE01-S0111
+UAE01-S0007,UAE01,SME UAE01-S0007,technology,sme,OWN-UAE01-S0007
+UAE01-S0112,UAE01,SME UAE01-S0112,trade,sme,OWN-UAE01-S0112
+UAE01-S0003,UAE01,SME UAE01-S0003,real_estate,sme,OWN-UAE01-S0003
+UAE01-S0004,UAE01,SME UAE01-S0004,hospitality,sme,OWN-UAE01-S0004
+UAE01-S0010,UAE01,SME UAE01-S0010,construction,sme,OWN-UAE01-S0010
+UAE01-S0084,UAE01,SME UAE01-S0084,healthcare,sme,OWN-UAE01-S0084
+UAE01-S0066,UAE01,SME UAE01-S0066,logistics,sme,OWN-UAE01-S0066
+UAE01-S0016,UAE01,SME UAE01-S0016,manufacturing,sme,OWN-UAE01-S0016
+UAE01-S0000,UAE01,SME UAE01-S0000,technology,sme,OWN-UAE01-S0000
+UAE01-S0080,UAE01,SME UAE01-S0080,trade,sme,OWN-UAE01-S0080
+UAE01-S0116,UAE01,SME UAE01-S0116,real_estate,sme,OWN-UAE01-S0116
+UAE01-S0058,UAE01,SME UAE01-S0058,hospitality,sme,OWN-UAE01-S0058
+UAE01-S0081,UAE01,SME UAE01-S0081,healthcare,sme,OWN-UAE01-S0081
+UAE01-S0077,UAE01,SME UAE01-S0077,construction,sme,OWN-UAE01-S0077
+UAE01-S0115,UAE01,SME UAE01-S0115,logistics,sme,OWN-UAE01-S0115
+UAE01-S0069,UAE01,SME UAE01-S0069,manufacturing,sme,OWN-UAE01-S0069
+UAE01-S0093,UAE01,SME UAE01-S0093,technology,sme,OWN-UAE01-S0093
+UAE01-S0019,UAE01,SME UAE01-S0019,trade,sme,OWN-UAE01-S0019
+UAE01-S0088,UAE01,SME UAE01-S0088,real_estate,sme,OWN-UAE01-S0088
+UAE01-S0046,UAE01,SME UAE01-S0046,hospitality,sme,OWN-UAE01-S0046
+UAE01-S0057,UAE01,SME UAE01-S0057,healthcare,sme,OWN-UAE01-S0057
+UAE01-S0098,UAE01,SME UAE01-S0098,construction,sme,OWN-UAE01-S0098
+UAE01-S0117,UAE01,SME UAE01-S0117,logistics,sme,OWN-UAE01-S0117
+UAE01-S0109,UAE01,SME UAE01-S0109,manufacturing,sme,OWN-UAE01-S0109
+UAE01-S0001,UAE01,SME UAE01-S0001,technology,sme,OWN-UAE01-S0001
+UAE01-S0091,UAE01,SME UAE01-S0091,trade,sme,OWN-UAE01-S0091
+UAE01-S0072,UAE01,SME UAE01-S0072,real_estate,sme,OWN-UAE01-S0072
+UAE01-S0012,UAE01,SME UAE01-S0012,hospitality,sme,OWN-UAE01-S0012
+UAE01-S0038,UAE01,SME UAE01-S0038,construction,sme,OWN-UAE01-S0038
+UAE01-S0090,UAE01,SME UAE01-S0090,healthcare,sme,OWN-UAE01-S0090
+UAE01-S0034,UAE01,SME UAE01-S0034,logistics,sme,OWN-UAE01-S0034
+UAE01-S0076,UAE01,SME UAE01-S0076,manufacturing,sme,OWN-UAE01-S0076
+UAE01-S0085,UAE01,SME UAE01-S0085,technology,sme,OWN-UAE01-S0085
+UAE01-S0101,UAE01,SME UAE01-S0101,trade,sme,OWN-UAE01-S0101
+UAE01-S0006,UAE01,SME UAE01-S0006,real_estate,sme,OWN-UAE01-S0006
+UAE01-S0099,UAE01,SME UAE01-S0099,hospitality,sme,OWN-UAE01-S0099
+UAE01-S0033,UAE01,SME UAE01-S0033,logistics,sme,OWN-UAE01-S0033
+UAE01-S0110,UAE01,SME UAE01-S0110,healthcare,sme,OWN-UAE01-S0110
+UAE01-S0023,UAE01,SME UAE01-S0023,construction,sme,OWN-UAE01-S0023
+UAE01-S0032,UAE01,SME UAE01-S0032,manufacturing,sme,OWN-UAE01-S0032
+UAE01-S0097,UAE01,SME UAE01-S0097,technology,sme,OWN-UAE01-S0097
+UAE01-S0063,UAE01,SME UAE01-S0063,trade,sme,OWN-UAE01-S0063
+UAE01-S0035,UAE01,SME UAE01-S0035,hospitality,sme,OWN-UAE01-S0035
+UAE01-S0047,UAE01,SME UAE01-S0047,real_estate,sme,OWN-UAE01-S0047
+UAE01-S0070,UAE01,SME UAE01-S0070,logistics,sme,OWN-UAE01-S0070
+UAE01-S0079,UAE01,SME UAE01-S0079,construction,sme,OWN-UAE01-S0079
+UAE01-S0096,UAE01,SME UAE01-S0096,healthcare,sme,OWN-UAE01-S0096
+UAE01-S0053,UAE01,SME UAE01-S0053,manufacturing,sme,OWN-UAE01-S0053
+UAE01-S0064,UAE01,SME UAE01-S0064,technology,sme,OWN-UAE01-S0064
+UAE01-S0071,UAE01,SME UAE01-S0071,trade,sme,OWN-UAE01-S0071
+UAE01-S0026,UAE01,SME UAE01-S0026,hospitality,sme,OWN-UAE01-S0026
+UAE01-S0092,UAE01,SME UAE01-S0092,real_estate,sme,OWN-UAE01-S0092
+UAE01-S0025,UAE01,SME UAE01-S0025,logistics,sme,OWN-UAE01-S0025
+UAE01-S0105,UAE01,SME UAE01-S0105,healthcare,sme,OWN-UAE01-S0105
+UAE01-S0024,UAE01,SME UAE01-S0024,construction,sme,OWN-UAE01-S0024
+UAE01-S0028,UAE01,SME UAE01-S0028,manufacturing,sme,OWN-UAE01-S0028
+UAE01-S0051,UAE01,SME UAE01-S0051,technology,sme,OWN-UAE01-S0051
+UAE01-S0104,UAE01,SME UAE01-S0104,trade,sme,OWN-UAE01-S0104
+UAE01-S0083,UAE01,SME UAE01-S0083,real_estate,sme,OWN-UAE01-S0083
+UAE01-S0089,UAE01,SME UAE01-S0089,hospitality,sme,OWN-UAE01-S0089
+UAE01-S0113,UAE01,SME UAE01-S0113,healthcare,sme,OWN-UAE01-S0113
+UAE01-S0042,UAE01,SME UAE01-S0042,logistics,sme,OWN-UAE01-S0042
+UAE01-S0094,UAE01,SME UAE01-S0094,construction,sme,OWN-UAE01-S0094
+UAE01-S0087,UAE01,SME UAE01-S0087,manufacturing,sme,OWN-UAE01-S0087
+UAE01-S0073,UAE01,SME UAE01-S0073,technology,sme,OWN-UAE01-S0073
+UAE01-S0008,UAE01,SME UAE01-S0008,real_estate,sme,OWN-UAE01-S0008
+UAE01-S0002,UAE01,SME UAE01-S0002,hospitality,sme,OWN-UAE01-S0002
+UAE01-S0059,UAE01,SME UAE01-S0059,trade,sme,OWN-UAE01-S0059
+UAE01-S0037,UAE01,SME UAE01-S0037,construction,sme,OWN-UAE01-S0037
+UAE01-S0022,UAE01,SME UAE01-S0022,healthcare,sme,OWN-UAE01-S0022
+UAE01-S0021,UAE01,SME UAE01-S0021,logistics,sme,OWN-UAE01-S0021
+UAE01-S0031,UAE01,SME UAE01-S0031,manufacturing,sme,OWN-UAE01-S0031
+UAE01-S0067,UAE01,SME UAE01-S0067,technology,sme,OWN-UAE01-S0067
+UAE01-S0062,UAE01,SME UAE01-S0062,trade,sme,OWN-UAE01-S0062
+UAE01-S0013,UAE01,SME UAE01-S0013,hospitality,sme,OWN-UAE01-S0013
+UAE01-S0103,UAE01,SME UAE01-S0103,real_estate,sme,OWN-UAE01-S0103
+UAE01-S0061,UAE01,SME UAE01-S0061,logistics,sme,OWN-UAE01-S0061
+UAE01-S0043,UAE01,SME UAE01-S0043,healthcare,sme,OWN-UAE01-S0043
+UAE01-S0074,UAE01,SME UAE01-S0074,construction,sme,OWN-UAE01-S0074
+UAE01-S0005,UAE01,SME UAE01-S0005,manufacturing,sme,OWN-UAE01-S0005
+UAE01-S0009,UAE01,SME UAE01-S0009,technology,sme,OWN-UAE01-S0009
+UAE01-S0056,UAE01,SME UAE01-S0056,trade,sme,OWN-UAE01-S0056
+UAE01-S0055,UAE01,SME UAE01-S0055,real_estate,sme,OWN-UAE01-S0055
+UAE01-S0020,UAE01,SME UAE01-S0020,construction,sme,OWN-UAE01-S0020
+UAE01-S0045,UAE01,SME UAE01-S0045,hospitality,sme,OWN-UAE01-S0045
+UAE01-S0107,UAE01,SME UAE01-S0107,healthcare,sme,OWN-UAE01-S0107
+UAE01-S0100,UAE01,SME UAE01-S0100,logistics,sme,OWN-UAE01-S0100
+UAE01-S0102,UAE01,SME UAE01-S0102,manufacturing,sme,OWN-UAE01-S0102
+UAE01-S0118,UAE01,SME UAE01-S0118,technology,sme,OWN-UAE01-S0118
+UAE01-S0048,UAE01,SME UAE01-S0048,hospitality,sme,OWN-UAE01-S0048
+UAE01-S0082,UAE01,SME UAE01-S0082,trade,sme,OWN-UAE01-S0082
+UAE01-S0027,UAE01,SME UAE01-S0027,construction,sme,OWN-UAE01-S0027
+UAE01-S0106,UAE01,SME UAE01-S0106,healthcare,sme,OWN-UAE01-S0106
+UAE01-S0018,UAE01,SME UAE01-S0018,real_estate,sme,OWN-UAE01-S0018
+UAE01-S0036,UAE01,SME UAE01-S0036,logistics,sme,OWN-UAE01-S0036
+UAE01-S0015,UAE01,SME UAE01-S0015,manufacturing,sme,OWN-UAE01-S0015
+UAE01-S0049,UAE01,SME UAE01-S0049,trade,sme,OWN-UAE01-S0049
+UAE01-C9001,UAE01,Falcon Trading LLC,trade,corporate,OWN-FALCON-HOLDINGS
+UAE01-C9002,UAE01,Al Saqr General Contracting,construction,corporate,OWN-FALCON-HOLDINGS
+UAE01-C9003,UAE01,Peregrine Logistics FZE,logistics,corporate,OWN-FALCON-HOLDINGS
+UK01-R00000,UK01,Retail customer UK01-00000,household,retail,UK01-R00000
+UK01-R00001,UK01,Retail customer UK01-00001,household,retail,UK01-R00001
+UK01-R00002,UK01,Retail customer UK01-00002,household,retail,UK01-R00002
+UK01-R00003,UK01,Retail customer UK01-00003,household,retail,UK01-R00003
+UK01-R00004,UK01,Retail customer UK01-00004,household,retail,UK01-R00004
+UK01-R00005,UK01,Retail customer UK01-00005,household,retail,UK01-R00005
+UK01-R00006,UK01,Retail customer UK01-00006,household,retail,UK01-R00006
+UK01-R00007,UK01,Retail customer UK01-00007,household,retail,UK01-R00007
+UK01-R00008,UK01,Retail customer UK01-00008,household,retail,UK01-R00008
+UK01-R00009,UK01,Retail customer UK01-00009,household,retail,UK01-R00009
+UK01-R00010,UK01,Retail customer UK01-00010,household,retail,UK01-R00010
+UK01-R00011,UK01,Retail customer UK01-00011,household,retail,UK01-R00011
+UK01-R00012,UK01,Retail customer UK01-00012,household,retail,UK01-R00012
+UK01-R00013,UK01,Retail customer UK01-00013,household,retail,UK01-R00013
+UK01-R00014,UK01,Retail customer UK01-00014,household,retail,UK01-R00014
+UK01-R00015,UK01,Retail customer UK01-00015,household,retail,UK01-R00015
+UK01-R00016,UK01,Retail customer UK01-00016,household,retail,UK01-R00016
+UK01-R00017,UK01,Retail customer UK01-00017,household,retail,UK01-R00017
+UK01-R00018,UK01,Retail customer UK01-00018,household,retail,UK01-R00018
+UK01-R00019,UK01,Retail customer UK01-00019,household,retail,UK01-R00019
+UK01-R00020,UK01,Retail customer UK01-00020,household,retail,UK01-R00020
+UK01-R00021,UK01,Retail customer UK01-00021,household,retail,UK01-R00021
+UK01-R00022,UK01,Retail customer UK01-00022,household,retail,UK01-R00022
+UK01-R00023,UK01,Retail customer UK01-00023,household,retail,UK01-R00023
+UK01-R00024,UK01,Retail customer UK01-00024,household,retail,UK01-R00024
+UK01-R00025,UK01,Retail customer UK01-00025,household,retail,UK01-R00025
+UK01-R00026,UK01,Retail customer UK01-00026,household,retail,UK01-R00026
+UK01-R00027,UK01,Retail customer UK01-00027,household,retail,UK01-R00027
+UK01-R00028,UK01,Retail customer UK01-00028,household,retail,UK01-R00028
+UK01-R00029,UK01,Retail customer UK01-00029,household,retail,UK01-R00029
+UK01-R00030,UK01,Retail customer UK01-00030,household,retail,UK01-R00030
+UK01-R00031,UK01,Retail customer UK01-00031,household,retail,UK01-R00031
+UK01-R00032,UK01,Retail customer UK01-00032,household,retail,UK01-R00032
+UK01-R00033,UK01,Retail customer UK01-00033,household,retail,UK01-R00033
+UK01-R00034,UK01,Retail customer UK01-00034,household,retail,UK01-R00034
+UK01-R00035,UK01,Retail customer UK01-00035,household,retail,UK01-R00035
+UK01-R00036,UK01,Retail customer UK01-00036,household,retail,UK01-R00036
+UK01-R00037,UK01,Retail customer UK01-00037,household,retail,UK01-R00037
+UK01-R00038,UK01,Retail customer UK01-00038,household,retail,UK01-R00038
+UK01-R00039,UK01,Retail customer UK01-00039,household,retail,UK01-R00039
+UK01-R00040,UK01,Retail customer UK01-00040,household,retail,UK01-R00040
+UK01-R00041,UK01,Retail customer UK01-00041,household,retail,UK01-R00041
+UK01-R00042,UK01,Retail customer UK01-00042,household,retail,UK01-R00042
+UK01-R00043,UK01,Retail customer UK01-00043,household,retail,UK01-R00043
+UK01-R00044,UK01,Retail customer UK01-00044,household,retail,UK01-R00044
+UK01-R00045,UK01,Retail customer UK01-00045,household,retail,UK01-R00045
+UK01-R00046,UK01,Retail customer UK01-00046,household,retail,UK01-R00046
+UK01-R00047,UK01,Retail customer UK01-00047,household,retail,UK01-R00047
+UK01-R00048,UK01,Retail customer UK01-00048,household,retail,UK01-R00048
+UK01-R00049,UK01,Retail customer UK01-00049,household,retail,UK01-R00049
+UK01-R00050,UK01,Retail customer UK01-00050,household,retail,UK01-R00050
+UK01-R00051,UK01,Retail customer UK01-00051,household,retail,UK01-R00051
+UK01-R00052,UK01,Retail customer UK01-00052,household,retail,UK01-R00052
+UK01-R00053,UK01,Retail customer UK01-00053,household,retail,UK01-R00053
+UK01-R00054,UK01,Retail customer UK01-00054,household,retail,UK01-R00054
+UK01-R00055,UK01,Retail customer UK01-00055,household,retail,UK01-R00055
+UK01-R00056,UK01,Retail customer UK01-00056,household,retail,UK01-R00056
+UK01-R00057,UK01,Retail customer UK01-00057,household,retail,UK01-R00057
+UK01-R00058,UK01,Retail customer UK01-00058,household,retail,UK01-R00058
+UK01-R00059,UK01,Retail customer UK01-00059,household,retail,UK01-R00059
+UK01-R00060,UK01,Retail customer UK01-00060,household,retail,UK01-R00060
+UK01-R00061,UK01,Retail customer UK01-00061,household,retail,UK01-R00061
+UK01-R00062,UK01,Retail customer UK01-00062,household,retail,UK01-R00062
+UK01-R00063,UK01,Retail customer UK01-00063,household,retail,UK01-R00063
+UK01-R00064,UK01,Retail customer UK01-00064,household,retail,UK01-R00064
+UK01-R00065,UK01,Retail customer UK01-00065,household,retail,UK01-R00065
+UK01-R00066,UK01,Retail customer UK01-00066,household,retail,UK01-R00066
+UK01-R00067,UK01,Retail customer UK01-00067,household,retail,UK01-R00067
+UK01-R00068,UK01,Retail customer UK01-00068,household,retail,UK01-R00068
+UK01-R00069,UK01,Retail customer UK01-00069,household,retail,UK01-R00069
+UK01-R00070,UK01,Retail customer UK01-00070,household,retail,UK01-R00070
+UK01-R00071,UK01,Retail customer UK01-00071,household,retail,UK01-R00071
+UK01-R00072,UK01,Retail customer UK01-00072,household,retail,UK01-R00072
+UK01-R00073,UK01,Retail customer UK01-00073,household,retail,UK01-R00073
+UK01-R00074,UK01,Retail customer UK01-00074,household,retail,UK01-R00074
+UK01-R00075,UK01,Retail customer UK01-00075,household,retail,UK01-R00075
+UK01-R00076,UK01,Retail customer UK01-00076,household,retail,UK01-R00076
+UK01-R00077,UK01,Retail customer UK01-00077,household,retail,UK01-R00077
+UK01-R00078,UK01,Retail customer UK01-00078,household,retail,UK01-R00078
+UK01-R00079,UK01,Retail customer UK01-00079,household,retail,UK01-R00079
+UK01-R00080,UK01,Retail customer UK01-00080,household,retail,UK01-R00080
+UK01-R00081,UK01,Retail customer UK01-00081,household,retail,UK01-R00081
+UK01-R00082,UK01,Retail customer UK01-00082,household,retail,UK01-R00082
+UK01-R00083,UK01,Retail customer UK01-00083,household,retail,UK01-R00083
+UK01-R00084,UK01,Retail customer UK01-00084,household,retail,UK01-R00084
+UK01-R00085,UK01,Retail customer UK01-00085,household,retail,UK01-R00085
+UK01-R00086,UK01,Retail customer UK01-00086,household,retail,UK01-R00086
+UK01-R00087,UK01,Retail customer UK01-00087,household,retail,UK01-R00087
+UK01-R00088,UK01,Retail customer UK01-00088,household,retail,UK01-R00088
+UK01-R00089,UK01,Retail customer UK01-00089,household,retail,UK01-R00089
+UK01-R00090,UK01,Retail customer UK01-00090,household,retail,UK01-R00090
+UK01-R00091,UK01,Retail customer UK01-00091,household,retail,UK01-R00091
+UK01-R00092,UK01,Retail customer UK01-00092,household,retail,UK01-R00092
+UK01-R00093,UK01,Retail customer UK01-00093,household,retail,UK01-R00093
+UK01-R00094,UK01,Retail customer UK01-00094,household,retail,UK01-R00094
+UK01-R00095,UK01,Retail customer UK01-00095,household,retail,UK01-R00095
+UK01-R00096,UK01,Retail customer UK01-00096,household,retail,UK01-R00096
+UK01-R00097,UK01,Retail customer UK01-00097,household,retail,UK01-R00097
+UK01-R00098,UK01,Retail customer UK01-00098,household,retail,UK01-R00098
+UK01-R00099,UK01,Retail customer UK01-00099,household,retail,UK01-R00099
+UK01-R00100,UK01,Retail customer UK01-00100,household,retail,UK01-R00100
+UK01-R00101,UK01,Retail customer UK01-00101,household,retail,UK01-R00101
+UK01-R00102,UK01,Retail customer UK01-00102,household,retail,UK01-R00102
+UK01-R00103,UK01,Retail customer UK01-00103,household,retail,UK01-R00103
+UK01-R00104,UK01,Retail customer UK01-00104,household,retail,UK01-R00104
+UK01-R00105,UK01,Retail customer UK01-00105,household,retail,UK01-R00105
+UK01-R00106,UK01,Retail customer UK01-00106,household,retail,UK01-R00106
+UK01-R00107,UK01,Retail customer UK01-00107,household,retail,UK01-R00107
+UK01-R00108,UK01,Retail customer UK01-00108,household,retail,UK01-R00108
+UK01-R00109,UK01,Retail customer UK01-00109,household,retail,UK01-R00109
+UK01-R00110,UK01,Retail customer UK01-00110,household,retail,UK01-R00110
+UK01-R00111,UK01,Retail customer UK01-00111,household,retail,UK01-R00111
+UK01-R00112,UK01,Retail customer UK01-00112,household,retail,UK01-R00112
+UK01-R00113,UK01,Retail customer UK01-00113,household,retail,UK01-R00113
+UK01-R00114,UK01,Retail customer UK01-00114,household,retail,UK01-R00114
+UK01-R00115,UK01,Retail customer UK01-00115,household,retail,UK01-R00115
+UK01-R00116,UK01,Retail customer UK01-00116,household,retail,UK01-R00116
+UK01-R00117,UK01,Retail customer UK01-00117,household,retail,UK01-R00117
+UK01-R00118,UK01,Retail customer UK01-00118,household,retail,UK01-R00118
+UK01-R00119,UK01,Retail customer UK01-00119,household,retail,UK01-R00119
+UK01-R00120,UK01,Retail customer UK01-00120,household,retail,UK01-R00120
+UK01-R00121,UK01,Retail customer UK01-00121,household,retail,UK01-R00121
+UK01-R00122,UK01,Retail customer UK01-00122,household,retail,UK01-R00122
+UK01-R00123,UK01,Retail customer UK01-00123,household,retail,UK01-R00123
+UK01-R00124,UK01,Retail customer UK01-00124,household,retail,UK01-R00124
+UK01-R00125,UK01,Retail customer UK01-00125,household,retail,UK01-R00125
+UK01-R00126,UK01,Retail customer UK01-00126,household,retail,UK01-R00126
+UK01-R00127,UK01,Retail customer UK01-00127,household,retail,UK01-R00127
+UK01-R00128,UK01,Retail customer UK01-00128,household,retail,UK01-R00128
+UK01-R00129,UK01,Retail customer UK01-00129,household,retail,UK01-R00129
+UK01-R00130,UK01,Retail customer UK01-00130,household,retail,UK01-R00130
+UK01-R00131,UK01,Retail customer UK01-00131,household,retail,UK01-R00131
+UK01-R00132,UK01,Retail customer UK01-00132,household,retail,UK01-R00132
+UK01-R00133,UK01,Retail customer UK01-00133,household,retail,UK01-R00133
+UK01-R00134,UK01,Retail customer UK01-00134,household,retail,UK01-R00134
+UK01-R00135,UK01,Retail customer UK01-00135,household,retail,UK01-R00135
+UK01-R00136,UK01,Retail customer UK01-00136,household,retail,UK01-R00136
+UK01-R00137,UK01,Retail customer UK01-00137,household,retail,UK01-R00137
+UK01-R00138,UK01,Retail customer UK01-00138,household,retail,UK01-R00138
+UK01-R00139,UK01,Retail customer UK01-00139,household,retail,UK01-R00139
+UK01-R00140,UK01,Retail customer UK01-00140,household,retail,UK01-R00140
+UK01-R00141,UK01,Retail customer UK01-00141,household,retail,UK01-R00141
+UK01-R00142,UK01,Retail customer UK01-00142,household,retail,UK01-R00142
+UK01-R00143,UK01,Retail customer UK01-00143,household,retail,UK01-R00143
+UK01-R00144,UK01,Retail customer UK01-00144,household,retail,UK01-R00144
+UK01-R00145,UK01,Retail customer UK01-00145,household,retail,UK01-R00145
+UK01-R00146,UK01,Retail customer UK01-00146,household,retail,UK01-R00146
+UK01-R00147,UK01,Retail customer UK01-00147,household,retail,UK01-R00147
+UK01-R00148,UK01,Retail customer UK01-00148,household,retail,UK01-R00148
+UK01-R00149,UK01,Retail customer UK01-00149,household,retail,UK01-R00149
+UK01-R00150,UK01,Retail customer UK01-00150,household,retail,UK01-R00150
+UK01-R00151,UK01,Retail customer UK01-00151,household,retail,UK01-R00151
+UK01-R00152,UK01,Retail customer UK01-00152,household,retail,UK01-R00152
+UK01-R00153,UK01,Retail customer UK01-00153,household,retail,UK01-R00153
+UK01-R00154,UK01,Retail customer UK01-00154,household,retail,UK01-R00154
+UK01-R00155,UK01,Retail customer UK01-00155,household,retail,UK01-R00155
+UK01-R00156,UK01,Retail customer UK01-00156,household,retail,UK01-R00156
+UK01-R00157,UK01,Retail customer UK01-00157,household,retail,UK01-R00157
+UK01-R00158,UK01,Retail customer UK01-00158,household,retail,UK01-R00158
+UK01-R00159,UK01,Retail customer UK01-00159,household,retail,UK01-R00159
+UK01-R00160,UK01,Retail customer UK01-00160,household,retail,UK01-R00160
+UK01-R00161,UK01,Retail customer UK01-00161,household,retail,UK01-R00161
+UK01-R00162,UK01,Retail customer UK01-00162,household,retail,UK01-R00162
+UK01-R00163,UK01,Retail customer UK01-00163,household,retail,UK01-R00163
+UK01-R00164,UK01,Retail customer UK01-00164,household,retail,UK01-R00164
+UK01-R00165,UK01,Retail customer UK01-00165,household,retail,UK01-R00165
+UK01-R00166,UK01,Retail customer UK01-00166,household,retail,UK01-R00166
+UK01-R00167,UK01,Retail customer UK01-00167,household,retail,UK01-R00167
+UK01-R00168,UK01,Retail customer UK01-00168,household,retail,UK01-R00168
+UK01-R00169,UK01,Retail customer UK01-00169,household,retail,UK01-R00169
+UK01-R00170,UK01,Retail customer UK01-00170,household,retail,UK01-R00170
+UK01-R00171,UK01,Retail customer UK01-00171,household,retail,UK01-R00171
+UK01-R00172,UK01,Retail customer UK01-00172,household,retail,UK01-R00172
+UK01-R00173,UK01,Retail customer UK01-00173,household,retail,UK01-R00173
+UK01-R00174,UK01,Retail customer UK01-00174,household,retail,UK01-R00174
+UK01-R00175,UK01,Retail customer UK01-00175,household,retail,UK01-R00175
+UK01-R00176,UK01,Retail customer UK01-00176,household,retail,UK01-R00176
+UK01-R00177,UK01,Retail customer UK01-00177,household,retail,UK01-R00177
+UK01-R00178,UK01,Retail customer UK01-00178,household,retail,UK01-R00178
+UK01-R00179,UK01,Retail customer UK01-00179,household,retail,UK01-R00179
+UK01-R00180,UK01,Retail customer UK01-00180,household,retail,UK01-R00180
+UK01-R00181,UK01,Retail customer UK01-00181,household,retail,UK01-R00181
+UK01-R00182,UK01,Retail customer UK01-00182,household,retail,UK01-R00182
+UK01-R00183,UK01,Retail customer UK01-00183,household,retail,UK01-R00183
+UK01-R00184,UK01,Retail customer UK01-00184,household,retail,UK01-R00184
+UK01-R00185,UK01,Retail customer UK01-00185,household,retail,UK01-R00185
+UK01-R00186,UK01,Retail customer UK01-00186,household,retail,UK01-R00186
+UK01-R00187,UK01,Retail customer UK01-00187,household,retail,UK01-R00187
+UK01-R00188,UK01,Retail customer UK01-00188,household,retail,UK01-R00188
+UK01-R00189,UK01,Retail customer UK01-00189,household,retail,UK01-R00189
+UK01-R00190,UK01,Retail customer UK01-00190,household,retail,UK01-R00190
+UK01-R00191,UK01,Retail customer UK01-00191,household,retail,UK01-R00191
+UK01-R00192,UK01,Retail customer UK01-00192,household,retail,UK01-R00192
+UK01-R00193,UK01,Retail customer UK01-00193,household,retail,UK01-R00193
+UK01-R00194,UK01,Retail customer UK01-00194,household,retail,UK01-R00194
+UK01-R00195,UK01,Retail customer UK01-00195,household,retail,UK01-R00195
+UK01-R00196,UK01,Retail customer UK01-00196,household,retail,UK01-R00196
+UK01-R00197,UK01,Retail customer UK01-00197,household,retail,UK01-R00197
+UK01-R00198,UK01,Retail customer UK01-00198,household,retail,UK01-R00198
+UK01-R00199,UK01,Retail customer UK01-00199,household,retail,UK01-R00199
+UK01-R00200,UK01,Retail customer UK01-00200,household,retail,UK01-R00200
+UK01-R00201,UK01,Retail customer UK01-00201,household,retail,UK01-R00201
+UK01-R00202,UK01,Retail customer UK01-00202,household,retail,UK01-R00202
+UK01-R00203,UK01,Retail customer UK01-00203,household,retail,UK01-R00203
+UK01-R00204,UK01,Retail customer UK01-00204,household,retail,UK01-R00204
+UK01-R00205,UK01,Retail customer UK01-00205,household,retail,UK01-R00205
+UK01-R00206,UK01,Retail customer UK01-00206,household,retail,UK01-R00206
+UK01-R00207,UK01,Retail customer UK01-00207,household,retail,UK01-R00207
+UK01-R00208,UK01,Retail customer UK01-00208,household,retail,UK01-R00208
+UK01-R00209,UK01,Retail customer UK01-00209,household,retail,UK01-R00209
+UK01-R00210,UK01,Retail customer UK01-00210,household,retail,UK01-R00210
+UK01-R00211,UK01,Retail customer UK01-00211,household,retail,UK01-R00211
+UK01-R00212,UK01,Retail customer UK01-00212,household,retail,UK01-R00212
+UK01-R00213,UK01,Retail customer UK01-00213,household,retail,UK01-R00213
+UK01-R00214,UK01,Retail customer UK01-00214,household,retail,UK01-R00214
+UK01-R00215,UK01,Retail customer UK01-00215,household,retail,UK01-R00215
+UK01-R00216,UK01,Retail customer UK01-00216,household,retail,UK01-R00216
+UK01-R00217,UK01,Retail customer UK01-00217,household,retail,UK01-R00217
+UK01-R00218,UK01,Retail customer UK01-00218,household,retail,UK01-R00218
+UK01-R00219,UK01,Retail customer UK01-00219,household,retail,UK01-R00219
+UK01-R00220,UK01,Retail customer UK01-00220,household,retail,UK01-R00220
+UK01-R00221,UK01,Retail customer UK01-00221,household,retail,UK01-R00221
+UK01-R00222,UK01,Retail customer UK01-00222,household,retail,UK01-R00222
+UK01-R00223,UK01,Retail customer UK01-00223,household,retail,UK01-R00223
+UK01-R00224,UK01,Retail customer UK01-00224,household,retail,UK01-R00224
+UK01-R00225,UK01,Retail customer UK01-00225,household,retail,UK01-R00225
+UK01-R00226,UK01,Retail customer UK01-00226,household,retail,UK01-R00226
+UK01-R00227,UK01,Retail customer UK01-00227,household,retail,UK01-R00227
+UK01-R00228,UK01,Retail customer UK01-00228,household,retail,UK01-R00228
+UK01-R00229,UK01,Retail customer UK01-00229,household,retail,UK01-R00229
+UK01-R00230,UK01,Retail customer UK01-00230,household,retail,UK01-R00230
+UK01-R00231,UK01,Retail customer UK01-00231,household,retail,UK01-R00231
+UK01-R00232,UK01,Retail customer UK01-00232,household,retail,UK01-R00232
+UK01-R00233,UK01,Retail customer UK01-00233,household,retail,UK01-R00233
+UK01-R00234,UK01,Retail customer UK01-00234,household,retail,UK01-R00234
+UK01-R00235,UK01,Retail customer UK01-00235,household,retail,UK01-R00235
+UK01-R00236,UK01,Retail customer UK01-00236,household,retail,UK01-R00236
+UK01-R00237,UK01,Retail customer UK01-00237,household,retail,UK01-R00237
+UK01-R00238,UK01,Retail customer UK01-00238,household,retail,UK01-R00238
+UK01-R00239,UK01,Retail customer UK01-00239,household,retail,UK01-R00239
+UK01-R00240,UK01,Retail customer UK01-00240,household,retail,UK01-R00240
+UK01-R00241,UK01,Retail customer UK01-00241,household,retail,UK01-R00241
+UK01-R00242,UK01,Retail customer UK01-00242,household,retail,UK01-R00242
+UK01-R00243,UK01,Retail customer UK01-00243,household,retail,UK01-R00243
+UK01-R00244,UK01,Retail customer UK01-00244,household,retail,UK01-R00244
+UK01-R00245,UK01,Retail customer UK01-00245,household,retail,UK01-R00245
+UK01-R00246,UK01,Retail customer UK01-00246,household,retail,UK01-R00246
+UK01-R00247,UK01,Retail customer UK01-00247,household,retail,UK01-R00247
+UK01-R00248,UK01,Retail customer UK01-00248,household,retail,UK01-R00248
+UK01-R00249,UK01,Retail customer UK01-00249,household,retail,UK01-R00249
+UK01-R00250,UK01,Retail customer UK01-00250,household,retail,UK01-R00250
+UK01-R00251,UK01,Retail customer UK01-00251,household,retail,UK01-R00251
+UK01-R00252,UK01,Retail customer UK01-00252,household,retail,UK01-R00252
+UK01-R00253,UK01,Retail customer UK01-00253,household,retail,UK01-R00253
+UK01-R00254,UK01,Retail customer UK01-00254,household,retail,UK01-R00254
+UK01-R00255,UK01,Retail customer UK01-00255,household,retail,UK01-R00255
+UK01-R00256,UK01,Retail customer UK01-00256,household,retail,UK01-R00256
+UK01-R00257,UK01,Retail customer UK01-00257,household,retail,UK01-R00257
+UK01-R00258,UK01,Retail customer UK01-00258,household,retail,UK01-R00258
+UK01-R00259,UK01,Retail customer UK01-00259,household,retail,UK01-R00259
+UK01-R00260,UK01,Retail customer UK01-00260,household,retail,UK01-R00260
+UK01-R00261,UK01,Retail customer UK01-00261,household,retail,UK01-R00261
+UK01-R00262,UK01,Retail customer UK01-00262,household,retail,UK01-R00262
+UK01-R00263,UK01,Retail customer UK01-00263,household,retail,UK01-R00263
+UK01-R00264,UK01,Retail customer UK01-00264,household,retail,UK01-R00264
+UK01-R00265,UK01,Retail customer UK01-00265,household,retail,UK01-R00265
+UK01-R00266,UK01,Retail customer UK01-00266,household,retail,UK01-R00266
+UK01-R00267,UK01,Retail customer UK01-00267,household,retail,UK01-R00267
+UK01-R00268,UK01,Retail customer UK01-00268,household,retail,UK01-R00268
+UK01-R00269,UK01,Retail customer UK01-00269,household,retail,UK01-R00269
+UK01-R00270,UK01,Retail customer UK01-00270,household,retail,UK01-R00270
+UK01-R00271,UK01,Retail customer UK01-00271,household,retail,UK01-R00271
+UK01-R00272,UK01,Retail customer UK01-00272,household,retail,UK01-R00272
+UK01-R00273,UK01,Retail customer UK01-00273,household,retail,UK01-R00273
+UK01-R00274,UK01,Retail customer UK01-00274,household,retail,UK01-R00274
+UK01-R00275,UK01,Retail customer UK01-00275,household,retail,UK01-R00275
+UK01-R00276,UK01,Retail customer UK01-00276,household,retail,UK01-R00276
+UK01-R00277,UK01,Retail customer UK01-00277,household,retail,UK01-R00277
+UK01-R00278,UK01,Retail customer UK01-00278,household,retail,UK01-R00278
+UK01-R00279,UK01,Retail customer UK01-00279,household,retail,UK01-R00279
+UK01-R00280,UK01,Retail customer UK01-00280,household,retail,UK01-R00280
+UK01-R00281,UK01,Retail customer UK01-00281,household,retail,UK01-R00281
+UK01-R00282,UK01,Retail customer UK01-00282,household,retail,UK01-R00282
+UK01-R00283,UK01,Retail customer UK01-00283,household,retail,UK01-R00283
+UK01-R00284,UK01,Retail customer UK01-00284,household,retail,UK01-R00284
+UK01-R00285,UK01,Retail customer UK01-00285,household,retail,UK01-R00285
+UK01-R00286,UK01,Retail customer UK01-00286,household,retail,UK01-R00286
+UK01-R00287,UK01,Retail customer UK01-00287,household,retail,UK01-R00287
+UK01-R00288,UK01,Retail customer UK01-00288,household,retail,UK01-R00288
+UK01-R00289,UK01,Retail customer UK01-00289,household,retail,UK01-R00289
+UK01-R00290,UK01,Retail customer UK01-00290,household,retail,UK01-R00290
+UK01-R00291,UK01,Retail customer UK01-00291,household,retail,UK01-R00291
+UK01-R00292,UK01,Retail customer UK01-00292,household,retail,UK01-R00292
+UK01-R00293,UK01,Retail customer UK01-00293,household,retail,UK01-R00293
+UK01-R00294,UK01,Retail customer UK01-00294,household,retail,UK01-R00294
+UK01-R00295,UK01,Retail customer UK01-00295,household,retail,UK01-R00295
+UK01-R00296,UK01,Retail customer UK01-00296,household,retail,UK01-R00296
+UK01-R00297,UK01,Retail customer UK01-00297,household,retail,UK01-R00297
+UK01-R00298,UK01,Retail customer UK01-00298,household,retail,UK01-R00298
+UK01-R00299,UK01,Retail customer UK01-00299,household,retail,UK01-R00299
+UK01-R00300,UK01,Retail customer UK01-00300,household,retail,UK01-R00300
+UK01-R00301,UK01,Retail customer UK01-00301,household,retail,UK01-R00301
+UK01-R00302,UK01,Retail customer UK01-00302,household,retail,UK01-R00302
+UK01-R00303,UK01,Retail customer UK01-00303,household,retail,UK01-R00303
+UK01-R00304,UK01,Retail customer UK01-00304,household,retail,UK01-R00304
+UK01-R00305,UK01,Retail customer UK01-00305,household,retail,UK01-R00305
+UK01-R00306,UK01,Retail customer UK01-00306,household,retail,UK01-R00306
+UK01-R00307,UK01,Retail customer UK01-00307,household,retail,UK01-R00307
+UK01-R00308,UK01,Retail customer UK01-00308,household,retail,UK01-R00308
+UK01-R00309,UK01,Retail customer UK01-00309,household,retail,UK01-R00309
+UK01-R00310,UK01,Retail customer UK01-00310,household,retail,UK01-R00310
+UK01-R00311,UK01,Retail customer UK01-00311,household,retail,UK01-R00311
+UK01-R00312,UK01,Retail customer UK01-00312,household,retail,UK01-R00312
+UK01-R00313,UK01,Retail customer UK01-00313,household,retail,UK01-R00313
+UK01-R00314,UK01,Retail customer UK01-00314,household,retail,UK01-R00314
+UK01-R00315,UK01,Retail customer UK01-00315,household,retail,UK01-R00315
+UK01-R00316,UK01,Retail customer UK01-00316,household,retail,UK01-R00316
+UK01-R00317,UK01,Retail customer UK01-00317,household,retail,UK01-R00317
+UK01-R00318,UK01,Retail customer UK01-00318,household,retail,UK01-R00318
+UK01-R00319,UK01,Retail customer UK01-00319,household,retail,UK01-R00319
+UK01-R00320,UK01,Retail customer UK01-00320,household,retail,UK01-R00320
+UK01-R00321,UK01,Retail customer UK01-00321,household,retail,UK01-R00321
+UK01-R00322,UK01,Retail customer UK01-00322,household,retail,UK01-R00322
+UK01-R00323,UK01,Retail customer UK01-00323,household,retail,UK01-R00323
+UK01-R00324,UK01,Retail customer UK01-00324,household,retail,UK01-R00324
+UK01-R00325,UK01,Retail customer UK01-00325,household,retail,UK01-R00325
+UK01-R00326,UK01,Retail customer UK01-00326,household,retail,UK01-R00326
+UK01-R00327,UK01,Retail customer UK01-00327,household,retail,UK01-R00327
+UK01-R00328,UK01,Retail customer UK01-00328,household,retail,UK01-R00328
+UK01-R00329,UK01,Retail customer UK01-00329,household,retail,UK01-R00329
+UK01-R00330,UK01,Retail customer UK01-00330,household,retail,UK01-R00330
+UK01-R00331,UK01,Retail customer UK01-00331,household,retail,UK01-R00331
+UK01-R00332,UK01,Retail customer UK01-00332,household,retail,UK01-R00332
+UK01-R00333,UK01,Retail customer UK01-00333,household,retail,UK01-R00333
+UK01-R00334,UK01,Retail customer UK01-00334,household,retail,UK01-R00334
+UK01-R00335,UK01,Retail customer UK01-00335,household,retail,UK01-R00335
+UK01-R00336,UK01,Retail customer UK01-00336,household,retail,UK01-R00336
+UK01-R00337,UK01,Retail customer UK01-00337,household,retail,UK01-R00337
+UK01-R00338,UK01,Retail customer UK01-00338,household,retail,UK01-R00338
+UK01-R00339,UK01,Retail customer UK01-00339,household,retail,UK01-R00339
+UK01-R00340,UK01,Retail customer UK01-00340,household,retail,UK01-R00340
+UK01-R00341,UK01,Retail customer UK01-00341,household,retail,UK01-R00341
+UK01-R00342,UK01,Retail customer UK01-00342,household,retail,UK01-R00342
+UK01-R00343,UK01,Retail customer UK01-00343,household,retail,UK01-R00343
+UK01-R00344,UK01,Retail customer UK01-00344,household,retail,UK01-R00344
+UK01-R00345,UK01,Retail customer UK01-00345,household,retail,UK01-R00345
+UK01-R00346,UK01,Retail customer UK01-00346,household,retail,UK01-R00346
+UK01-R00347,UK01,Retail customer UK01-00347,household,retail,UK01-R00347
+UK01-R00348,UK01,Retail customer UK01-00348,household,retail,UK01-R00348
+UK01-R00349,UK01,Retail customer UK01-00349,household,retail,UK01-R00349
+UK01-R00350,UK01,Retail customer UK01-00350,household,retail,UK01-R00350
+UK01-R00351,UK01,Retail customer UK01-00351,household,retail,UK01-R00351
+UK01-R00352,UK01,Retail customer UK01-00352,household,retail,UK01-R00352
+UK01-R00353,UK01,Retail customer UK01-00353,household,retail,UK01-R00353
+UK01-R00354,UK01,Retail customer UK01-00354,household,retail,UK01-R00354
+UK01-R00355,UK01,Retail customer UK01-00355,household,retail,UK01-R00355
+UK01-R00356,UK01,Retail customer UK01-00356,household,retail,UK01-R00356
+UK01-R00357,UK01,Retail customer UK01-00357,household,retail,UK01-R00357
+UK01-R00358,UK01,Retail customer UK01-00358,household,retail,UK01-R00358
+UK01-R00359,UK01,Retail customer UK01-00359,household,retail,UK01-R00359
+UK01-R00360,UK01,Retail customer UK01-00360,household,retail,UK01-R00360
+UK01-R00361,UK01,Retail customer UK01-00361,household,retail,UK01-R00361
+UK01-R00362,UK01,Retail customer UK01-00362,household,retail,UK01-R00362
+UK01-R00363,UK01,Retail customer UK01-00363,household,retail,UK01-R00363
+UK01-R00364,UK01,Retail customer UK01-00364,household,retail,UK01-R00364
+UK01-R00365,UK01,Retail customer UK01-00365,household,retail,UK01-R00365
+UK01-R00366,UK01,Retail customer UK01-00366,household,retail,UK01-R00366
+UK01-R00367,UK01,Retail customer UK01-00367,household,retail,UK01-R00367
+UK01-R00368,UK01,Retail customer UK01-00368,household,retail,UK01-R00368
+UK01-R00369,UK01,Retail customer UK01-00369,household,retail,UK01-R00369
+UK01-R00370,UK01,Retail customer UK01-00370,household,retail,UK01-R00370
+UK01-R00371,UK01,Retail customer UK01-00371,household,retail,UK01-R00371
+UK01-R00372,UK01,Retail customer UK01-00372,household,retail,UK01-R00372
+UK01-R00373,UK01,Retail customer UK01-00373,household,retail,UK01-R00373
+UK01-R00374,UK01,Retail customer UK01-00374,household,retail,UK01-R00374
+UK01-R00375,UK01,Retail customer UK01-00375,household,retail,UK01-R00375
+UK01-R00376,UK01,Retail customer UK01-00376,household,retail,UK01-R00376
+UK01-R00377,UK01,Retail customer UK01-00377,household,retail,UK01-R00377
+UK01-R00378,UK01,Retail customer UK01-00378,household,retail,UK01-R00378
+UK01-R00379,UK01,Retail customer UK01-00379,household,retail,UK01-R00379
+UK01-R00380,UK01,Retail customer UK01-00380,household,retail,UK01-R00380
+UK01-R00381,UK01,Retail customer UK01-00381,household,retail,UK01-R00381
+UK01-R00382,UK01,Retail customer UK01-00382,household,retail,UK01-R00382
+UK01-R00383,UK01,Retail customer UK01-00383,household,retail,UK01-R00383
+UK01-R00384,UK01,Retail customer UK01-00384,household,retail,UK01-R00384
+UK01-R00385,UK01,Retail customer UK01-00385,household,retail,UK01-R00385
+UK01-R00386,UK01,Retail customer UK01-00386,household,retail,UK01-R00386
+UK01-R00387,UK01,Retail customer UK01-00387,household,retail,UK01-R00387
+UK01-R00388,UK01,Retail customer UK01-00388,household,retail,UK01-R00388
+UK01-R00389,UK01,Retail customer UK01-00389,household,retail,UK01-R00389
+UK01-R00390,UK01,Retail customer UK01-00390,household,retail,UK01-R00390
+UK01-R00391,UK01,Retail customer UK01-00391,household,retail,UK01-R00391
+UK01-R00392,UK01,Retail customer UK01-00392,household,retail,UK01-R00392
+UK01-R00393,UK01,Retail customer UK01-00393,household,retail,UK01-R00393
+UK01-R00394,UK01,Retail customer UK01-00394,household,retail,UK01-R00394
+UK01-R00395,UK01,Retail customer UK01-00395,household,retail,UK01-R00395
+UK01-R00396,UK01,Retail customer UK01-00396,household,retail,UK01-R00396
+UK01-R00397,UK01,Retail customer UK01-00397,household,retail,UK01-R00397
+UK01-R00398,UK01,Retail customer UK01-00398,household,retail,UK01-R00398
+UK01-R00399,UK01,Retail customer UK01-00399,household,retail,UK01-R00399
+UK01-R00400,UK01,Retail customer UK01-00400,household,retail,UK01-R00400
+UK01-R00401,UK01,Retail customer UK01-00401,household,retail,UK01-R00401
+UK01-R00402,UK01,Retail customer UK01-00402,household,retail,UK01-R00402
+UK01-R00403,UK01,Retail customer UK01-00403,household,retail,UK01-R00403
+UK01-R00404,UK01,Retail customer UK01-00404,household,retail,UK01-R00404
+UK01-R00405,UK01,Retail customer UK01-00405,household,retail,UK01-R00405
+UK01-R00406,UK01,Retail customer UK01-00406,household,retail,UK01-R00406
+UK01-R00407,UK01,Retail customer UK01-00407,household,retail,UK01-R00407
+UK01-R00408,UK01,Retail customer UK01-00408,household,retail,UK01-R00408
+UK01-R00409,UK01,Retail customer UK01-00409,household,retail,UK01-R00409
+UK01-R00410,UK01,Retail customer UK01-00410,household,retail,UK01-R00410
+UK01-R00411,UK01,Retail customer UK01-00411,household,retail,UK01-R00411
+UK01-R00412,UK01,Retail customer UK01-00412,household,retail,UK01-R00412
+UK01-R00413,UK01,Retail customer UK01-00413,household,retail,UK01-R00413
+UK01-R00414,UK01,Retail customer UK01-00414,household,retail,UK01-R00414
+UK01-R00415,UK01,Retail customer UK01-00415,household,retail,UK01-R00415
+UK01-R00416,UK01,Retail customer UK01-00416,household,retail,UK01-R00416
+UK01-R00417,UK01,Retail customer UK01-00417,household,retail,UK01-R00417
+UK01-R00418,UK01,Retail customer UK01-00418,household,retail,UK01-R00418
+UK01-R00419,UK01,Retail customer UK01-00419,household,retail,UK01-R00419
+UK01-R00420,UK01,Retail customer UK01-00420,household,retail,UK01-R00420
+UK01-R00421,UK01,Retail customer UK01-00421,household,retail,UK01-R00421
+UK01-R00422,UK01,Retail customer UK01-00422,household,retail,UK01-R00422
+UK01-R00423,UK01,Retail customer UK01-00423,household,retail,UK01-R00423
+UK01-R00424,UK01,Retail customer UK01-00424,household,retail,UK01-R00424
+UK01-R00425,UK01,Retail customer UK01-00425,household,retail,UK01-R00425
+UK01-R00426,UK01,Retail customer UK01-00426,household,retail,UK01-R00426
+UK01-R00427,UK01,Retail customer UK01-00427,household,retail,UK01-R00427
+UK01-R00428,UK01,Retail customer UK01-00428,household,retail,UK01-R00428
+UK01-R00429,UK01,Retail customer UK01-00429,household,retail,UK01-R00429
+UK01-R00430,UK01,Retail customer UK01-00430,household,retail,UK01-R00430
+UK01-R00431,UK01,Retail customer UK01-00431,household,retail,UK01-R00431
+UK01-R00432,UK01,Retail customer UK01-00432,household,retail,UK01-R00432
+UK01-R00433,UK01,Retail customer UK01-00433,household,retail,UK01-R00433
+UK01-R00434,UK01,Retail customer UK01-00434,household,retail,UK01-R00434
+UK01-R00435,UK01,Retail customer UK01-00435,household,retail,UK01-R00435
+UK01-R00436,UK01,Retail customer UK01-00436,household,retail,UK01-R00436
+UK01-R00437,UK01,Retail customer UK01-00437,household,retail,UK01-R00437
+UK01-R00438,UK01,Retail customer UK01-00438,household,retail,UK01-R00438
+UK01-R00439,UK01,Retail customer UK01-00439,household,retail,UK01-R00439
+UK01-R00440,UK01,Retail customer UK01-00440,household,retail,UK01-R00440
+UK01-R00441,UK01,Retail customer UK01-00441,household,retail,UK01-R00441
+UK01-R00442,UK01,Retail customer UK01-00442,household,retail,UK01-R00442
+UK01-R00443,UK01,Retail customer UK01-00443,household,retail,UK01-R00443
+UK01-R00444,UK01,Retail customer UK01-00444,household,retail,UK01-R00444
+UK01-R00445,UK01,Retail customer UK01-00445,household,retail,UK01-R00445
+UK01-R00446,UK01,Retail customer UK01-00446,household,retail,UK01-R00446
+UK01-R00447,UK01,Retail customer UK01-00447,household,retail,UK01-R00447
+UK01-R00448,UK01,Retail customer UK01-00448,household,retail,UK01-R00448
+UK01-R00449,UK01,Retail customer UK01-00449,household,retail,UK01-R00449
+UK01-C0029,UK01,Corporate UK01-C0029,manufacturing,corporate,OWN-UK01-C0029
+UK01-C0017,UK01,Corporate UK01-C0017,trade,corporate,OWN-UK01-C0017
+UK01-C0010,UK01,Corporate UK01-C0010,manufacturing,corporate,OWN-UK01-C0010
+UK01-C0022,UK01,Corporate UK01-C0022,real_estate,corporate,OWN-UK01-C0022
+UK01-C0025,UK01,Corporate UK01-C0025,logistics,corporate,OWN-UK01-C0025
+UK01-C0000,UK01,Corporate UK01-C0000,healthcare,corporate,OWN-UK01-C0000
+UK01-C0011,UK01,Corporate UK01-C0011,technology,corporate,OWN-UK01-C0011
+UK01-C0018,UK01,Corporate UK01-C0018,trade,corporate,OWN-UK01-C0018
+UK01-C0015,UK01,Corporate UK01-C0015,hospitality,corporate,OWN-UK01-C0015
+UK01-C0002,UK01,Corporate UK01-C0002,construction,corporate,OWN-UK01-C0002
+UK01-C0001,UK01,Corporate UK01-C0001,technology,corporate,OWN-UK01-C0001
+UK01-C0003,UK01,Corporate UK01-C0003,healthcare,corporate,OWN-UK01-C0003
+UK01-C0026,UK01,Corporate UK01-C0026,logistics,corporate,OWN-UK01-C0026
+UK01-C0006,UK01,Corporate UK01-C0006,manufacturing,corporate,OWN-UK01-C0006
+UK01-C0009,UK01,Corporate UK01-C0009,real_estate,corporate,OWN-UK01-C0009
+UK01-C0020,UK01,Corporate UK01-C0020,trade,corporate,OWN-UK01-C0020
+UK01-C0028,UK01,Corporate UK01-C0028,hospitality,corporate,OWN-UK01-C0028
+UK01-C0004,UK01,Corporate UK01-C0004,real_estate,corporate,OWN-UK01-C0004
+UK01-C0019,UK01,Corporate UK01-C0019,construction,corporate,OWN-UK01-C0019
+UK01-C0027,UK01,Corporate UK01-C0027,technology,corporate,OWN-UK01-C0027
+UK01-C0021,UK01,Corporate UK01-C0021,logistics,corporate,OWN-UK01-C0021
+UK01-C0008,UK01,Corporate UK01-C0008,trade,corporate,OWN-UK01-C0008
+UK01-C0007,UK01,Corporate UK01-C0007,manufacturing,corporate,OWN-UK01-C0007
+UK01-C0023,UK01,Corporate UK01-C0023,healthcare,corporate,OWN-UK01-C0023
+UK01-C0013,UK01,Corporate UK01-C0013,hospitality,corporate,OWN-UK01-C0013
+UK01-C0016,UK01,Corporate UK01-C0016,hospitality,corporate,OWN-UK01-C0016
+UK01-C0005,UK01,Corporate UK01-C0005,construction,corporate,OWN-UK01-C0005
+UK01-C0012,UK01,Corporate UK01-C0012,real_estate,corporate,OWN-UK01-C0012
+UK01-C0014,UK01,Corporate UK01-C0014,logistics,corporate,OWN-UK01-C0014
+UK01-C0024,UK01,Corporate UK01-C0024,healthcare,corporate,OWN-UK01-C0024
+UK01-S0077,UK01,SME UK01-S0077,manufacturing,sme,OWN-UK01-S0077
+UK01-S0057,UK01,SME UK01-S0057,trade,sme,OWN-UK01-S0057
+UK01-S0017,UK01,SME UK01-S0017,technology,sme,OWN-UK01-S0017
+UK01-S0113,UK01,SME UK01-S0113,manufacturing,sme,OWN-UK01-S0113
+UK01-S0104,UK01,SME UK01-S0104,trade,sme,OWN-UK01-S0104
+UK01-S0049,UK01,SME UK01-S0049,technology,sme,OWN-UK01-S0049
+UK01-S0089,UK01,SME UK01-S0089,manufacturing,sme,OWN-UK01-S0089
+UK01-S0039,UK01,SME UK01-S0039,trade,sme,OWN-UK01-S0039
+UK01-S0047,UK01,SME UK01-S0047,technology,sme,OWN-UK01-S0047
+UK01-S0015,UK01,SME UK01-S0015,manufacturing,sme,OWN-UK01-S0015
+UK01-S0059,UK01,SME UK01-S0059,trade,sme,OWN-UK01-S0059
+UK01-S0099,UK01,SME UK01-S0099,technology,sme,OWN-UK01-S0099
+UK01-S0001,UK01,SME UK01-S0001,manufacturing,sme,OWN-UK01-S0001
+UK01-S0061,UK01,SME UK01-S0061,trade,sme,OWN-UK01-S0061
+UK01-S0060,UK01,SME UK01-S0060,technology,sme,OWN-UK01-S0060
+UK01-S0042,UK01,SME UK01-S0042,manufacturing,sme,OWN-UK01-S0042
+UK01-S0105,UK01,SME UK01-S0105,trade,sme,OWN-UK01-S0105
+UK01-S0106,UK01,SME UK01-S0106,technology,sme,OWN-UK01-S0106
+UK01-S0053,UK01,SME UK01-S0053,manufacturing,sme,OWN-UK01-S0053
+UK01-S0043,UK01,SME UK01-S0043,trade,sme,OWN-UK01-S0043
+UK01-S0037,UK01,SME UK01-S0037,technology,sme,OWN-UK01-S0037
+UK01-S0103,UK01,SME UK01-S0103,manufacturing,sme,OWN-UK01-S0103
+UK01-S0008,UK01,SME UK01-S0008,trade,sme,OWN-UK01-S0008
+UK01-S0064,UK01,SME UK01-S0064,technology,sme,OWN-UK01-S0064
+UK01-S0024,UK01,SME UK01-S0024,manufacturing,sme,OWN-UK01-S0024
+UK01-S0034,UK01,SME UK01-S0034,healthcare,sme,OWN-UK01-S0034
+UK01-S0048,UK01,SME UK01-S0048,trade,sme,OWN-UK01-S0048
+UK01-S0055,UK01,SME UK01-S0055,technology,sme,OWN-UK01-S0055
+UK01-S0091,UK01,SME UK01-S0091,manufacturing,sme,OWN-UK01-S0091
+UK01-S0083,UK01,SME UK01-S0083,healthcare,sme,OWN-UK01-S0083
+UK01-S0025,UK01,SME UK01-S0025,trade,sme,OWN-UK01-S0025
+UK01-S0074,UK01,SME UK01-S0074,technology,sme,OWN-UK01-S0074
+UK01-S0071,UK01,SME UK01-S0071,manufacturing,sme,OWN-UK01-S0071
+UK01-S0016,UK01,SME UK01-S0016,healthcare,sme,OWN-UK01-S0016
+UK01-S0038,UK01,SME UK01-S0038,logistics,sme,OWN-UK01-S0038
+UK01-S0114,UK01,SME UK01-S0114,trade,sme,OWN-UK01-S0114
+UK01-S0107,UK01,SME UK01-S0107,technology,sme,OWN-UK01-S0107
+UK01-S0085,UK01,SME UK01-S0085,real_estate,sme,OWN-UK01-S0085
+UK01-S0006,UK01,SME UK01-S0006,manufacturing,sme,OWN-UK01-S0006
+UK01-S0063,UK01,SME UK01-S0063,healthcare,sme,OWN-UK01-S0063
+UK01-S0051,UK01,SME UK01-S0051,logistics,sme,OWN-UK01-S0051
+UK01-S0073,UK01,SME UK01-S0073,trade,sme,OWN-UK01-S0073
+UK01-S0075,UK01,SME UK01-S0075,technology,sme,OWN-UK01-S0075
+UK01-S0026,UK01,SME UK01-S0026,real_estate,sme,OWN-UK01-S0026
+UK01-S0035,UK01,SME UK01-S0035,manufacturing,sme,OWN-UK01-S0035
+UK01-S0097,UK01,SME UK01-S0097,healthcare,sme,OWN-UK01-S0097
+UK01-S0012,UK01,SME UK01-S0012,logistics,sme,OWN-UK01-S0012
+UK01-S0050,UK01,SME UK01-S0050,trade,sme,OWN-UK01-S0050
+UK01-S0111,UK01,SME UK01-S0111,technology,sme,OWN-UK01-S0111
+UK01-S0062,UK01,SME UK01-S0062,real_estate,sme,OWN-UK01-S0062
+UK01-S0044,UK01,SME UK01-S0044,manufacturing,sme,OWN-UK01-S0044
+UK01-S0087,UK01,SME UK01-S0087,healthcare,sme,OWN-UK01-S0087
+UK01-S0108,UK01,SME UK01-S0108,logistics,sme,OWN-UK01-S0108
+UK01-S0070,UK01,SME UK01-S0070,trade,sme,OWN-UK01-S0070
+UK01-S0054,UK01,SME UK01-S0054,technology,sme,OWN-UK01-S0054
+UK01-S0088,UK01,SME UK01-S0088,real_estate,sme,OWN-UK01-S0088
+UK01-S0002,UK01,SME UK01-S0002,manufacturing,sme,OWN-UK01-S0002
+UK01-S0030,UK01,SME UK01-S0030,construction,sme,OWN-UK01-S0030
+UK01-S0090,UK01,SME UK01-S0090,logistics,sme,OWN-UK01-S0090
+UK01-S0046,UK01,SME UK01-S0046,healthcare,sme,OWN-UK01-S0046
+UK01-S0098,UK01,SME UK01-S0098,hospitality,sme,OWN-UK01-S0098
+UK01-S0056,UK01,SME UK01-S0056,trade,sme,OWN-UK01-S0056
+UK01-S0018,UK01,SME UK01-S0018,technology,sme,OWN-UK01-S0018
+UK01-S0040,UK01,SME UK01-S0040,real_estate,sme,OWN-UK01-S0040
+UK01-S0092,UK01,SME UK01-S0092,manufacturing,sme,OWN-UK01-S0092
+UK01-S0058,UK01,SME UK01-S0058,construction,sme,OWN-UK01-S0058
+UK01-S0117,UK01,SME UK01-S0117,trade,sme,OWN-UK01-S0117
+UK01-S0032,UK01,SME UK01-S0032,logistics,sme,OWN-UK01-S0032
+UK01-S0014,UK01,SME UK01-S0014,hospitality,sme,OWN-UK01-S0014
+UK01-S0084,UK01,SME UK01-S0084,healthcare,sme,OWN-UK01-S0084
+UK01-S0076,UK01,SME UK01-S0076,technology,sme,OWN-UK01-S0076
+UK01-S0010,UK01,SME UK01-S0010,real_estate,sme,OWN-UK01-S0010
+UK01-S0027,UK01,SME UK01-S0027,manufacturing,sme,OWN-UK01-S0027
+UK01-S0003,UK01,SME UK01-S0003,trade,sme,OWN-UK01-S0003
+UK01-S0011,UK01,SME UK01-S0011,healthcare,sme,OWN-UK01-S0011
+UK01-S0029,UK01,SME UK01-S0029,construction,sme,OWN-UK01-S0029
+UK01-S0079,UK01,SME UK01-S0079,hospitality,sme,OWN-UK01-S0079
+UK01-S0028,UK01,SME UK01-S0028,logistics,sme,OWN-UK01-S0028
+UK01-S0072,UK01,SME UK01-S0072,technology,sme,OWN-UK01-S0072
+UK01-S0109,UK01,SME UK01-S0109,real_estate,sme,OWN-UK01-S0109
+UK01-S0020,UK01,SME UK01-S0020,manufacturing,sme,OWN-UK01-S0020
+UK01-S0031,UK01,SME UK01-S0031,hospitality,sme,OWN-UK01-S0031
+UK01-S0082,UK01,SME UK01-S0082,logistics,sme,OWN-UK01-S0082
+UK01-S0019,UK01,SME UK01-S0019,construction,sme,OWN-UK01-S0019
+UK01-S0045,UK01,SME UK01-S0045,healthcare,sme,OWN-UK01-S0045
+UK01-S0096,UK01,SME UK01-S0096,trade,sme,OWN-UK01-S0096
+UK01-S0095,UK01,SME UK01-S0095,technology,sme,OWN-UK01-S0095
+UK01-S0033,UK01,SME UK01-S0033,manufacturing,sme,OWN-UK01-S0033
+UK01-S0005,UK01,SME UK01-S0005,real_estate,sme,OWN-UK01-S0005
+UK01-S0065,UK01,SME UK01-S0065,healthcare,sme,OWN-UK01-S0065
+UK01-S0069,UK01,SME UK01-S0069,construction,sme,OWN-UK01-S0069
+UK01-S0112,UK01,SME UK01-S0112,trade,sme,OWN-UK01-S0112
+UK01-S0101,UK01,SME UK01-S0101,logistics,sme,OWN-UK01-S0101
+UK01-S0116,UK01,SME UK01-S0116,hospitality,sme,OWN-UK01-S0116
+UK01-S0004,UK01,SME UK01-S0004,technology,sme,OWN-UK01-S0004
+UK01-S0078,UK01,SME UK01-S0078,hospitality,sme,OWN-UK01-S0078
+UK01-S0119,UK01,SME UK01-S0119,logistics,sme,OWN-UK01-S0119
+UK01-S0066,UK01,SME UK01-S0066,trade,sme,OWN-UK01-S0066
+UK01-S0041,UK01,SME UK01-S0041,construction,sme,OWN-UK01-S0041
+UK01-S0068,UK01,SME UK01-S0068,real_estate,sme,OWN-UK01-S0068
+UK01-S0022,UK01,SME UK01-S0022,healthcare,sme,OWN-UK01-S0022
+UK01-S0081,UK01,SME UK01-S0081,manufacturing,sme,OWN-UK01-S0081
+UK01-S0013,UK01,SME UK01-S0013,technology,sme,OWN-UK01-S0013
+UK01-S0036,UK01,SME UK01-S0036,manufacturing,sme,OWN-UK01-S0036
+UK01-S0093,UK01,SME UK01-S0093,healthcare,sme,OWN-UK01-S0093
+UK01-S0102,UK01,SME UK01-S0102,hospitality,sme,OWN-UK01-S0102
+UK01-S0007,UK01,SME UK01-S0007,trade,sme,OWN-UK01-S0007
+UK01-S0110,UK01,SME UK01-S0110,logistics,sme,OWN-UK01-S0110
+UK01-S0094,UK01,SME UK01-S0094,construction,sme,OWN-UK01-S0094
+UK01-S0023,UK01,SME UK01-S0023,real_estate,sme,OWN-UK01-S0023
+UK01-S0118,UK01,SME UK01-S0118,technology,sme,OWN-UK01-S0118
+UK01-S0009,UK01,SME UK01-S0009,construction,sme,OWN-UK01-S0009
+UK01-S0067,UK01,SME UK01-S0067,real_estate,sme,OWN-UK01-S0067
+UK01-S0052,UK01,SME UK01-S0052,logistics,sme,OWN-UK01-S0052
+UK01-S0086,UK01,SME UK01-S0086,trade,sme,OWN-UK01-S0086
+UK01-S0115,UK01,SME UK01-S0115,hospitality,sme,OWN-UK01-S0115
+UK01-S0021,UK01,SME UK01-S0021,manufacturing,sme,OWN-UK01-S0021
+UK01-S0080,UK01,SME UK01-S0080,healthcare,sme,OWN-UK01-S0080
+UK01-S0000,UK01,SME UK01-S0000,healthcare,sme,OWN-UK01-S0000
+UK01-S0100,UK01,SME UK01-S0100,manufacturing,sme,OWN-UK01-S0100
+US01-R00000,US01,Retail customer US01-00000,household,retail,US01-R00000
+US01-R00001,US01,Retail customer US01-00001,household,retail,US01-R00001
+US01-R00002,US01,Retail customer US01-00002,household,retail,US01-R00002
+US01-R00003,US01,Retail customer US01-00003,household,retail,US01-R00003
+US01-R00004,US01,Retail customer US01-00004,household,retail,US01-R00004
+US01-R00005,US01,Retail customer US01-00005,household,retail,US01-R00005
+US01-R00006,US01,Retail customer US01-00006,household,retail,US01-R00006
+US01-R00007,US01,Retail customer US01-00007,household,retail,US01-R00007
+US01-R00008,US01,Retail customer US01-00008,household,retail,US01-R00008
+US01-R00009,US01,Retail customer US01-00009,household,retail,US01-R00009
+US01-R00010,US01,Retail customer US01-00010,household,retail,US01-R00010
+US01-R00011,US01,Retail customer US01-00011,household,retail,US01-R00011
+US01-R00012,US01,Retail customer US01-00012,household,retail,US01-R00012
+US01-R00013,US01,Retail customer US01-00013,household,retail,US01-R00013
+US01-R00014,US01,Retail customer US01-00014,household,retail,US01-R00014
+US01-R00015,US01,Retail customer US01-00015,household,retail,US01-R00015
+US01-R00016,US01,Retail customer US01-00016,household,retail,US01-R00016
+US01-R00017,US01,Retail customer US01-00017,household,retail,US01-R00017
+US01-R00018,US01,Retail customer US01-00018,household,retail,US01-R00018
+US01-R00019,US01,Retail customer US01-00019,household,retail,US01-R00019
+US01-R00020,US01,Retail customer US01-00020,household,retail,US01-R00020
+US01-R00021,US01,Retail customer US01-00021,household,retail,US01-R00021
+US01-R00022,US01,Retail customer US01-00022,household,retail,US01-R00022
+US01-R00023,US01,Retail customer US01-00023,household,retail,US01-R00023
+US01-R00024,US01,Retail customer US01-00024,household,retail,US01-R00024
+US01-R00025,US01,Retail customer US01-00025,household,retail,US01-R00025
+US01-R00026,US01,Retail customer US01-00026,household,retail,US01-R00026
+US01-R00027,US01,Retail customer US01-00027,household,retail,US01-R00027
+US01-R00028,US01,Retail customer US01-00028,household,retail,US01-R00028
+US01-R00029,US01,Retail customer US01-00029,household,retail,US01-R00029
+US01-R00030,US01,Retail customer US01-00030,household,retail,US01-R00030
+US01-R00031,US01,Retail customer US01-00031,household,retail,US01-R00031
+US01-R00032,US01,Retail customer US01-00032,household,retail,US01-R00032
+US01-R00033,US01,Retail customer US01-00033,household,retail,US01-R00033
+US01-R00034,US01,Retail customer US01-00034,household,retail,US01-R00034
+US01-R00035,US01,Retail customer US01-00035,household,retail,US01-R00035
+US01-R00036,US01,Retail customer US01-00036,household,retail,US01-R00036
+US01-R00037,US01,Retail customer US01-00037,household,retail,US01-R00037
+US01-R00038,US01,Retail customer US01-00038,household,retail,US01-R00038
+US01-R00039,US01,Retail customer US01-00039,household,retail,US01-R00039
+US01-R00040,US01,Retail customer US01-00040,household,retail,US01-R00040
+US01-R00041,US01,Retail customer US01-00041,household,retail,US01-R00041
+US01-R00042,US01,Retail customer US01-00042,household,retail,US01-R00042
+US01-R00043,US01,Retail customer US01-00043,household,retail,US01-R00043
+US01-R00044,US01,Retail customer US01-00044,household,retail,US01-R00044
+US01-R00045,US01,Retail customer US01-00045,household,retail,US01-R00045
+US01-R00046,US01,Retail customer US01-00046,household,retail,US01-R00046
+US01-R00047,US01,Retail customer US01-00047,household,retail,US01-R00047
+US01-R00048,US01,Retail customer US01-00048,household,retail,US01-R00048
+US01-R00049,US01,Retail customer US01-00049,household,retail,US01-R00049
+US01-R00050,US01,Retail customer US01-00050,household,retail,US01-R00050
+US01-R00051,US01,Retail customer US01-00051,household,retail,US01-R00051
+US01-R00052,US01,Retail customer US01-00052,household,retail,US01-R00052
+US01-R00053,US01,Retail customer US01-00053,household,retail,US01-R00053
+US01-R00054,US01,Retail customer US01-00054,household,retail,US01-R00054
+US01-R00055,US01,Retail customer US01-00055,household,retail,US01-R00055
+US01-R00056,US01,Retail customer US01-00056,household,retail,US01-R00056
+US01-R00057,US01,Retail customer US01-00057,household,retail,US01-R00057
+US01-R00058,US01,Retail customer US01-00058,household,retail,US01-R00058
+US01-R00059,US01,Retail customer US01-00059,household,retail,US01-R00059
+US01-R00060,US01,Retail customer US01-00060,household,retail,US01-R00060
+US01-R00061,US01,Retail customer US01-00061,household,retail,US01-R00061
+US01-R00062,US01,Retail customer US01-00062,household,retail,US01-R00062
+US01-R00063,US01,Retail customer US01-00063,household,retail,US01-R00063
+US01-R00064,US01,Retail customer US01-00064,household,retail,US01-R00064
+US01-R00065,US01,Retail customer US01-00065,household,retail,US01-R00065
+US01-R00066,US01,Retail customer US01-00066,household,retail,US01-R00066
+US01-R00067,US01,Retail customer US01-00067,household,retail,US01-R00067
+US01-R00068,US01,Retail customer US01-00068,household,retail,US01-R00068
+US01-R00069,US01,Retail customer US01-00069,household,retail,US01-R00069
+US01-R00070,US01,Retail customer US01-00070,household,retail,US01-R00070
+US01-R00071,US01,Retail customer US01-00071,household,retail,US01-R00071
+US01-R00072,US01,Retail customer US01-00072,household,retail,US01-R00072
+US01-R00073,US01,Retail customer US01-00073,household,retail,US01-R00073
+US01-R00074,US01,Retail customer US01-00074,household,retail,US01-R00074
+US01-R00075,US01,Retail customer US01-00075,household,retail,US01-R00075
+US01-R00076,US01,Retail customer US01-00076,household,retail,US01-R00076
+US01-R00077,US01,Retail customer US01-00077,household,retail,US01-R00077
+US01-R00078,US01,Retail customer US01-00078,household,retail,US01-R00078
+US01-R00079,US01,Retail customer US01-00079,household,retail,US01-R00079
+US01-R00080,US01,Retail customer US01-00080,household,retail,US01-R00080
+US01-R00081,US01,Retail customer US01-00081,household,retail,US01-R00081
+US01-R00082,US01,Retail customer US01-00082,household,retail,US01-R00082
+US01-R00083,US01,Retail customer US01-00083,household,retail,US01-R00083
+US01-R00084,US01,Retail customer US01-00084,household,retail,US01-R00084
+US01-R00085,US01,Retail customer US01-00085,household,retail,US01-R00085
+US01-R00086,US01,Retail customer US01-00086,household,retail,US01-R00086
+US01-R00087,US01,Retail customer US01-00087,household,retail,US01-R00087
+US01-R00088,US01,Retail customer US01-00088,household,retail,US01-R00088
+US01-R00089,US01,Retail customer US01-00089,household,retail,US01-R00089
+US01-R00090,US01,Retail customer US01-00090,household,retail,US01-R00090
+US01-R00091,US01,Retail customer US01-00091,household,retail,US01-R00091
+US01-R00092,US01,Retail customer US01-00092,household,retail,US01-R00092
+US01-R00093,US01,Retail customer US01-00093,household,retail,US01-R00093
+US01-R00094,US01,Retail customer US01-00094,household,retail,US01-R00094
+US01-R00095,US01,Retail customer US01-00095,household,retail,US01-R00095
+US01-R00096,US01,Retail customer US01-00096,household,retail,US01-R00096
+US01-R00097,US01,Retail customer US01-00097,household,retail,US01-R00097
+US01-R00098,US01,Retail customer US01-00098,household,retail,US01-R00098
+US01-R00099,US01,Retail customer US01-00099,household,retail,US01-R00099
+US01-R00100,US01,Retail customer US01-00100,household,retail,US01-R00100
+US01-R00101,US01,Retail customer US01-00101,household,retail,US01-R00101
+US01-R00102,US01,Retail customer US01-00102,household,retail,US01-R00102
+US01-R00103,US01,Retail customer US01-00103,household,retail,US01-R00103
+US01-R00104,US01,Retail customer US01-00104,household,retail,US01-R00104
+US01-R00105,US01,Retail customer US01-00105,household,retail,US01-R00105
+US01-R00106,US01,Retail customer US01-00106,household,retail,US01-R00106
+US01-R00107,US01,Retail customer US01-00107,household,retail,US01-R00107
+US01-R00108,US01,Retail customer US01-00108,household,retail,US01-R00108
+US01-R00109,US01,Retail customer US01-00109,household,retail,US01-R00109
+US01-R00110,US01,Retail customer US01-00110,household,retail,US01-R00110
+US01-R00111,US01,Retail customer US01-00111,household,retail,US01-R00111
+US01-R00112,US01,Retail customer US01-00112,household,retail,US01-R00112
+US01-R00113,US01,Retail customer US01-00113,household,retail,US01-R00113
+US01-R00114,US01,Retail customer US01-00114,household,retail,US01-R00114
+US01-R00115,US01,Retail customer US01-00115,household,retail,US01-R00115
+US01-R00116,US01,Retail customer US01-00116,household,retail,US01-R00116
+US01-R00117,US01,Retail customer US01-00117,household,retail,US01-R00117
+US01-R00118,US01,Retail customer US01-00118,household,retail,US01-R00118
+US01-R00119,US01,Retail customer US01-00119,household,retail,US01-R00119
+US01-R00120,US01,Retail customer US01-00120,household,retail,US01-R00120
+US01-R00121,US01,Retail customer US01-00121,household,retail,US01-R00121
+US01-R00122,US01,Retail customer US01-00122,household,retail,US01-R00122
+US01-R00123,US01,Retail customer US01-00123,household,retail,US01-R00123
+US01-R00124,US01,Retail customer US01-00124,household,retail,US01-R00124
+US01-R00125,US01,Retail customer US01-00125,household,retail,US01-R00125
+US01-R00126,US01,Retail customer US01-00126,household,retail,US01-R00126
+US01-R00127,US01,Retail customer US01-00127,household,retail,US01-R00127
+US01-R00128,US01,Retail customer US01-00128,household,retail,US01-R00128
+US01-R00129,US01,Retail customer US01-00129,household,retail,US01-R00129
+US01-R00130,US01,Retail customer US01-00130,household,retail,US01-R00130
+US01-R00131,US01,Retail customer US01-00131,household,retail,US01-R00131
+US01-R00132,US01,Retail customer US01-00132,household,retail,US01-R00132
+US01-R00133,US01,Retail customer US01-00133,household,retail,US01-R00133
+US01-R00134,US01,Retail customer US01-00134,household,retail,US01-R00134
+US01-R00135,US01,Retail customer US01-00135,household,retail,US01-R00135
+US01-R00136,US01,Retail customer US01-00136,household,retail,US01-R00136
+US01-R00137,US01,Retail customer US01-00137,household,retail,US01-R00137
+US01-R00138,US01,Retail customer US01-00138,household,retail,US01-R00138
+US01-R00139,US01,Retail customer US01-00139,household,retail,US01-R00139
+US01-R00140,US01,Retail customer US01-00140,household,retail,US01-R00140
+US01-R00141,US01,Retail customer US01-00141,household,retail,US01-R00141
+US01-R00142,US01,Retail customer US01-00142,household,retail,US01-R00142
+US01-R00143,US01,Retail customer US01-00143,household,retail,US01-R00143
+US01-R00144,US01,Retail customer US01-00144,household,retail,US01-R00144
+US01-R00145,US01,Retail customer US01-00145,household,retail,US01-R00145
+US01-R00146,US01,Retail customer US01-00146,household,retail,US01-R00146
+US01-R00147,US01,Retail customer US01-00147,household,retail,US01-R00147
+US01-R00148,US01,Retail customer US01-00148,household,retail,US01-R00148
+US01-R00149,US01,Retail customer US01-00149,household,retail,US01-R00149
+US01-R00150,US01,Retail customer US01-00150,household,retail,US01-R00150
+US01-R00151,US01,Retail customer US01-00151,household,retail,US01-R00151
+US01-R00152,US01,Retail customer US01-00152,household,retail,US01-R00152
+US01-R00153,US01,Retail customer US01-00153,household,retail,US01-R00153
+US01-R00154,US01,Retail customer US01-00154,household,retail,US01-R00154
+US01-R00155,US01,Retail customer US01-00155,household,retail,US01-R00155
+US01-R00156,US01,Retail customer US01-00156,household,retail,US01-R00156
+US01-R00157,US01,Retail customer US01-00157,household,retail,US01-R00157
+US01-R00158,US01,Retail customer US01-00158,household,retail,US01-R00158
+US01-R00159,US01,Retail customer US01-00159,household,retail,US01-R00159
+US01-R00160,US01,Retail customer US01-00160,household,retail,US01-R00160
+US01-R00161,US01,Retail customer US01-00161,household,retail,US01-R00161
+US01-R00162,US01,Retail customer US01-00162,household,retail,US01-R00162
+US01-R00163,US01,Retail customer US01-00163,household,retail,US01-R00163
+US01-R00164,US01,Retail customer US01-00164,household,retail,US01-R00164
+US01-R00165,US01,Retail customer US01-00165,household,retail,US01-R00165
+US01-R00166,US01,Retail customer US01-00166,household,retail,US01-R00166
+US01-R00167,US01,Retail customer US01-00167,household,retail,US01-R00167
+US01-R00168,US01,Retail customer US01-00168,household,retail,US01-R00168
+US01-R00169,US01,Retail customer US01-00169,household,retail,US01-R00169
+US01-R00170,US01,Retail customer US01-00170,household,retail,US01-R00170
+US01-R00171,US01,Retail customer US01-00171,household,retail,US01-R00171
+US01-R00172,US01,Retail customer US01-00172,household,retail,US01-R00172
+US01-R00173,US01,Retail customer US01-00173,household,retail,US01-R00173
+US01-R00174,US01,Retail customer US01-00174,household,retail,US01-R00174
+US01-R00175,US01,Retail customer US01-00175,household,retail,US01-R00175
+US01-R00176,US01,Retail customer US01-00176,household,retail,US01-R00176
+US01-R00177,US01,Retail customer US01-00177,household,retail,US01-R00177
+US01-R00178,US01,Retail customer US01-00178,household,retail,US01-R00178
+US01-R00179,US01,Retail customer US01-00179,household,retail,US01-R00179
+US01-R00180,US01,Retail customer US01-00180,household,retail,US01-R00180
+US01-R00181,US01,Retail customer US01-00181,household,retail,US01-R00181
+US01-R00182,US01,Retail customer US01-00182,household,retail,US01-R00182
+US01-R00183,US01,Retail customer US01-00183,household,retail,US01-R00183
+US01-R00184,US01,Retail customer US01-00184,household,retail,US01-R00184
+US01-R00185,US01,Retail customer US01-00185,household,retail,US01-R00185
+US01-R00186,US01,Retail customer US01-00186,household,retail,US01-R00186
+US01-R00187,US01,Retail customer US01-00187,household,retail,US01-R00187
+US01-R00188,US01,Retail customer US01-00188,household,retail,US01-R00188
+US01-R00189,US01,Retail customer US01-00189,household,retail,US01-R00189
+US01-R00190,US01,Retail customer US01-00190,household,retail,US01-R00190
+US01-R00191,US01,Retail customer US01-00191,household,retail,US01-R00191
+US01-R00192,US01,Retail customer US01-00192,household,retail,US01-R00192
+US01-R00193,US01,Retail customer US01-00193,household,retail,US01-R00193
+US01-R00194,US01,Retail customer US01-00194,household,retail,US01-R00194
+US01-R00195,US01,Retail customer US01-00195,household,retail,US01-R00195
+US01-R00196,US01,Retail customer US01-00196,household,retail,US01-R00196
+US01-R00197,US01,Retail customer US01-00197,household,retail,US01-R00197
+US01-R00198,US01,Retail customer US01-00198,household,retail,US01-R00198
+US01-R00199,US01,Retail customer US01-00199,household,retail,US01-R00199
+US01-R00200,US01,Retail customer US01-00200,household,retail,US01-R00200
+US01-R00201,US01,Retail customer US01-00201,household,retail,US01-R00201
+US01-R00202,US01,Retail customer US01-00202,household,retail,US01-R00202
+US01-R00203,US01,Retail customer US01-00203,household,retail,US01-R00203
+US01-R00204,US01,Retail customer US01-00204,household,retail,US01-R00204
+US01-R00205,US01,Retail customer US01-00205,household,retail,US01-R00205
+US01-R00206,US01,Retail customer US01-00206,household,retail,US01-R00206
+US01-R00207,US01,Retail customer US01-00207,household,retail,US01-R00207
+US01-R00208,US01,Retail customer US01-00208,household,retail,US01-R00208
+US01-R00209,US01,Retail customer US01-00209,household,retail,US01-R00209
+US01-R00210,US01,Retail customer US01-00210,household,retail,US01-R00210
+US01-R00211,US01,Retail customer US01-00211,household,retail,US01-R00211
+US01-R00212,US01,Retail customer US01-00212,household,retail,US01-R00212
+US01-R00213,US01,Retail customer US01-00213,household,retail,US01-R00213
+US01-R00214,US01,Retail customer US01-00214,household,retail,US01-R00214
+US01-R00215,US01,Retail customer US01-00215,household,retail,US01-R00215
+US01-R00216,US01,Retail customer US01-00216,household,retail,US01-R00216
+US01-R00217,US01,Retail customer US01-00217,household,retail,US01-R00217
+US01-R00218,US01,Retail customer US01-00218,household,retail,US01-R00218
+US01-R00219,US01,Retail customer US01-00219,household,retail,US01-R00219
+US01-R00220,US01,Retail customer US01-00220,household,retail,US01-R00220
+US01-R00221,US01,Retail customer US01-00221,household,retail,US01-R00221
+US01-R00222,US01,Retail customer US01-00222,household,retail,US01-R00222
+US01-R00223,US01,Retail customer US01-00223,household,retail,US01-R00223
+US01-R00224,US01,Retail customer US01-00224,household,retail,US01-R00224
+US01-R00225,US01,Retail customer US01-00225,household,retail,US01-R00225
+US01-R00226,US01,Retail customer US01-00226,household,retail,US01-R00226
+US01-R00227,US01,Retail customer US01-00227,household,retail,US01-R00227
+US01-R00228,US01,Retail customer US01-00228,household,retail,US01-R00228
+US01-R00229,US01,Retail customer US01-00229,household,retail,US01-R00229
+US01-R00230,US01,Retail customer US01-00230,household,retail,US01-R00230
+US01-R00231,US01,Retail customer US01-00231,household,retail,US01-R00231
+US01-R00232,US01,Retail customer US01-00232,household,retail,US01-R00232
+US01-R00233,US01,Retail customer US01-00233,household,retail,US01-R00233
+US01-R00234,US01,Retail customer US01-00234,household,retail,US01-R00234
+US01-R00235,US01,Retail customer US01-00235,household,retail,US01-R00235
+US01-R00236,US01,Retail customer US01-00236,household,retail,US01-R00236
+US01-R00237,US01,Retail customer US01-00237,household,retail,US01-R00237
+US01-R00238,US01,Retail customer US01-00238,household,retail,US01-R00238
+US01-R00239,US01,Retail customer US01-00239,household,retail,US01-R00239
+US01-R00240,US01,Retail customer US01-00240,household,retail,US01-R00240
+US01-R00241,US01,Retail customer US01-00241,household,retail,US01-R00241
+US01-R00242,US01,Retail customer US01-00242,household,retail,US01-R00242
+US01-R00243,US01,Retail customer US01-00243,household,retail,US01-R00243
+US01-R00244,US01,Retail customer US01-00244,household,retail,US01-R00244
+US01-R00245,US01,Retail customer US01-00245,household,retail,US01-R00245
+US01-R00246,US01,Retail customer US01-00246,household,retail,US01-R00246
+US01-R00247,US01,Retail customer US01-00247,household,retail,US01-R00247
+US01-R00248,US01,Retail customer US01-00248,household,retail,US01-R00248
+US01-R00249,US01,Retail customer US01-00249,household,retail,US01-R00249
+US01-R00250,US01,Retail customer US01-00250,household,retail,US01-R00250
+US01-R00251,US01,Retail customer US01-00251,household,retail,US01-R00251
+US01-R00252,US01,Retail customer US01-00252,household,retail,US01-R00252
+US01-R00253,US01,Retail customer US01-00253,household,retail,US01-R00253
+US01-R00254,US01,Retail customer US01-00254,household,retail,US01-R00254
+US01-R00255,US01,Retail customer US01-00255,household,retail,US01-R00255
+US01-R00256,US01,Retail customer US01-00256,household,retail,US01-R00256
+US01-R00257,US01,Retail customer US01-00257,household,retail,US01-R00257
+US01-R00258,US01,Retail customer US01-00258,household,retail,US01-R00258
+US01-R00259,US01,Retail customer US01-00259,household,retail,US01-R00259
+US01-R00260,US01,Retail customer US01-00260,household,retail,US01-R00260
+US01-R00261,US01,Retail customer US01-00261,household,retail,US01-R00261
+US01-R00262,US01,Retail customer US01-00262,household,retail,US01-R00262
+US01-R00263,US01,Retail customer US01-00263,household,retail,US01-R00263
+US01-R00264,US01,Retail customer US01-00264,household,retail,US01-R00264
+US01-R00265,US01,Retail customer US01-00265,household,retail,US01-R00265
+US01-R00266,US01,Retail customer US01-00266,household,retail,US01-R00266
+US01-R00267,US01,Retail customer US01-00267,household,retail,US01-R00267
+US01-R00268,US01,Retail customer US01-00268,household,retail,US01-R00268
+US01-R00269,US01,Retail customer US01-00269,household,retail,US01-R00269
+US01-R00270,US01,Retail customer US01-00270,household,retail,US01-R00270
+US01-R00271,US01,Retail customer US01-00271,household,retail,US01-R00271
+US01-R00272,US01,Retail customer US01-00272,household,retail,US01-R00272
+US01-R00273,US01,Retail customer US01-00273,household,retail,US01-R00273
+US01-R00274,US01,Retail customer US01-00274,household,retail,US01-R00274
+US01-R00275,US01,Retail customer US01-00275,household,retail,US01-R00275
+US01-R00276,US01,Retail customer US01-00276,household,retail,US01-R00276
+US01-R00277,US01,Retail customer US01-00277,household,retail,US01-R00277
+US01-R00278,US01,Retail customer US01-00278,household,retail,US01-R00278
+US01-R00279,US01,Retail customer US01-00279,household,retail,US01-R00279
+US01-R00280,US01,Retail customer US01-00280,household,retail,US01-R00280
+US01-R00281,US01,Retail customer US01-00281,household,retail,US01-R00281
+US01-R00282,US01,Retail customer US01-00282,household,retail,US01-R00282
+US01-R00283,US01,Retail customer US01-00283,household,retail,US01-R00283
+US01-R00284,US01,Retail customer US01-00284,household,retail,US01-R00284
+US01-R00285,US01,Retail customer US01-00285,household,retail,US01-R00285
+US01-R00286,US01,Retail customer US01-00286,household,retail,US01-R00286
+US01-R00287,US01,Retail customer US01-00287,household,retail,US01-R00287
+US01-R00288,US01,Retail customer US01-00288,household,retail,US01-R00288
+US01-R00289,US01,Retail customer US01-00289,household,retail,US01-R00289
+US01-R00290,US01,Retail customer US01-00290,household,retail,US01-R00290
+US01-R00291,US01,Retail customer US01-00291,household,retail,US01-R00291
+US01-R00292,US01,Retail customer US01-00292,household,retail,US01-R00292
+US01-R00293,US01,Retail customer US01-00293,household,retail,US01-R00293
+US01-R00294,US01,Retail customer US01-00294,household,retail,US01-R00294
+US01-R00295,US01,Retail customer US01-00295,household,retail,US01-R00295
+US01-R00296,US01,Retail customer US01-00296,household,retail,US01-R00296
+US01-R00297,US01,Retail customer US01-00297,household,retail,US01-R00297
+US01-R00298,US01,Retail customer US01-00298,household,retail,US01-R00298
+US01-R00299,US01,Retail customer US01-00299,household,retail,US01-R00299
+US01-R00300,US01,Retail customer US01-00300,household,retail,US01-R00300
+US01-R00301,US01,Retail customer US01-00301,household,retail,US01-R00301
+US01-R00302,US01,Retail customer US01-00302,household,retail,US01-R00302
+US01-R00303,US01,Retail customer US01-00303,household,retail,US01-R00303
+US01-R00304,US01,Retail customer US01-00304,household,retail,US01-R00304
+US01-R00305,US01,Retail customer US01-00305,household,retail,US01-R00305
+US01-R00306,US01,Retail customer US01-00306,household,retail,US01-R00306
+US01-R00307,US01,Retail customer US01-00307,household,retail,US01-R00307
+US01-R00308,US01,Retail customer US01-00308,household,retail,US01-R00308
+US01-R00309,US01,Retail customer US01-00309,household,retail,US01-R00309
+US01-R00310,US01,Retail customer US01-00310,household,retail,US01-R00310
+US01-R00311,US01,Retail customer US01-00311,household,retail,US01-R00311
+US01-R00312,US01,Retail customer US01-00312,household,retail,US01-R00312
+US01-R00313,US01,Retail customer US01-00313,household,retail,US01-R00313
+US01-R00314,US01,Retail customer US01-00314,household,retail,US01-R00314
+US01-R00315,US01,Retail customer US01-00315,household,retail,US01-R00315
+US01-R00316,US01,Retail customer US01-00316,household,retail,US01-R00316
+US01-R00317,US01,Retail customer US01-00317,household,retail,US01-R00317
+US01-R00318,US01,Retail customer US01-00318,household,retail,US01-R00318
+US01-R00319,US01,Retail customer US01-00319,household,retail,US01-R00319
+US01-R00320,US01,Retail customer US01-00320,household,retail,US01-R00320
+US01-R00321,US01,Retail customer US01-00321,household,retail,US01-R00321
+US01-R00322,US01,Retail customer US01-00322,household,retail,US01-R00322
+US01-R00323,US01,Retail customer US01-00323,household,retail,US01-R00323
+US01-R00324,US01,Retail customer US01-00324,household,retail,US01-R00324
+US01-R00325,US01,Retail customer US01-00325,household,retail,US01-R00325
+US01-R00326,US01,Retail customer US01-00326,household,retail,US01-R00326
+US01-R00327,US01,Retail customer US01-00327,household,retail,US01-R00327
+US01-R00328,US01,Retail customer US01-00328,household,retail,US01-R00328
+US01-R00329,US01,Retail customer US01-00329,household,retail,US01-R00329
+US01-R00330,US01,Retail customer US01-00330,household,retail,US01-R00330
+US01-R00331,US01,Retail customer US01-00331,household,retail,US01-R00331
+US01-R00332,US01,Retail customer US01-00332,household,retail,US01-R00332
+US01-R00333,US01,Retail customer US01-00333,household,retail,US01-R00333
+US01-R00334,US01,Retail customer US01-00334,household,retail,US01-R00334
+US01-R00335,US01,Retail customer US01-00335,household,retail,US01-R00335
+US01-R00336,US01,Retail customer US01-00336,household,retail,US01-R00336
+US01-R00337,US01,Retail customer US01-00337,household,retail,US01-R00337
+US01-R00338,US01,Retail customer US01-00338,household,retail,US01-R00338
+US01-R00339,US01,Retail customer US01-00339,household,retail,US01-R00339
+US01-R00340,US01,Retail customer US01-00340,household,retail,US01-R00340
+US01-R00341,US01,Retail customer US01-00341,household,retail,US01-R00341
+US01-R00342,US01,Retail customer US01-00342,household,retail,US01-R00342
+US01-R00343,US01,Retail customer US01-00343,household,retail,US01-R00343
+US01-R00344,US01,Retail customer US01-00344,household,retail,US01-R00344
+US01-R00345,US01,Retail customer US01-00345,household,retail,US01-R00345
+US01-R00346,US01,Retail customer US01-00346,household,retail,US01-R00346
+US01-R00347,US01,Retail customer US01-00347,household,retail,US01-R00347
+US01-R00348,US01,Retail customer US01-00348,household,retail,US01-R00348
+US01-R00349,US01,Retail customer US01-00349,household,retail,US01-R00349
+US01-R00350,US01,Retail customer US01-00350,household,retail,US01-R00350
+US01-R00351,US01,Retail customer US01-00351,household,retail,US01-R00351
+US01-R00352,US01,Retail customer US01-00352,household,retail,US01-R00352
+US01-R00353,US01,Retail customer US01-00353,household,retail,US01-R00353
+US01-R00354,US01,Retail customer US01-00354,household,retail,US01-R00354
+US01-R00355,US01,Retail customer US01-00355,household,retail,US01-R00355
+US01-R00356,US01,Retail customer US01-00356,household,retail,US01-R00356
+US01-R00357,US01,Retail customer US01-00357,household,retail,US01-R00357
+US01-R00358,US01,Retail customer US01-00358,household,retail,US01-R00358
+US01-R00359,US01,Retail customer US01-00359,household,retail,US01-R00359
+US01-R00360,US01,Retail customer US01-00360,household,retail,US01-R00360
+US01-R00361,US01,Retail customer US01-00361,household,retail,US01-R00361
+US01-R00362,US01,Retail customer US01-00362,household,retail,US01-R00362
+US01-R00363,US01,Retail customer US01-00363,household,retail,US01-R00363
+US01-R00364,US01,Retail customer US01-00364,household,retail,US01-R00364
+US01-R00365,US01,Retail customer US01-00365,household,retail,US01-R00365
+US01-R00366,US01,Retail customer US01-00366,household,retail,US01-R00366
+US01-R00367,US01,Retail customer US01-00367,household,retail,US01-R00367
+US01-R00368,US01,Retail customer US01-00368,household,retail,US01-R00368
+US01-R00369,US01,Retail customer US01-00369,household,retail,US01-R00369
+US01-R00370,US01,Retail customer US01-00370,household,retail,US01-R00370
+US01-R00371,US01,Retail customer US01-00371,household,retail,US01-R00371
+US01-R00372,US01,Retail customer US01-00372,household,retail,US01-R00372
+US01-R00373,US01,Retail customer US01-00373,household,retail,US01-R00373
+US01-R00374,US01,Retail customer US01-00374,household,retail,US01-R00374
+US01-R00375,US01,Retail customer US01-00375,household,retail,US01-R00375
+US01-R00376,US01,Retail customer US01-00376,household,retail,US01-R00376
+US01-R00377,US01,Retail customer US01-00377,household,retail,US01-R00377
+US01-R00378,US01,Retail customer US01-00378,household,retail,US01-R00378
+US01-R00379,US01,Retail customer US01-00379,household,retail,US01-R00379
+US01-R00380,US01,Retail customer US01-00380,household,retail,US01-R00380
+US01-R00381,US01,Retail customer US01-00381,household,retail,US01-R00381
+US01-R00382,US01,Retail customer US01-00382,household,retail,US01-R00382
+US01-R00383,US01,Retail customer US01-00383,household,retail,US01-R00383
+US01-R00384,US01,Retail customer US01-00384,household,retail,US01-R00384
+US01-R00385,US01,Retail customer US01-00385,household,retail,US01-R00385
+US01-R00386,US01,Retail customer US01-00386,household,retail,US01-R00386
+US01-R00387,US01,Retail customer US01-00387,household,retail,US01-R00387
+US01-R00388,US01,Retail customer US01-00388,household,retail,US01-R00388
+US01-R00389,US01,Retail customer US01-00389,household,retail,US01-R00389
+US01-R00390,US01,Retail customer US01-00390,household,retail,US01-R00390
+US01-R00391,US01,Retail customer US01-00391,household,retail,US01-R00391
+US01-R00392,US01,Retail customer US01-00392,household,retail,US01-R00392
+US01-R00393,US01,Retail customer US01-00393,household,retail,US01-R00393
+US01-R00394,US01,Retail customer US01-00394,household,retail,US01-R00394
+US01-R00395,US01,Retail customer US01-00395,household,retail,US01-R00395
+US01-R00396,US01,Retail customer US01-00396,household,retail,US01-R00396
+US01-R00397,US01,Retail customer US01-00397,household,retail,US01-R00397
+US01-R00398,US01,Retail customer US01-00398,household,retail,US01-R00398
+US01-R00399,US01,Retail customer US01-00399,household,retail,US01-R00399
+US01-R00400,US01,Retail customer US01-00400,household,retail,US01-R00400
+US01-R00401,US01,Retail customer US01-00401,household,retail,US01-R00401
+US01-R00402,US01,Retail customer US01-00402,household,retail,US01-R00402
+US01-R00403,US01,Retail customer US01-00403,household,retail,US01-R00403
+US01-R00404,US01,Retail customer US01-00404,household,retail,US01-R00404
+US01-R00405,US01,Retail customer US01-00405,household,retail,US01-R00405
+US01-R00406,US01,Retail customer US01-00406,household,retail,US01-R00406
+US01-R00407,US01,Retail customer US01-00407,household,retail,US01-R00407
+US01-R00408,US01,Retail customer US01-00408,household,retail,US01-R00408
+US01-R00409,US01,Retail customer US01-00409,household,retail,US01-R00409
+US01-R00410,US01,Retail customer US01-00410,household,retail,US01-R00410
+US01-R00411,US01,Retail customer US01-00411,household,retail,US01-R00411
+US01-R00412,US01,Retail customer US01-00412,household,retail,US01-R00412
+US01-R00413,US01,Retail customer US01-00413,household,retail,US01-R00413
+US01-R00414,US01,Retail customer US01-00414,household,retail,US01-R00414
+US01-R00415,US01,Retail customer US01-00415,household,retail,US01-R00415
+US01-R00416,US01,Retail customer US01-00416,household,retail,US01-R00416
+US01-R00417,US01,Retail customer US01-00417,household,retail,US01-R00417
+US01-R00418,US01,Retail customer US01-00418,household,retail,US01-R00418
+US01-R00419,US01,Retail customer US01-00419,household,retail,US01-R00419
+US01-R00420,US01,Retail customer US01-00420,household,retail,US01-R00420
+US01-R00421,US01,Retail customer US01-00421,household,retail,US01-R00421
+US01-R00422,US01,Retail customer US01-00422,household,retail,US01-R00422
+US01-R00423,US01,Retail customer US01-00423,household,retail,US01-R00423
+US01-R00424,US01,Retail customer US01-00424,household,retail,US01-R00424
+US01-R00425,US01,Retail customer US01-00425,household,retail,US01-R00425
+US01-R00426,US01,Retail customer US01-00426,household,retail,US01-R00426
+US01-R00427,US01,Retail customer US01-00427,household,retail,US01-R00427
+US01-R00428,US01,Retail customer US01-00428,household,retail,US01-R00428
+US01-R00429,US01,Retail customer US01-00429,household,retail,US01-R00429
+US01-R00430,US01,Retail customer US01-00430,household,retail,US01-R00430
+US01-R00431,US01,Retail customer US01-00431,household,retail,US01-R00431
+US01-R00432,US01,Retail customer US01-00432,household,retail,US01-R00432
+US01-R00433,US01,Retail customer US01-00433,household,retail,US01-R00433
+US01-R00434,US01,Retail customer US01-00434,household,retail,US01-R00434
+US01-R00435,US01,Retail customer US01-00435,household,retail,US01-R00435
+US01-R00436,US01,Retail customer US01-00436,household,retail,US01-R00436
+US01-R00437,US01,Retail customer US01-00437,household,retail,US01-R00437
+US01-R00438,US01,Retail customer US01-00438,household,retail,US01-R00438
+US01-R00439,US01,Retail customer US01-00439,household,retail,US01-R00439
+US01-R00440,US01,Retail customer US01-00440,household,retail,US01-R00440
+US01-R00441,US01,Retail customer US01-00441,household,retail,US01-R00441
+US01-R00442,US01,Retail customer US01-00442,household,retail,US01-R00442
+US01-R00443,US01,Retail customer US01-00443,household,retail,US01-R00443
+US01-R00444,US01,Retail customer US01-00444,household,retail,US01-R00444
+US01-R00445,US01,Retail customer US01-00445,household,retail,US01-R00445
+US01-R00446,US01,Retail customer US01-00446,household,retail,US01-R00446
+US01-R00447,US01,Retail customer US01-00447,household,retail,US01-R00447
+US01-R00448,US01,Retail customer US01-00448,household,retail,US01-R00448
+US01-R00449,US01,Retail customer US01-00449,household,retail,US01-R00449
+US01-C0005,US01,Corporate US01-C0005,manufacturing,corporate,OWN-US01-C0005
+US01-C0002,US01,Corporate US01-C0002,trade,corporate,OWN-US01-C0002
+US01-C0014,US01,Corporate US01-C0014,manufacturing,corporate,OWN-US01-C0014
+US01-C0022,US01,Corporate US01-C0022,real_estate,corporate,OWN-US01-C0022
+US01-C0011,US01,Corporate US01-C0011,logistics,corporate,OWN-US01-C0011
+US01-C0010,US01,Corporate US01-C0010,healthcare,corporate,OWN-US01-C0010
+US01-C0016,US01,Corporate US01-C0016,technology,corporate,OWN-US01-C0016
+US01-C0004,US01,Corporate US01-C0004,trade,corporate,OWN-US01-C0004
+US01-C0000,US01,Corporate US01-C0000,hospitality,corporate,OWN-US01-C0000
+US01-C0017,US01,Corporate US01-C0017,construction,corporate,OWN-US01-C0017
+US01-C0028,US01,Corporate US01-C0028,manufacturing,corporate,OWN-US01-C0028
+US01-C0024,US01,Corporate US01-C0024,technology,corporate,OWN-US01-C0024
+US01-C0009,US01,Corporate US01-C0009,healthcare,corporate,OWN-US01-C0009
+US01-C0029,US01,Corporate US01-C0029,logistics,corporate,OWN-US01-C0029
+US01-C0018,US01,Corporate US01-C0018,real_estate,corporate,OWN-US01-C0018
+US01-C0006,US01,Corporate US01-C0006,trade,corporate,OWN-US01-C0006
+US01-C0023,US01,Corporate US01-C0023,hospitality,corporate,OWN-US01-C0023
+US01-C0001,US01,Corporate US01-C0001,manufacturing,corporate,OWN-US01-C0001
+US01-C0025,US01,Corporate US01-C0025,real_estate,corporate,OWN-US01-C0025
+US01-C0019,US01,Corporate US01-C0019,technology,corporate,OWN-US01-C0019
+US01-C0013,US01,Corporate US01-C0013,construction,corporate,OWN-US01-C0013
+US01-C0026,US01,Corporate US01-C0026,logistics,corporate,OWN-US01-C0026
+US01-C0015,US01,Corporate US01-C0015,healthcare,corporate,OWN-US01-C0015
+US01-C0003,US01,Corporate US01-C0003,trade,corporate,OWN-US01-C0003
+US01-C0021,US01,Corporate US01-C0021,hospitality,corporate,OWN-US01-C0021
+US01-C0012,US01,Corporate US01-C0012,healthcare,corporate,OWN-US01-C0012
+US01-C0027,US01,Corporate US01-C0027,logistics,corporate,OWN-US01-C0027
+US01-C0008,US01,Corporate US01-C0008,technology,corporate,OWN-US01-C0008
+US01-C0007,US01,Corporate US01-C0007,real_estate,corporate,OWN-US01-C0007
+US01-C0020,US01,Corporate US01-C0020,construction,corporate,OWN-US01-C0020
+US01-S0026,US01,SME US01-S0026,manufacturing,sme,OWN-US01-S0026
+US01-S0056,US01,SME US01-S0056,manufacturing,sme,OWN-US01-S0056
+US01-S0045,US01,SME US01-S0045,manufacturing,sme,OWN-US01-S0045
+US01-S0085,US01,SME US01-S0085,manufacturing,sme,OWN-US01-S0085
+US01-S0066,US01,SME US01-S0066,manufacturing,sme,OWN-US01-S0066
+US01-S0105,US01,SME US01-S0105,manufacturing,sme,OWN-US01-S0105
+US01-S0115,US01,SME US01-S0115,manufacturing,sme,OWN-US01-S0115
+US01-S0061,US01,SME US01-S0061,trade,sme,OWN-US01-S0061
+US01-S0098,US01,SME US01-S0098,manufacturing,sme,OWN-US01-S0098
+US01-S0071,US01,SME US01-S0071,trade,sme,OWN-US01-S0071
+US01-S0086,US01,SME US01-S0086,hospitality,sme,OWN-US01-S0086
+US01-S0106,US01,SME US01-S0106,manufacturing,sme,OWN-US01-S0106
+US01-S0006,US01,SME US01-S0006,trade,sme,OWN-US01-S0006
+US01-S0042,US01,SME US01-S0042,hospitality,sme,OWN-US01-S0042
+US01-S0112,US01,SME US01-S0112,manufacturing,sme,OWN-US01-S0112
+US01-S0036,US01,SME US01-S0036,trade,sme,OWN-US01-S0036
+US01-S0033,US01,SME US01-S0033,hospitality,sme,OWN-US01-S0033
+US01-S0076,US01,SME US01-S0076,manufacturing,sme,OWN-US01-S0076
+US01-S0068,US01,SME US01-S0068,trade,sme,OWN-US01-S0068
+US01-S0020,US01,SME US01-S0020,hospitality,sme,OWN-US01-S0020
+US01-S0012,US01,SME US01-S0012,manufacturing,sme,OWN-US01-S0012
+US01-S0097,US01,SME US01-S0097,trade,sme,OWN-US01-S0097
+US01-S0079,US01,SME US01-S0079,hospitality,sme,OWN-US01-S0079
+US01-S0118,US01,SME US01-S0118,construction,sme,OWN-US01-S0118
+US01-S0001,US01,SME US01-S0001,manufacturing,sme,OWN-US01-S0001
+US01-S0100,US01,SME US01-S0100,trade,sme,OWN-US01-S0100
+US01-S0048,US01,SME US01-S0048,hospitality,sme,OWN-US01-S0048
+US01-S0082,US01,SME US01-S0082,construction,sme,OWN-US01-S0082
+US01-S0024,US01,SME US01-S0024,manufacturing,sme,OWN-US01-S0024
+US01-S0017,US01,SME US01-S0017,trade,sme,OWN-US01-S0017
+US01-S0054,US01,SME US01-S0054,hospitality,sme,OWN-US01-S0054
+US01-S0019,US01,SME US01-S0019,construction,sme,OWN-US01-S0019
+US01-S0081,US01,SME US01-S0081,manufacturing,sme,OWN-US01-S0081
+US01-S0022,US01,SME US01-S0022,trade,sme,OWN-US01-S0022
+US01-S0009,US01,SME US01-S0009,hospitality,sme,OWN-US01-S0009
+US01-S0057,US01,SME US01-S0057,construction,sme,OWN-US01-S0057
+US01-S0088,US01,SME US01-S0088,manufacturing,sme,OWN-US01-S0088
+US01-S0119,US01,SME US01-S0119,trade,sme,OWN-US01-S0119
+US01-S0037,US01,SME US01-S0037,hospitality,sme,OWN-US01-S0037
+US01-S0041,US01,SME US01-S0041,construction,sme,OWN-US01-S0041
+US01-S0021,US01,SME US01-S0021,manufacturing,sme,OWN-US01-S0021
+US01-S0018,US01,SME US01-S0018,trade,sme,OWN-US01-S0018
+US01-S0091,US01,SME US01-S0091,hospitality,sme,OWN-US01-S0091
+US01-S0032,US01,SME US01-S0032,construction,sme,OWN-US01-S0032
+US01-S0003,US01,SME US01-S0003,manufacturing,sme,OWN-US01-S0003
+US01-S0004,US01,SME US01-S0004,trade,sme,OWN-US01-S0004
+US01-S0090,US01,SME US01-S0090,hospitality,sme,OWN-US01-S0090
+US01-S0072,US01,SME US01-S0072,construction,sme,OWN-US01-S0072
+US01-S0055,US01,SME US01-S0055,manufacturing,sme,OWN-US01-S0055
+US01-S0078,US01,SME US01-S0078,hospitality,sme,OWN-US01-S0078
+US01-S0117,US01,SME US01-S0117,trade,sme,OWN-US01-S0117
+US01-S0000,US01,SME US01-S0000,construction,sme,OWN-US01-S0000
+US01-S0044,US01,SME US01-S0044,manufacturing,sme,OWN-US01-S0044
+US01-S0043,US01,SME US01-S0043,trade,sme,OWN-US01-S0043
+US01-S0011,US01,SME US01-S0011,hospitality,sme,OWN-US01-S0011
+US01-S0116,US01,SME US01-S0116,construction,sme,OWN-US01-S0116
+US01-S0087,US01,SME US01-S0087,manufacturing,sme,OWN-US01-S0087
+US01-S0007,US01,SME US01-S0007,hospitality,sme,OWN-US01-S0007
+US01-S0027,US01,SME US01-S0027,trade,sme,OWN-US01-S0027
+US01-S0016,US01,SME US01-S0016,construction,sme,OWN-US01-S0016
+US01-S0070,US01,SME US01-S0070,manufacturing,sme,OWN-US01-S0070
+US01-S0069,US01,SME US01-S0069,hospitality,sme,OWN-US01-S0069
+US01-S0111,US01,SME US01-S0111,trade,sme,OWN-US01-S0111
+US01-S0108,US01,SME US01-S0108,construction,sme,OWN-US01-S0108
+US01-S0028,US01,SME US01-S0028,manufacturing,sme,OWN-US01-S0028
+US01-S0046,US01,SME US01-S0046,healthcare,sme,OWN-US01-S0046
+US01-S0031,US01,SME US01-S0031,trade,sme,OWN-US01-S0031
+US01-S0083,US01,SME US01-S0083,hospitality,sme,OWN-US01-S0083
+US01-S0047,US01,SME US01-S0047,logistics,sme,OWN-US01-S0047
+US01-S0114,US01,SME US01-S0114,construction,sme,OWN-US01-S0114
+US01-S0025,US01,SME US01-S0025,manufacturing,sme,OWN-US01-S0025
+US01-S0030,US01,SME US01-S0030,healthcare,sme,OWN-US01-S0030
+US01-S0064,US01,SME US01-S0064,real_estate,sme,OWN-US01-S0064
+US01-S0084,US01,SME US01-S0084,hospitality,sme,OWN-US01-S0084
+US01-S0034,US01,SME US01-S0034,trade,sme,OWN-US01-S0034
+US01-S0080,US01,SME US01-S0080,logistics,sme,OWN-US01-S0080
+US01-S0104,US01,SME US01-S0104,construction,sme,OWN-US01-S0104
+US01-S0110,US01,SME US01-S0110,manufacturing,sme,OWN-US01-S0110
+US01-S0067,US01,SME US01-S0067,real_estate,sme,OWN-US01-S0067
+US01-S0096,US01,SME US01-S0096,healthcare,sme,OWN-US01-S0096
+US01-S0089,US01,SME US01-S0089,trade,sme,OWN-US01-S0089
+US01-S0063,US01,SME US01-S0063,hospitality,sme,OWN-US01-S0063
+US01-S0099,US01,SME US01-S0099,logistics,sme,OWN-US01-S0099
+US01-S0065,US01,SME US01-S0065,construction,sme,OWN-US01-S0065
+US01-S0051,US01,SME US01-S0051,manufacturing,sme,OWN-US01-S0051
+US01-S0073,US01,SME US01-S0073,healthcare,sme,OWN-US01-S0073
+US01-S0015,US01,SME US01-S0015,trade,sme,OWN-US01-S0015
+US01-S0075,US01,SME US01-S0075,hospitality,sme,OWN-US01-S0075
+US01-S0005,US01,SME US01-S0005,real_estate,sme,OWN-US01-S0005
+US01-S0102,US01,SME US01-S0102,logistics,sme,OWN-US01-S0102
+US01-S0002,US01,SME US01-S0002,construction,sme,OWN-US01-S0002
+US01-S0109,US01,SME US01-S0109,manufacturing,sme,OWN-US01-S0109
+US01-S0053,US01,SME US01-S0053,logistics,sme,OWN-US01-S0053
+US01-S0074,US01,SME US01-S0074,real_estate,sme,OWN-US01-S0074
+US01-S0008,US01,SME US01-S0008,hospitality,sme,OWN-US01-S0008
+US01-S0059,US01,SME US01-S0059,trade,sme,OWN-US01-S0059
+US01-S0092,US01,SME US01-S0092,healthcare,sme,OWN-US01-S0092
+US01-S0039,US01,SME US01-S0039,construction,sme,OWN-US01-S0039
+US01-S0060,US01,SME US01-S0060,manufacturing,sme,OWN-US01-S0060
+US01-S0062,US01,SME US01-S0062,healthcare,sme,OWN-US01-S0062
+US01-S0014,US01,SME US01-S0014,trade,sme,OWN-US01-S0014
+US01-S0113,US01,SME US01-S0113,hospitality,sme,OWN-US01-S0113
+US01-S0094,US01,SME US01-S0094,real_estate,sme,OWN-US01-S0094
+US01-S0093,US01,SME US01-S0093,logistics,sme,OWN-US01-S0093
+US01-S0023,US01,SME US01-S0023,technology,sme,OWN-US01-S0023
+US01-S0013,US01,SME US01-S0013,construction,sme,OWN-US01-S0013
+US01-S0052,US01,SME US01-S0052,healthcare,sme,OWN-US01-S0052
+US01-S0095,US01,SME US01-S0095,trade,sme,OWN-US01-S0095
+US01-S0049,US01,SME US01-S0049,logistics,sme,OWN-US01-S0049
+US01-S0107,US01,SME US01-S0107,real_estate,sme,OWN-US01-S0107
+US01-S0040,US01,SME US01-S0040,hospitality,sme,OWN-US01-S0040
+US01-S0103,US01,SME US01-S0103,manufacturing,sme,OWN-US01-S0103
+US01-S0077,US01,SME US01-S0077,construction,sme,OWN-US01-S0077
+US01-S0101,US01,SME US01-S0101,technology,sme,OWN-US01-S0101
+US01-S0050,US01,SME US01-S0050,hospitality,sme,OWN-US01-S0050
+US01-S0058,US01,SME US01-S0058,real_estate,sme,OWN-US01-S0058
+US01-S0029,US01,SME US01-S0029,manufacturing,sme,OWN-US01-S0029
+US01-S0010,US01,SME US01-S0010,trade,sme,OWN-US01-S0010
+US01-S0035,US01,SME US01-S0035,logistics,sme,OWN-US01-S0035
+US01-S0038,US01,SME US01-S0038,healthcare,sme,OWN-US01-S0038

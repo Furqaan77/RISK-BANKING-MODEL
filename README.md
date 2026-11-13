@@ -16,6 +16,10 @@ New here? Read `CLAUDE.md`, then `HANDOFF.md`.
 | `credit-policy-uae/` | Retail credit policy, **UAE Islamic bank** |
 | `credit-policy-uae-conventional/` | Retail credit policy, **UAE conventional bank**, plus `market-position/` (comparison with 33 UAE banks) |
 | `credit-policy-uae-finance-company/` | Retail credit policy, **UAE finance company** (pilot) |
+| `master-rulebook/` | US/UK/UAE master rulebook + 12-bank comparison (Excel with live labels) and one-page bank checks |
+| `risk-platform/` | Working skeleton of the AI Risk Platform on a fictional bank (run `python run_demo.py`) |
+| `_bmad-output/planning-artifacts/blueprint/` | Platform blueprint v1 (Markdown + PDF) |
+| `_bmad-output/planning-artifacts/research/` | BMAD deep-research runs behind the master rulebook |
 | `docs/regulatory/` | Regulatory research (CBUAE, UK, US/NY) |
 | `research/` | Source research documents supplied by the user |
 | `_bmad/`, `_bmad-output/` | BMAD Method install and planning artifacts (PRD, architecture, epics, discovery answers) |

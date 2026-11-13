@@ -1,0 +1,17 @@
+param_id,parameter,UAE rule (hard limit or requirement),type,citation,confidence
+UAE-R01,Debt burden ratio (DBR),All monthly loan payments max 50% of gross salary (30% for retirees),hard cap,CBUAE Regulation 29/2011 (retail loans),H
+UAE-R02,Personal loan size,Max 20x monthly salary,hard cap,CBUAE Regulation 29/2011,H
+UAE-R03,Personal loan term,Max 48 months,hard cap,CBUAE Regulation 29/2011,H
+UAE-R04,Top-up / refinance,Top-up only after 12 months of clean repayment (verify current wording),requirement,CBUAE Regulation 29/2011,M
+UAE-R05,Auto loan,Max 80% of vehicle value (min 20% down); max 60 months,hard cap,CBUAE Regulation 29/2011,H
+UAE-R06,Mortgage LTV (first home up to AED 5m),Nationals 85% / expats 80%; above AED 5m 75% / 70%; second home 65% / 60%; off-plan 50%,hard cap,CBUAE Mortgage Regulation (Notice 31/2013),H
+UAE-R07,Mortgage term and DBR,Max 25 years; DBR 50% applies,hard cap,CBUAE Mortgage Regulation; CBUAE FSR 2025,H
+UAE-R08,Mortgage loan-to-income,Max 8x annual income (nationals) / 7x (expats) (as reported in FSR),hard cap,CBUAE Financial Stability Report 2025,M
+UAE-R09,Minimum salary,Former minimum salary rule removed (press-reported Nov 2025; verify with CBUAE text),none,Press reports Nov 2025,M
+UAE-R10,Early settlement fee,Max 1% of outstanding; max AED 10,000,hard cap,CBUAE fees standards (Res 96/2019),M
+UAE-R11,Late fees,Personal max AED 200; auto max AED 500; home max AED 700; card max AED 230 (all + VAT),hard cap,CBUAE fees standards (Res 96/2019),M
+UAE-R12,Consumer protection,Key Facts Statement; 5 business-day cooling-off; security cheques max 120% of loan; no blank cheques; disbursement within 10 days,requirement,CBUAE Consumer Protection Regulation and Standards,H/M
+UAE-R13,Credit bureau,AECB credit report required before lending,requirement,CBUAE / AECB,H
+UAE-R14,Provisioning (IFRS 9),Stage 2 at 30 days past due (significant increase in credit risk); default (Stage 3) at 90 days past due,requirement,CBUAE Credit Risk Management Regulation C 3/2024 and IFRS 9,H/M
+UAE-R15,Nationals vs expats,Different LTV caps for nationals and expats (see UAE-R06); banks may set different limits by nationality,rule,CBUAE Mortgage Regulation,H
+UAE-R16,Age,No CBUAE hard age limit found; banks set age at maturity (commonly 65 nationals / 60 expats) (verify),none,Bank policies,M

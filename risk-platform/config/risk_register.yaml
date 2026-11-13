@@ -1,0 +1,14 @@
+# Risks NOT calculated in v1 (AD-21). No scores are assigned. Status is honest.
+risks:
+  - {risk_id: RR-01, category: Market risk, owner: Treasurer, entities: [UAE01, UK01, US01], controls: [Trading limits (illustrative)], evidence: none, proposed_metrics: [Position value, FX open position, PV01], status: not implemented}
+  - {risk_id: RR-02, category: Liquidity risk, owner: Treasurer, entities: [UAE01, UK01, US01], controls: [Funding plan], evidence: none, proposed_metrics: [Cash surplus/shortfall by horizon under deposit run-off], status: not implemented}
+  - {risk_id: RR-03, category: Operational risk, owner: COO, entities: [UAE01, UK01, US01], controls: [Incident management], evidence: none, proposed_metrics: [Severe incidents, overdue remediation], status: not implemented}
+  - {risk_id: RR-04, category: Third-party vendor risk, owner: Head of Procurement, entities: [UAE01, UK01, US01], controls: [Vendor due diligence], evidence: none, proposed_metrics: [Critical services per vendor, concentration], status: not implemented}
+  - {risk_id: RR-05, category: Model risk, owner: Head of Model Risk, entities: [UAE01, UK01, US01], controls: [Model register, validation], evidence: "grading scorecard is illustrative", proposed_metrics: [Overdue reviews, monitoring breaches], status: partially (grading labelled illustrative)}
+  - {risk_id: RR-06, category: Conduct risk, owner: Head of Compliance, entities: [UK01, US01], controls: [Consumer Duty / UDAAP reviews], evidence: none, proposed_metrics: [Complaints, outcome testing], status: not implemented}
+  - {risk_id: RR-07, category: Compliance risk, owner: Head of Compliance, entities: [UAE01, UK01, US01], controls: [Regulator packs in policy engine], evidence: "regulator layer enforced at decision", proposed_metrics: [Rule breaches, pack freshness], status: partially (credit rules only)}
+  - {risk_id: RR-08, category: Financial crime risk, owner: MLRO, entities: [UAE01, UK01, US01], controls: [Sanctions/adverse media screening via external APIs (planned)], evidence: none, proposed_metrics: [Screening hits, overdue reviews], status: not implemented}
+  - {risk_id: RR-09, category: Cyber risk, owner: CISO, entities: [UAE01, UK01, US01], controls: [Egress deny-by-default], evidence: none, proposed_metrics: [Critical vulnerabilities open], status: not implemented}
+  - {risk_id: RR-10, category: Strategic risk, owner: CEO, entities: [UAE01, UK01, US01], controls: [Board risk appetite], evidence: none, proposed_metrics: [Plan vs actual], status: not implemented}
+  - {risk_id: RR-11, category: Reputational risk, owner: Head of Communications, entities: [UAE01, UK01, US01], controls: [], evidence: none, proposed_metrics: [Adverse media volume], status: not implemented}
+  - {risk_id: RR-12, category: Climate risk, owner: CRO, entities: [UAE01, UK01, US01], controls: [], evidence: none, proposed_metrics: [Physical/transition exposure by sector], status: not implemented}

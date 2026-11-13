@@ -1,0 +1,67 @@
+# One file fixes the whole run (AD-22). Same file -> same results hash.
+# Every value here is ILLUSTRATIVE unless marked otherwise (AD-17).
+run:
+  name: demo-group-skeleton
+  data_version: synth-v1
+  seed: 20261113
+  reporting_date: "2026-09-30"
+  reporting_currency: USD
+
+sizes:                 # small skeleton defaults; raise later
+  retail_facilities_per_entity: 450
+  sme_facilities_per_entity: 120
+  corporate_customers_per_entity: 30
+  new_applications: 200
+
+entities:              # fictional banking group; equity = capital used for limits/stress
+  - {entity_id: UAE01, name: "Demo Bank UAE", country: AE, currency: AED, equity: 6000000000, pack: uae}
+  - {entity_id: UK01,  name: "Demo Bank UK",  country: GB, currency: GBP, equity: 900000000,  pack: uk}
+  - {entity_id: US01,  name: "Demo Bank US",  country: US, currency: USD, equity: 1500000000, pack: us}
+
+fx_to_reporting:       # label: assumed (illustrative, as of reporting date)
+  USD: 1.0
+  AED: 0.2723
+  GBP: 1.27
+
+limits:                # label: assumed. Regulatory values sit in packs; these are bank risk-appetite limits
+  single_borrower_group_pct_of_equity: 25     # Basel-style large-exposure limit, also CBUAE-style
+  large_exposure_reporting_pct_of_equity: 10
+  sector_cap_pct_of_entity_loans:
+    real_estate: 20
+    construction: 15
+    default: 30
+  approval_authority:                          # max facility amount (reporting currency) per approver level
+    credit_officer: 500000
+    senior_credit_officer: 2500000
+    head_of_credit: 10000000
+    credit_committee: 999999999999
+
+grading:               # label: assumed. PD bands per grade 1..10 (upper bound, annual PD)
+  pd_band_upper: [0.003, 0.006, 0.01, 0.017, 0.028, 0.045, 0.075, 0.12, 0.2, 1.0]
+  refer_from_grade: 7
+  decline_recommended_from_grade: 9
+  lgd: {retail_secured: 0.25, retail_unsecured: 0.65, sme: 0.45, corporate: 0.40}
+
+scenarios:             # label: assumed (not calibrated, not supervisory)
+  - id: S0_baseline
+    description: Normal conditions
+    shocks: {}
+  - id: S1_credit_deterioration
+    description: Default probabilities double across all segments (e.g. bad loans 1% -> 2%)
+    shocks: {pd_multiplier: {retail: 2.0, sme: 2.0, corporate: 2.0}}
+  - id: S2_sector_shock
+    description: Real estate and construction PDs x3; collateral values -30%
+    shocks: {pd_multiplier_by_sector: {real_estate: 3.0, construction: 3.0}, collateral_haircut: 0.30}
+  - id: S3_fx_shock
+    description: Reporting currency strengthens; GBP -15% vs USD (translation of UK book)
+    shocks: {fx_change: {GBP: -0.15}}
+  - id: S4_combined
+    description: "Order: FX shock first (translation), then credit deterioration on translated book; no double counting"
+    shocks: {fx_change: {GBP: -0.15}, pd_multiplier: {retail: 2.0, sme: 2.0, corporate: 2.0}}
+
+staging:               # IFRS 9 backstops (real rule, rebuttable): Stage 2 > 30 dpd, Stage 3 > 90 dpd
+  stage2_dpd: 30
+  stage3_dpd: 90
+
+data_quality:
+  bureau_max_age_days: 90

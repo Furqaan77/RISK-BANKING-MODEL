@@ -1,0 +1,16 @@
+param_id,parameter,unit,kind,direction,reg_rule,reg_cap,JPMorgan Chase,Bank of America,Wells Fargo,Citi,notes,confidence
+US-PL-01,Personal loan offered,text,info,higher,No federal rule,,No (selected cardholders only),No,Yes (existing customers 12m+),Yes (new and existing),,H/L
+US-PL-02,Personal loan: maximum amount,USD,risk,higher,No federal cap,,Not offered,Not offered,100000,30000,Citi 50k for existing customers,H
+US-PL-03,Personal loan: lowest APR,%,price,lower,No federal rate cap (36% for military only; states set usury limits),,Not offered,Not offered,6.74,10.24,,H
+US-PL-04,Personal loan: highest APR,%,price,lower,No federal rate cap,,Not offered,Not offered,25.74,18.49,A high top APR usually means the bank accepts riskier customers,H
+US-PL-05,Personal loan: maximum term,months,risk,higher,No federal rule,,Not offered,Not offered,84,60,,H
+US-CC-01,Credit card: lowest purchase APR,%,price,lower,No federal APR cap; CARD Act limits rate increases,,18.49,17.74,18.74,17.49,Mainstream no-fee card of each bank,H
+US-CC-02,Credit card: highest purchase APR,%,price,lower,No federal APR cap,,27.99,27.74,28.74,27.49,,H
+US-CC-03,Credit card: late fee,USD,price,lower,Safe-harbor amount disputed after the 2024 $8 rule was struck down (2025),,40,41,40,41,,H
+US-HL-01,Mortgage: minimum down payment,%,risk,lower,No federal LTV cap; Fannie/Freddie max 97% LTV with mortgage insurance above 80%,3,3,3,3,3,All four lend at the 3% investor limit,H
+US-HL-02,Jumbo mortgage: minimum down payment,%,risk,lower,No federal rule,,15,5,10.01,Not published,,H
+US-HL-03,Mortgage: maximum term,years,risk,higher,Qualified Mortgage max 30 years,30,30,30,40,Not published,Wells Fargo 40-year loans fall outside the Qualified Mortgage safe harbour,H
+US-HL-04,Mortgage: maximum debt-to-income,%,risk,higher,No federal DTI cap since 2021 (QM price test); Fannie Mae automated max 50%,50,Not published,Not published,Not published,43,Citi figure is for HomeRun only,M
+US-AL-01,Auto loans,text,info,higher,No federal cap,,Dealers only (cars <=10 years),Direct; from 5.24% (48-72 months),Dealers only,Not offered,,H
+US-RK-01,Credit card net charge-off rate (3Q26),%,outcome,higher,Charge-off required at 180 days past due (FFIEC),,2.91,3.22,3.73,3.51,Citi = general-purpose cards,H
+US-INFO-01,Consumer loan book (3Q26),USD bn,info,higher,n/a,,645.8,488,401,418,BofA = quarterly average; Citi includes Mexico,H

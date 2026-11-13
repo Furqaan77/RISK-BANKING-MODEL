@@ -1,0 +1,15 @@
+# Regulator layer: UAE (CBUAE). Values from master-rulebook/data/rulebook_uae.csv (label: real; confidence per row).
+meta: {pack: uae, version: "0.1", effective_date: "2026-11-12", source: master-rulebook/data/rulebook_uae.csv}
+rules:
+  - {id: REG.UAE.DBR.001, layer: regulator, applies_to: [retail], measure: dbr_pct, direction: max, limit: 50,
+     condition: "dbr_pct <= 50", severity: knockout, message: "Debt burden ratio above CBUAE 50% cap", source: "CBUAE Reg 29/2011", confidence: H}
+  - {id: REG.UAE.PL.001, layer: regulator, applies_to: [personal_loan], measure: amount_x_income, direction: max, limit: 20,
+     condition: "amount <= 20 * monthly_income", severity: knockout, message: "Personal loan above 20x monthly salary", source: "CBUAE Reg 29/2011", confidence: H}
+  - {id: REG.UAE.PL.002, layer: regulator, applies_to: [personal_loan], measure: term_months, direction: max, limit: 48,
+     condition: "term_months <= 48", severity: knockout, message: "Personal loan term above 48 months", source: "CBUAE Reg 29/2011", confidence: H}
+  - {id: REG.UAE.HL.001, layer: regulator, applies_to: [mortgage], measure: ltv_pct, direction: max, limit: 85,
+     condition: "ltv_pct <= (85 if nationality == 'national' else 80)", severity: knockout, message: "Home loan LTV above CBUAE cap (85% nationals / 80% expats, first home <= AED 5m)", source: "CBUAE Mortgage Regulation", confidence: H}
+  - {id: REG.UAE.AL.001, layer: regulator, applies_to: [auto_loan], measure: ltv_pct, direction: max, limit: 80,
+     condition: "ltv_pct <= 80", severity: knockout, message: "Auto loan above 80% of vehicle value", source: "CBUAE Reg 29/2011", confidence: H}
+  - {id: REG.UAE.BUR.001, layer: regulator, applies_to: [retail, sme], measure: bureau_checked, direction: min, limit: 1,
+     condition: "bureau_checked == 1", severity: knockout, message: "AECB report required", source: "CBUAE / AECB", confidence: H}

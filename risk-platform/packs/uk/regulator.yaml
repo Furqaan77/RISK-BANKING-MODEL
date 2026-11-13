@@ -1,0 +1,9 @@
+# Regulator layer: UK (FCA/PRA). Mostly principles; only checkable requirements are coded. Source: master-rulebook rulebook_uk.csv (label: real).
+meta: {pack: uk, version: "0.1", effective_date: "2026-11-12", source: master-rulebook/data/rulebook_uk.csv}
+rules:
+  - {id: REG.UK.AFF.001, layer: regulator, applies_to: [retail], measure: affordability_assessed, direction: min, limit: 1,
+     condition: "affordability_assessed == 1 and income_verified == 1", severity: knockout, message: "Creditworthiness and affordability assessment with evidenced income required", source: "FCA CONC 5.2A", confidence: H}
+  - {id: REG.UK.MORT.001, layer: regulator, applies_to: [mortgage], measure: stress_rate_add_pp, direction: min, limit: 1,
+     condition: "stress_rate_add_pp >= 1", severity: knockout, message: "Mortgage affordability must be stressed by at least +1 percentage point", source: "FCA MCOB 11.6.18R", confidence: H}
+  - {id: REG.UK.AGE.001, layer: regulator, applies_to: [retail], measure: age, direction: min, limit: 18,
+     condition: "age >= 18", severity: knockout, message: "Applicant must be 18 or over", source: "CCA s.50 / age of majority", confidence: H}

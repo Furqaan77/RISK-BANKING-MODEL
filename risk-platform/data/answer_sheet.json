@@ -1,0 +1,72 @@
+{
+ "label": "HIDDEN ANSWER SHEET - do not feed to the engines",
+ "planted": [
+  {
+   "id": "P1",
+   "type": "group_limit_breach",
+   "entity_id": "UAE01",
+   "group_id": "OWN-FALCON-HOLDINGS",
+   "expected_exposure": 490140000.0,
+   "expected_limit": 408450000.0,
+   "expected_excess": 81690000.0,
+   "borrowers": [
+    "Al Saqr General Contracting",
+    "Falcon Trading LLC",
+    "Peregrine Logistics FZE"
+   ]
+  },
+  {
+   "id": "P2",
+   "type": "policy_fail",
+   "application_id": "A00200",
+   "rule_id": "REG.UAE.DBR.001",
+   "expected_verdict": "decline_recommended"
+  },
+  {
+   "id": "P3",
+   "type": "duplicate_facility",
+   "facility_ids": [
+    "F000604",
+    "F000605"
+   ]
+  },
+  {
+   "id": "P4",
+   "type": "approval_authority_breach",
+   "facility_id": "F001654"
+  },
+  {
+   "id": "P5",
+   "type": "sector_limit_breach",
+   "entity_id": "UAE01",
+   "sector": "real_estate",
+   "expected_share_pct": 30.0
+  },
+  {
+   "id": "P6",
+   "type": "policy_fail",
+   "application_id": "A00201",
+   "rule_id": "BANK.UK.LTI.001",
+   "expected_verdict": "decline_recommended"
+  },
+  {
+   "id": "P7",
+   "type": "policy_fail",
+   "application_id": "A00202",
+   "rule_id": "CRED.ALL.BUR.001",
+   "expected_verdict": "decline_recommended"
+  },
+  {
+   "id": "P8",
+   "type": "staging_error",
+   "facility_id": "F001054",
+   "expected_min_stage": 3
+  },
+  {
+   "id": "P9",
+   "type": "tighten_only_violation",
+   "rule_id": "BANK.UAE.DBR.900",
+   "looser_than": "REG.UAE.DBR.001"
+  }
+ ]
+}
